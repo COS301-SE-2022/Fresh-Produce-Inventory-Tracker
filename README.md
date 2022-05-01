@@ -1,7 +1,7 @@
 <h1 align="center">Fresh Produce Inventory Tracker</h1>
 <div>
   <a href= "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/pulls">
-    <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/COS301-SE-2022/Japanese-Writing-Evaluator?style=plastic&logo=appveyor">
+    <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/COS301-SE-2022/Fresh-Produce-Inventory-Tracker?style=plastic&logo=appveyor">
   </a>
   <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/issues">
     <img alt="GitHub Issues" src="https://img.shields.io/github/issues/COS301-SE-2022/Japanese-Writing-Evaluator?style=plastic&logo=appveyor">
