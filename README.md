@@ -38,18 +38,19 @@
   
   
 <h2 align="center">Team Members</h2>
+
+<div>
+    <h3>Durandt Uys(Leader)<h3>
+   <a href="https://www.linkedin.com/in/durandt-uys-97534115a"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+    <a href="https://github.com/DurandtUys"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a><br/>
+    <img src="https://github-readme-stats.vercel.app/api?username=DurandtUys" />
+</div>
+<br/>
 <div>
     <h3>Raymond Boonzaier<h3>
    <a href="https://www.linkedin.com/in/raymond-boonzaier-7b82bb239"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
     <a href="https://github.com/Ray-net"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a><br/>
     <img src="https://github-readme-stats.vercel.app/api?username=Ray-net" />
-</div>
-<br/>
-<div>
-    <h3>Durandt Uys<h3>
-   <a href="https://www.linkedin.com/in/durandt-uys-97534115a"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-    <a href="https://github.com/DurandtUys"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a><br/>
-    <img src="https://github-readme-stats.vercel.app/api?username=DurandtUys" />
 </div>
 <br/>
 <div>
