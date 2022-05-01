@@ -22,7 +22,8 @@
 <h3>Built with</h3>
 <a alt="Angular" href="https://angular.io/docs"><img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" /> </a><br/>
 <a alt="Ionic" href="https://ionicframework.com/docs"><img src="https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white" />  </a><br/>
-<a alt="Ionic" href="https://aws.amazon.com/?nc2=h_lg"><img src="https://img.shields.io/badge/Amazon AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" /></a><br/>
+<a alt="aws" href="https://aws.amazon.com/?nc2=h_lg"><img src="https://img.shields.io/badge/Amazon AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" /></a><br/>
+<a alt="postgres" href=""><img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" /></a><br/>
 
 
 
