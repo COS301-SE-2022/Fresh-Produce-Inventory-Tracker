@@ -14,7 +14,26 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@fresh-produce-inventory-tracker//api/authentication//api": [
+        "libs/api/authentication/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker//api/authentication//repository": [
+        "libs/api/authentication/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker//api/authentication//service": [
+        "libs/api/authentication/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/image/api": [
+        "libs/api/image/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/image/repository": [
+        "libs/api/image/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/image/service": [
+        "libs/api/image/service/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,6 +1,12 @@
 {
   "version": 2,
   "projects": {
+    "-api-authentication--api": "libs/api/authentication/api",
+    "-api-authentication--repository": "libs/api/authentication/repository",
+    "-api-authentication--service": "libs/api/authentication/service",
+    "api-image-api": "libs/api/image/api",
+    "api-image-repository": "libs/api/image/repository",
+    "api-image-service": "libs/api/image/service",
     "backend": "apps/backend",
     "client": "apps/client",
     "client-e2e": "apps/client-e2e"
