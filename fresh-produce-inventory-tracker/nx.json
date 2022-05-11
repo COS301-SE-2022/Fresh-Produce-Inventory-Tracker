@@ -1,0 +1,39 @@
+{
+  "npmScope": "fresh-produce-inventory-tracker",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/nest"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "ZmFiOTYwOGUtN2ZiYy00NDRlLTliYjAtOTJhMjMxY2Q1YjhifHJlYWQtd3JpdGU="
+      }
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
+  },
+  "defaultProject": "backend"
+}
