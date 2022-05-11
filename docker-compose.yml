@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:13
+    ports:
+      - 5434:5432
+    container_name: freshproduce
+    environment:
+      POSTGRES_USER: freshproduce
+      POSTGRES_PASSWORD: freshproduce
+      POSTGRES_DB: freshproduce 
+    
+    networks:
+      - freshproduce-private
+networks:
+  freshproduce-private:
