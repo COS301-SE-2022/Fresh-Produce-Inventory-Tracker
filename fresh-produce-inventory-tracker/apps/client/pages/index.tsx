@@ -1,9 +1,9 @@
 export function Index() {
   return (
     <div className="grid h-full place-content-center">
-      <p className="px-4 py-2 font-semibold rounded-md shadow-md bg-lime-100 text-lime-700 ">
+      <button className="bg-opacity-50 border-0 rounded-md text-lime-800 btn btn-success">
         Hello world
-      </p>
+      </button>
     </div>
   );
 }
