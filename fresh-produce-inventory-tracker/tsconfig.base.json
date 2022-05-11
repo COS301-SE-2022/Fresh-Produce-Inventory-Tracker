@@ -32,6 +32,9 @@
       ],
       "@fresh-produce-inventory-tracker/api/image/service": [
         "libs/api/image/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/prisma/shared": [
+        "libs/api/prisma/shared/src/index.ts"
       ]
     }
   },
