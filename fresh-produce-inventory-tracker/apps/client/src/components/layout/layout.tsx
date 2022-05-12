@@ -57,9 +57,12 @@ export function Layout(props: LayoutProps) {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-        <ul className="p-4 overflow-y-auto bg-white w-80 menu text-base-content">
-          <div className="flex items-center mt-4 mb-20 h-fit">
+        <ul className="p-4 overflow-y-auto bg-white border-solid border-2 w-80 menu text-base-content">
+          <div className="flex items-center mt-4 mb-5 h-fit">
             <Logo />
+          </div>
+          <div>
+            <h1 className="mb-10 text-center font-bold">Fresh Produce Inverntory Tracker</h1>
           </div>
           {/* <!-- Sidebar content here --> */}
           {Links.map(({ name, icon }) => (
@@ -69,7 +72,7 @@ export function Layout(props: LayoutProps) {
                 passHref
               >
                 <div
-                  className={`flex transition-all border-opacity-0 hover:border-opacity-100 border-primary group`}
+                  className={`flex transition-all border-opacity-0 bg-blue-200 mb-2 hover:border-opacity-100 border-primary group`}
                 >
                   {icon}
                   <span className="font-semibold text-primary group-hover:text-secondary group-active:text-white">
