@@ -4,7 +4,7 @@ export function Index() {
               <ul className="space-y-5">
                 <li>
                   <a href="index"><img src="EPI-USE Logo.png" alt="LOG" /></a>
-                  <h1 className="bg-white">Fresh Produce Inventory Tracker</h1>
+                  <h1 className="bg-white text-center font-bold">Fresh Produce Inventory Tracker</h1>
                 </li>
                 <li>
                   <a href="index" className="flex items-center p-2 text-base bg-red-700 font-normal text-white hover:bg-red-700">
