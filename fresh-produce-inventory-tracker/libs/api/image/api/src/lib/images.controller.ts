@@ -7,13 +7,16 @@ import {
     UploadedFiles,
     Res,
     Param,
+    UseGuards,
   } from '@nestjs/common';
   import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
   import { diskStorage } from 'multer';
   import { editFileName, imageFileFilter } from './utils/file-uploads.utils';
+  import {AuthGuard} from '@nestjs/passport';
   
   @Controller('image')
   export class ImagesController {
+   // @UseGuards(AuthGuard('jwt'))
     @Post('uploadone')
     @UseInterceptors(
       FileInterceptor('image', {
@@ -24,7 +27,7 @@ import {
         fileFilter: imageFileFilter,
       }),
     )
-    async uploadedFile(@UploadedFile() file) {
+    async uploadedFile(@UploadedFile() file,) {
       const response = {
         originalname: file.originalname,
         filename: file.filename,
