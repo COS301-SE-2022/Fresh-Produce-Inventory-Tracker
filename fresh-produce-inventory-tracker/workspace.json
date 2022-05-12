@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "projects": {
+    "-api-authentication--api": "libs/api/authentication/api",
+    "-api-authentication--repository": "libs/api/authentication/repository",
+    "-api-authentication--service": "libs/api/authentication/service",
+    "api-image-api": "libs/api/image/api",
+    "api-image-repository": "libs/api/image/repository",
+    "api-image-service": "libs/api/image/service",
+    "api-notifications-api": "libs/api/notifications/api",
+    "api-notifications-repository": "libs/api/notifications/repository",
+    "api-notifications-service": "libs/api/notifications/service",
+    "api-prisma-shared": "libs/api/prisma/shared",
+    "api-scale-api": "libs/api/scale/api",
+    "api-scale-repository": "libs/api/scale/repository",
+    "api-scale-service": "libs/api/scale/service",
+    "backend": "apps/backend",
+    "client": "apps/client",
+    "client-e2e": "apps/client-e2e"
+  }
+}
