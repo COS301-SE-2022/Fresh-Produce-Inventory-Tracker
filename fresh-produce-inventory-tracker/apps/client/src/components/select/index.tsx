@@ -21,6 +21,9 @@ export function Select({ SHOW_ITEMS }) {
           </Listbox.Button>
           <Transition
             as={Fragment}
+            enter="transtion ease-out duration-100"
+            enterFrom="opacity-0 -translate-y-2"
+            enterTo="opacity-100  translate-y-0"
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
