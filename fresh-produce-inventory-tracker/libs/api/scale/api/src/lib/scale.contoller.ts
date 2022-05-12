@@ -1,6 +1,7 @@
 //get & post requests
 
 import { Body, Controller, Post } from '@nestjs/common';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ScaleService } from '../../../service/src/lib/scale.service';
 import { Prisma } from '@prisma/client';
 
