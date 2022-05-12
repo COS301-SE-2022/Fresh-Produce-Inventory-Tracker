@@ -16,7 +16,7 @@
 
 
 <h2 align="center">About the Project</h2>
-
+The fresh-produce tracker will be implemented to allow fresh produce-store owners to track the stock and quality of their produce through various methods. These methods will include using a scale which is placed at the bottom of a shelf, the initial combined weight of all individual items on the shelf is compared to the current combined weight of items on the shelf in order to calculate the current quantity of that specific item in stock. Security measures will be implemented to ensure the safe and ethical use of the fresh-produce tracker.
 
 
 <h3>Built with</h3>
