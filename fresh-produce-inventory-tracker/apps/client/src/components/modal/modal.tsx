@@ -17,15 +17,11 @@ const api_url = 'http://localhost:3333/api/image/uploadone';
 export function Modal(props: ModalProps) {
   const [image, setImage] = useState(null);
 
-  const onImageChange = (e) => {
-    setImage(e.target.files[0]);
-    // console.log(e.target.files[0]);
-  };
+  const onImageChange = (e) => setImage(e.target.files[0]);
 
   const uploadImage = async (e) => {
     e.preventDefault();
     const form = new FormData();
-    console.log(image.name);
     form.append('image', image);
 
     const response = await fetch(api_url, {
