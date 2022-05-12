@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {},
   },
+
   plugins: [require('daisyui')],
 
   daisyui: {
@@ -19,5 +20,28 @@ module.exports = {
     rtl: false,
     prefix: '',
     darkTheme: 'corporate',
+    themes: [
+      {
+        mytheme: {
+          primary: '#001744',
+
+          secondary: '#ce1443',
+
+          accent: '#b2355f',
+
+          neutral: '#1F2128',
+
+          'base-100': '#e5e7eb',
+
+          info: '#06b6d4',
+
+          success: '#47D78F',
+
+          warning: '#F4B643',
+
+          error: '#FA1933',
+        },
+      },
+    ],
   },
 };

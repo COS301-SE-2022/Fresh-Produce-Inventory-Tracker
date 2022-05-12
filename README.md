@@ -1,4 +1,5 @@
-<h1 align="center">Fresh Produce Inventory Tracker</h1>
+<h1 align="center">DACERS</h1>
+<h2 align="center">Fresh Produce Inventory Tracker</h1>
 <div>
   <a href= "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/pulls">
     <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/COS301-SE-2022/Fresh-Produce-Inventory-Tracker?style=plastic&logo=appveyor">
@@ -7,7 +8,7 @@
     <img alt="GitHub Issues" src="https://img.shields.io/github/issues/COS301-SE-2022/Japanese-Writing-Evaluator?style=plastic&logo=appveyor">
   </a>
   <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects/1">
-    <img alt="GitHub Issues" src="https://img.shields.io/badge/Project%20Board-2-blue">
+    <img alt="GitHub Issues" src="https://img.shields.io/badge/Project%20Board-3-blue">
   </a>
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/COS301-SE-2022/Fresh-Produce-Inventory-Tracker?style=plastic&logo=appveyor">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/COS301-SE-2022/Fresh-Produce-Inventory-Tracker?color=orange&style=plastic&logo=appveyor">
@@ -15,7 +16,7 @@
 
 
 
-<h2 align="center">About the Project</h2>
+<h3 align="center">About the Project</h2>
 The fresh-produce tracker will be implemented to allow fresh produce-store owners to track the stock and quality of their produce through various methods. These methods will include using a scale which is placed at the bottom of a shelf, the initial combined weight of all individual items on the shelf is compared to the current combined weight of items on the shelf in order to calculate the current quantity of that specific item in stock. Security measures will be implemented to ensure the safe and ethical use of the fresh-produce tracker.
 
 
@@ -30,12 +31,13 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
 <h2 align= "center">Demos</h2>
   <h3>Demo 1</h3>
    <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/wiki/SRS">📄 SRS Document</a><br/>
-   <a href = "">🎥 Demo Video</a>
+   <a href = "">🎥 DACERS-Demo1</a>
   <h3>Demo 2</h3>
   <h3>Demo 3</h3>
   <h3>Demo 4</h3>
   
-  
+<h2 align="center">Project Board:</h2>
+  <h3 align="center">https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects</h3>
   
 <h2 align="center">Team Members</h2>
 
