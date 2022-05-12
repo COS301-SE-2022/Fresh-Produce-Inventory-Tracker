@@ -7,19 +7,19 @@ export function Index() {
                   <h1 className="bg-white">Fresh Produce Inventory Tracker</h1>
                 </li>
                 <li>
-                  <a href="index" className="flex items-center p-2 text-base bg-red-700 font-normal text-white hover:bg-red-700">
+                  <a href="index" className="flex items-center p-2 text-base bg-blue-900 font-normal text-white hover:bg-red-700">
                     <i className="fa fa-pie-chart" style={{fontSize: '48px'}} />
                     <span className="ml-3">Dashboard</span>
                   </a>
                 </li>
                 <li>
-                  <a href="upload" className="flex items-center p-2 w-64 text-base bg-red-700 font-normal text-white hover:bg-red-700">
+                  <a href="upload" className="flex items-center p-2 text-base bg-blue-900 font-normal text-white hover:bg-red-700">
                     <i className="fa fa-upload" style={{fontSize: '48px'}} />
                     <span className="ml-3">Upload Photos</span>
                   </a>
                 </li>
                 <li>
-                  <a href="userInfo" className="flex items-center p-2 text-base bg-blue-900 font-normal text-white hover:bg-red-700">
+                  <a href="userInfo" className="flex items-center p-2 w-64 text-base bg-red-700 font-normal text-white hover:bg-red-700">
                     <i className="fa fa-user" style={{fontSize: '48px'}} />
                     <span className="ml-3">User Info</span>
                   </a>
