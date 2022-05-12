@@ -1,5 +1,5 @@
 //call database for scale to store scale data
-/*
+
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { ScaleRepository } from '../../../repository/src/lib/scale.repository';
 import { JwtService } from '@nestjs/jwt';
@@ -22,4 +22,4 @@ export class ScaleService { //id: number, userid: number
     async removeScale(id: number, userId: number) {
         return await this.repo.removeScale(id, userId);
     }
-} /*
+} 
