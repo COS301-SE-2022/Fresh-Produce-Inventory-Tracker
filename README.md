@@ -65,6 +65,7 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
 <br/>
 <div>
     <h3>Heinrich van Tonder<h3>
+      <h5>For this task I will setting up documentations and keep it up to date through the development stages, and I will be working on the backend of the project, focusing on the communication between the physical scale and the software.   </h5>
    <a href=""><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
     <a href=""> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a><br/>
     <img src="https://github-readme-stats.vercel.app/api?username=Ray-net" />
