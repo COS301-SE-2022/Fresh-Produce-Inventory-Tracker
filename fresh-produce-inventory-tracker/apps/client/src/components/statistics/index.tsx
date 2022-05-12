@@ -19,7 +19,7 @@ const StatisticItem = ({ icon, number, type }) => (
 
 export function Statistics(props: StatisticsProps) {
   return (
-    <div className=" rounded-xl lg:max-w-[99%] px-4 py-10 bg-slate-50 mt-4 shadow-md ml-2">
+    <div className=" rounded-xl lg:max-w-[98%] px-4 py-10 bg-slate-50 mt-4 shadow-md ml-2 bg-red-100">
       <h2 className="text-lg">Statistics</h2>
       <div className="flex flex-col justify-between mt-8 gap-y-8 md:flex-row lg:justify-around">
         <StatisticItem

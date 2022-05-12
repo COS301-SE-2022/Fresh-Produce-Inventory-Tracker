@@ -1,10 +1,24 @@
 /* eslint-disable-next-line */
 export interface NotificationsProps {}
 
-export function Notifications(props: NotificationsProps) {
+import { notifications } from "../data/data.json";
+
+import  Notification  from "../../src/components/notification"; 
+
+export const getStaticProps = async() => {
+  return{
+    props:{
+      notificationsList:notifications
+    }
+  }
+}
+
+export function Notifications({notificationsList}) {
   return (
-    <div className="grid h-full place-content-center">
-      <h1>Welcome to Settings!</h1>
+    <div>
+        {notificationsList.map(notificationsList => (
+          <Notification key = {notificationsList.id}{...notificationsList}>notificationsList.id</Notification>
+        ))}
     </div>
   );
 }

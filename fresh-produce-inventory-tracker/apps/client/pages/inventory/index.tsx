@@ -7,7 +7,7 @@ const SHOW_ITEMS: string[] = ['10', '15', '20'];
 
 export function Inventory(props: InventoryProps) {
   return (
-    <div className="rounded-xl lg:max-w-[90%] px-4 py-10 bg-slate-50 mt-4 shadow-md">
+    <div className="rounded-xl lg:max-w-[98%] ml-2 px-4 py-10 bg-slate-50 mt-4 shadow-md">
       <div className="flex items-center gap-x-4">
         <span>Show</span>
         <Select SHOW_ITEMS={SHOW_ITEMS} />
