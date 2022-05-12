@@ -1,3 +1,5 @@
+import { MdDashboard } from 'react-icons/md';
+import Statistics from '../src/components/statistics';
 export function Index() {
   return (
           <div className="overflow-hidden w-64 h-screen bg-gray-800 py-4 px-3 bg-gray-50 dark:bg-gray-800" aria-label="Sidebar">

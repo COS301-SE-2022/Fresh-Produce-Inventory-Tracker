@@ -3,7 +3,7 @@ const { join } = require('path');
 module.exports = {
   content: [
     join(__dirname, 'pages/**/*.{js,ts,jsx,tsx}'),
-    join(__dirname, 'components/**/*.{js,ts,jsx,tsx}'),
+    join(__dirname, 'src/components/**/*.{js,ts,jsx,tsx}'),
   ],
   theme: {
     extend: {},
@@ -13,7 +13,6 @@ module.exports = {
 
   daisyui: {
     styled: true,
-    themes: true,
     base: true,
     utils: true,
     logs: true,
@@ -31,7 +30,7 @@ module.exports = {
 
           neutral: '#1F2128',
 
-          'base-100': '#e5e7eb',
+          'base-100': '#FFFFFF',
 
           info: '#06b6d4',
 

@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "@headlessui/react": "^1.6.1",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
@@ -20,6 +21,7 @@
     "prisma": "^3.14.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-icons": "^4.3.1",
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
