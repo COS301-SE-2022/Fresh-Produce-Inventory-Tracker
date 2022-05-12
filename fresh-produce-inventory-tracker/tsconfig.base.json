@@ -14,7 +14,47 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@fresh-produce-inventory-tracker//api/authentication//api": [
+        "libs/api/authentication/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker//api/authentication//repository": [
+        "libs/api/authentication/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker//api/authentication//service": [
+        "libs/api/authentication/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/image/api": [
+        "libs/api/image/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/image/repository": [
+        "libs/api/image/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/image/service": [
+        "libs/api/image/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/notifications/api": [
+        "libs/api/notifications/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/notifications/repository": [
+        "libs/api/notifications/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/notifications/service": [
+        "libs/api/notifications/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/prisma/shared": [
+        "libs/api/prisma/shared/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/scale/api": [
+        "libs/api/scale/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/scale/repository": [
+        "libs/api/scale/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/scale/service": [
+        "libs/api/scale/service/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
