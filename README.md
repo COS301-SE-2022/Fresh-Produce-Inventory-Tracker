@@ -37,7 +37,7 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
   <h3>Demo 4</h3>
   
 <h2 align="center">Project Board:</h2>
-  <h3>https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects</h3>
+  <h3 align="center">https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects</h3>
   
 <h2 align="center">Team Members</h2>
 
