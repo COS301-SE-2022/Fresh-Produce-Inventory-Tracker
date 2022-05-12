@@ -72,10 +72,10 @@ export function Layout(props: LayoutProps) {
                 passHref
               >
                 <div
-                  className={`flex transition-all border-opacity-0 bg-blue-200 mb-2 hover:border-opacity-100 border-primary group`}
+                  className={`flex transition-all border-opacity-0 bg-blue-200 mb-2 hover:bg-red-300 border-primary group`}
                 >
                   {icon}
-                  <span className="font-semibold text-primary group-hover:text-secondary group-active:text-white">
+                  <span className="font-semibold text-primary group-hover:text-primary group-active:text-white">
                     {' '}
                     {name}
                   </span>
