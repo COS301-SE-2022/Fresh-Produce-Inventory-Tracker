@@ -73,7 +73,8 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
 <br/>
 <div>
     <h3>Michael Geere<h3>
-   <a href=""><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+      <h5>I am a final year Computer Science student who has a passion for the back-end of software development. Every now and then I have experiemnted with front-end development but believe my strength lies in database connections.  </h5>
+   <a href="https://www.linkedin.com/in/michael-geere-b8271323a/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
     <a href="https://github.com/michaelgeere"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a><br/>
     <img src="https://github-readme-stats.vercel.app/api?username=michaelgeere" />
 </div>
