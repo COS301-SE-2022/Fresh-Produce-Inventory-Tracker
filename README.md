@@ -51,6 +51,7 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
 <br/>
 <div>
     <h3>Raymond Boonzaier<h3>
+      <h5>I am a Bsc Knowledge and Information systems student with great interestin the field of datastorage as well as the extraction of relevant information from large volumes of data through data mining making that data mean something relevant to what I will find interesting. I have some experience in the field of data engineer where I have to model data into valuable information as well as having experience in systistical analysis. I prefer to work in the backend of the project with a focus on the database as well as creating relevant data models through statistical analysis.  </h5>
    <a href="https://www.linkedin.com/in/raymond-boonzaier-7b82bb239"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
     <a href="https://github.com/Ray-net"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /></a><br/>
     <img src="https://github-readme-stats.vercel.app/api?username=Ray-net" />
