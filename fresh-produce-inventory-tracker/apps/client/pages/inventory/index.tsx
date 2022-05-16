@@ -20,14 +20,14 @@ export function Inventory(props: InventoryProps) {
   return (
     <div className="rounded-xl flex flex-wrap justify-between lg:max-w-[98%] px-4 py-10 bg-slate-50 mt-4 shadow-md">
       <div className="flex items-center gap-x-4">
-        <span>Show</span>
+        <span className="">Show</span>
         <Select SHOW_ITEMS={SHOW_ITEMS} />
         <button
           onClick={() => setShowImageUpload(true)}
-          className="flex text-white gap-x-2 btn btn-primary"
+          className="flex items-center text-white gap-x-2 btn btn-primary"
         >
-          <IoAdd className="w-4 h-4 text-white " />
-          Add Item
+          <IoAdd className="hidden w-4 h-4 text-white md:flex" />
+          <span>Add Item</span>
         </button>
         <Modal
           isOpen={showImageUpload}
@@ -37,12 +37,12 @@ export function Inventory(props: InventoryProps) {
           description="Please select and upload an image for analysis."
         />
       </div>
-      <div className="w-fit flex items-center gap-x-4">
+      <div className="flex items-center w-fit gap-x-4">
         <p>Status</p>
         <Select SHOW_ITEMS={['Expired', 'About to expire', 'New/Fresh']} />
       </div>
 
-      <div className="mt-10 w-full">
+      <div className="w-full mt-10">
         <InventoryTable />
       </div>
     </div>

@@ -19,9 +19,9 @@ const StatisticItem = ({ icon, number, type }) => (
 
 export function Statistics(props: StatisticsProps) {
   return (
-    <div className=" rounded-xl lg:max-w-[98%] px-4 py-10 bg-slate-50 mt-4 shadow-md ml-2 bg-red-100">
+    <div className=" rounded-xl lg:max-w-[98%] px-4 py-10 bg-slate-50 mt-4 shadow-md ml-2">
       <h2 className="text-lg">Statistics</h2>
-      <div className="flex flex-col justify-between mt-8 gap-y-8 md:flex-row lg:justify-around">
+      <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
         <StatisticItem
           icon={
             <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info bg-info/20" />

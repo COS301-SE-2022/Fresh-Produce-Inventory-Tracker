@@ -39,30 +39,24 @@ const Links = [
 ];
 
 export function Layout(props: LayoutProps) {
-
-
-
   return (
     <div className="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {props.children}
-        <label
-          htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
-        >
-          Open drawer
-        </label>
+
       </div>
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-        <ul className="p-4 overflow-y-auto bg-white border-solid border-2 w-80 menu text-base-content">
+        <ul className="p-4 overflow-y-auto bg-white border-2 border-solid w-80 menu text-base-content">
           <div className="flex items-center mt-4 mb-5 h-fit">
             <Logo />
           </div>
           <div>
-            <h1 className="mb-10 text-center font-bold">Fresh Produce Inverntory Tracker</h1>
+            <h1 className="mb-10 font-bold text-center">
+              Fresh Produce Inverntory Tracker
+            </h1>
           </div>
           {/* <!-- Sidebar content here --> */}
           {Links.map(({ name, icon }) => (
@@ -72,10 +66,10 @@ export function Layout(props: LayoutProps) {
                 passHref
               >
                 <div
-                  className={`flex transition-all border-opacity-0 bg-blue-200 mb-2 hover:bg-red-300 border-primary group`}
+                  className={`flex transition-all border-opacity-0 bg-blue-100/70 mb-2 hover:bg-red-100 border-primary group`}
                 >
                   {icon}
-                  <span className="font-semibold text-primary group-hover:text-primary group-active:text-white">
+                  <span className="text-sm text-primary group-hover:text-primary group-active:text-white">
                     {' '}
                     {name}
                   </span>
