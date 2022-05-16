@@ -30,18 +30,23 @@ export function Navigation(props: NavigationProps) {
       <div className="flex items-center gap-x-4">
         <label
           htmlFor="my-drawer-2"
-          className="p-2 transition-all rounded-md cursor-pointer hover:bg-primary/20 bg-primary/10"
+          className="p-2 transition-all rounded-md cursor-pointer lg:hidden hover:bg-primary/20 bg-primary/10"
         >
           <GiHamburgerMenu className="w-full h-full cursor-pointer pointer-events-none"></GiHamburgerMenu>
         </label>
 
-        <a href="notifications">
-          <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral-10" />
-        </a>
+        <Link href="/notification" passHref>
+          <span>
+            <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral-10" />
+          </span>
+        </Link>
+
         <div className="flex items-center cursor-pointer gap-x-2">
-          <a href="/user">
-            <RiUser3Line className="w-10 h-10 p-2 rounded-full bg-neutral/10" />
-          </a>
+          <Link href="/user" passHref>
+            <span>
+              <RiUser3Line className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral/10" />
+            </span>
+          </Link>
         </div>
       </div>
     </div>

@@ -16,22 +16,26 @@ export interface LayoutProps {
 const Links = [
   {
     name: 'Dashboard',
+    link : "/",
     icon: <MdDashboard className="text-black/60 group-active:text-white" />,
   },
   {
     name: 'Inventory',
+    link: "/inventory",
     icon: (
       <MdOutlineInventory className="text-black/60 group-active:text-white" />
     ),
   },
   {
     name: 'Statistics',
+    link:"/statistics",
     icon: (
       <MdOutlineTrendingDown className="text-black/60 group-active:text-white" />
     ),
   },
   {
     name: 'Settings',
+    link: "/settings",
     icon: (
       <MdOutlineSettingsApplications className="text-black/60 group-active:text-white" />
     ),
@@ -49,24 +53,25 @@ export function Layout(props: LayoutProps) {
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-        <ul className="p-4 overflow-y-auto bg-white border-2 border-solid w-80 menu text-base-content">
-          <div className="flex items-center mt-4 mb-5 h-fit">
+        <ul className="px-4 overflow-y-auto bg-white border-2 border-solid w-80 menu text-base-content">
+          <div className="flex flex-col items-center mb-5 h-fit">
             <Logo />
-          </div>
-          <div>
             <h1 className="mb-10 font-bold text-center">
               Fresh Produce Inverntory Tracker
             </h1>
           </div>
+          <div>
+
+          </div>
           {/* <!-- Sidebar content here --> */}
-          {Links.map(({ name, icon }) => (
+          {Links.map(({ name, icon, link }) => (
             <li key={name}>
               <Link
-                href={`/${name === 'Dashboard' ? '/' : name.toLowerCase()}`}
+                href={link}
                 passHref
               >
                 <div
-                  className={`flex transition-all border-opacity-0 bg-blue-100/70 mb-2 hover:bg-red-100 border-primary group`}
+                  className={`flex transition-all border-opacity-0 bg-blue-100/50 mb-2 hover:bg-red-100 rounded-md  border-primary group`}
                 >
                   {icon}
                   <span className="text-sm text-primary group-hover:text-primary group-active:text-white">
