@@ -1,17 +1,30 @@
 /* eslint-disable @next/next/no-img-element */
 
 import Link from 'next/link';
-
+import { useForm } from 'react-hook-form';
 /* eslint-disable-next-line */
 export interface LoginProps {}
+interface Login {
+  email: string;
+  password: string;
+}
 
 export function Login(props: LoginProps) {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const handleLogin = (data: Login) => {
+    console.log(data);
+  };
+
   return (
     <div className="grid w-screen h-screen place-content-center bg-base-300/40">
       <form
-        onSubmit={() => {
-          console.log('submit');
-        }}
+        onSubmit={handleSubmit(handleLogin)}
         className="max-w-xs p-8 bg-white rounded-md shadow-md"
       >
         <div>
@@ -34,22 +47,51 @@ export function Login(props: LoginProps) {
               Email
             </label>
             <input
+              {...register('email', {
+                required: true,
+                pattern:
+                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              })}
               id="email"
-              type="email"
+              type="text"
               name="email"
-              className="w-full rounded focus:outline-none input ring-1 ring-primary/10 focus:ring-secondary/70 input-sm"
+              className={`w-full ${
+                errors.email ? 'ring-error' : 'ring-primary/20'
+              } mt-1 font-light rounded focus:ring-primary focus:outline-none input ring-1 ring-primary/10  input-sm`}
             />
+            <div className="mt-2 text-xs font-light text-error">
+              {errors?.email?.type === 'pattern' ? (
+                <p>Email address is invalid.</p>
+              ) : errors?.email?.type === 'required' ? (
+                <p>Email address is required.</p>
+              ) : (
+                ''
+              )}
+            </div>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="password" className="text-xs font-light opacity-80 ">
+            <label
+              htmlFor="password"
+              className="text-xs font-light opacity-80 "
+            >
               Password
             </label>
             <input
+              {...register('password', { required: true })}
               type="password"
               id="password"
               name="password"
-              className="w-full rounded input focus:ring-secondary/70 focus:outline-none ring-1 ring-primary/10 input-sm"
+              className={`w-full mt-1 font-light rounded input ${
+                errors?.password?.type === 'required'
+                  ? 'ring-error'
+                  : 'ring-primary/20'
+              }  focus:outline-none ring-1 focus:ring-primary input-sm`}
             />
+            <div className="mt-2 text-xs font-light text-error">
+              {errors?.password?.type === 'required' && (
+                <p>Password field is required.</p>
+              )}
+            </div>
           </div>
         </div>
 
