@@ -1,9 +1,7 @@
 //call database for scale to store scale data
 
-<<<<<<< Updated upstream
+
 import { ForbiddenException, Injectable } from '@nestjs/common';
-=======
->>>>>>> Stashed changes
 import { ScaleRepository } from '../../../repository/src/lib/scale.repository';
 
 import { Prisma } from '@prisma/client';
