@@ -26,7 +26,7 @@ export class AuthenticationService {
     const data = {sub:id,email};
     const secret = await this.config.get('JWT_SECRET');
     const token = await this.jwt.signAsync(data,{expiresIn:'15m',secret:secret});
-    return {Access:token};
+    return {id: id, Access:token};
   }
   /*async forgotPassword(email:string)
   {
