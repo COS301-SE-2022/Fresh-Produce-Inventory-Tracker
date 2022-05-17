@@ -13,7 +13,6 @@ export function Login(props: LoginProps) {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -22,10 +21,10 @@ export function Login(props: LoginProps) {
   };
 
   return (
-    <div className="grid w-screen h-screen place-content-center bg-base-300/40">
+    <div className="grid w-screen h-full min-h-screen p-2 place-content-center bg-base-300/40">
       <form
         onSubmit={handleSubmit(handleLogin)}
-        className="max-w-xs p-8 bg-white rounded-md shadow-md"
+        className="w-full p-8 transition-all bg-white rounded-md shadow-md md:max-w-sm min-w-fit"
       >
         <div>
           <div className="flex flex-col items-center">
@@ -57,7 +56,7 @@ export function Login(props: LoginProps) {
               name="email"
               className={`w-full ${
                 errors.email ? 'ring-error' : 'ring-primary/20'
-              } mt-1 font-light rounded focus:ring-primary focus:outline-none input ring-1 ring-primary/10  input-sm`}
+              } mt-1 font-light rounded focus:ring-primary focus:outline-none input ring-1  input-sm`}
             />
             <div className="mt-2 text-xs font-light text-error">
               {errors?.email?.type === 'pattern' ? (
@@ -98,15 +97,15 @@ export function Login(props: LoginProps) {
         <div className="mt-6">
           <input
             type="submit"
-            value="Sing in"
+            value="Sign in"
             className="w-full px-1 py-2 font-light text-white rounded-md cursor-pointer bg-primary hover:bg-primary-focus"
           />
           <p className="mt-4 text-sm text-center">
             {"Don't"} have an account yet?
-            <Link href="/singup" passHref>
+            <Link href="/signup" passHref>
               <span className="cursor-pointer focus:text-secondary-focus text-secondary">
                 {' '}
-                Singup now!
+                Signup now!
               </span>
             </Link>
           </p>

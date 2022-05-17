@@ -80,7 +80,7 @@ export function InventoryTable(props: InventoryTableProps) {
                     <td>{expiresIn}</td>
                     <td className="flex justify-center">
                       <span
-                        className={`py-2 text-sm px-4 rounded-full ${
+                        className={`py-2 px-4 rounded-full ${
                           condition === 'good'
                             ? 'bg-success/20 text-green-800'
                             : condition === 'about to expire'
