@@ -32,16 +32,10 @@ import {
       }),
     )
     async uploadedFile(@Req() req:Request,@UploadedFile() file,) {
-      console.log(req.user);
-      const response = {
-        originalname: file.originalname,
-        filename: file.filename,
-      };
       const resp = await this.service.uploadfile(req.user,file.filename);
-      console.log(resp);
-      return response;
+      return resp;
     }
-    @UseGuards(AuthGuard('jwt'))
+    /*@UseGuards(AuthGuard('jwt'))
     @Post('uploadmultiple')
     @UseInterceptors(
       FilesInterceptor('image', 20, {
@@ -62,7 +56,7 @@ import {
         response.push(fileReponse);
       });
       return response;
-    }
+    }*/
   
     @Get(':imgpath')
     seeUploadedFile(@Param('imgpath') image, @Res() res) {

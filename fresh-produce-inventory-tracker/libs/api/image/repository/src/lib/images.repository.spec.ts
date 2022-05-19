@@ -1,7 +1,6 @@
 import { Test } from '@nestjs/testing';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
-import { ImagesRepository } from '../../../repository/src/lib/images.repository';
-import { ImagesService } from './images.service';
+import { ImagesRepository } from './images.repository';
 
 
 class image{
@@ -14,26 +13,26 @@ class image{
 }
 const MockApiImpl : jest.Mocked<image> = new image() as image;
 describe('ApiAuthorizationRepositoryTest', () => {
-    let data: ImagesService; //= new AuthenicationRepository(new PrismaService());
+    let data: ImagesRepository; //= new AuthenicationRepository(new PrismaService());
     //const prisma = new PrismaService();
     beforeEach(async () => {
       const moduleRef = await Test.createTestingModule({
           controllers: [],
-          providers: [ImagesService,ImagesRepository,PrismaService],
+          providers: [ImagesRepository,PrismaService],
         }).compile();
   
-        data = moduleRef.get<ImagesService>(ImagesService);
+        data = moduleRef.get<ImagesRepository>(ImagesRepository);
       
     });
     it('should store image location', async () => {
       jest
-        .spyOn(data, 'uploadfile')
+        .spyOn(data, 'createImage')
         .mockImplementation(
           (): Promise<image | null> => Promise.resolve(MockApiImpl)
         );
   
       expect(
-        await data.uploadfile(1,'awfdhowuiefhaw9pufh.png')
+        await data.createImage(1,'awfdhowuiefhaw9pufh.png')
       ).toBe(MockApiImpl);
     });
 });
