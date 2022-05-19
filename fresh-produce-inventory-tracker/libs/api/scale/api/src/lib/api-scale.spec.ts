@@ -62,6 +62,31 @@ describe('ScaleController', () => {
         ).toBe(MockApiImpl);
       });
 
+///////////////////////////////////////////////////////////////////
+      it('should delets scale', async () => {
+        jest
+          .spyOn(controller, 'deletescale')
+          .mockImplementation(
+            () => Promise.resolve(null)
+          );
+    
+        expect(
+          await controller.deletescale(1,2) 
+        ).toBe(MockApiImpl);
+      });
+///////////////////////////////////////////////////////////////////
+it('should edit scale', async () => {
+    jest
+      .spyOn(controller, 'editscale')
+      .mockImplementation(
+        () => Promise.resolve(null)
+      );
+
+    expect(
+      await controller.editscale(1,2, {type:"apples"})
+    ).toBe(MockApiImpl);
+  });
+
 
 
 });
