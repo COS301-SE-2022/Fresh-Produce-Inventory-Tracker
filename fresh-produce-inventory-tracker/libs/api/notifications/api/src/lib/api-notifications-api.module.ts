@@ -9,7 +9,7 @@ import {NotificaytionService} from '../../../service/src/lib/notification.servic
       host:'smtp.sendgrid.net',
       auth:{
         user:'apikey',
-        pass:'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'
+        pass:''
       }
     }
   })],
