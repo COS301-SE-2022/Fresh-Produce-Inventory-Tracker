@@ -1,9 +1,11 @@
 //get & post requests
 
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ScaleService } from '../../../service/src/lib/scale.service';
 import { Prisma } from '@prisma/client';
+import { AuthGuard } from '@nestjs/passport/dist';
+import {Request} from 'express';
 
 @Controller('scale')
 export class ScaleController {
@@ -17,15 +19,18 @@ export class ScaleController {
     //console.log(email, password);
     return await this.ScaleService.getScale(id, userid);
   }
+  @UseGuards(AuthGuard('jwt'))
   @Post('setscale')//userId:number,weightfull:number,weightone:number,producetype:Prisma.EnumProduceTypeFilter
-  async setscale(@Body('userId') userId: number, @Body('weightfull') weightfull: number, @Body('weightone') weightone: number, @Body('producetype') producetype: Prisma.EnumProduceTypeFilter) {
-    return this.ScaleService.createScale({
+  async setscale(@Req() req:Request, @Body('weightfull') weightfull: number, @Body('weightone') weightone: number, @Body('producetype') producetype: Prisma.EnumProduceTypeFilter) {
+    const userId = req.user;
+    console.log(userId);
+    /*return this.ScaleService.createScale({
       userId: userId,
       weightfull: weightfull,
       producetype: producetype,
       weightone: weightone
 
-    });
+    });*/
   }
   @Post('deletescale')//id: number, userid:number
   async deletescale(@Body('id') id: number, @Body('userid') userid: number) {

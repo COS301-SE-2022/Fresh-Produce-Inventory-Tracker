@@ -19,4 +19,13 @@ export class AuthenticationController {
       password: password,
     });
   }
+  @Post('resetpassword')
+  async resetPassword(@Body('email') email: string) {
+    return await this.AuthenticationService.getUser(email);
+  }
+  @Post('editpassword')
+  async editpassword(@Body('email') email: string,@Body('password') password: string) {
+    return await this.AuthenticationService.editPassword(email,password);
+  }
+
 }
