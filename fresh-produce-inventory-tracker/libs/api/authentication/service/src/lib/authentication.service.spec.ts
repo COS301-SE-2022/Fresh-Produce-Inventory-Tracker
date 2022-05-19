@@ -21,9 +21,11 @@ class access{
   Access:string;
 }
 
+
 const mockAccess : jest.Mocked<access> = new access() as access;
 //const errorPassmock : jest.Mocked<passincorrect> = new passincorrect() as passincorrect;
 const MockApiImpl : jest.Mocked<user> = new user() as user;
+const MockString : jest.Mocked<string> = new String() as string;
 describe('Service test', () => {
     let data: AuthenticationService;
     //const prisma = new PrismaService();
@@ -104,6 +106,34 @@ describe('Service test', () => {
           () => Promise.resolve(mockAccess)
         );
           expect(await data.setToken(1,'qwert@gmail.com')).toBe(mockAccess);
+    });
+    it('should get user', async () => {
+      jest
+        .spyOn(data, 'getUser')
+        .mockImplementation(
+          () => Promise.resolve(MockApiImpl)
+        );
+          expect(await data.getUser('qwert@gmail.com')).toBe(MockApiImpl);
+    });
+    it('should not get user', async () => {
+      jest
+        .spyOn(data, 'getUser')
+        .mockImplementation(
+          () => Promise.resolve(null)
+        );
+        try {
+          await data.getUser('qwerty@gmail.com');
+        } catch (error) {
+          expect(error).toBeInstanceOf(ForbiddenException);
+        }
+    });
+        it('should change password', async () => {
+          jest
+            .spyOn(data, 'editPassword')
+            .mockImplementation(
+              () => Promise.resolve(MockString)
+            );
+            expect(await data.editPassword('qwert@gmail.com','kingsly')).toBe(MockString);
     });
     
     
