@@ -7,6 +7,8 @@ interface Signup {
   password: string;
 }
 
+const api_url = 'http://localhost:3333/api/authentication/signup';
+
 export function Signup(props: SignupProps) {
   const {
     register,
@@ -14,8 +16,25 @@ export function Signup(props: SignupProps) {
     formState: { errors },
   } = useForm();
 
-  const handleSignup = (data: Signup) => {
+  const handleSignup = async (data: Signup) => {
+    const form = new FormData();
+    form.append('email', data.email);
+    form.append('password', data.password);
     console.log(data);
+
+    const response = await fetch(api_url, {
+      method: 'POST',
+      body: form,
+    });
+
+    if (response.status == 201) {
+      alert('Success, signed up');
+      return;
+    }
+
+    if (response.status == 500) {
+      alert('Error, please make sure you have uploaded valid image format.');
+    }
   };
 
   return (
