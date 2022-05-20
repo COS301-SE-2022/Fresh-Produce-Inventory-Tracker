@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import Select from './select';
+import Select from './index';
 
 describe('Select', () => {
   it('should render successfully', () => {
