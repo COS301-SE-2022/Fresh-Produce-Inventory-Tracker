@@ -3,7 +3,7 @@ export interface LogoProps {}
 
 export function Logo(props: LogoProps) {
   return (
-    <img src="EPI-USE Logo.png" className="w-full"></img>
+    <img src="/EPI-USE Logo.PNG" className="w-full"></img>
   );
 }
 

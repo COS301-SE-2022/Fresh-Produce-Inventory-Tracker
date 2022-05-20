@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Select from './index';
+import InventoryItem from './inventory-item';
 
-describe('Select', () => {
+describe('InventoryItem', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Select />);
+    const { baseElement } = render(<InventoryItem />);
     expect(baseElement).toBeTruthy();
   });
 });

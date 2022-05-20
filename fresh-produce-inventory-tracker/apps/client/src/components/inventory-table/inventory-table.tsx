@@ -55,11 +55,11 @@ const INVENTORY_TABLE_DATA_MOCK: InventoryItem[] = [
 
 export function InventoryTable(props: InventoryTableProps) {
   return (
-    <div className=" w-full">
+    <div className="w-full ">
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>
-            <tr className="text-primary/70 text-center">
+            <tr className="text-center text-primary/50">
               <th>#ID</th>
               <th>Name</th>
               <th>Description</th>
@@ -80,7 +80,7 @@ export function InventoryTable(props: InventoryTableProps) {
                     <td>{expiresIn}</td>
                     <td className="flex justify-center">
                       <span
-                        className={`py-2 text-sm font-medium px-4 rounded-full ${
+                        className={`py-2 px-4 rounded-full ${
                           condition === 'good'
                             ? 'bg-success/20 text-green-800'
                             : condition === 'about to expire'
