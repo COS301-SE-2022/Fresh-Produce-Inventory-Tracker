@@ -1,4 +1,4 @@
-import { Injectable, Param } from '@nestjs/common';
+import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 
@@ -8,9 +8,9 @@ export class ScaleRepository {
   async getScale(id: number, userid: number) {
     return await this.prisma.scale.findUnique({ where: { id_userId: { userId: userid, id: id } } });
   }
-  async createScale(userId: number, weightfull: number, weightone: number, producetype: Prisma.EnumProduceTypeFilter) {
+  async createScale(userId: number, weightfull: number, weightone: number, producetype: string) {
     return await this.prisma.scale.create({
-      data: { userId: userId, WeightTotal: weightfull, WeightIndividual: weightone, ProduceType: producetype.equals }
+      data: { userId: userId, WeightTotal: weightfull, WeightIndividual: weightone,ProduceType: producetype}
     });
   }
   async editScale(id: number, userid: number, data: any) {

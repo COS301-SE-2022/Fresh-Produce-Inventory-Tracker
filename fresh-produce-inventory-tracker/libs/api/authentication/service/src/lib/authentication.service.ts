@@ -7,6 +7,7 @@ import {ConfigService} from '@nestjs/config';
 
 @Injectable({})
 export class AuthenticationService {
+  
   constructor(private repo: AuthenicationRepository, private jwt:JwtService,private config:ConfigService) {}
   async signup(email: string, password: string) {
     //encrypt
@@ -19,6 +20,7 @@ export class AuthenticationService {
     const password = user.password;
     if (dto.password != password)
       throw new ForbiddenException('Password incorrect');
+      console.log(user);
     return this.setToken(user.id,user.email);
   }
   async setToken(id:number,email:string)
@@ -26,13 +28,24 @@ export class AuthenticationService {
     const data = {sub:id,email};
     const secret = await this.config.get('JWT_SECRET');
     const token = await this.jwt.signAsync(data,{expiresIn:'15m',secret:secret});
-    return {Access:token};
+    return {id: id, Access:token};
   }
-  /*async forgotPassword(email:string)
+  async getUser(email:string)
   {
     const user = await this.repo.getUser(email);
-    if (!user) throw new ForbiddenException('Email incorrect');
-    await this.mailService.sendUserConfirmation(email);
-    return ;
-  }*/
+    if (!user) throw new ForbiddenException('Email not found!');
+    delete user.password;
+    delete user.passwordSalt;
+    return user;
+  }
+  async editPassword(email:string,password:string)
+  {
+    const user = await this.repo.getUser(email);
+    if (!user) throw new ForbiddenException('Email not found!');
+    const user2 = await this.repo.editUser(user.id,{password:password})
+    delete user2.password;
+    delete user2.passwordSalt;
+    return 'Password reset';
+  }
+
 }

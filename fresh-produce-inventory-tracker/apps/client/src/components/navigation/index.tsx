@@ -36,7 +36,7 @@ export function Navigation(props: NavigationProps) {
             <GiHamburgerMenu className="w-full h-full cursor-pointer pointer-events-none"></GiHamburgerMenu>
           </label>
 
-          <Link href="/notification" passHref>
+          <Link href="/notifications" passHref>
             <span>
               <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral-10" />
             </span>
