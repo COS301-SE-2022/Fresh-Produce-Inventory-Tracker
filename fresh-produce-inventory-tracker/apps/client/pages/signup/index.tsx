@@ -1,29 +1,27 @@
 /* eslint-disable @next/next/no-img-element */
-
-import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 /* eslint-disable-next-line */
-export interface LoginProps {}
-interface Login {
+export interface SignupProps {}
+interface Signup {
   email: string;
   password: string;
 }
 
-export function Login(props: LoginProps) {
+export function Signup(props: SignupProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const handleLogin = (data: Login) => {
+  const handleSignup = (data: Signup) => {
     console.log(data);
   };
 
   return (
     <div className="grid w-screen h-full min-h-screen p-2 place-content-center bg-base-300/40">
       <form
-        onSubmit={handleSubmit(handleLogin)}
+        onSubmit={handleSubmit(handleSignup)}
         className="w-full p-8 transition-all bg-white rounded-md shadow-md md:max-w-sm min-w-fit"
       >
         <div>
@@ -41,6 +39,54 @@ export function Login(props: LoginProps) {
         </div>
 
         <div className="flex flex-col mt-6 gap-y-4">
+        <div className="flex flex-col">
+            <label
+              htmlFor="name"
+              className="text-xs font-light opacity-80 "
+            >
+              Name
+            </label>
+            <input
+              {...register('name', { required: true })}
+              type="text"
+              id="name"
+              name="name"
+              className={`w-full mt-1 font-light rounded input ${
+                errors?.name?.type === 'required'
+                  ? 'ring-error'
+                  : 'ring-primary/20'
+              }  focus:outline-none ring-1 focus:ring-primary input-sm`}
+            />
+            <div className="mt-2 text-xs font-light text-error">
+              {errors?.name?.type === 'required' && (
+                <p>Name field is required.</p>
+              )}
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <label
+              htmlFor="surname"
+              className="text-xs font-light opacity-80 "
+            >
+              Surname
+            </label>
+            <input
+              {...register('surname', { required: true })}
+              type="text"
+              id="surname"
+              name="surname"
+              className={`w-full mt-1 font-light rounded input ${
+                errors?.surname?.type === 'required'
+                  ? 'ring-error'
+                  : 'ring-primary/20'
+              }  focus:outline-none ring-1 focus:ring-primary input-sm`}
+            />
+            <div className="mt-2 text-xs font-light text-error">
+              {errors?.surname?.type === 'required' && (
+                <p>Surname field is required.</p>
+              )}
+            </div>
+          </div>
           <div className="flex flex-col ">
             <label htmlFor="email" className="text-xs font-light opacity-80">
               Email
@@ -97,22 +143,13 @@ export function Login(props: LoginProps) {
         <div className="mt-6">
           <input
             type="submit"
-            value="Sign in"
+            value="Signup"
             className="w-full px-1 py-2 font-light text-white rounded-md cursor-pointer bg-primary hover:bg-primary-focus"
           />
-          <p className="mt-4 text-sm text-center">
-            {"Don't"} have an account yet?
-            <Link href="/signup" passHref>
-              <span className="cursor-pointer focus:text-secondary-focus text-secondary">
-                {' '}
-                Signup now!
-              </span>
-            </Link>
-          </p>
         </div>
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Signup;
