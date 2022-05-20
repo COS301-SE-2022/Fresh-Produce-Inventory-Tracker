@@ -23,6 +23,7 @@ model User {
   Image   Image[]
   Scale   Scale[]
   Feedback_Data Feedback_Data[]
+  Notification Notification[]
 }
 
 model Produce {
@@ -76,6 +77,16 @@ model Feedback_Data {
 
   @@id([id, userId])
   @@map("feedback_data")
+}
+model Notification {
+  id        Int      @default(autoincrement())
+  userId    Int      @map("user_id")
+  title   String?
+  message   String?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([id, userId])
+  @@map("notification")
 }
 
 
