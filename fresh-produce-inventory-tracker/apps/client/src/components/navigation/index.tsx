@@ -19,13 +19,13 @@ export function Navigation(props: NavigationProps) {
               .toUpperCase()}${router.pathname.replace('/', '').substring(1)}`}
       </h1>
       <div className="flex gap-x-4">
-        <a href="notifications">
+        <Link href="/notifications" passHref>
           <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral-10"/>
-        </a>
+        </Link>
         <div className="flex items-center cursor-pointer gap-x-2">
-          <a href="/user">
+          <Link href="/user" passHref>
             <RiUser3Line className="w-10 h-10 p-2 rounded-full bg-neutral/10" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

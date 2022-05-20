@@ -1,5 +1,3 @@
-import styles from './logo.module.css';
-
 /* eslint-disable-next-line */
 export interface LogoProps {}
 
