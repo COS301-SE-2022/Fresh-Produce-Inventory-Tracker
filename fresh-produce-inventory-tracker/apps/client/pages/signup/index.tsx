@@ -7,6 +7,8 @@ interface Signup {
   password: string;
 }
 
+const api_url = 'http://localhost:3333/api/authentication/signup';
+
 export function Signup(props: SignupProps) {
   const {
     register,
@@ -14,8 +16,29 @@ export function Signup(props: SignupProps) {
     formState: { errors },
   } = useForm();
 
-  const handleSignup = (data: Signup) => {
-    console.log(data);
+  const handleSignup = async (data: Signup) => {
+    const form = new FormData();
+    form.append('email', data.email);
+    form.append('password', data.password);
+    const  Form = "email="+data.email +"&password="+data.password;
+    console.log(Form);
+
+    const response = await fetch(api_url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: Form,
+    });
+
+    if (response.status == 201) {
+      window.location.replace("../login");
+      return;
+    }
+
+    if (response.status == 500) {
+      alert('User is already in the system, please try again!');
+    }
   };
 
   return (
@@ -33,7 +56,7 @@ export function Signup(props: SignupProps) {
               Welcome to the Fresh Produce Inventory Tracker
             </h1>
             <h2 className="mt-2 text-sm text-primary/80">
-              Please sing-in to your account and start the adventure.
+              Please create an account to start your adventure.
             </h2>
           </div>
         </div>
