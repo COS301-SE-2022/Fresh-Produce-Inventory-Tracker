@@ -20,20 +20,24 @@ export function Signup(props: SignupProps) {
     const form = new FormData();
     form.append('email', data.email);
     form.append('password', data.password);
-    console.log(data);
+    const  Form = "email="+data.email +"&password="+data.password;
+    console.log(Form);
 
     const response = await fetch(api_url, {
       method: 'POST',
-      body: form,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: Form,
     });
 
     if (response.status == 201) {
-      alert('Success, signed up');
+      window.location.replace("../login");
       return;
     }
 
     if (response.status == 500) {
-      alert('Error, please make sure you have uploaded valid image format.');
+      alert('User is already in the system, please try again!');
     }
   };
 
@@ -52,7 +56,7 @@ export function Signup(props: SignupProps) {
               Welcome to the Fresh Produce Inventory Tracker
             </h1>
             <h2 className="mt-2 text-sm text-primary/80">
-              Please sing-in to your account and start the adventure.
+              Please create an account to start your adventure.
             </h2>
           </div>
         </div>
