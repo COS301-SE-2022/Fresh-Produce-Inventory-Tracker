@@ -8,15 +8,19 @@ import {
     Res,
     Param,
     UseGuards,
+    Req,
   } from '@nestjs/common';
   import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
   import { diskStorage } from 'multer';
   import { editFileName, imageFileFilter } from './utils/file-uploads.utils';
   import {AuthGuard} from '@nestjs/passport';
+  import {Request} from 'express';
+  import {ImagesService} from '../../../service/src/lib/images.service';
   
   @Controller('image')
   export class ImagesController {
-   // @UseGuards(AuthGuard('jwt'))
+    constructor(private service:ImagesService){}
+   @UseGuards(AuthGuard('jwt'))
     @Post('uploadone')
     @UseInterceptors(
       FileInterceptor('image', {
@@ -27,14 +31,11 @@ import {
         fileFilter: imageFileFilter,
       }),
     )
-    async uploadedFile(@UploadedFile() file,) {
-      const response = {
-        originalname: file.originalname,
-        filename: file.filename,
-      };
-      return response;
+    async uploadedFile(@Req() req:Request,@UploadedFile() file,) {
+      const resp = await this.service.uploadfile(req.user,file.filename);
+      return resp;
     }
-  
+    /*@UseGuards(AuthGuard('jwt'))
     @Post('uploadmultiple')
     @UseInterceptors(
       FilesInterceptor('image', 20, {
@@ -55,7 +56,7 @@ import {
         response.push(fileReponse);
       });
       return response;
-    }
+    }*/
   
     @Get(':imgpath')
     seeUploadedFile(@Param('imgpath') image, @Res() res) {
