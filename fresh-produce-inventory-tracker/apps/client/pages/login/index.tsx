@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-
+import { BiShow, BiHide } from 'react-icons/bi';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 /* eslint-disable-next-line */
 export interface LoginProps {}
 interface Login {
@@ -10,6 +11,8 @@ interface Login {
 }
 
 export function Login(props: LoginProps) {
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -21,6 +24,10 @@ export function Login(props: LoginProps) {
   };
 
   return (
+
+
+
+    
     <div className="grid w-screen h-full min-h-screen p-2 place-content-center bg-base-300/40">
       <form
         onSubmit={handleSubmit(handleLogin)}
@@ -68,7 +75,7 @@ export function Login(props: LoginProps) {
               )}
             </div>
           </div>
-          <div className="flex flex-col">
+          <div className="relative flex flex-col">
             <label
               htmlFor="password"
               className="text-xs font-light opacity-80 "
@@ -77,7 +84,7 @@ export function Login(props: LoginProps) {
             </label>
             <input
               {...register('password', { required: true })}
-              type="password"
+              type={`${showPassword ? 'text' : 'password'}`}
               id="password"
               name="password"
               className={`w-full mt-1 font-light rounded input ${
@@ -91,6 +98,17 @@ export function Login(props: LoginProps) {
                 <p>Password field is required.</p>
               )}
             </div>
+            <div className="absolute cursor-pointer right-2 bottom-4">
+              <input
+                defaultChecked={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+                type="checkbox"
+                name="showPassword"
+                id="showPassword"
+                className="absolute inset-0 appearance-none peer focus:pointer-events-auto"
+              />
+              {showPassword ? <BiHide /> : <BiShow />}
+            </div>
           </div>
         </div>
 
@@ -103,7 +121,7 @@ export function Login(props: LoginProps) {
           <p className="mt-4 text-sm text-center">
             {"Don't"} have an account yet?
             <Link href="/signup" passHref>
-              <span className="cursor-pointer focus:text-secondary-focus text-secondary">
+              <span className="cursor-pointer text-secondary">
                 {' '}
                 Signup now!
               </span>
