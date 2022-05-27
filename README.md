@@ -18,10 +18,23 @@
 The fresh-produce tracker will be implemented to allow fresh produce-store owners to track the stock and quality of their produce through various methods. These methods will include using a scale which is placed at the bottom of a shelf, the initial combined weight of all individual items on the shelf is compared to the current combined weight of items on the shelf in order to calculate the current quantity of that specific item in stock. Security measures will be implemented to ensure the safe and ethical use of the fresh-produce tracker.
 
 <h3>Built with</h3>
-<a alt="Angular" href="https://angular.io/docs"><img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" /> </a><br/>
-<a alt="Ionic" href="https://ionicframework.com/docs"><img src="https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white" />  </a><br/>
-<a alt="aws" href="https://aws.amazon.com/?nc2=h_lg"><img src="https://img.shields.io/badge/Amazon AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" /></a><br/>
-<a alt="postgres" href=""><img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" /></a><br/>
+<h6>Front-end<h6>
+<a alt="react" href="https://angular.io/docs"><img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" /> </a><br/>
+<a alt="react native" href="https://angular.io/docs"><img src="https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" /> </a><br/>
+<h6>Hosting<h6>
+<a alt="aws" href="https://aws.amazon.com/?nc2=h_lg"><img src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white" /></a><br/>
+  <h6>Database and ORM<h6>
+<a alt="postgres" href=""><img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white" /></a><br/>
+  <a alt="prisma" href=""><img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" /></a><br/>
+ <h6>Backend<h6>
+<a alt="nestjs" href=""><img src="https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white" /></a><br/>
+    <h6>Project generators<h6>
+<a alt="nx" href=""><img src="https://img.shields.io/badge/nx-143055?style=for-the-badge&logo=nx&logoColor=white" /></a><br/>
+<a alt="npm" href=""><img src="https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white" /></a><br/>
+ <h6>Machine Learning Software<h6>
+<a alt="tensorflow" href=""><img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" /></a><br/>
+
+
 
 <h2 align= "center">Demos</h2>
   <h3>Demo 1</h3>
