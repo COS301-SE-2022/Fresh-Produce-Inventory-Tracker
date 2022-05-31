@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import Statistics from './index';
+import Trends from './index';
 
-describe('Statistics', () => {
+describe('Trends', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Statistics />);
+    const { baseElement } = render(<Trends />);
     expect(baseElement).toBeTruthy();
   });
 });
