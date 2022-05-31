@@ -3,9 +3,18 @@ import Link from 'next/link';
 import { RiUser3Line } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 import { GiHamburgerMenu } from 'react-icons/gi';
+import { notifications } from "../../../pages/data/data.json";
 
 /* eslint-disable-next-line */
 export interface NavigationProps {}
+
+export const getStaticProps = async() => {
+  return{
+    props:{
+      notificationsList:notifications
+    }
+  }
+}
 
 export function Navigation(props: NavigationProps) {
   const router = useRouter();
@@ -38,7 +47,7 @@ export function Navigation(props: NavigationProps) {
 
           <Link href="/notifications" passHref>
             <span>
-              <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral-10" />
+              {checkNotification()}
             </span>
           </Link>
 
@@ -53,6 +62,23 @@ export function Navigation(props: NavigationProps) {
       </div>
     </header>
   );
+}
+
+function checkNotification()
+{
+  let count = 0;
+  {notifications.map(notificationsList => (
+    count += 1
+  ))}
+
+  if(count > 0)
+  {
+    return <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer text-red-600 bg-blue-200" />
+  }
+  else
+  {
+    return <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral-20" />
+  }
 }
 
 export default Navigation;
