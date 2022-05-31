@@ -32,5 +32,41 @@ describe('Scalse Service Test', () => {
         }).compile();
         data = moduleRef.get<ScaleService>(ScaleService);
     });
+
+    it('should get scale', async () => {
+        jest
+            .spyOn(data, 'getScale')
+            .mockImplementation(
+                () => Promise.resolve(MockScale)
+            );
+        expect(await data.getScale(1, 1)).toBe(MockScale);
+    });
+
+    it('it should create scale', async () => {
+        jest
+            .spyOn(data, 'createScale')
+            .mockImplementation(
+                () => Promise.resolve(MockScale)
+            );
+        expect(await data.createScale(scaleDataObj)).toBe(MockScale);
+    });
+
+    it('it should edit scale', async () => {
+        jest
+            .spyOn(data, 'editScale')
+            .mockImplementation(
+                () => Promise.resolve(MockScale)
+            );
+        expect(await data.editScale(1, 2, scaleDataObj)).toBe(MockScale);
+    });
+
+    it('it should remove scale', async () => {
+        jest
+            .spyOn(data, 'removeScale')
+            .mockImplementation(
+                () => Promise.resolve(MockScale)
+            );
+        expect(await data.removeScale(1, 1)).toBe(MockScale);
+    });
 });
 
