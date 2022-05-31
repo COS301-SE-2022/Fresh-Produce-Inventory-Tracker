@@ -53,6 +53,15 @@
       ],
       "@fresh-produce-inventory-tracker/api/scale/service": [
         "libs/api/scale/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/trend/api": [
+        "libs/api/trend/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/trend/repository": [
+        "libs/api/trend/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/trend/service": [
+        "libs/api/trend/service/src/index.ts"
       ]
     }
   },
