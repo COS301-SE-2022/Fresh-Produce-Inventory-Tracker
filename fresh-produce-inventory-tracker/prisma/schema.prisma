@@ -65,6 +65,26 @@ model Scale {
   @@map("scale")
 }
 
+model Scale_Trend {
+  id            Int       @default(autoincrement())
+  userId        Int       @map("user_id")
+  ProduceType   String   @map("produce_type")
+  Weight        Int[]     @map("weight")
+  Date          DateTime[]
+  @@id([id, userId,ProduceType])
+  @@map("scale_trend")
+}
+
+model Tend {
+  id            Int       @default(autoincrement())
+  userId        Int       @map("user_id")
+  ProduceType   String   @map("produce_type")
+  Day           Weekdays?
+  AverageSalesAmount Int? 
+  @@id([id, userId,ProduceType])
+  @@map("trend")
+}
+
 model Feedback_Data {
   id        Int      @default(autoincrement())
   userId    Int      @map("user_id")
@@ -100,4 +120,13 @@ enum Stock_Level {
   HIGH
   MEDIUM
   LOW
+}
+enum Weekdays {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saterday
+  Sunday
 }

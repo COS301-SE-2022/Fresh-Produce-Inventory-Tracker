@@ -47,7 +47,7 @@ describe('Service test', () => {
           );
     
         expect(
-          await data.signin('qwerty@gmail.com')
+          await data.plainTextEmail('qwerty@gmail.com')
         ).toBe(mockOtp);
       });
     it('should not get user wrong password', async () => {
