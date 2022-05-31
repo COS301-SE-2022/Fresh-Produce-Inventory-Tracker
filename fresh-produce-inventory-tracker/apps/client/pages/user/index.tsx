@@ -1,7 +1,6 @@
 /* eslint-disable-next-line */
 export interface UserProps {}
 import Image from './../../src/components/image/image';
-import  Notification  from "../../src/components/notification"; 
 import InventoryItem from '../../src/components/inventory-item/inventory-item';
 
 interface InventoryItem {
@@ -81,12 +80,12 @@ export function User(props: UserProps)
         <h1 className="content-center ml-6 font-bold font-lg mt-2">Inventory Items:</h1>
         <div className='mt-2 overflow-hidden'>
           <div className="grid grid-cols-5 rounded-lg bg-red-200 m-2 place-items-center">
-                    <div>Number</div>
-                    <div>Item-Name</div>
-                    <div>Item-Description</div>
-                    <div>Import-Date</div>
-                    <div>Expiration-Date</div>
-                  </div>
+            <div>Number</div>
+            <div>Item-Name</div>
+            <div>Item-Description</div>
+            <div>Import-Date</div>
+            <div>Expiration-Date</div>
+          </div>
           {INVENTORY_ITEMS_DATA_MOCK.map(
               ({ id, name, description, expiresIn, condition, impordivay }) => {
                 return (
