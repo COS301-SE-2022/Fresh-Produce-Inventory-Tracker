@@ -5,7 +5,7 @@ var myObject = JSON.parse(data);
 
 let newData = JSON.stringify(myObject);
 
-newData = newData.substring(0,newData.length-2) + ',{"id":1,"message":"Hello"}]}';
+newData = newData.substring(0,newData.length-2) + ',{"id":1,"message":"Hello","urgency":"urgent"}]}';
 
 console.log(newData);
 
