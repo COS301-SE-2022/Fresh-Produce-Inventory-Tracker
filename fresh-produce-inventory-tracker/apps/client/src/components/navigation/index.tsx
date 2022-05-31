@@ -54,7 +54,7 @@ export function Navigation(props: NavigationProps) {
           <div className="flex items-center cursor-pointer gap-x-2">
             <Link href="/user" passHref>
               <span>
-                <RiUser3Line className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral/10" />
+                <RiUser3Line className="w-10 h-10 p-2 rounded-full cursor-pointer bg-blue-200" />
               </span>
             </Link>
           </div>
@@ -73,11 +73,11 @@ function checkNotification()
 
   if(count > 0)
   {
-    return <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer text-red-600 bg-blue-200" />
+    return <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-red-600" />
   }
   else
   {
-    return <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-neutral-20" />
+    return <MdOutlineNotifications className="w-10 h-10 p-2 rounded-full cursor-pointer bg-blue-200" />
   }
 }
 
