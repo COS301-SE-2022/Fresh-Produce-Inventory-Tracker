@@ -4,7 +4,7 @@ import { trendRepository } from '../../../repository/src/lib/trend.repository';
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
 
 @Injectable({})
-export class AuthenticationService {
+export class TrendService {
   constructor(private repo: trendRepository) {}
   async getTrendsForItem(userid: number, item: string) {
     return await this.repo.getTrendsForItem(userid, item);
@@ -22,18 +22,39 @@ export class AuthenticationService {
     }
   }
   async updateTrend(user: number, scale: number) {
+    //variables
     const Scale = await this.repo.getScaleTrend(scale);
     const weekdays = Scale.Date;
     const weights = Scale.Weight;
-    let currentday = weekdays[0].getDay();
+    let currentday = weekdays[0].getDate();
     let totalweightForDay = 0;
-    let amountofWeights = 0;
+    //loop through all weights
     for (let i = 1; i < weekdays.length; i++) {
-      if (currentday == weekdays[i].getDay()) {
-        totalweightForDay = totalweightForDay + weights[i];
-        amountofWeights++;
-      } else {
-        const Day = this.getDayNumber(currentday);
+      if (
+        currentday == weekdays[i].getDate() &&
+        currentday == weekdays[i + 1].getDate()
+      ) {
+        if (weights[i - 1] - weights[i] > 0) {
+          totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
+        }
+      }
+      if (
+        currentday != weekdays[i].getDate() &&
+        currentday == weekdays[i + 1].getDate()
+      ) {
+        if (weights[i - 1] - weights[i] > 0) {
+          totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
+        }
+      }
+
+      if (
+        currentday != weekdays[i].getDate() &&
+        currentday != weekdays[i + 1].getDate()
+      ) {
+        if (weights[i - 1] - weights[i] > 0) {
+          totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
+        }
+        const Day = this.getDayNumber(weekdays[i].getDay());
         const trendsForDayAnditem = await this.repo.getTrendsForDayAndItem(
           user,
           Scale.ProduceType,
@@ -43,29 +64,84 @@ export class AuthenticationService {
           trendsForDayAnditem.AverageSalesAmount *
           trendsForDayAnditem.AmountSales;
         trending = trending + totalweightForDay;
-        const amountofDaysTotal =
-          amountofWeights + trendsForDayAnditem.AmountSales;
-        trending = trending / amountofDaysTotal;
-        await this.repo.updateAmountSales(
-          user,
-          Day,
-          Scale.ProduceType,
-          amountofDaysTotal
-        );
-        await this.repo.updateTrendSales(
-          user,
-          Scale.ProduceType,
-          Day,
-          trending
-        );
+        if (trending != 0) {
+          const amountofDaysTotal = 1 + trendsForDayAnditem.AmountSales;
+          trending = trending / amountofDaysTotal;
+          //update amount of days for calculations
+          await this.repo.updateAmountSales(
+            user,
+            Day,
+            Scale.ProduceType,
+            amountofDaysTotal
+          );
+          //update average produce on scale
+          await this.repo.updateTrendSales(
+            user,
+            Scale.ProduceType,
+            Day,
+            trending
+          );
+          totalweightForDay = 0;
+        }
       }
-      currentday = weekdays[i].getDay();
+      if (
+        currentday == weekdays[i].getDate() &&
+        currentday != weekdays[i + 1].getDate()
+      ) {
+        if (weights[i - 1] - weights[i] > 0) {
+          totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
+        }
+        const Day = this.getDayNumber(weekdays[i].getDay());
+        const trendsForDayAnditem = await this.repo.getTrendsForDayAndItem(
+          user,
+          Scale.ProduceType,
+          Day
+        );
+        let trending =
+          trendsForDayAnditem.AverageSalesAmount *
+          trendsForDayAnditem.AmountSales;
+        trending = trending + totalweightForDay;
+        if (trending != 0) {
+          const amountofDaysTotal = 1 + trendsForDayAnditem.AmountSales;
+          trending = trending / amountofDaysTotal;
+          //update amount of days for calculations
+          await this.repo.updateAmountSales(
+            user,
+            Day,
+            Scale.ProduceType,
+            amountofDaysTotal
+          );
+          //update average produce on scale
+          await this.repo.updateTrendSales(
+            user,
+            Scale.ProduceType,
+            Day,
+            trending
+          );
+          totalweightForDay = 0;
+        }
+      }
+      currentday = weekdays[i].getDate();
     }
-    return await this.deleteAllScaleTrendData(scale,Scale.ProduceType,weekdays[weekdays.length -1],weights[weights.length -1])
+    return await this.deleteAllScaleTrendData(
+      scale,
+      Scale.ProduceType,
+      weekdays[weekdays.length - 1],
+      weights[weights.length - 1]
+    );
   }
-  async deleteAllScaleTrendData(scale:number,item:string,lastvalDate:Date,lastvalWeight:number){
-    return await this.repo.deleteAllScaleTrendData(scale,item,lastvalDate,lastvalWeight);
-
+  async deleteAllScaleTrendData(
+    scale: number,
+    item: string,
+    lastvalDate: Date,
+    lastvalWeight: number
+  ) {
+    return await this.repo.deleteAllScaleTrendData(
+      scale,
+      item,
+      lastvalDate,
+      lastvalWeight
+    );
   }
 
   //helper functions
