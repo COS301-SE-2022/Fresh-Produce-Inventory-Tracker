@@ -24,6 +24,24 @@
       "@fresh-produce-inventory-tracker//api/authentication//service": [
         "libs/api/authentication/service/src/index.ts"
       ],
+      "@fresh-produce-inventory-tracker/api/calculate-freshness/api": [
+        "libs/api/calculate-freshness/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/calculate-freshness/repository": [
+        "libs/api/calculate-freshness/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/calculate-freshness/service": [
+        "libs/api/calculate-freshness/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/freshness/api": [
+        "libs/api/freshness/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/freshness/repository": [
+        "libs/api/freshness/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/freshness/service": [
+        "libs/api/freshness/service/src/index.ts"
+      ],
       "@fresh-produce-inventory-tracker/api/image/api": [
         "libs/api/image/api/src/index.ts"
       ],
@@ -32,6 +50,9 @@
       ],
       "@fresh-produce-inventory-tracker/api/image/service": [
         "libs/api/image/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/model/api": [
+        "libs/api/model/api/src/index.ts"
       ],
       "@fresh-produce-inventory-tracker/api/notifications/api": [
         "libs/api/notifications/api/src/index.ts"
