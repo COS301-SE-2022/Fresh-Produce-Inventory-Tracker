@@ -27,7 +27,8 @@ ChartJS.register(
 
 /* eslint-disable-next-line */
 export interface ChartProps {
-  type:string;
+  type:string,
+  fruit:string
 }
 
 export function Chart(props: ChartProps) {
@@ -125,38 +126,183 @@ export function Chart(props: ChartProps) {
   }
   else if(props.type == "Line")
   {
-    const data = {
+    let data = {
       labels: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
-      ],
-      datasets:[
-        {
-          label: "Week 1",
-          data: [7,5,6,3,4],
-          borderColor: "rgba(255,0,0,1)"
-        },
-        {
-          label: "Week 2",
-          data: [3,8,5,9,5],
-          fill: false,
-          borderColor: "rgba(0,255,0,1)"
-        },
-        {
-          label: "Week 3",
-          data: [5,2,4,2,1],
-          borderColor: "rgba(0,0,255,1)"
-        },
-        {
-          label: "Week 4",
-          data: [5,7,8,2,8],
-          fill: false,
-          borderColor: "rgbs(255,255,0,1)"
-        }
-      ]
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    datasets:[
+      {
+        label: "Week 1",
+        data: [7,5,6,3,4],
+        borderColor: "rgba(255,0,0,1)"
+      },
+      {
+        label: "Week 2",
+        data: [3,8,5,9,5],
+        fill: false,
+        borderColor: "rgba(0,255,0,1)"
+      },
+      {
+        label: "Week 3",
+        data: [5,2,4,2,1],
+        borderColor: "rgba(0,0,255,1)"
+      },
+      {
+        label: "Week 4",
+        data: [5,7,8,2,8],
+        fill: false,
+        borderColor: "rgbs(255,255,0,1)"
+      }
+    ]
+    };
+
+    if(props.fruit == "Apples")
+    {
+      data = {
+        labels: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        datasets:[
+          {
+            label: "Week 1",
+            data: [7,5,6,3,4],
+            borderColor: "rgba(255,0,0,1)"
+          },
+          {
+            label: "Week 2",
+            data: [3,8,5,9,5],
+            fill: false,
+            borderColor: "rgba(0,255,0,1)"
+          },
+          {
+            label: "Week 3",
+            data: [5,2,4,2,1],
+            borderColor: "rgba(0,0,255,1)"
+          },
+          {
+            label: "Week 4",
+            data: [5,7,8,2,8],
+            fill: false,
+            borderColor: "rgbs(255,255,0,1)"
+          }
+        ]
+      }
+    }
+    else if(props.fruit == "Pears")
+    {
+      data = {
+        labels: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        datasets:[
+          {
+            label: "Week 1",
+            data: [7,5,6,3,4],
+            borderColor: "rgba(255,0,0,1)"
+          },
+          {
+            label: "Week 2",
+            data: [3,8,5,9,5],
+            fill: false,
+            borderColor: "rgba(0,255,0,1)"
+          },
+          {
+            label: "Week 3",
+            data: [5,2,4,2,1],
+            borderColor: "rgba(0,0,255,1)"
+          },
+          {
+            label: "Week 4",
+            data: [5,7,8,2,8],
+            fill: false,
+            borderColor: "rgbs(255,255,0,1)"
+          }
+        ]
+      }
+    } 
+    else if(props.fruit == "Oranges")
+    {
+      data = {
+        labels: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        datasets:[
+          {
+            label: "Week 1",
+            data: [7,5,6,3,4],
+            borderColor: "rgba(255,0,0,1)"
+          },
+          {
+            label: "Week 2",
+            data: [3,8,5,9,5],
+            fill: false,
+            borderColor: "rgba(0,255,0,1)"
+          },
+          {
+            label: "Week 3",
+            data: [5,2,4,2,1],
+            borderColor: "rgba(0,0,255,1)"
+          },
+          {
+            label: "Week 4",
+            data: [5,7,8,2,8],
+            fill: false,
+            borderColor: "rgbs(255,255,0,1)"
+          }
+        ]
+      }
+    }
+    else
+    {
+      data = {
+        labels: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        datasets:[
+          {
+            label: "Week 1",
+            data: [7,5,6,3,4],
+            borderColor: "rgba(255,0,0,1)"
+          },
+          {
+            label: "Week 2",
+            data: [3,8,5,9,5],
+            fill: false,
+            borderColor: "rgba(0,255,0,1)"
+          },
+          {
+            label: "Week 3",
+            data: [5,2,4,2,1],
+            borderColor: "rgba(0,0,255,1)"
+          },
+          {
+            label: "Week 4",
+            data: [5,7,8,2,8],
+            fill: false,
+            borderColor: "rgbs(255,255,0,1)"
+          }
+        ]
+      }
     }
 
     return (
