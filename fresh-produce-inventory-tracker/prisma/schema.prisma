@@ -84,6 +84,7 @@ model Trend {
   ProduceType   String   @map("produce_type")
   Day           Weekdays?
   AverageSalesAmount Int? 
+  AmountSales        Int?
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([id, userId,ProduceType])
   @@map("trend")
