@@ -19,6 +19,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/next": "14.1.4",
     "@prisma/client": "^3.14.0",
+    "@tensorflow/tfjs": "^3.18.0",
     "chart.js": "^3.8.0",
     "core-js": "^3.6.5",
     "cors": "^2.8.5",
@@ -39,6 +40,7 @@
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.0.0",
+    "sharp": "^0.30.6",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
@@ -64,6 +66,7 @@
     "@types/passport-local": "^1.0.34",
     "@types/react": "18.0.8",
     "@types/react-dom": "18.0.3",
+    "@types/sharp": "^0.30.2",
     "@typescript-eslint/eslint-plugin": "~5.18.0",
     "@typescript-eslint/parser": "~5.18.0",
     "autoprefixer": "^10.4.7",
@@ -79,6 +82,7 @@
     "eslint-plugin-react-hooks": "4.5.0",
     "jest": "27.5.1",
     "less-loader": "10.2.0",
+    "node-mocks-http": "^1.11.0",
     "nx": "^14.1.4",
     "postcss": "^8.4.13",
     "prettier": "^2.5.1",
