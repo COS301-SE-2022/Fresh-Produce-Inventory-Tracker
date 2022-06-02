@@ -1,6 +1,7 @@
 /* eslint-disable-next-line */
 export interface UserProps {}
 import Image from './../../src/components/image/image';
+import {UserInfo} from "./../../src/components/user/user"
 
 interface Task {
   id: number;
@@ -36,32 +37,7 @@ export function User(props: UserProps)
             <Image />
           </div>
         </div>
-        <div className="grid grid-rows-4 my-1 mr-2 col-span-3 lg:max-w-[98%] rounded-r-lg">
-          <div className="flex items-center font-bold grid grid-cols-12">
-            <div className="m-2">
-              <label className="mt-4">Name:</label>
-            </div>
-            <div className="flex items-center w-96% col-span-11 bg-blue-200 rounded m-2">
-              <p className="m-2">Durandt Uys</p>
-            </div>
-          </div>
-          <div className="flex items-center font-bold grid grid-cols-12">
-            <div className="m-2">
-              <label className="mt-4">Email:</label>
-            </div>
-            <div className="flex items-center w-96% col-span-11 bg-blue-200 rounded m-2">
-              <p className="m-2">durandtu@gmail.com</p>
-            </div>
-          </div>
-          <div className="flex items-center font-bold grid grid-cols-12 row-span-2">
-            <div className="m-2">
-              <label className="mt-4">Bio:</label>
-            </div>
-            <div className="flex w-96% col-span-11 bg-blue-200 rounded m-2 h-full">
-              <p className="m-2">----Some text----</p>
-            </div>
-          </div>
-        </div>
+        <UserInfo name="Durandt" email="durandtu@gmail.com" bio="Third year university student currently enrolled in a Bachelors of Information technology at the University of Pretoria."></UserInfo>
       </div>
       <div className="border-solid border-2 ml-4 rounded-lg h-inherit mr-4">
         <h1 className="content-center ml-6 font-bold font-lg mt-2">Tasks:</h1>
