@@ -23,7 +23,7 @@ export class trendRepository {
     userid: number,
     Weekday: Prisma.EnumWeekdaysNullableFilter
   ) {
-    return await this.prisma.trend.findFirst({
+    return await this.prisma.trend.findMany({
       where: { userId: +userid, Day: Weekday },
     });
   }

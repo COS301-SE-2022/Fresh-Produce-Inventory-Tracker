@@ -28,7 +28,8 @@ ChartJS.register(
 /* eslint-disable-next-line */
 export interface ChartProps {
   type:string,
-  fruit:string
+  fruit:string,
+  data: object[]
 }
 
 export function Chart(props: ChartProps) {
@@ -36,10 +37,13 @@ export function Chart(props: ChartProps) {
   {
     const data = {
       labels: [
-        "Apples",
-        "Pears",
-        "Oranges",
-        "Grapes"
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
       ],
       datasets:[
         {

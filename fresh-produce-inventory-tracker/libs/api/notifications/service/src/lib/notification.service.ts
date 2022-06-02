@@ -29,6 +29,5 @@ export class NotificaytionService {
         text: message
     })
     return 'sent';
-  }
-  
+  }  
 }

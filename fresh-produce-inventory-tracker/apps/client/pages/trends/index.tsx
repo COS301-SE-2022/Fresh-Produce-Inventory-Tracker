@@ -1,9 +1,38 @@
 /* eslint-disable-next-line */
-export interface TrendsProps {}
+export interface TrendsProps {
+  userId:string
+}
 // react plugin used to create charts
 import {Chart} from "./../../src/components/chart/chart"
 
+const api_url = 'http://localhost:3333/api/trend/gettrendsalltrendsforday';
+
 export function Trends(props: TrendsProps) {
+    const Form = "id=1&weekday=Monday";
+    const GetTrends = async () => {
+  
+    const response = await fetch(api_url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: Form,
+    });
+
+    const trendData = await response.json();
+  
+    if (response.status == 201) {
+      console.log(trendData);
+      return;
+    }
+  
+    if (response.status == 500) {
+      alert('Incorrect id');
+    }
+  };
+
+  GetTrends();
+
   return (
       <div className="grid grid-rows-3 m-2 gap-0">
         <div>

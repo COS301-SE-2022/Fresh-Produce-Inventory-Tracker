@@ -21,7 +21,6 @@ export function Signup(props: SignupProps) {
     form.append('email', data.email);
     form.append('password', data.password);
     const  Form = "email="+data.email +"&password="+data.password;
-    console.log(Form);
 
     const response = await fetch(api_url, {
       method: 'POST',
