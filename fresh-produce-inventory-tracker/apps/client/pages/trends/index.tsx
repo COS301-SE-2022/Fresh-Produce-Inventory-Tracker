@@ -35,30 +35,10 @@ export async function getServerSideProps() {
 
 export function Trends({fruitData}) {
   return (
-      <div className="grid grid-rows-3 m-2 gap-0">
+      <div className="m-2">
         <div>
           <h1>Fruit</h1>
-          <Chart type="Bar" fruit="Fruit" data={fruitData[0]}></Chart>
-        </div>
-        <div className="grid grid-cols-2 h-1/2">
-          <div>
-            <h1>Apples</h1>
-            <Chart type="Line" fruit="Apples" data={fruitData[0]}></Chart>
-          </div>
-          <div>
-            <h1>Pears</h1>
-            <Chart type="Line" fruit="Pears" data={fruitData[0]}></Chart>
-          </div>
-        </div>
-        <div className="grid grid-cols-2">
-          <div>
-            <h1>Oranges</h1>
-            <Chart type="Line" fruit="Oranges" data={fruitData[0]}></Chart>
-          </div>
-          <div>
-            <h1>Grapes</h1>
-            <Chart type="Line" fruit="Grapes" data={fruitData[0]}></Chart>
-          </div>
+          <Chart type="Bar" fruit="Fruit" data={fruitData}></Chart>
         </div>
       </div>
   );

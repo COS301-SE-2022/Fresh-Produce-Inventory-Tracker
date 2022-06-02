@@ -29,11 +29,15 @@ ChartJS.register(
 export interface ChartProps {
   type:string,
   fruit:string,
-  data: []
+  data: [[],[],[],[]]
 }
 
+
 export function Chart(props: ChartProps) {
-  const applesAverage = Object.values(props.data)[4];
+  const Apples = Object.values(props.data[3]);
+  const Pears = Object.values(props.data[0]);
+  const Oranges = Object.values(props.data[1]);
+  const Grapes = Object.values(props.data[2]);
   if(props.type == "Bar")
   {
     const data = {
@@ -50,7 +54,7 @@ export function Chart(props: ChartProps) {
         {
           label:"Apples",
           borderRadius:5,
-          data:[applesAverage,15,19,5],
+          data:[Apples[4],15,19,5],
           backgroundColor: [
             "rgba(255,50,50,0.5)",
             "rgba(255,50,50,0.5)",
@@ -68,7 +72,7 @@ export function Chart(props: ChartProps) {
         },{
           label:"Pears",
           borderRadius:5,
-          data:[30,10,21,7],
+          data:[Pears[4],10,21,7],
           backgroundColor: [
             "rgba(50,255,50,0.5)",
             "rgba(50,255,50,0.5)",
@@ -86,7 +90,7 @@ export function Chart(props: ChartProps) {
         },{
           label:"Oranges",
           borderRadius:5,
-          data:[15,11,29,2],
+          data:[Oranges[4],11,29,2],
           backgroundColor: [
             "rgba(255,156,43,0.5)",
             "rgba(255,156,43,0.5)",
@@ -104,7 +108,7 @@ export function Chart(props: ChartProps) {
         },{
           label:"Grapes",
           borderRadius:5,
-          data:[30,10,25,5],
+          data:[Grapes[4],10,25,5],
           backgroundColor: [
             "rgba(107,53,255,0.5)",
             "rgba(107,53,255,0.5)",
