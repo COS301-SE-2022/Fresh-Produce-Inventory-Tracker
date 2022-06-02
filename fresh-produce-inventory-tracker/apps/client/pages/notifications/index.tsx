@@ -5,7 +5,6 @@ export interface NotificationsProps {}
 import { notifications } from "../data/data.json";
 
 import  Notification  from "../../src/components/notification"; 
-import  UNotification  from "../../src/components/urgent-notification"; 
 import {remove} from "../../../backend/addNotification.js"
 
 
@@ -21,22 +20,10 @@ export function Notifications({notificationsList}) {
   return (
     <div>
           {notificationsList.map(notificationsList => (
-            urgencyCheck(notificationsList.id,notificationsList,notificationsList.urgency)
+            <Notification key = {notificationsList.id}{...notificationsList} urgency={notificationsList.urgency} number={notificationsList.id}></Notification>
           ))}
     </div>
   );
-}
-
-function urgencyCheck(id,notificationsList,urgency)
-{
-  if(urgency == "normal")
-  {
-    return <Notification key = {id}{...notificationsList}></Notification>;
-  }
-  else
-  {
-    return <UNotification key = {id}{...notificationsList}></UNotification>;
-  }
 }
 
 export default Notifications;
