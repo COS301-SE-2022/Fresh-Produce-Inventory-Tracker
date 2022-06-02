@@ -1,7 +1,8 @@
 /* eslint-disable-next-line */
 export interface NotificationProps {
   urgency:string,
-  number:string
+  number:string,
+  message:string
 }
 
 export function Notification(props: NotificationProps) {
@@ -13,7 +14,7 @@ export function Notification(props: NotificationProps) {
           #{props.number}
         </h1>
         <div className="ml-2">
-          <h2>The apples have been relocated!</h2>
+          <h2>{props.message}</h2>
         </div>
       </div>
     );
@@ -26,7 +27,7 @@ export function Notification(props: NotificationProps) {
           #{props.number}
         </h1>
         <div className="ml-2">
-          <h2>The apples are out of stock, please restock asap!!!</h2>
+          <h2>{props.message}</h2>
         </div>
       </div>
     );

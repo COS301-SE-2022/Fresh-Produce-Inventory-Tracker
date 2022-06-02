@@ -20,7 +20,7 @@ export function Notifications({notificationsList}) {
   return (
     <div>
           {notificationsList.map(notificationsList => (
-            <Notification key = {notificationsList.id}{...notificationsList} urgency={notificationsList.urgency} number={notificationsList.id}></Notification>
+            <Notification key = {notificationsList.id}{...notificationsList} urgency={notificationsList.urgency} number={notificationsList.id} message={notificationsList.message}></Notification>
           ))}
     </div>
   );
