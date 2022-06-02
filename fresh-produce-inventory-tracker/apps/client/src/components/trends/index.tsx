@@ -54,7 +54,7 @@ export function Trends(props: TrendsProps) {
       <div className="mt-8">
         <Link href="/inventory" passHref>
           <span className="flex items-center px-4 py-2 text-xs font-bold underline rounded-full cursor-pointer gap-x-2 w-fit text-primary">
-            View Trends
+            View Inventory
           </span>
         </Link>
       </div>
