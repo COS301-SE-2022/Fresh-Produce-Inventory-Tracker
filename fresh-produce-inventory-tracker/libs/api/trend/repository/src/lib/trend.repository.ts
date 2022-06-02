@@ -16,7 +16,7 @@ export class trendRepository {
     Weekday: Prisma.EnumWeekdaysNullableFilter
   ) {
     return await this.prisma.trend.findFirst({
-      where: { userId: userid, ProduceType: item, Day: Weekday },
+      where: { userId: +userid, ProduceType: item, Day: Weekday },
     });
   }
   async getTrendsAllTrendsForDay(
@@ -24,7 +24,7 @@ export class trendRepository {
     Weekday: Prisma.EnumWeekdaysNullableFilter
   ) {
     return await this.prisma.trend.findFirst({
-      where: { userId: userid, Day: Weekday },
+      where: { userId: +userid, Day: Weekday },
     });
   }
   async createTrend(
@@ -38,7 +38,7 @@ export class trendRepository {
         ProduceType: item,
         Day: Weekday.equals,
         AverageSalesAmount: 0,
-        AmountSales:0
+        AmountSales: 0,
       },
     });
   }
@@ -49,7 +49,7 @@ export class trendRepository {
     AverageSales: number
   ) {
     return await this.prisma.trend.updateMany({
-      where: { userId: id, ProduceType: item, Day: Weekday },
+      where: { userId: +id, ProduceType: item, Day: Weekday },
       data: { AverageSalesAmount: AverageSales },
     });
   }
@@ -69,7 +69,7 @@ export class trendRepository {
   ) {
     return await (
       await this.prisma.trend.findFirst({
-        where: { userId: id, Day: Weekday, ProduceType: item },
+        where: { userId: +id, Day: Weekday, ProduceType: item },
       })
     ).AmountSales;
   }
@@ -80,7 +80,7 @@ export class trendRepository {
     AmountSales: number
   ) {
     return await this.prisma.trend.updateMany({
-      where: { userId: id, Day: Weekday, ProduceType: item },
+      where: { userId: +id, Day: Weekday, ProduceType: item },
       data: { AmountSales: AmountSales },
     });
   }
@@ -88,7 +88,7 @@ export class trendRepository {
   //scale trend table
   async getScaleTrend(scale: number) {
     return await this.prisma.scale_Trend.findFirst({
-      where: { scale_id: scale },
+      where: { scale_id: +scale },
     });
   }
   async deleteAllScaleTrendData(
@@ -98,8 +98,8 @@ export class trendRepository {
     lastvalWeight: number
   ) {
     return await this.prisma.scale_Trend.updateMany({
-      where: { scale_id: scale, ProduceType: item },
-      data: { Weight: {set:[lastvalWeight]}, Date: {set:[lastvalDate]} },
+      where: { scale_id: +scale, ProduceType: item },
+      data: { weight: { set: [lastvalWeight] }, date: { set: [lastvalDate] } },
     });
   }
 }

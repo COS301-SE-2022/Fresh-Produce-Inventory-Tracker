@@ -71,8 +71,8 @@ model Scale_Trend {
   id            Int       @default(autoincrement())
   scale_id      Int       @map("scale_id")
   ProduceType   String   @map("produce_type")
-  Weight        Int[]     @map("weight")
-  Date          DateTime[]
+  weight        Int[]     @map("weight")
+  date          DateTime[]  @map("date")
   scale         Scale     @relation(fields: [scale_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([id, scale_id,ProduceType])
   @@map("scale_trend")
@@ -83,7 +83,7 @@ model Trend {
   userId        Int       @map("user_id")
   ProduceType   String   @map("produce_type")
   Day           Weekdays?
-  AverageSalesAmount Int? 
+  AverageSalesAmount Float? 
   AmountSales        Int?
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([id, userId,ProduceType])

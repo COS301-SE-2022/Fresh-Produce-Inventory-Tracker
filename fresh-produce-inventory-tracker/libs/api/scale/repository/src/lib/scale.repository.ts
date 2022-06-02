@@ -28,8 +28,8 @@ export class ScaleRepository {
       data: {
         scale_id: scale.id,
         ProduceType: producetype,
-        Date: new Date(),
-        Weight: weightfull,
+        date: new Date(),
+        weight: weightfull,
       },
     });
     await this.prisma.trend.create({
@@ -81,19 +81,24 @@ export class ScaleRepository {
     const scale = await this.prisma.scale.findFirst({
       where: { id: id, userId: userid },
     });
-    await this.prisma.scale_Trend.update({
+    console.log(scale);
+    const old = await this.prisma.scale_Trend.findFirst({
       where: {
-        id_scale_id_ProduceType: {
-          id: id,
           scale_id: scale.id,
           ProduceType: scale.ProduceType,
-        },
+        }});
+        console.log(old);
+    const day = new Date()
+    await this.prisma.scale_Trend.updateMany({
+      where: {
+          scale_id: scale.id,
+          ProduceType: scale.ProduceType,
       },
       data: {
-        /*
-        Date: { set: [ ...[Date], new Date()] },
-        Weight: { set: [...Weight , Weighttotal] },
-        */
+        weight: { set: [...old.weight, Weighttotal] },
+        date: { set: [ ...old.date, day] },
+        
+        
       },
     });
   }
