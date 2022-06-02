@@ -1,17 +1,14 @@
 /* eslint-disable-next-line */
-export interface TrendsProps {
-  userId:string
-}
 // react plugin used to create charts
 import {Chart} from "./../../src/components/chart/chart"
+let fruitData = [];
 
-const api_url = 'http://localhost:3333/api/trend/gettrendsalltrendsforday';
+const table_api = 'http://localhost:3333/api/trend/getTrendsAllTrendsForDay';
 
-export function Trends(props: TrendsProps) {
-    const Form = "id=1&weekday=Monday";
-    const GetTrends = async () => {
-  
-    const response = await fetch(api_url, {
+export async function getServerSideProps() {
+    const  Form = "id=1&weekday=Monday";
+
+    const response = await fetch(table_api, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -22,41 +19,45 @@ export function Trends(props: TrendsProps) {
     const trendData = await response.json();
   
     if (response.status == 201) {
-      console.log(trendData);
-      return;
+      fruitData = trendData;
+      
     }
   
     if (response.status == 500) {
       alert('Incorrect id');
     }
-  };
 
-  GetTrends();
+  return {
+    props: {fruitData}
+  }
+}
 
+
+export function Trends({fruitData}) {
   return (
       <div className="grid grid-rows-3 m-2 gap-0">
         <div>
           <h1>Fruit</h1>
-          <Chart type="Bar" fruit="Fruit"></Chart>
+          <Chart type="Bar" fruit="Fruit" data={fruitData[0]}></Chart>
         </div>
         <div className="grid grid-cols-2 h-1/2">
           <div>
             <h1>Apples</h1>
-            <Chart type="Line" fruit="Apples"></Chart>
+            <Chart type="Line" fruit="Apples" data={fruitData[0]}></Chart>
           </div>
           <div>
             <h1>Pears</h1>
-            <Chart type="Line" fruit="Pears"></Chart>
+            <Chart type="Line" fruit="Pears" data={fruitData[0]}></Chart>
           </div>
         </div>
         <div className="grid grid-cols-2">
           <div>
             <h1>Oranges</h1>
-            <Chart type="Line" fruit="Oranges"></Chart>
+            <Chart type="Line" fruit="Oranges" data={fruitData[0]}></Chart>
           </div>
           <div>
             <h1>Grapes</h1>
-            <Chart type="Line" fruit="Grapes"></Chart>
+            <Chart type="Line" fruit="Grapes" data={fruitData[0]}></Chart>
           </div>
         </div>
       </div>

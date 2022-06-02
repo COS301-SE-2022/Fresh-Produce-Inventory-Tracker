@@ -29,10 +29,11 @@ ChartJS.register(
 export interface ChartProps {
   type:string,
   fruit:string,
-  data: object[]
+  data: []
 }
 
 export function Chart(props: ChartProps) {
+  const applesAverage = Object.values(props.data)[4];
   if(props.type == "Bar")
   {
     const data = {
@@ -47,73 +48,73 @@ export function Chart(props: ChartProps) {
       ],
       datasets:[
         {
-          label:"Week1",
+          label:"Apples",
           borderRadius:5,
-          data:[25,15,19,5],
+          data:[applesAverage,15,19,5],
           backgroundColor: [
             "rgba(255,50,50,0.5)",
-            "rgba(50,255,50,0.5)",
-            "rgba(255,156,43,0.5)",
-            "rgba(107,53,255,0.5)",
+            "rgba(255,50,50,0.5)",
+            "rgba(255,50,50,0.5)",
+            "rgba(255,50,50,0.5)",
           ],
           borderColor: [
             'rgb(255, 0, 0,1)',
-            'rgb(0, 255, 0,1)',
-            'rgb(255, 137, 0,1)',
-            'rgb(102, 0, 255,1)'
+            'rgb(255, 0, 0,1)',
+            'rgb(255, 0, 0,1)',
+            'rgb(255, 0, 0,1)',
           ],
           barThickness:35,
           borderWidth: 1
         },{
-          label:"Week2",
+          label:"Pears",
           borderRadius:5,
           data:[30,10,21,7],
           backgroundColor: [
-            "rgba(255,50,50,0.5)",
             "rgba(50,255,50,0.5)",
-            "rgba(255,156,43,0.5)",
-            "rgba(107,53,255,0.5)",
+            "rgba(50,255,50,0.5)",
+            "rgba(50,255,50,0.5)",
+            "rgba(50,255,50,0.5)",
           ],
           borderColor: [
-            'rgb(255, 0, 0,1)',
             'rgb(0, 255, 0,1)',
-            'rgb(255, 137, 0,1)',
-            'rgb(102, 0, 255,1)'
+            'rgb(0, 255, 0,1)',
+            'rgb(0, 255, 0,1)',
+            'rgb(0, 255, 0,1)',
           ],
           barThickness:35,
           borderWidth: 1
         },{
-          label:"Week3",
+          label:"Oranges",
           borderRadius:5,
           data:[15,11,29,2],
           backgroundColor: [
-            "rgba(255,50,50,0.5)",
-            "rgba(50,255,50,0.5)",
             "rgba(255,156,43,0.5)",
-            "rgba(107,53,255,0.5)",
+            "rgba(255,156,43,0.5)",
+            "rgba(255,156,43,0.5)",
+            "rgba(255,156,43,0.5)",
           ],
           borderColor: [
-            'rgb(255, 0, 0,1)',
-            'rgb(0, 255, 0,1)',
             'rgb(255, 137, 0,1)',
-            'rgb(102, 0, 255,1)'
+            'rgb(255, 137, 0,1)',
+            'rgb(255, 137, 0,1)',
+            'rgb(255, 137, 0,1)',
           ],
           barThickness:35,
           borderWidth: 1
         },{
-          label:"Week4",
+          label:"Grapes",
           borderRadius:5,
           data:[30,10,25,5],
           backgroundColor: [
-            "rgba(255,50,50,0.5)",
-            "rgba(50,255,50,0.5)",
-            "rgba(255,156,43,0.5)",
+            "rgba(107,53,255,0.5)",
+            "rgba(107,53,255,0.5)",
+            "rgba(107,53,255,0.5)",
             "rgba(107,53,255,0.5)",
           ],
           borderColor: [
-            'rgb(255, 0, 0,1)',
-            'rgb(0, 255, 0,1)',
-            'rgb(255, 137, 0,1)',
+            'rgb(102, 0, 255,1)',
+            'rgb(102, 0, 255,1)',
+            'rgb(102, 0, 255,1)',
             'rgb(102, 0, 255,1)'
           ],
           barThickness:35,
