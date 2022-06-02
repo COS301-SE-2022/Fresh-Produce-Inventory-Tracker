@@ -55,7 +55,7 @@ export function Layout(props: LayoutProps) {
       ) : (
         <div className="drawer drawer-mobile">
           <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content">
+          <div className="px-2 py-2 drawer-content">
             <Navigation />
             <main className="h-full min-h-screen">{props.children}</main>
           </div>
