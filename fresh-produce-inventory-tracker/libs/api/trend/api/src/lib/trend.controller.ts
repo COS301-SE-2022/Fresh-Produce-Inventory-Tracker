@@ -17,8 +17,8 @@ export class Trendcontroller {
         return await this.service.getTrendsForItem(id,producetype);
     }
     @Post('updateTrend')
-    async updateTrend(@Body('userid') id: number,@Body('scaleid') scaleid:number) {
-        return await this.service.updateTrend(id,scaleid);
+    async updateTrend(@Body('userid') userid: number,@Body('scaleid') scaleid:number) {
+        return await this.service.updateTrend(userid,scaleid);
     }
     
 }

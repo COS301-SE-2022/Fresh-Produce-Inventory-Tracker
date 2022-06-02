@@ -24,36 +24,46 @@ export class TrendService {
   async updateTrend(user: number, scale: number) {
     //variables
     const Scale = await this.repo.getScaleTrend(scale);
-    const weekdays = Scale.Date;
-    const weights = Scale.Weight;
+    const weekdays = Scale.date;
+    const weights = Scale.weight;
     let currentday = weekdays[0].getDate();
     let totalweightForDay = 0;
     //loop through all weights
     for (let i = 1; i < weekdays.length; i++) {
       if (
-        currentday == weekdays[i].getDate() &&
-        currentday == weekdays[i + 1].getDate()
+        currentday == weekdays[i].getDate() 
+        
       ) {
-        if (weights[i - 1] - weights[i] > 0) {
-          totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
+        if(weekdays[i + 1] )
+          {
+          if(currentday == weekdays[i + 1].getDate() )
+          {
+          if (weights[i - 1] - weights[i] > 0) {
+            totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
+          }
         }
       }
+      }
       if (
-        currentday != weekdays[i].getDate() &&
-        currentday == weekdays[i + 1].getDate()
+        currentday != weekdays[i].getDate() 
+        
       ) {
+        if(weekdays[i + 1])
+        {if(currentday == weekdays[i + 1].getDate()){
         if (weights[i - 1] - weights[i] > 0) {
           totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
-        }
+        }}}
       }
 
       if (
-        currentday != weekdays[i].getDate() &&
-        currentday != weekdays[i + 1].getDate()
+        currentday != weekdays[i].getDate()
+        
       ) {
-        if (weights[i - 1] - weights[i] > 0) {
+        if(weekdays[i + 1])
+        {if(currentday != weekdays[i + 1].getDate())
+        {if (weights[i - 1] - weights[i] > 0) {
           totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
-        }
+        }}}
         const Day = this.getDayNumber(weekdays[i].getDay());
         const trendsForDayAnditem = await this.repo.getTrendsForDayAndItem(
           user,
@@ -85,12 +95,13 @@ export class TrendService {
         }
       }
       if (
-        currentday == weekdays[i].getDate() &&
-        currentday != weekdays[i + 1].getDate()
+        currentday == weekdays[i].getDate() 
       ) {
-        if (weights[i - 1] - weights[i] > 0) {
+        if(weekdays[i + 1])
+        {if(currentday != weekdays[i + 1].getDate())
+        {if (weights[i - 1] - weights[i] > 0) {
           totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
-        }
+        }}}
         const Day = this.getDayNumber(weekdays[i].getDay());
         const trendsForDayAnditem = await this.repo.getTrendsForDayAndItem(
           user,
