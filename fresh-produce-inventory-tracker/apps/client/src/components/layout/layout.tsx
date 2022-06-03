@@ -28,8 +28,8 @@ const Links = [
     ),
   },
   {
-    name: 'Statistics',
-    link: '/statistics',
+    name: 'Trends',
+    link: '/trends',
     icon: (
       <MdOutlineTrendingDown className="text-black/60 group-active:text-black" />
     ),
