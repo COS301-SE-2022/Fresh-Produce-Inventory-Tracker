@@ -11,7 +11,5 @@ export class NotificationController {
     @Body('receiver') receiver
   ) {
     return await this.service.sendOTP(receiver);
-  }
-  
-  
+  }  
 }

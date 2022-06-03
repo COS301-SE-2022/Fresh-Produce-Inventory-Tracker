@@ -7,9 +7,12 @@ import { ApiImageApiModule } from '../../../../libs/api/image/api/src/lib/api-im
 import { ApiScaleApiModule } from '../../../../libs/api/scale/api/src/lib/api-scale-api.module'
 import { PrismaService } from 'libs/api/prisma/shared/src/lib/prismaService.service';
 import {ApiNotificationsApiModule} from '../../../../libs/api/notifications/api/src/lib/api-notifications-api.module';
+import { ConfigModule } from '@nestjs/config';
+import { ApiTrendApiModule } from '../../../../libs/api/trend/api/src/lib/api-trend-api.module';
+import { ApiCalculateFreshnessApiModule } from '../../../../libs/api/calculate-freshness/api/src/lib/api-calculate-freshness-api.module';
 
 @Module({
-  imports: [ApiAuthenticationApiModule, ApiImageApiModule, ApiScaleApiModule,ApiNotificationsApiModule ],
+  imports: [ApiAuthenticationApiModule, ApiImageApiModule, ApiScaleApiModule,ApiNotificationsApiModule,ApiTrendApiModule,ApiCalculateFreshnessApiModule ],
   controllers: [AppController],
   providers: [AppService,PrismaService],
 })

@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "trend" ALTER COLUMN "AverageSalesAmount" SET DATA TYPE DOUBLE PRECISION;

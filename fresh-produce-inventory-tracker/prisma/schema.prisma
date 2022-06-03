@@ -24,6 +24,7 @@ model User {
   Scale   Scale[]
   Feedback_Data Feedback_Data[]
   Notification Notification[]
+  Trend   Trend[]
 }
 
 model Produce {
@@ -52,17 +53,41 @@ model Image {
 }
 
 model Scale {
-  id        Int      @default(autoincrement())
+  id        Int      @default(autoincrement()) @unique
   userId    Int      @map("user_id")
   WeightIndividual    Int      @map("weight_Individual")
   WeightTotal    Int      @map("weight_total")
   ProduceType   String?   @map("produce_type")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Scale_Trend Scale_Trend[]
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([id, userId])
   @@map("scale")
+}
+
+model Scale_Trend {
+  id            Int       @default(autoincrement())
+  scale_id      Int       @map("scale_id")
+  ProduceType   String   @map("produce_type")
+  weight        Int[]     @map("weight")
+  date          DateTime[]  @map("date")
+  scale         Scale     @relation(fields: [scale_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@id([id, scale_id,ProduceType])
+  @@map("scale_trend")
+}
+
+model Trend {
+  id            Int       @default(autoincrement())
+  userId        Int       @map("user_id")
+  ProduceType   String   @map("produce_type")
+  Day           Weekdays?
+  AverageSalesAmount Float? 
+  AmountSales        Int?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@id([id, userId,ProduceType])
+  @@map("trend")
 }
 
 model Feedback_Data {
@@ -100,4 +125,13 @@ enum Stock_Level {
   HIGH
   MEDIUM
   LOW
+}
+enum Weekdays {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saterday
+  Sunday
 }

@@ -20,14 +20,14 @@ export class ScaleController {
     //console.log(email, password);
     return await this.ScaleService.getScale(id, userid);
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('setscale')//userId:number,weightfull:number,weightone:number,producetype:Prisma.EnumProduceTypeFilter
-  async setscale(@Req() req:any, @Body('weightfull') weightfull: string, @Body('weightone') weightone: string, @Body('producetype') producetype: string) {
+  async setscale(@Body('id') id:number, @Body('weightfull') weightfull: string, @Body('weightone') weightone: string, @Body('producetype') producetype: string) {
     //@Req() req:Request
-    const userId = req.user;
-    console.log(userId);
+    //const userId = req.user;
+    //console.log(userId);
     return this.ScaleService.createScale({
-      userId: userId,
+      userId: +id,
       weightfull: +weightfull,
       producetype: producetype,
       weightone: +weightone
@@ -42,13 +42,14 @@ export class ScaleController {
       id,
     );
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('editscale')//id: number, userid:number, data:any
-  async editscale(@Body('id') id: number, @Body('userid') userid: number, @Body('data') data) {
+  async editscale(@Body('id') id: number, @Body('userid') userid: number, @Body('weight') weight:number) {
+    console.log(weight)
     return this.ScaleService.editScale(
-      userid,
-      id,
-      data
+      +id,
+      +userid,
+      +weight
     );
   }
 }
