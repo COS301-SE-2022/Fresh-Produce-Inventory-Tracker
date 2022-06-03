@@ -6,6 +6,7 @@ import * as path from 'path';
 import sharp = require('sharp');
 import Jimp = require('jimp');
 import tfnode = require('@tensorflow/tfjs-node');
+import { min } from 'rxjs';
 
 
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
@@ -17,20 +18,63 @@ export class calculatefreshnessService {
     const model = await tf.loadLayersModel('file://./libs/api/calculate-freshness/service/src/lib/model/apple-model/model.json');
     const imagePath = file.path;
     const image = fs.readFileSync(imagePath);
-    tf.tidy(() => {
-      const imagetensor = tfnode.node.decodeImage(image,3);
-      const im = tf.image.resizeBilinear(imagetensor,[180,180]);
-      const prediction =  model.predict(im.reshape([1,180,180,3])); 
-      console.log(prediction.toString());
-      return(prediction.toString());
+    const imagetensor = tfnode.node.decodeImage(image,3);
+    const im = tf.image.resizeBilinear(imagetensor,[180,180]);
+    const prediction =  (model.predict(im.reshape([1,180,180,3])) as tf.Tensor ); 
+    const result = prediction.dataSync()
+    //console.log( prediction.dataSync());
+    let max = 0;
+    for(let i = 0; i < result.length;i++)
+    {
+      if(result[max] < result[i])
+      {
+        max = i;
+      }
 
-    })
+    }
+      
+    //getproduce(max,result)
+  
+    return this.getproduce(max,result);
 
-    
-
-  return {type: 'fresh apple',
-            convidence: 0.50
-            };
 
   } 
+  getproduce(num:number,arr)
+  {
+    let other = 0;
+    if(num % 2== 0)
+    {
+      other= num+1;
+    }
+    else{
+      other = num-1;
+    }
+    const total = Math.abs(arr[num]) + Math.abs(arr[other]);
+    const convidence = arr[num]/total*100;
+    const result = this.getType(num);
+    if(Math.abs(arr[num] - arr[other]) < 1)
+    {
+      return {
+        prediction: result,
+        message: 'bad looking produce',
+        convidence: convidence
+      }
+    }
+    else{
+      return {
+        prediction: result,
+        message: result,
+        convidence: convidence
+      }
+    }
+
+  }
+  getType(num:number)
+  {
+    switch(num){
+      case 0: return 'rotten apple';
+      case 1: return 'fresh apple';
+    }
+  }
+
 }

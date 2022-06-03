@@ -21,9 +21,9 @@ export class calculatefreshnessController {
     }),
   )
   async predict(@UploadedFile() file) {
-   const image =  sharp(file.path).resize(180,180)
-.jpeg({quality : 50}); 
-    return await this.service.predict(file);
+    const predict =  await this.service.predict(file);
+    console.log(predict);
+    return predict;
   }
 }
 export const imageFileFilter = (req, file, callback) => {
