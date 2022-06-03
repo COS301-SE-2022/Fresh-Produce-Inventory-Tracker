@@ -29,15 +29,51 @@ ChartJS.register(
 export interface ChartProps {
   type:string,
   fruit:string,
-  data: [[],[],[],[]]
+  dataMonday: [[],[],[],[]],
+  dataTuesday: [[],[],[],[]],
+  dataWednesday: [[],[],[],[]],
+  dataThursday: [[],[],[],[]],
+  dataFriday: [[],[],[],[]],
+  dataSaturday: [[],[],[],[]],
+  dataSunday: [[],[],[],[]],
 }
 
 
 export function Chart(props: ChartProps) {
-  const Apples = Object.values(props.data[3]);
-  const Pears = Object.values(props.data[0]);
-  const Oranges = Object.values(props.data[1]);
-  const Grapes = Object.values(props.data[2]);
+  const ApplesMonday = Object.values(props.dataMonday[3]);
+  const PearsMonday = Object.values(props.dataMonday[0]);
+  const OrangesMonday = Object.values(props.dataMonday[1]);
+  const GrapesMonday = Object.values(props.dataMonday[2]);
+
+  const ApplesTuesday = Object.values(props.dataTuesday[3]);
+  const PearsTuesday = Object.values(props.dataTuesday[0]);
+  const OrangesTuesday = Object.values(props.dataTuesday[1]);
+  const GrapesTuesday = Object.values(props.dataTuesday[2]);
+
+  const ApplesWednesday = Object.values(props.dataWednesday[3]);
+  const PearsWednesday = Object.values(props.dataWednesday[0]);
+  const OrangesWednesday = Object.values(props.dataWednesday[1]);
+  const GrapesWednesday = Object.values(props.dataWednesday[2]);
+
+  const ApplesThursday = Object.values(props.dataThursday[3]);
+  const PearsThursday = Object.values(props.dataThursday[0]);
+  const OrangesThursday = Object.values(props.dataThursday[1]);
+  const GrapesThursday = Object.values(props.dataThursday[2]);
+
+  const ApplesFriday = Object.values(props.dataFriday[3]);
+  const PearsFriday = Object.values(props.dataFriday[0]);
+  const OrangesFriday = Object.values(props.dataFriday[1]);
+  const GrapesFriday = Object.values(props.dataFriday[2]);
+
+  const ApplesSaturday = Object.values(props.dataSaturday[3]);
+  const PearsSaturday = Object.values(props.dataSaturday[0]);
+  const OrangesSaturday = Object.values(props.dataSaturday[1]);
+  const GrapesSaturday = Object.values(props.dataSaturday[2]);
+
+  const ApplesSunday = Object.values(props.dataSunday[3]);
+  const PearsSunday = Object.values(props.dataSunday[0]);
+  const OrangesSunday = Object.values(props.dataSunday[1]);
+  const GrapesSunday = Object.values(props.dataSunday[2]);
   if(props.type == "Bar")
   {
     const data = {
@@ -54,7 +90,7 @@ export function Chart(props: ChartProps) {
         {
           label:"Apples",
           borderRadius:5,
-          data:[Apples[4],15,19,5],
+          data:[ApplesMonday[4],ApplesTuesday[4],ApplesWednesday[4],ApplesThursday[4],ApplesFriday[4],ApplesSaturday[4],ApplesSunday[4]],
           backgroundColor: [
             "rgba(255,50,50,0.5)",
             "rgba(255,50,50,0.5)",
@@ -72,7 +108,7 @@ export function Chart(props: ChartProps) {
         },{
           label:"Pears",
           borderRadius:5,
-          data:[Pears[4],10,21,7],
+          data:[PearsMonday[4],PearsTuesday[4],PearsWednesday[4],PearsThursday[4],PearsFriday[4],PearsSaturday[4],PearsSunday[4]],
           backgroundColor: [
             "rgba(50,255,50,0.5)",
             "rgba(50,255,50,0.5)",
@@ -90,7 +126,7 @@ export function Chart(props: ChartProps) {
         },{
           label:"Oranges",
           borderRadius:5,
-          data:[Oranges[4],11,29,2],
+          data:[OrangesMonday[4],OrangesTuesday[4],OrangesWednesday[4],OrangesThursday[4],OrangesFriday[4],OrangesSaturday[4],OrangesSunday[4]],
           backgroundColor: [
             "rgba(255,156,43,0.5)",
             "rgba(255,156,43,0.5)",
@@ -108,7 +144,7 @@ export function Chart(props: ChartProps) {
         },{
           label:"Grapes",
           borderRadius:5,
-          data:[Grapes[4],10,25,5],
+          data:[GrapesMonday[4],GrapesTuesday[4],GrapesWednesday[4],GrapesThursday[4],GrapesFriday[4],GrapesSaturday[4],GrapesSunday[4]],
           backgroundColor: [
             "rgba(107,53,255,0.5)",
             "rgba(107,53,255,0.5)",
@@ -169,7 +205,7 @@ export function Chart(props: ChartProps) {
     ]
     };
 
-    if(props.fruit == "Apples")
+    if(props.fruit == "ApplesMonday")
     {
       data = {
         labels: [
@@ -205,7 +241,7 @@ export function Chart(props: ChartProps) {
         ]
       }
     }
-    else if(props.fruit == "Pears")
+    else if(props.fruit == "PearsMonday")
     {
       data = {
         labels: [
@@ -241,7 +277,7 @@ export function Chart(props: ChartProps) {
         ]
       }
     } 
-    else if(props.fruit == "Oranges")
+    else if(props.fruit == "OrangesMonday")
     {
       data = {
         labels: [
