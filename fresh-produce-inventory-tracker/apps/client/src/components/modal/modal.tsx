@@ -12,7 +12,8 @@ export interface ModalProps {
 
 const data = {};
 
-const api_url = 'http://localhost:3333/api/image/uploadone';
+const upload_url = 'http://localhost:3333/api/calcfreshness/predict';
+const freshness_url = 'http://localhost:3333/api/calcfreshness/predict';
 
 export function Modal(props: ModalProps) {
   const [image, setImage] = useState(null);
@@ -22,15 +23,42 @@ export function Modal(props: ModalProps) {
   const uploadImage = async (e) => {
     e.preventDefault();
     const form = new FormData();
+    form.append('id',"1");
     form.append('image', image);
 
-    const response = await fetch(api_url, {
+    const response = await fetch(upload_url, {
       method: 'POST',
       body: form,
     });
 
     if (response.status == 201) {
-      alert('Success, Image uploaded');
+      alert("Image has been uploaded successfully");
+      checkFreshness();
+      props.closeModal();
+      return;
+    }
+
+    if (response.status == 500) {
+      alert('Error, please make sure you have uploaded valid image format.');
+    }
+  };
+
+  const checkFreshness = async () => {
+    const form = new FormData();
+    form.append('id',"1");
+    form.append('image', image);
+
+    const response = await fetch(freshness_url, {
+      method: 'POST',
+      body: form,
+    });
+
+    let prediction  = await response.json();
+
+    if (response.status == 201) {
+      prediction = Object.values(prediction);
+      alert('This apple is a "' + prediction[0] + '" with a prediction accuracy of ' + prediction[2] + '%');
+      console.log(prediction);
       props.closeModal();
       return;
     }
