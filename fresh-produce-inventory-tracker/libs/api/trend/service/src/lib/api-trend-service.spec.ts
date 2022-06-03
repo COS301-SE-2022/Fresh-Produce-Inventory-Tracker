@@ -1,28 +1,31 @@
 import { Test } from '@nestjs/testing';
-import { Prisma } from '@prisma/client';
+import { Prisma, Weekdays } from '@prisma/client';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 import { trendRepository } from '../../../repository/src/lib/trend.repository';
 import { TrendService } from './trend.service';
 
-class trend {
+class Trend {
     id: number;
     userId: number;
     ProduceType: string;
-    createdAt: Date;
-    updatedAt: Date;
+    Day: Weekdays;
+    AverageSalesAmount: number;
+    AmountSales: number;
 }
 
-var trendDataObj = {
+/*var trendDataObj = {
     id: 1,
     userId: 1,
     producetype: 'apple'
+}*/
+class Count {
+    count: number;
 }
 
 const d: Date = new Date(2022, 6, 3);
-let weekday: Prisma.EnumWeekdaysNullableFilter;
 
-const MockTrend: jest.Mocked<trend> = new trend() as trend;
-
+const MockTrend: jest.Mocked<Trend> = new Trend() as Trend;
+const Mockcount: jest.Mocked<Count> = new Count() as Count;
 describe('Trend Service Test', () => {
     let data: TrendService;
 
@@ -49,35 +52,34 @@ describe('Trend Service Test', () => {
             .mockImplementation(
                 () => Promise.resolve(MockTrend)
             );
-        weekday = { equals: 'monday' }
-        expect(await data.getTrendsForDayAndItem(1, 'apple', weekday)).toBe(MockTrend);
+
+        expect(await data.getTrendsForDayAndItem(1, 'apple', 'Monday')).toBe(MockTrend);
     });
 
     it('it should get all trends for day', async () => {
         jest
             .spyOn(data, 'getTrendsAllTrendsForDay')
             .mockImplementation(
-                () => Promise.resolve(MockTrend)
+                () => Promise.resolve([MockTrend])
             );
-        expect(await data.getTrendsAllTrendsForDay(1, 'Monday')).toBe(MockTrend);
+        expect(await data.getTrendsAllTrendsForDay(1, 'Monday')).toStrictEqual([MockTrend]);
     });
 
     it('it should update trend', async () => {
         jest
             .spyOn(data, 'updateTrend')
             .mockImplementation(
-                () => Promise.resolve(MockTrend)
+                () => Promise.resolve(Mockcount)
             );
-        expect(await data.updateTrend(1, 1)).toBe(MockTrend);
+        expect(await data.updateTrend(1, 1)).toBe(Mockcount);
     });
 
     it('it should delete all scale trend data', async () => {
         jest
             .spyOn(data, 'deleteAllScaleTrendData')
             .mockImplementation(
-                () => Promise.resolve(MockTrend)
+                () => Promise.resolve(Mockcount)
             );
-        expect(await data.deleteAllScaleTrendData(1, 'apple', d, 1)).toBe(MockTrend);
+        expect(await data.deleteAllScaleTrendData(1, 'apple', d, 1)).toBe(Mockcount);
     });
 });
-
