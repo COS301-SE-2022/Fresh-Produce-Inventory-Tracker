@@ -1,8 +1,12 @@
 import { MdDashboard } from 'react-icons/md';
-import Statistics from '../src/components/statistics';
+import Trends from '../src/components/trends';
+
+
 export function Index() {
   return (
-         <Statistics></Statistics>
+    <div>
+      <Trends></Trends>
+    </div>
   );
 }
 
