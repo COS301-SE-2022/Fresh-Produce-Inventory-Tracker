@@ -20,5 +20,9 @@ export class Trendcontroller {
     async updateTrend(@Body('userid') userid: number,@Body('scaleid') scaleid:number) {
         return await this.service.updateTrend(userid,scaleid);
     }
+    @Post('getall')
+    async getAll(@Body('userid') userid: number ) {
+        return await this.service.getAll(userid);
+    }
     
 }

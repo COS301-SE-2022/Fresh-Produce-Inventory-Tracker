@@ -15,6 +15,10 @@ export class TrendService {
       return await this.repo.getTrendsForDayAndItem(userid, item, weekday);
     }
   }
+  async getAll(userid: number) {
+      return await this.repo.getAll(userid);
+    
+  }
   async getTrendsAllTrendsForDay(userid: number, Weekday: string) {
     const weekday = this.getDay(Weekday);
     if (weekday != null) {
