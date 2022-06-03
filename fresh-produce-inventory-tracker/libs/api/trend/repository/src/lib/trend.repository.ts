@@ -27,6 +27,13 @@ export class trendRepository {
       where: { userId: +userid, Day: Weekday },
     });
   }
+  async getAll(
+    userid: number,
+  ) {
+    return await this.prisma.trend.findMany({
+      where: { userId: +userid },
+    });
+  }
   async createTrend(
     id: number,
     item: string,
