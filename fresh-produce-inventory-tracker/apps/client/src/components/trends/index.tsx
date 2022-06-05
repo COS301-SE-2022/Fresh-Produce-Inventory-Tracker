@@ -53,28 +53,28 @@ export function Trends(props: TrendsProps) {
         <div className="w-full">
           <h2 className="text-lg">Statistics</h2>
           <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
-            <StatisticItem
+            <TrendItem
               icon={
                 <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info bg-info/20" />
               }
               number={92}
               type="Total items"
             />
-            <StatisticItem
+            <TrendItem
               icon={
                 <IoWarningOutline className="w-10 h-10 p-2 rounded-full text-warning bg-warning/20" />
               }
               number={23}
               type="About to expire"
             />
-            <StatisticItem
+            <TrendItem
               icon={
                 <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error bg-error/20" />
               }
               number={10}
               type="Expired"
             />
-            <StatisticItem
+            <TrendItem
               icon={
                 <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-success bg-success/20" />
               }
