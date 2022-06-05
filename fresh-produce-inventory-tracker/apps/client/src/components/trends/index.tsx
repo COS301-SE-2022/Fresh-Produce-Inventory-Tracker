@@ -69,7 +69,7 @@ export function Trends(props: TrendsProps) {
             />
             <TrendItem
               icon={
-                <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error bg-error/20" />
+                <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error bg-error/30" />
               }
               number={10}
               type="Expired"
