@@ -1,0 +1,1 @@
+The scale works as follows:
