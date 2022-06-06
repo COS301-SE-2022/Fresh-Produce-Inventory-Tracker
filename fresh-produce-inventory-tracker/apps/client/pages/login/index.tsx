@@ -1,8 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { BiShow, BiHide } from 'react-icons/bi';
+import { MdOutlineDangerous, MdOutlineCheckCircle } from 'react-icons/md';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
+import { useRouter } from 'next/router';
+import { Transition } from '@headlessui/react';
+import { CgSpinner } from 'react-icons/cg';
 /* eslint-disable-next-line */
 export interface LoginProps {}
 interface Login {
@@ -10,8 +14,21 @@ interface Login {
   password: string;
 }
 
+enum Errors {
+  loginError = 'Invalid email and/or password',
+  serverError = 'Internal server error',
+}
+
+enum Success {
+  login = 'Success, correct credentials',
+}
+
 export function Login(props: LoginProps) {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   const {
     register,
@@ -20,14 +37,29 @@ export function Login(props: LoginProps) {
   } = useForm();
 
   const handleLogin = (data: Login) => {
-    console.log(data);
+    setLoading(true);
+    setMessage('');
+    setError('');
+    fetch('http://localhost:3333/api/authentication/signin', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.statusCode >= 500) setError(Errors.serverError);
+        else if (data.statusCode >= 401) setError(Errors.loginError);
+        else setMessage(Success.login);
+      })
+      .catch((error) => {
+        setError(error.serverError);
+      });
+    setLoading(false);
   };
 
   return (
-
-
-
-    
     <div className="grid w-screen h-full min-h-screen p-2 place-content-center bg-base-300/40">
       <form
         onSubmit={handleSubmit(handleLogin)}
@@ -83,6 +115,7 @@ export function Login(props: LoginProps) {
               Password
             </label>
             <input
+              role="textbox"
               {...register('password', { required: true })}
               type={`${showPassword ? 'text' : 'password'}`}
               id="password"
@@ -112,12 +145,63 @@ export function Login(props: LoginProps) {
           </div>
         </div>
 
-        <div className="mt-6">
+        {error.length > 0 && (
+          <Transition
+            as={Fragment}
+            appear={true}
+            show={true}
+            enter="transform transition duration-[200ms]"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transform duration-200 transition ease-in-out"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95 "
+          >
+            <div
+              tabIndex={0}
+              className="mt-4 text-sm rounded-md shadow-lg alert bg-error/20"
+            >
+              <div>
+                <MdOutlineDangerous className="w-5 h-5 text-rose-700" />
+                <span role="error-alert" className="font-medium text-rose-700">
+                  {error}
+                </span>
+              </div>
+            </div>
+          </Transition>
+        )}
+
+        {message && (
+          <Transition
+            as={Fragment}
+            appear={true}
+            show={true}
+            enter="transform transition duration-[200ms]"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transform duration-200 transition ease-in-out"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95 "
+          >
+            <div className="mt-2 text-sm rounded-md shadow-lg alert bg-success/20">
+              <div>
+                <MdOutlineCheckCircle className="w-5 h-5 text-lime-700" />
+                <span className="font-medium text-lime-800">{message}</span>
+              </div>
+            </div>
+          </Transition>
+        )}
+
+        <div className="flex flex-col items-center mt-6">
           <input
+            disabled={loading}
             type="submit"
             value="Sign in"
-            className="w-full px-1 py-2 font-light text-white rounded-md cursor-pointer bg-primary hover:bg-primary-focus"
+            className="w-full px-1 py-2 font-light text-white rounded-md cursor-pointer disabled:bg-primary/80 bg-primary hover:bg-primary-focus"
           />
+          {loading && (
+            <CgSpinner className="w-5 h-5 mt-3 text-secondary animate-spin" />
+          )}
           <p className="mt-4 text-sm text-center">
             {"Don't"} have an account yet?
             <Link href="/signup" passHref>
