@@ -115,7 +115,7 @@ export function Login(props: LoginProps) {
               Password
             </label>
             <input
-              role="password"
+              role="textbox"
               {...register('password', { required: true })}
               type={`${showPassword ? 'text' : 'password'}`}
               id="password"
@@ -158,12 +158,14 @@ export function Login(props: LoginProps) {
             leaveTo="opacity-0 scale-95 "
           >
             <div
-              role="error-alert"
+              tabIndex={0}
               className="mt-4 text-sm rounded-md shadow-lg alert bg-error/20"
             >
               <div>
                 <MdOutlineDangerous className="w-5 h-5 text-rose-700" />
-                <span className="font-medium text-rose-700">{error}</span>
+                <span role="error-alert" className="font-medium text-rose-700">
+                  {error}
+                </span>
               </div>
             </div>
           </Transition>
