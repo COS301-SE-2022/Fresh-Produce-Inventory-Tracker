@@ -2,7 +2,7 @@ import { Body, Controller, Post } from '@nestjs/common';
 import { AuthenticationService } from '../../../service/src/lib/authentication.service';
 @Controller('authentication')
 export class AuthenticationController {
-  constructor(private AuthenticationService: AuthenticationService) {}
+  constructor(private AuthenticationService: AuthenticationService) { }
 
   @Post('signup')
   async signup(
@@ -24,8 +24,8 @@ export class AuthenticationController {
     return await this.AuthenticationService.getUser(email);
   }
   @Post('editpassword')
-  async editpassword(@Body('email') email: string,@Body('password') password: string) {
-    return await this.AuthenticationService.editPassword(email,password);
+  async editpassword(@Body('email') email: string, @Body('password') password: string) {
+    return await this.AuthenticationService.editPassword(email, password);
   }
 
 }
