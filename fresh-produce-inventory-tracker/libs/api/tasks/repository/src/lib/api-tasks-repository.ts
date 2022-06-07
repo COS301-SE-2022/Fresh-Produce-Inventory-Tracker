@@ -7,6 +7,9 @@ export class tasksRepository {
   async getTasks(id:number) {
     return await this.prisma.notification.findMany({ where: { userId:id, Type:'Task' } });
   }
+  async getTasksMessage(id:number,message:string) {
+    return await this.prisma.notification.findFirst({ where: { userId:id, Type:'Task' ,message:message} });
+  }
   async createTask(id:number,message:string) {
     return await this.prisma.notification.create({
       data: {userId:id, Type: 'Task', message :message }
