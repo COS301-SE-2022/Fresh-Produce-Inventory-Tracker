@@ -9,6 +9,7 @@ import { tasksController } from "./tasks.controller";
 @Module({
     imports:[],
   controllers: [tasksController],
-  providers: [taskService,tasksRepository,PrismaService]
+  providers: [taskService,tasksRepository,PrismaService],
+  exports: [taskService]
 })
-export class ApiAuthenticationApiModule {}
+export class tasksModule {}

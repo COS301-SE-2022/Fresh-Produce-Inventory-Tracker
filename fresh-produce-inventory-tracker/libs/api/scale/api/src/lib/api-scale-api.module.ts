@@ -3,10 +3,12 @@ import { ScaleRepository } from 'libs/api/scale/repository/src/lib/scale.reposit
 import { ScaleService } from 'libs/api/scale/service/src/lib/scale.service';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 import { ScaleController } from './scale.contoller';
+import {tasksModule} from '../../../../tasks/api/src/lib/tasks.module';
 
 @Module({
   controllers: [ScaleController],
   providers: [ScaleRepository, ScaleService, PrismaService],
   exports: [],
+  imports: [tasksModule]
 })
 export class ApiScaleApiModule { }

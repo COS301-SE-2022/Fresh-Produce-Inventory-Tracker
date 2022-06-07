@@ -5,7 +5,7 @@ import { tasksRepository } from '../../../repository/src/lib/api-tasks-repositor
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
 
 @Injectable({})
-export class AuthenticationService {
+export class taskService {
   
   constructor(private repo: tasksRepository) {}
   async getTasks(id:number) {
