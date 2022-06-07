@@ -26,7 +26,6 @@ export async function getServerSideProps() {
   const trendData = await response.json();
 
   if (response.status == 201) {
-    console.log(trendData);
     for(let x = 0;x < trendData.length;x++)
     {
       const data = Object.values(trendData[x])[3];

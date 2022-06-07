@@ -6,7 +6,7 @@ import {Task} from "./../../src/components/task/task"
 
 const table_api = 'http://localhost:3333/api/tasks/gettasks';
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const  Form = "id=1";
 
   const response = await fetch(table_api, {
@@ -18,6 +18,11 @@ export async function getServerSideProps() {
   });
 
   const TaskData = await response.json();
+  const tasks = [];
+  for(let x = 0;x < TaskData.length;x++)
+  {
+    tasks.push(TaskData[x]);
+  }
 
   if (response.status == 201) {
     console.log(TaskData)
@@ -29,11 +34,11 @@ export async function getServerSideProps() {
   }
 
   return {
-    props:{Tasks:TaskData}
+    props:{tasks},revalidate: 1
   }
 }
 
-export function User({Tasks}) 
+export function User({tasks}) 
 {
   return (
     <div className="ml-2 h-5/6 border-solid border-2 lg:max-w-[98%] rounded">
@@ -48,11 +53,11 @@ export function User({Tasks})
       <div className="border-solid border-2 ml-4 rounded-lg h-inherit mr-4">
         <h1 className="content-center ml-6 font-bold font-lg mt-2">Tasks:</h1>
         <div className='mt-2 overflow-hidden'>
-          <div className="grid grid-cols-5 rounded-lg bg-red-200 m-2 place-items-center">
+          <div className="grid grid-cols-12 rounded-lg bg-red-200 m-2 place-items-center">
             <div>ID</div>
-            <div>Name</div>
-            <div className='col-span-3'>Description</div>
+            <div className='col-span-10'>Description</div>
           </div>
+          <Task data={tasks}></Task>
         </div>
         <p className='m-2'></p>
       </div>
