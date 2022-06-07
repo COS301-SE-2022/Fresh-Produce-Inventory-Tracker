@@ -81,8 +81,6 @@ export async function getServerSideProps() {
   }
 }
 
-
-
 export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday}) {
   return (
       <div className="m-2 content-center">
