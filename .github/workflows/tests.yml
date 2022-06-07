@@ -38,3 +38,10 @@ jobs:
       - name: "Run tests"
         working-directory: ./fresh-produce-inventory-tracker
         run: npm test
+      - name: Run the tests
+        working-directory: ./fresh-produce-inventory-tracker
+        run: npm test -- --coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+            token: ${{ secrets.CODECOV_TOKEN }}
