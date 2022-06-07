@@ -37,7 +37,7 @@ export function User(props: UserProps)
             <Image />
           </div>
         </div>
-        <UserInfo name="Durandt" email="durandtu@gmail.com" bio="Third year university student currently enrolled in a Bachelors of Information technology at the University of Pretoria."></UserInfo>
+        <UserInfo name="Durandt" email="durandtu@gmail.com" bio="Third year university student currently enrolled in a Bachelors of Information technology at the University of Pretoria." visibility="true"></UserInfo>
       </div>
       <div className="border-solid border-2 ml-4 rounded-lg h-inherit mr-4">
         <h1 className="content-center ml-6 font-bold font-lg mt-2">Tasks:</h1>
