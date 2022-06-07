@@ -1,8 +1,10 @@
 import { MailerModule } from '@nestjs-modules/mailer';
 import { Module } from '@nestjs/common';
 import { NotificationController } from './notifications.controller';
-import {NotificaytionService} from '../../../service/src/lib/notification.service';
+import {NotificationService} from '../../../service/src/lib/notification.service';
+import {NotificationRepository} from '../../../repository/src/lib/notifcation.repository';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 const config = new ConfigService({});
 
 @Module({
@@ -17,7 +19,7 @@ const config = new ConfigService({});
   })
 ],
   controllers: [NotificationController], 
-  providers: [NotificaytionService],
+  providers: [NotificationService,NotificationRepository,PrismaService],
   exports: [],
 })
 export class ApiNotificationsApiModule {}
