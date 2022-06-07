@@ -19,6 +19,9 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./fresh-produce-inventory-tracker
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,9 +35,15 @@ jobs:
           node-version: '16.x'
 
       - name: "Install Dependencies"
-        working-directory: ./fresh-produce-inventory-tracker
         run: npm install
 
       - name: "Run tests"
-        working-directory: ./fresh-produce-inventory-tracker
         run: npm test
+      - name: Run the tests
+        run: npm test -- --coverage
+      - name: Upload coverage to Codecov
+      
+        uses: codecov/codecov-action@v2
+        with:
+            token: ${{ secrets.CODECOV_TOKEN }}
+

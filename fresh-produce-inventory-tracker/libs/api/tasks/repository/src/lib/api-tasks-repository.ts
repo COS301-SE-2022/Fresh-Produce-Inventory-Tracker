@@ -4,15 +4,30 @@ import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.s
 @Injectable()
 export class tasksRepository {
   constructor(private prisma: PrismaService) {}
-  async getTasks(id:number) {
-    return await this.prisma.notification.findMany({ where: { userId:id, Type:'Task' } });
-  }
-  async createTask(id:number,message:string) {
-    return await this.prisma.notification.create({
-      data: {userId:id, Type: 'Task', message :message }
+  async getTasks(id: number) {
+    return await this.prisma.notification.findMany({
+      where: { userId: id, Type: 'Task' },
     });
   }
-  async deleteTask(id: number, message:string) {
-    return await this.prisma.notification.deleteMany({ where: { userId:id, Type:'Task',message:message }});
+  async getTasksMessage(id: number, message: string) {
+    return await this.prisma.notification.findFirst({
+      where: { userId: id, Type: 'Task', message: message },
+    });
+  }
+  async createTask(id: number, message: string) {
+    if (
+      !(await this.prisma.notification.findFirst({
+        where: { userId: id, message: message },
+      }))
+    ) {
+      return await this.prisma.notification.create({
+        data: { userId: id, Type: 'Task', message: message },
+      });
+    } else return null;
+  }
+  async deleteTask(id: number, message: string) {
+    return await this.prisma.notification.deleteMany({
+      where: { userId: id, Type: 'Task', message: message },
+    });
   }
 }

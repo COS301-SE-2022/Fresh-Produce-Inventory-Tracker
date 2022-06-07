@@ -22,9 +22,15 @@ export class ScaleService { //id: number, userid: number
         const get = await this.repo.getScale(id,userid);
         if(weight < (get.WeightIndividual*5))
         {
+            
             const message = 'The supply of '+ get.ProduceType + ' produce is getting low. Please restock.';
-            this.taskService.createTask(userid,message)
+            if((await this.taskService.getTasksMessage(userid,message)).message != message)
+            {
+                await this.taskService.createTask(userid,message);
+            }
+
         }
+        return answer;
 
     }
     async removeScale(id: number, userId: number) {

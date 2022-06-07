@@ -39,8 +39,13 @@ export class calculatefreshnessService {
     const answer = this.getproduce(max,result);
     if(answer.prediction.includes('rotten'))
     {
+      
       const message = 'Please remove all '+ answer.prediction;
+      if((await this.taskService.getTasksMessage(id,message)).message != message)
+      {
         await this.taskService.createTask(id,message);
+      }
+        
     }
     return answer;
 

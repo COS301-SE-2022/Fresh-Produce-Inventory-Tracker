@@ -20,6 +20,10 @@ export class taskService {
 
     return await this.repo.deleteTask(id,message);
   }
-  
+  async getTasksMessage(id:number,message:string)
+  {
+
+    return await this.repo.getTasksMessage(id,message);
+  }
 
 }
