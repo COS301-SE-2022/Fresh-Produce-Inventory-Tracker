@@ -1,9 +1,6 @@
 import '@testing-library/jest-dom';
 import React from 'react';
-import { rest } from 'msw';
-import { setupServer } from 'msw/node';
-import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/react';
 import Trends from './index';
 import 'whatwg-fetch';
 
