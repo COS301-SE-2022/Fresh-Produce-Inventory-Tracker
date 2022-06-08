@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable-next-line */
 export interface UserProps {}
 import Image from './../../src/components/image/image';
