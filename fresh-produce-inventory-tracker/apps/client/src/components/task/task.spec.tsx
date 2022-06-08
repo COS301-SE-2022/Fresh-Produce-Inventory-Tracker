@@ -4,7 +4,7 @@ import Task from './task';
 
 describe('Task', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Task />);
+    const { baseElement } = render(<Task data={[]} />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -4,7 +4,8 @@ import Layout from './layout';
 
 describe('Layout', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Layout />);
+    // eslint-disable-next-line react/no-children-prop
+    const { baseElement } = render(<Layout children={undefined} />);
     expect(baseElement).toBeTruthy();
   });
 });
