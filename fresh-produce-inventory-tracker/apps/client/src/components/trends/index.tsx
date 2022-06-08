@@ -1,3 +1,32 @@
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Doughnut } from 'react-chartjs-2';
+import InventoryTable from '../inventory-table/inventory-table';
+
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+export const data = {
+  labels: [],
+  datasets: [
+    {
+      label: '# of Votes',
+      data: [12, 19, 3, 5],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
 import Link from 'next/link';
 import { AiOutlineNumber } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
@@ -19,44 +48,59 @@ const TrendItem = ({ icon, number, type }) => (
 
 export function Trends(props: TrendsProps) {
   return (
-    <div className=" rounded-xl lg:max-w-[98%] px-4 py-10 bg-slate-50 mt-4 shadow-md ml-2">
-      <h2 className="text-lg">Trends</h2>
-      <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
-        <TrendItem
-          icon={
-            <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info bg-info/20" />
-          }
-          number={92}
-          type="Total items"
-        />
-        <TrendItem
-          icon={
-            <IoWarningOutline className="w-10 h-10 p-2 rounded-full text-warning bg-warning/20" />
-          }
-          number={23}
-          type="About to expire"
-        />
-        <TrendItem
-          icon={
-            <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error bg-error/20" />
-          }
-          number={10}
-          type="Expired"
-        />
-        <TrendItem
-          icon={
-            <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-success bg-success/20" />
-          }
-          number={25}
-          type="New items"
-        />
+    <div className="lg:max-w-[98%]">
+      <div className="flex justify-between px-2 py-10 mt-4 shadow-md rounded-xl h-fit bg-slate-50">
+        <div className="w-full">
+          <h2 className="text-lg">Statistics</h2>
+          <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
+            <TrendItem
+              icon={
+                <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info bg-info/20" />
+              }
+              number={92}
+              type="Total items"
+            />
+            <TrendItem
+              icon={
+                <IoWarningOutline className="w-10 h-10 p-2 rounded-full text-warning bg-warning/20" />
+              }
+              number={23}
+              type="About to expire"
+            />
+            <TrendItem
+              icon={
+                <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error bg-error/20" />
+              }
+              number={10}
+              type="Expired"
+            />
+            <TrendItem
+              icon={
+                <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-success bg-success/20" />
+              }
+              number={25}
+              type="New items"
+            />
+          </div>
+          <div className="mt-8">
+            <Link href="/inventory" passHref>
+              <span className="flex items-center px-4 py-2 text-sm transition-all rounded-md cursor-pointer w-fit hover:bg-primary/10 group">
+                View Inventory
+                <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
+              </span>
+            </Link>
+          </div>
+        </div>
       </div>
-      <div className="mt-8">
-        <Link href="/inventory" passHref>
-          <span className="flex items-center px-4 py-2 text-xs font-bold underline rounded-full cursor-pointer gap-x-2 w-fit text-primary">
-            View Inventory
-          </span>
-        </Link>
+      <div className="flex mt-10">
+        <div className="md:w-[25%] w-full h-fit">
+          <h3 className="text-md">Some Numbers</h3>
+          <Doughnut data={data} />
+        </div>
+        <div className="md:w-[75%]">
+          <h3 className="mb-4 ">Recently Added</h3>
+          <InventoryTable />
+        </div>
       </div>
     </div>
   );
