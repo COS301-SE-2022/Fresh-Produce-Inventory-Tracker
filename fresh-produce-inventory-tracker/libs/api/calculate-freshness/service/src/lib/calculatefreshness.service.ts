@@ -41,7 +41,7 @@ export class calculatefreshnessService {
     {
       
       const message = 'Please remove all '+ answer.prediction;
-      if((await this.taskService.getTasksMessage(id,message)).message != message)
+      if((await this.taskService.getTasksMessage(id,message)) == null || ((await this.taskService.getTasksMessage(id,message)) != null && (await this.taskService.getTasksMessage(id,message)).message != message))
       {
         await this.taskService.createTask(id,message);
       }
