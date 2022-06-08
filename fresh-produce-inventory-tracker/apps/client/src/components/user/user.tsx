@@ -21,7 +21,7 @@ export function UserInfo(props: UserProps) {
                 <p className="m-2">{props.name}</p>
               </div>
               <div className='flex items-center font-bold grid'>
-              <button>Edit</button>
+              <button className='bg-red-200 rounded-lg p-2 hover:bg-red-400'>Edit</button>
             </div>
             </div>
             <div className="flex items-center font-bold grid grid-cols-12">
