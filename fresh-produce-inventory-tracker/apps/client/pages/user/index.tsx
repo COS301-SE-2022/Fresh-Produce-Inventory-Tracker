@@ -6,6 +6,7 @@ import {UserInfo} from "./../../src/components/user/user"
 import {Task} from "./../../src/components/task/task"
 
 const table_api = 'http://localhost:3333/api/tasks/gettasks';
+const profile = "http://localhost:3333/api/profile/getprofile"
 
 export async function getStaticProps() {
   const  Form = "id=1";
@@ -18,7 +19,16 @@ export async function getStaticProps() {
     body: Form,
   });
 
+  const profileResponse = await fetch(profile, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
   const TaskData = await response.json();
+  const Profile = await profileResponse.json();
   const tasks = [];
   for(let x = 0;x < TaskData.length;x++)
   {
@@ -35,11 +45,11 @@ export async function getStaticProps() {
   }
 
   return {
-    props:{tasks},revalidate: 1
+    props:{tasks,Profile},revalidate: 1
   }
 }
 
-export function User({tasks}) 
+export function User({tasks,Profile}) 
 {
   return (
     <div className="ml-2 h-5/6 border-solid border-2 mt-4 pt-2 lg:max-w-[98%] rounded">
@@ -49,7 +59,7 @@ export function User({tasks})
             <Image/>
           </div>
         </div>
-        <UserInfo name="Durandt" email="durandtu@gmail.com" bio="Third year university student currently enrolled in a Bachelors of Information technology at the University of Pretoria." visibility="true"></UserInfo>
+        <UserInfo data={Profile}></UserInfo>
       </div>
       <div className="border-solid border-2 ml-4 rounded-lg h-2/5 mr-4">
         <h1 className="content-center ml-6 font-bold font-lg mt-2">Tasks:</h1>
