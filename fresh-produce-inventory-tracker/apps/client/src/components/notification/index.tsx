@@ -1,15 +1,15 @@
 /* eslint-disable-next-line */
 export interface NotificationProps {
-  urgency:string,
+  Type:string,
   number:string,
   message:string
 }
 
 export function Notification(props: NotificationProps) {
-  if(props.urgency != "Urgent")
+  if(props.Type == "UrgentNotification")
   {
     return (
-      <div className="flex items-center w-full h-10 shadow-md rounded-lg p-4 lg:max-w-[95%] ml-5 mt-5 bg-blue-200">
+      <div className="flex items-center w-full h-10 shadow-md rounded-lg p-4 lg:max-w-[95%] ml-5 mt-5 bg-red-200">
         <h1 className="text-xl font-black">
           #{props.number}
         </h1>
@@ -19,10 +19,10 @@ export function Notification(props: NotificationProps) {
       </div>
     );
   }
-  else
+  else if(props.Type == "Notification")
   {
     return (
-      <div className="flex items-center w-full h-10 shadow-md rounded-lg p-4 lg:max-w-[95%] ml-5 mt-5 bg-red-200">
+      <div className="flex items-center w-full h-10 shadow-md rounded-lg p-4 lg:max-w-[95%] ml-5 mt-5 bg-blue-200">
         <h1 className="text-xl font-black">
           #{props.number}
         </h1>

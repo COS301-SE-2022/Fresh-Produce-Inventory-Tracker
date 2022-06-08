@@ -39,8 +39,11 @@ async getNotificationMessage(id: number, message: string) {
 async createNotification(userid: number, message: string) {
   return await this.repo.createNotification(userid,message);
 }
-async deleteNotification(id: number, userId: number) {
-  return await this.repo.deleteNotification(id,userId);
+async createNotificationUrgent(userid: number, message: string) {
+  return await this.repo.createNotificationUrgent(userid,message);
+}
+async deleteNotification(userId: number) {
+  return await this.repo.deleteNotification(userId);
 }
 }
 

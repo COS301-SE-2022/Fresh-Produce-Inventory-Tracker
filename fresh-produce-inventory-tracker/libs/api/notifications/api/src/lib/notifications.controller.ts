@@ -14,17 +14,19 @@ export class NotificationController {
   }  
   @Post('getnotifications')
   async getNotifications(
-    @Body('id') id: number,
-    
-  ) {
+    @Body('id') id: number) {
     return await this.service.getNotifications(+id)
   }
   @Post('createnotification')
   createTasks(@Body('id') id: number, @Body('message') message: string) {
     return this.service.createNotification(id,message);
   }
+  @Post('createnotificationurgent')
+  createTask(@Body('id') id: number, @Body('message') message: string) {
+    return this.service.createNotificationUrgent(id,message);
+  }
   @Post('deletenotification')
-  deleteTasks(@Body('id') id: number, @Body('userid') userid: number) {
-    return this.service.deleteNotification(id,userid);
+  deleteTasks(@Body('userid') userid: number) {
+    return this.service.deleteNotification(userid);
   }
 }
