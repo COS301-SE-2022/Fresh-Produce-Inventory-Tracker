@@ -1,13 +1,17 @@
 import { getGreeting } from '../support/app.po';
 
-describe('client', () => {
-  beforeEach(() => cy.visit('/'));
+describe('Navigation', () => {
+  it('should navigate to the about page', () => {
+    // Start from the index page
+    cy.visit('/')
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+    // Find a link with an href attribute containing "about" and click it
+    cy.get('a[href*="about"]').click()
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome client');
-  });
-});
+    // The new url should include "/about"
+    cy.url().should('include', '/about')
+
+    // The new page should contain an h1 with "About page"
+    cy.get('h1').contains('About Page')
+  })
+})
