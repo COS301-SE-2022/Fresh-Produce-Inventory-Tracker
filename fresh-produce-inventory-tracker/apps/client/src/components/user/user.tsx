@@ -1,4 +1,6 @@
 import styles from './user.module.css';
+import UserModal from '../user-modal/user-modal';
+import { useState } from 'react';
 
 /* eslint-disable-next-line */
 export interface UserProps {
@@ -6,6 +8,7 @@ export interface UserProps {
 }
 
 export function UserInfo(props: UserProps) {
+  const [showImageUpload, setShowImageUpload] = useState(false);
   if(props.data != undefined)
   {
     if(props.data.Visibility == true)
@@ -20,7 +23,14 @@ export function UserInfo(props: UserProps) {
                   <p className="m-2">{props.data.Name}</p>
                 </div>
                 <div className='flex items-center font-bold grid'>
-                <button className='bg-red-200 rounded-lg p-2 hover:bg-red-400'>Edit</button>
+                <button onClick={() => setShowImageUpload(true)} className='bg-red-200 rounded-lg p-2 hover:bg-red-400'>Edit</button>
+                <UserModal
+                  isOpen={showImageUpload}
+                  openUserModal={() => setShowImageUpload(true)}
+                  closeUserModal={() => setShowImageUpload(false)}
+                  title="Edit info"
+                  description="Please input the updated information."
+                />
               </div>
               </div>
               <div className="flex items-center font-bold grid grid-cols-12">
