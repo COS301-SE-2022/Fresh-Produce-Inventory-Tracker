@@ -6,15 +6,16 @@ import * as path from 'path';
 import sharp = require('sharp');
 import Jimp = require('jimp');
 import tfnode = require('@tensorflow/tfjs-node');
-// import { min } from 'rxjs';
+import { min } from 'rxjs';
+import {taskService} from '../../../../tasks/service/src/lib/taskService.service'
 
 
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
 
 @Injectable({})
 export class calculatefreshnessService {
-  //constructor() {}
-  async predict(file) {
+  constructor(private taskService:taskService) {}
+  async predict(id:number,file) {
     const model = await tf.loadLayersModel('file://./libs/api/calculate-freshness/service/src/lib/model/apple-model/model.json');
     const imagePath = file.path;
     const image = fs.readFileSync(imagePath);
@@ -34,8 +35,19 @@ export class calculatefreshnessService {
     }
       
     //getproduce(max,result)
-  
-    return this.getproduce(max,result);
+    
+    const answer = this.getproduce(max,result);
+    if(answer.prediction.includes('rotten'))
+    {
+      
+      const message = 'Please remove all '+ answer.prediction;
+      if((await this.taskService.getTasksMessage(id,message)) == null || ((await this.taskService.getTasksMessage(id,message)) != null && (await this.taskService.getTasksMessage(id,message)).message != message))
+      {
+        await this.taskService.createTask(id,message);
+      }
+        
+    }
+    return answer;
 
 
   } 

@@ -11,20 +11,20 @@ datasource db {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  password     String?
-  passwordSalt String?  @map("password_salt")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id              Int      @id @default(autoincrement())
+  email           String   @unique
+  password        String?
+  passwordSalt    String?  @map("password_salt")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@map("user")
-  Produce Produce[]
-  Image   Image[]
-  Scale   Scale[]
-  Feedback_Data Feedback_Data[]
-  Notification Notification[]
-  Trend   Trend[]
+  Produce         Produce[]
+  Image           Image[]
+  Scale           Scale[]
+  Feedback_Data   Feedback_Data[]
+  Notification    Notification[]
+  Trend           Trend[]
 }
 
 model Produce {
@@ -53,15 +53,15 @@ model Image {
 }
 
 model Scale {
-  id        Int      @default(autoincrement()) @unique
-  userId    Int      @map("user_id")
+  id                  Int      @default(autoincrement()) @unique
+  userId              Int      @map("user_id")
   WeightIndividual    Int      @map("weight_Individual")
-  WeightTotal    Int      @map("weight_total")
-  ProduceType   String?   @map("produce_type")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  Scale_Trend Scale_Trend[]
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  WeightTotal         Int      @map("weight_total")
+  ProduceType         String?   @map("produce_type")
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  Scale_Trend         Scale_Trend[]
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([id, userId])
   @@map("scale")
@@ -79,26 +79,26 @@ model Scale_Trend {
 }
 
 model Trend {
-  id            Int       @default(autoincrement())
-  userId        Int       @map("user_id")
-  ProduceType   String   @map("produce_type")
-  Day           Weekdays?
-  AverageSalesAmount Float? 
-  AmountSales        Int?
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  id                  Int       @default(autoincrement())
+  userId              Int       @map("user_id")
+  ProduceType         String   @map("produce_type")
+  Day                 Weekdays?
+  AverageSalesAmount  Float? 
+  AmountSales         Int?
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([id, userId,ProduceType])
   @@map("trend")
 }
 
 model Feedback_Data {
-  id        Int      @default(autoincrement())
-  userId    Int      @map("user_id")
-  stockLevel   String?      @map("stock_level")
+  id            Int      @default(autoincrement())
+  userId        Int      @map("user_id")
+  stockLevel    String?      @map("stock_level")
   produceType   ProduceType   @map("produce")
-  Freshness   Int[]  @map("freshness")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  Freshness     Int[]  @map("freshness")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([id, userId])
   @@map("feedback_data")
@@ -106,7 +106,7 @@ model Feedback_Data {
 model Notification {
   id        Int      @default(autoincrement())
   userId    Int      @map("user_id")
-  title   String?
+  Type      String?    @map("type")
   message   String?
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 

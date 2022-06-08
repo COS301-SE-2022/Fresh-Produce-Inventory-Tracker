@@ -10,6 +10,11 @@ export class ScaleRepository {
       where: { id_userId: { userId: userid, id: id } },
     });
   }
+  async getscaleNot(userid:number,weight:number) {
+    return await this.prisma.scale.findFirst({
+      where: { userId :userid} });
+  }
+
   async createScale(
     userId: number,
     weightfull: number,
