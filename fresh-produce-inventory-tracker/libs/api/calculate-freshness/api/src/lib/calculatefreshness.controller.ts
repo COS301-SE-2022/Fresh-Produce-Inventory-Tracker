@@ -20,8 +20,8 @@ export class calculatefreshnessController {
       fileFilter: imageFileFilter,
     }),
   )
-  async predict(@Body('id') id:number,@UploadedFile() file) {
-    const predict =  await this.service.predict(id,file);
+  async predict(@UploadedFile() file) {
+    const predict =  await this.service.predict(file);
     console.log(predict);
     return predict;
   }

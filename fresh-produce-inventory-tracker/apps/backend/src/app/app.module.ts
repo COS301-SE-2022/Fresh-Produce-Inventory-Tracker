@@ -11,9 +11,10 @@ import { ConfigModule } from '@nestjs/config';
 import { ApiTrendApiModule } from '../../../../libs/api/trend/api/src/lib/api-trend-api.module';
 import { ApiCalculateFreshnessApiModule } from '../../../../libs/api/calculate-freshness/api/src/lib/api-calculate-freshness-api.module';
 import { tasksModule } from '../../../../libs/api/tasks/api/src/lib/tasks.module';
+import { ApiProfileApiModule } from '../../../../libs/api/profile/api/src/lib/api-profile-api.module';
 
 @Module({
-  imports: [tasksModule,ApiAuthenticationApiModule, ApiImageApiModule, ApiScaleApiModule,ApiNotificationsApiModule,ApiTrendApiModule,ApiCalculateFreshnessApiModule ],
+  imports: [tasksModule,ApiAuthenticationApiModule, ApiImageApiModule, ApiScaleApiModule,ApiNotificationsApiModule,ApiTrendApiModule,ApiCalculateFreshnessApiModule,ApiProfileApiModule ],
   controllers: [AppController],
   providers: [AppService,PrismaService],
 })

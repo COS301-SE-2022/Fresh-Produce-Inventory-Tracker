@@ -17,7 +17,10 @@ model User {
   passwordSalt    String?  @map("password_salt")
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-
+  Name            String?
+  Surname         String?
+  Bio             String?
+  Visibility      Boolean?
   @@map("user")
   Produce         Produce[]
   Image           Image[]
