@@ -19,14 +19,14 @@ export function Task(props: TaskProps) {
     <div>
       {props.data.map(function(d, idx){
          return (
-          <div key={idx} className="grid items-center w-full h-15 shadow-md rounded-lg p-4 lg:max-w-[97%] ml-5 mt-5 bg-blue-200 grid-cols-12">
+          <div key={idx} className="grid items-center w-full shadow-md rounded-lg p-4 lg:max-w-[97%] ml-5 mt-5 bg-red-200 grid-cols-12">
             <h1 className="text-xl font-black">
               #{d.id}
             </h1>
             <div className="ml-2 col-span-10 flex items-center">
               <h2>{d.message}</h2>
             </div>
-            <button className=" bg-red-200 rounded-lg p-2" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
+            <button className=" bg-red-400 hover:bg-blue-400 rounded-lg p-2" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
           </div>
         );
        })}

@@ -41,8 +41,8 @@ export async function getStaticProps() {
 export function User({tasks}) 
 {
   return (
-    <div className="ml-2 h-5/6 border-solid border-2 lg:max-w-[98%] rounded">
-      <div className="grid grid-cols-4 ml-2">
+    <div className="ml-2 h-5/6 border-solid border-2 mt-4 pt-2 lg:max-w-[98%] rounded">
+      <div className="grid grid-cols-4 ml-2 h-3/6">
         <div className="avatar my-2 ml-2">
           <div className="w-80 rounded-lg border-solid border-2">
             <Image/>
@@ -50,10 +50,10 @@ export function User({tasks})
         </div>
         <UserInfo name="Durandt" email="durandtu@gmail.com" bio="Third year university student currently enrolled in a Bachelors of Information technology at the University of Pretoria." visibility="true"></UserInfo>
       </div>
-      <div className="border-solid border-2 ml-4 rounded-lg h-inherit mr-4">
+      <div className="border-solid border-2 ml-4 rounded-lg h-2/5 mr-4">
         <h1 className="content-center ml-6 font-bold font-lg mt-2">Tasks:</h1>
-        <div className='mt-2 overflow-hidden'>
-          <div className="grid grid-cols-12 rounded-lg bg-red-200 m-2 place-items-center">
+        <div className='mt-2 overflow-auto h-full'>
+          <div className="grid grid-cols-12 rounded-lg bg-blue-200 m-2 place-items-center h-10">
             <div>ID</div>
             <div className='col-span-10'>Description</div>
           </div>
