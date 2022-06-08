@@ -5,8 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test",
-    "cypress": "cypress open"
+    "test": "nx test"
   },
   "private": true,
   "dependencies": {
