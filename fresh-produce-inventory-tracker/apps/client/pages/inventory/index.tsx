@@ -33,7 +33,7 @@ export function Inventory(props: InventoryProps) {
           isOpen={showImageUpload}
           openModal={() => setShowImageUpload(true)}
           closeModal={() => setShowImageUpload(false)}
-          title="Upload Image"
+          title="Add New Item"
           description="Please select and upload an image for analysis."
         />
       </div>
