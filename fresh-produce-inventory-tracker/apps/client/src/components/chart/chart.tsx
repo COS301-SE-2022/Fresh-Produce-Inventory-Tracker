@@ -205,30 +205,13 @@ export function Chart(props: ChartProps) {
       datasets:[
         {
           label: "Week 1",
-          data: [7,5,6,3,4],
-          borderColor: "rgba(255,0,0,1)"
-        },
-        {
-          label: "Week 2",
-          data: [3,8,5,9,5],
-          fill: false,
-          borderColor: "rgba(0,255,0,1)"
-        },
-        {
-          label: "Week 3",
-          data: [5,2,4,2,1],
-          borderColor: "rgba(0,0,255,1)"
-        },
-        {
-          label: "Week 4",
-          data: [5,7,8,2,8],
-          fill: false,
-          borderColor: "rgbs(255,255,0,1)"
+          data: [Grapes[0][4],Grapes[1][4],Grapes[2][4],Grapes[3][4],Grapes[4][4],Grapes[5][4],Grapes[6][4]],
+          borderColor: "rgba(70, 3, 255,1)"
         }
       ]
       };
 
-      if(props.fruit == "ApplesMonday")
+      if(props.fruit == "Apples")
       {
         data = {
           labels: [
@@ -240,31 +223,14 @@ export function Chart(props: ChartProps) {
           ],
           datasets:[
             {
-              label: "Week 1",
-              data: [7,5,6,3,4],
+              label: "Average",
+              data: [Apples[0][4],Apples[1][4],Apples[2][4],Apples[3][4],Apples[4][4],Apples[5][4],Apples[6][4]],
               borderColor: "rgba(255,0,0,1)"
-            },
-            {
-              label: "Week 2",
-              data: [3,8,5,9,5],
-              fill: false,
-              borderColor: "rgba(0,255,0,1)"
-            },
-            {
-              label: "Week 3",
-              data: [5,2,4,2,1],
-              borderColor: "rgba(0,0,255,1)"
-            },
-            {
-              label: "Week 4",
-              data: [5,7,8,2,8],
-              fill: false,
-              borderColor: "rgbs(255,255,0,1)"
             }
           ]
         }
       }
-      else if(props.fruit == "PearsMonday")
+      else if(props.fruit == "Pears")
       {
         data = {
           labels: [
@@ -276,31 +242,14 @@ export function Chart(props: ChartProps) {
           ],
           datasets:[
             {
-              label: "Week 1",
-              data: [7,5,6,3,4],
-              borderColor: "rgba(255,0,0,1)"
-            },
-            {
-              label: "Week 2",
-              data: [3,8,5,9,5],
-              fill: false,
-              borderColor: "rgba(0,255,0,1)"
-            },
-            {
-              label: "Week 3",
-              data: [5,2,4,2,1],
-              borderColor: "rgba(0,0,255,1)"
-            },
-            {
-              label: "Week 4",
-              data: [5,7,8,2,8],
-              fill: false,
-              borderColor: "rgbs(255,255,0,1)"
+              label: "Average",
+              data: [Pears[0][4],Pears[1][4],Pears[2][4],Pears[3][4],Pears[4][4],Pears[5][4],Pears[6][4]],
+              borderColor: "rgba(87, 130, 0,1)"
             }
           ]
         }
       } 
-      else if(props.fruit == "OrangesMonday")
+      else if(props.fruit == "Oranges")
       {
         data = {
           labels: [
@@ -312,62 +261,9 @@ export function Chart(props: ChartProps) {
           ],
           datasets:[
             {
-              label: "Week 1",
-              data: [7,5,6,3,4],
-              borderColor: "rgba(255,0,0,1)"
-            },
-            {
-              label: "Week 2",
-              data: [3,8,5,9,5],
-              fill: false,
-              borderColor: "rgba(0,255,0,1)"
-            },
-            {
-              label: "Week 3",
-              data: [5,2,4,2,1],
-              borderColor: "rgba(0,0,255,1)"
-            },
-            {
-              label: "Week 4",
-              data: [5,7,8,2,8],
-              fill: false,
-              borderColor: "rgbs(255,255,0,1)"
-            }
-          ]
-        }
-      }
-      else
-      {
-        data = {
-          labels: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          datasets:[
-            {
-              label: "Week 1",
-              data: [7,5,6,3,4],
-              borderColor: "rgba(255,0,0,1)"
-            },
-            {
-              label: "Week 2",
-              data: [3,8,5,9,5],
-              fill: false,
-              borderColor: "rgba(0,255,0,1)"
-            },
-            {
-              label: "Week 3",
-              data: [5,2,4,2,1],
-              borderColor: "rgba(0,0,255,1)"
-            },
-            {
-              label: "Week 4",
-              data: [5,7,8,2,8],
-              fill: false,
-              borderColor: "rgbs(255,255,0,1)"
+              label: "Average",
+              data: [Oranges[0][4],Oranges[1][4],Oranges[2][4],Oranges[3][4],Oranges[4][4],Oranges[5][4],Oranges[6][4]],
+              borderColor: "rgba(255, 112, 3,1)"
             }
           ]
         }
