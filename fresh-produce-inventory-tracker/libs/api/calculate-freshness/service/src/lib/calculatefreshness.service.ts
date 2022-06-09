@@ -15,7 +15,8 @@ import mobilenet = require('@tensorflow-models/mobilenet');
 @Injectable({})
 export class calculatefreshnessService {
   constructor(private taskService:taskService) {}
-  async predict(file) {
+  async predict(formdata,file) {
+    console.log(formdata);
     const model1 = await tf.loadLayersModel('file://./libs/api/calculate-freshness/service/src/lib/model/apple-model/model.json');
     const model = await mobilenet.load();
     const imagePath = file.path;
@@ -39,16 +40,16 @@ export class calculatefreshnessService {
     this.getproduce(max,result,predictions[0].className)
     
     const answer = this.getproduce(max,result,predictions[0].className);
-    /*if(answer.prediction.includes('rotten'))
+    if(answer.prediction.includes('rotten'))
     {
       
       const message = 'Please remove all '+ answer.prediction;
-      if((await this.taskService.getTasksMessage(id,message)) == null || ((await this.taskService.getTasksMessage(id,message)) != null && (await this.taskService.getTasksMessage(id,message)).message != message))
+      if((await this.taskService.getTasksMessage(formdata,message)) == null || ((await this.taskService.getTasksMessage(formdata,message)) != null && (await this.taskService.getTasksMessage(formdata,message)).message != message))
       {
-        await this.taskService.createTask(id,message);
+        await this.taskService.createTask(formdata,message);
       }
         
-    }*/
+    }
     return answer;
 
 
