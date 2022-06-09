@@ -6,7 +6,7 @@ import * as path from 'path';
 import sharp = require('sharp');
 import Jimp = require('jimp');
 import tfnode = require('@tensorflow/tfjs-node');
-import { min } from 'rxjs';
+// import { min } from 'rxjs';
 import {taskService} from '../../../../tasks/service/src/lib/taskService.service'
 import mobilenet = require('@tensorflow-models/mobilenet');
 

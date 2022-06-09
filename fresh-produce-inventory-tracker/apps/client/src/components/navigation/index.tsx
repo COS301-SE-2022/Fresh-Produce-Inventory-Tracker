@@ -3,12 +3,12 @@ import Link from 'next/link';
 import { RiUser3Line } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import {Check} from "./../check/check"
+import { Check } from './../check/check';
 
 /* eslint-disable-next-line */
 export interface NavigationProps {}
 
-export function Navigation(props:NavigationProps) {
+export function Navigation(props: NavigationProps) {
   const router = useRouter();
   return (
     <header>
@@ -44,10 +44,13 @@ export function Navigation(props:NavigationProps) {
           </Link>
 
           <div className="flex items-center cursor-pointer gap-x-2">
-            <label className="text-sm">John Doe</label>
+            <div className="flex flex-col text-right">
+              <label className="text-sm">John Doe</label>
+              <label className="text-xs text-black/40"> JohnDoes@email.com</label>
+            </div>
             <Link href="/user" passHref>
               <span>
-                <RiUser3Line className="w-10 h-10 p-2 rounded-full cursor-pointer bg-blue-200" />
+                <RiUser3Line className="w-10 h-10 p-2 bg-blue-200 rounded-full cursor-pointer" />
               </span>
             </Link>
           </div>
