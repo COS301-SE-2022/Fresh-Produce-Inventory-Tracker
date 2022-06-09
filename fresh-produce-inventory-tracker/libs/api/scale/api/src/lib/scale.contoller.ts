@@ -22,7 +22,7 @@ export class ScaleController {
   }
   //@UseGuards(AuthGuard('jwt'))
   @Post('setscale')//userId:number,weightfull:number,weightone:number,producetype:Prisma.EnumProduceTypeFilter
-  async setscale(@Body('id') id:number, @Body('weightfull') weightfull: string, @Body('weightone') weightone: string, @Body('producetype') producetype: string) {
+  async setscale(@Body('userId') id:number, @Body('weightfull') weightfull: string, @Body('weightone') weightone: string, @Body('producetype') producetype: string) {
     //@Req() req:Request
     //const userId = req.user;
     //console.log(userId);

@@ -12,7 +12,7 @@ export class ScaleService {
   constructor(
     private repo: ScaleRepository,
     private taskService: taskService
-  ) {}
+  ) { }
   async getScale(id: number, userid: number) {
     return await this.repo.getScale(id, userid);
   }
@@ -22,10 +22,11 @@ export class ScaleService {
     weightone: number;
     producetype: string;
   }) {
+    console.log(data);
     const scale = await this.repo.createScale(
-      data.userId,
-      data.weightfull,
-      data.weightone,
+      Math.trunc(data.userId),
+      Math.trunc(data.weightfull),
+      Math.trunc(data.weightone),
       data.producetype
     );
     return scale;
@@ -38,16 +39,17 @@ export class ScaleService {
         'The supply of ' +
         get.ProduceType +
         ' produce is getting low. Please restock.';
-      if ((await this.taskService.getTasksMessage(userid, message)))
-        {if((await this.taskService.getTasksMessage(userid, message)).message !=
-        message
-      ) {
-        await this.taskService.createTask(userid, message);
-      }}else{
+      if ((await this.taskService.getTasksMessage(userid, message))) {
+        if ((await this.taskService.getTasksMessage(userid, message)).message !=
+          message
+        ) {
+          await this.taskService.createTask(userid, message);
+        }
+      } else {
         await this.taskService.createTask(userid, message);
       }
 
-      
+
     }
     return answer;
   }
