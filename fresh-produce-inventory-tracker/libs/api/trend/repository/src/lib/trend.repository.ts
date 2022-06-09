@@ -60,6 +60,17 @@ export class trendRepository {
       data: { AverageSalesAmount: AverageSales },
     });
   }
+  async updateDateofSale(
+    id: number,
+    item: string,
+    Weekday: Prisma.EnumWeekdaysNullableFilter,
+    date: Date
+  ) {
+    return await this.prisma.trend.updateMany({
+      where: { userId: +id, ProduceType: item, Day: Weekday },
+      data: { SaleDate: date },
+    });
+  }
   async deleteTrend(
     id: number,
     item: string,

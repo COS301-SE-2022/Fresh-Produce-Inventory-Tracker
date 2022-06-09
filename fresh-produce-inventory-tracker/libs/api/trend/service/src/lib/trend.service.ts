@@ -32,6 +32,8 @@ export class TrendService {
     const weights = Scale.weight;
     let currentday = weekdays[0].getDate();
     let totalweightForDay = 0;
+    let numRestock = 0;
+    let dateOfRestock = weekdays[0];
     //loop through all weights
     for (let i = 1; i < weekdays.length; i++) {
       if (
@@ -44,6 +46,9 @@ export class TrendService {
           {
           if (weights[i - 1] - weights[i] > 0) {
             totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
+          }else{
+              numRestock = weights[i] - weights[i-1];
+              dateOfRestock = weekdays[i];
           }
         }
       }
@@ -56,7 +61,11 @@ export class TrendService {
         {if(currentday == weekdays[i + 1].getDate()){
         if (weights[i - 1] - weights[i] > 0) {
           totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
-        }}}
+        }else{
+          numRestock = weights[i] - weights[i-1];
+          dateOfRestock = weekdays[i];;
+      }
+      }}
       }
 
       if (
@@ -67,7 +76,11 @@ export class TrendService {
         {if(currentday != weekdays[i + 1].getDate())
         {if (weights[i - 1] - weights[i] > 0) {
           totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
-        }}}
+        }else{
+          numRestock = weights[i] - weights[i-1];
+          dateOfRestock = weekdays[i];
+      }
+      }}
         const Day = this.getDayNumber(weekdays[i].getDay());
         const trendsForDayAnditem = await this.repo.getTrendsForDayAndItem(
           user,
@@ -105,7 +118,11 @@ export class TrendService {
         {if(currentday != weekdays[i + 1].getDate())
         {if (weights[i - 1] - weights[i] > 0) {
           totalweightForDay = totalweightForDay + (weights[i - 1] - weights[i]);
-        }}}
+        }else{
+          numRestock = weights[i] - weights[i-1];
+          dateOfRestock = weekdays[i];
+      }
+      }}
         const Day = this.getDayNumber(weekdays[i].getDay());
         const trendsForDayAnditem = await this.repo.getTrendsForDayAndItem(
           user,
@@ -136,6 +153,26 @@ export class TrendService {
           totalweightForDay = 0;
         }
       }
+        const Day = this.getDayNumber(weekdays[i].getDay());
+        const trendsForDayAnditem = await this.repo.getTrendsForDayAndItem(
+          user,
+          Scale.ProduceType,
+          Day
+        );
+      const dateOfsale = trendsForDayAnditem.SaleDate;
+      if(!dateOfsale)
+      {
+          
+          const timeForSale = new Date(dateOfRestock.getTime()+(5*24*60*60*1000));
+          await this.repo.updateDateofSale(user,Scale.ProduceType,Day,timeForSale);
+      }else{
+        const total = weights[i];
+        const addDays = numRestock/total*5;
+        const timeForSale = new Date(dateOfsale.getTime()+(addDays*24*60*60*1000));
+        await this.repo.updateDateofSale(user,Scale.ProduceType,Day,timeForSale);
+
+      }
+        
       currentday = weekdays[i].getDate();
     }
     return await this.deleteAllScaleTrendData(
