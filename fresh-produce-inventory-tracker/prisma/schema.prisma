@@ -88,6 +88,7 @@ model Trend {
   Day                 Weekdays?
   AverageSalesAmount  Float? 
   AmountSales         Int?
+  SaleDate            DateTime?
   user                User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([id, userId,ProduceType])
   @@map("trend")
