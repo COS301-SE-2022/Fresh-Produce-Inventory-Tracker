@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
+import Router from 'next/router'
 
 /* eslint-disable-next-line */
 export interface UserModalProps {
@@ -10,87 +11,118 @@ export interface UserModalProps {
   description?: string;
 }
 
-const upload_url = 'http://localhost:3333/api/image/uploadone';
-const freshness_url = 'http://localhost:3333/api/calcfreshness/predict';
-const add_task = 'http://localhost:3333/api/tasks/createtask'
+const upload_Name = 'http://localhost:3333/api/profile/editname';
+const upload_Surname = 'http://localhost:3333/api/profile/editsurname';
+const upload_Email = 'http://localhost:3333/api/profile/editemail';
+const upload_Bio = 'http://localhost:3333/api/profile/editbio';
+
 
 export function UserModal(props: UserModalProps) {
-  const [image, setImage] = useState(null);
 
-  const onImageChange = (e) => setImage(e.target.files[0]);
+  const updateInfo = async (event) => {
+    event.preventDefault()
 
-  const uploadImage = async (e) => {
-    e.preventDefault();
-    const form = new FormData();
-    form.append('id','1');
-    form.append('image', image);
-
-    const response = await fetch(upload_url, {
-      method: 'POST',
-      body: form,
-    });
-
-    if (response.status == 201) {
-      alert("Image has been uploaded successfully");
-      checkFreshness();
-      props.closeUserModal();
-      return;
+    const data = {
+      Name: event.target.name.value,
+      Surname: event.target.surname.value,
+      Email: event.target.email.value,
+      Bio: event.target.bio.value
     }
 
-    if (response.status == 500) {
-      checkFreshness();
-      alert('Error, please make sure you have uploaded valid image format.');
-    }
-  };
+    if(data.Name != "")
+    {
+      const form = "id=1&name=" + data.Name;
 
-  const checkFreshness = async () => {
-    const form = new FormData();
-    form.append('id',"1");
-    form.append('image', image);
+      const response = await fetch(upload_Name, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: form,
+      });
 
-    const response = await fetch(freshness_url, {
-      method: 'POST',
-      body: form,
-    });
-
-    let prediction  = await response.json();
-
-    if (response.status == 201) {
-      prediction = Object.values(prediction);
-      alert('This apple is a "' + prediction[0] + '" with a prediction accuracy of ' + prediction[2] + '%');
-      if(prediction[0] == "rotten apples")
-      {
-        createTask();
+      if (response.status == 201) {
+        props.closeUserModal();
+        return;
       }
-      console.log(prediction);
-      props.closeUserModal();
-      return;
-    }
 
-    if (response.status == 500) {
-      alert('Error, please make sure you have uploaded valid image format.');
+      if (response.status == 500) {
+        alert('Error, please make sure you have uploaded valid image format.');
+      }
     }
+    if(data.Surname != "")
+    {
+      const form = new FormData();
+      form.append('id','1');
+      form.append('surname', data.Surname);
+
+      const response = await fetch(upload_Surname, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: form,
+      });
+
+      if (response.status == 201) {
+        props.closeUserModal();
+        return;
+      }
+
+      if (response.status == 500) {
+        alert('Error, please make sure you have uploaded valid image format.');
+      }
+    }
+    if(data.Email != "")
+    {
+      const form = new FormData();
+      form.append('id','1');
+      form.append('email', data.Email);
+
+      const response = await fetch(upload_Email, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: form,
+      });
+
+      if (response.status == 201) {
+        props.closeUserModal();
+        return;
+      }
+
+      if (response.status == 500) {
+        alert('Error, please make sure you have uploaded valid image format.');
+      }
+    }
+    if(data.Bio != "")
+    {
+      const form = new FormData();
+      form.append('id','1');
+      form.append('bio', data.Bio);
+
+      const response = await fetch(upload_Bio, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: form,
+      });
+
+      if (response.status == 201) {
+        props.closeUserModal();
+        return;
+      }
+
+      if (response.status == 500) {
+        alert('Error, please make sure you have uploaded valid image format.');
+      }
+    }
+    
+    alert("Update successfull");
+    Router.reload();
   };
-
-  const createTask = async() => {
-    const form = new FormData();
-    form.append('id',"1");
-    form.append('message', "A rotten apple has been found, resolve asap!");
-
-    const response = await fetch(add_task, {
-      method: 'POST',
-      body: form,
-    });
-
-    if (response.status == 201) {
-      console.log("Task has been added to user page");
-      return;
-    }
-
-    if (response.status == 500) {
-      alert('Error, please make sure you have uploaded valid image format.');
-    }
-  }
 
   return (
     <>
@@ -142,23 +174,34 @@ export function UserModal(props: UserModalProps) {
 
                   <div className="mt-4">
                     <form
-                      onSubmit={uploadImage}
+                      onSubmit={updateInfo}
                       className="flex items-center justify-between w-full"
                     >
                       <label className="block">
-                        <span className="sr-only">Choose profile photo</span>
+                        <span>Name</span>
                         <input
-                          required
-                          onChange={onImageChange}
-                          type="file"
+                          id="name"
+                          type="text"
                           className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 "
                         />
+                      </label>
+                      <label className='block'>
+                        <span>Surname</span>
+                        <input id="surname" type='text' className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 "></input>
+                      </label>
+                      <label className='block'>
+                        <span>Email</span>
+                        <input id="email" type='text' className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 "></input>
+                      </label>
+                      <label className='block'>
+                        <span>Bio</span>
+                        <input id="bio" type='text' className="block w-full h-3/6 text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 "></input>
                       </label>
                       <button
                         type="submit"
                         className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
-                        Upload
+                        Update
                       </button>
                     </form>
                   </div>

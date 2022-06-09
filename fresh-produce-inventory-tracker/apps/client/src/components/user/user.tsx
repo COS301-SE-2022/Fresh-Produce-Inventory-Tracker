@@ -1,4 +1,3 @@
-import styles from './user.module.css';
 import UserModal from '../user-modal/user-modal';
 import { useState } from 'react';
 

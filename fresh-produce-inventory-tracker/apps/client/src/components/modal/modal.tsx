@@ -10,7 +10,7 @@ export interface ModalProps {
   description?: string;
 }
 
-const upload_url = 'http://localhost:3333/api/image/uploadone';
+const upload_url = 'http://localhost:3333/api/calcfreshness/predict';
 const freshness_url = 'http://localhost:3333/api/calcfreshness/predict';
 const add_task = 'http://localhost:3333/api/tasks/createtask'
 
@@ -20,6 +20,7 @@ export function Modal(props: ModalProps) {
   const onImageChange = (e) => setImage(e.target.files[0]);
 
   const uploadImage = async (e) => {
+    console.log(image);
     e.preventDefault();
     const form = new FormData();
     form.append('id','1');
