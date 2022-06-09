@@ -66,6 +66,15 @@
       "@fresh-produce-inventory-tracker/api/prisma/shared": [
         "libs/api/prisma/shared/src/index.ts"
       ],
+      "@fresh-produce-inventory-tracker/api/profile/api": [
+        "libs/api/profile/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/profile/repository": [
+        "libs/api/profile/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/profile/service": [
+        "libs/api/profile/service/src/index.ts"
+      ],
       "@fresh-produce-inventory-tracker/api/scale/api": [
         "libs/api/scale/api/src/index.ts"
       ],
