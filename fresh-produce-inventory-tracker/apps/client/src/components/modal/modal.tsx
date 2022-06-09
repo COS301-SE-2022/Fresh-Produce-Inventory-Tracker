@@ -38,8 +38,32 @@ export function Modal(props: ModalProps) {
 
   const onImageChange = (e) => setImage(e.target.files[0]);
 
+  const addScaleItem = (e) => {
+    e.preventDefault();
+
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append('userId', '1');
+    urlencoded.append('weightfull', '100');
+    urlencoded.append('weightone', '10');
+    urlencoded.append('producetype', selectedType.name);
+
+    fetch('http://localhost:3333/api/scale/setscale', {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert('Success, item added');
+      })
+      .catch((error) => alert(`Opps, and error has occurred`));
+  };
+
   const uploadImage = async (e) => {
-    console.log(image);
     e.preventDefault();
     const form = new FormData();
     form.append('id', '1');
@@ -55,10 +79,8 @@ export function Modal(props: ModalProps) {
       checkFreshness();
       props.closeModal();
       return;
-    }
-
-    if (response.status == 500) {
-      checkFreshness();
+    } else if (response.status == 500) {
+      // checkFreshness();
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
@@ -162,73 +184,85 @@ export function Modal(props: ModalProps) {
                     {props.title}
                   </Dialog.Title>
 
-                  <div className="mt-4 space-y-4">
-                    <div className="flex flex-col">
-                      <label htmlFor="name" className="text-sm opacity-70">
-                        Name
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        className="p-2 mt-1 rounded ring-1 ring-black/50"
-                        type="text"
-                      />
-                    </div>
-                    <div className="flex flex-col">
-                      <label
-                        htmlFor="description"
-                        className="text-sm opacity-70"
-                      >
-                        Description
-                      </label>
-                      <input
-                        id="description"
-                        name="description"
-                        className="p-2 mt-1 rounded ring-1 ring-black/50"
-                        type="text"
-                      />
-                    </div>
-                    <div className="flex flex-col">
-                      <label className="mb-1 text-sm opacity-70">
-                        Produce Type
-                      </label>
-                      <CustomRadioButton
-                        setSelected={setSelectedType}
-                        selected={selectedType}
-                        items={items}
-                      />
-                    </div>
-                    <div className="flex flex-col justify-between gap-y-4 md:flex-row">
+                  <form onSubmit={addScaleItem}>
+                    <div className="mt-4 space-y-4">
                       <div className="flex flex-col">
-                        <label
-                          htmlFor="item_weight"
-                          className="text-sm opacity-70"
-                        >
-                          Item Weight
+                        <label htmlFor="name" className="text-sm opacity-70">
+                          Name
                         </label>
                         <input
-                          id="item_weight"
-                          name="item_weight"
+                          id="name"
+                          name="name"
                           className="p-2 mt-1 rounded ring-1 ring-black/50"
                           type="text"
                         />
                       </div>
                       <div className="flex flex-col">
                         <label
-                          htmlFor="total_weight"
+                          htmlFor="description"
                           className="text-sm opacity-70"
                         >
-                          Total Weight
+                          Description
                         </label>
                         <input
-                          id="total_weight"
-                          name="total_weight"
+                          id="description"
+                          name="description"
                           className="p-2 mt-1 rounded ring-1 ring-black/50"
                           type="text"
                         />
                       </div>
+                      <div className="flex flex-col">
+                        <label className="mb-1 text-sm opacity-70">
+                          Produce Type
+                        </label>
+                        <CustomRadioButton
+                          setSelected={setSelectedType}
+                          selected={selectedType}
+                          items={items}
+                        />
+                      </div>
+                      <div className="flex flex-col justify-between gap-y-4 md:flex-row">
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="item_weight"
+                            className="text-sm opacity-70"
+                          >
+                            Item Weight
+                          </label>
+                          <input
+                            id="item_weight"
+                            name="item_weight"
+                            className="p-2 mt-1 rounded ring-1 ring-black/50"
+                            type="text"
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="total_weight"
+                            className="text-sm opacity-70"
+                          >
+                            Total Weight
+                          </label>
+                          <input
+                            id="total_weight"
+                            name="total_weight"
+                            className="p-2 mt-1 rounded ring-1 ring-black/50"
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div className="flex flex-col justify-between md:items-center md:flex-row">
+                        <p className="text-sm text-gray-500">
+                          Please click the submit add item to scale
+                        </p>
+                        <input
+                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md cursor-pointer hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          type="submit"
+                          value="Add Scale"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  </form>
 
                   <div className="mt-6">
                     <p className="text-sm text-gray-500">{props.description}</p>
@@ -252,7 +286,7 @@ export function Modal(props: ModalProps) {
                         type="submit"
                         className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       >
-                        Submit
+                        Upload Image
                       </button>
                     </form>
                   </div>
