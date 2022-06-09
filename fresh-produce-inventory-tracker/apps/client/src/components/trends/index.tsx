@@ -51,7 +51,10 @@ export function Trends(props: TrendsProps) {
     <div className="lg:max-w-[98%]">
       <div className="flex justify-between px-2 py-10 mt-4 shadow-md rounded-xl h-fit bg-slate-50">
         <div className="w-full">
-          <h2 className="text-lg">Statistics</h2>
+          <div className="flex justify-between">
+            <h2 className="text-lg">Statistics</h2>
+            <p className="text-xs text-black/50">last updated 05 June 2022</p>
+          </div>
           <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
             <TrendItem
               icon={
