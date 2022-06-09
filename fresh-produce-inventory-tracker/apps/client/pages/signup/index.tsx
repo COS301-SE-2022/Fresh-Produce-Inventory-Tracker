@@ -22,6 +22,7 @@ export function Signup(props: SignupProps) {
 
   const handleSignup = async (data: Signup) => {
     const form = new FormData();
+    form.append('name',data.firstName);
     form.append('email', data.email);
     form.append('password', data.password);
     const Form = 'email=' + data.email + '&password=' + data.password;

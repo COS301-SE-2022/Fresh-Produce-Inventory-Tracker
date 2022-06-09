@@ -1,1 +1,1 @@
-export * from './lib/api-tasks-service';
+export * from './lib/taskService.service';

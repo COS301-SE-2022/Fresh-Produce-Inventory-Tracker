@@ -15,7 +15,8 @@ import {
   import { editFileName, imageFileFilter } from './utils/file-uploads.utils';
   import {AuthGuard} from '@nestjs/passport';
   import {Request} from 'express';
-  import {ImagesService} from '../../../service/src/lib/images.service';
+  // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+  import { ImagesService } from '../../../service/src/lib/images.service';
   
   @Controller('image')
   export class ImagesController {

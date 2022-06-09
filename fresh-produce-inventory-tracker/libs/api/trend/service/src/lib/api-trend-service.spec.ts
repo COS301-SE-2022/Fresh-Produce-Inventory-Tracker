@@ -11,6 +11,8 @@ class Trend {
     Day: Weekdays;
     AverageSalesAmount: number;
     AmountSales: number;
+    SaleDate:Date;
+     LastRestock:Date;
 }
 
 /*var trendDataObj = {

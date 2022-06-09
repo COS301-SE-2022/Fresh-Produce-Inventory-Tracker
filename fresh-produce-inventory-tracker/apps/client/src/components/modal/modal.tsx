@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 
@@ -10,10 +11,9 @@ export interface ModalProps {
   description?: string;
 }
 
-const data = {};
-
 const upload_url = 'http://localhost:3333/api/calcfreshness/predict';
 const freshness_url = 'http://localhost:3333/api/calcfreshness/predict';
+const add_task = 'http://localhost:3333/api/tasks/createtask'
 
 export function Modal(props: ModalProps) {
   const [image, setImage] = useState(null);
@@ -21,9 +21,10 @@ export function Modal(props: ModalProps) {
   const onImageChange = (e) => setImage(e.target.files[0]);
 
   const uploadImage = async (e) => {
+    console.log(image);
     e.preventDefault();
     const form = new FormData();
-    form.append('id',"1");
+    form.append('id','1');
     form.append('image', image);
 
     const response = await fetch(upload_url, {
@@ -39,6 +40,7 @@ export function Modal(props: ModalProps) {
     }
 
     if (response.status == 500) {
+      checkFreshness();
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
@@ -58,6 +60,10 @@ export function Modal(props: ModalProps) {
     if (response.status == 201) {
       prediction = Object.values(prediction);
       alert('This apple is a "' + prediction[0] + '" with a prediction accuracy of ' + prediction[2] + '%');
+      if(prediction[0] == "rotten apples")
+      {
+        createTask();
+      }
       console.log(prediction);
       props.closeModal();
       return;
@@ -67,6 +73,26 @@ export function Modal(props: ModalProps) {
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
+
+  const createTask = async() => {
+    const form = new FormData();
+    form.append('id',"1");
+    form.append('message', "A rotten apple has been found, resolve asap!");
+
+    const response = await fetch(add_task, {
+      method: 'POST',
+      body: form,
+    });
+
+    if (response.status == 201) {
+      console.log("Task has been added to user page");
+      return;
+    }
+
+    if (response.status == 500) {
+      alert('Error, please make sure you have uploaded valid image format.');
+    }
+  }
 
   return (
     <>

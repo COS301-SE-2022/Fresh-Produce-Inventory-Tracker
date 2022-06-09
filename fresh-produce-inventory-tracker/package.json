@@ -19,6 +19,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nrwl/next": "14.1.4",
     "@prisma/client": "^3.14.0",
+    "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^3.18.0",
     "@tensorflow/tfjs-node": "^3.18.0",
     "@testing-library/jest-dom": "^5.16.4",
