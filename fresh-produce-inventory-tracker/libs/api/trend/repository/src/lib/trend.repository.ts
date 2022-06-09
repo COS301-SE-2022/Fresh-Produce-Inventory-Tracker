@@ -71,6 +71,17 @@ export class trendRepository {
       data: { SaleDate: date },
     });
   }
+  async updateLastRestock(
+    id: number,
+    item: string,
+    Weekday: Prisma.EnumWeekdaysNullableFilter,
+    date: Date
+  ) {
+    return await this.prisma.trend.updateMany({
+      where: { userId: +id, ProduceType: item, Day: Weekday },
+      data: { LastRestock: date },
+    });
+  }
   async deleteTrend(
     id: number,
     item: string,
