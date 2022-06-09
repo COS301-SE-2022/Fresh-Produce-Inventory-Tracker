@@ -161,13 +161,11 @@ export class TrendService {
         await this.repo.updateDateofSale(
           user,
           Scale.ProduceType,
-          Day,
           timeForSale
         );
         await this.repo.updateLastRestock(
           user,
           Scale.ProduceType,
-          Day,
           dateOfRestock
         );
       } else {
@@ -180,7 +178,6 @@ export class TrendService {
           await this.repo.updateDateofSale(
             user,
             Scale.ProduceType,
-            Day,
             timeForSale
           );
         }

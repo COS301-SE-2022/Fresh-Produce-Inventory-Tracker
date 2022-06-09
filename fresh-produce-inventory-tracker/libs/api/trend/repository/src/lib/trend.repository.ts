@@ -27,9 +27,7 @@ export class trendRepository {
       where: { userId: +userid, Day: Weekday },
     });
   }
-  async getAll(
-    userid: number,
-  ) {
+  async getAll(userid: number) {
     return await this.prisma.trend.findMany({
       where: { userId: +userid },
     });
@@ -63,22 +61,20 @@ export class trendRepository {
   async updateDateofSale(
     id: number,
     item: string,
-    Weekday: Prisma.EnumWeekdaysNullableFilter,
     date: Date
   ) {
     return await this.prisma.trend.updateMany({
-      where: { userId: +id, ProduceType: item, Day: Weekday },
+      where: { userId: +id, ProduceType: item },
       data: { SaleDate: date },
     });
   }
   async updateLastRestock(
     id: number,
     item: string,
-    Weekday: Prisma.EnumWeekdaysNullableFilter,
     date: Date
   ) {
     return await this.prisma.trend.updateMany({
-      where: { userId: +id, ProduceType: item, Day: Weekday },
+      where: { userId: +id, ProduceType: item },
       data: { LastRestock: date },
     });
   }
