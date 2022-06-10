@@ -1,61 +1,80 @@
-# This is a basic workflow to help you get started with Actions
-
 name: main-tests
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main,develop ]
-  pull_request:
-    branches: [ main,develop ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  workflow_call:
+    inputs:
+      test:
+        description: 'Test being run (lint, unit, e2e, full)'
+        required: true
+        type: string
+      type:
+        description: 'type of test (affected, full)'
+        required: false
+        type: string
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    name: main-tests
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./fresh-produce-inventory-tracker
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: "Checkout"
-        uses: actions/checkout@v3
-
-      - name: "Setup node"
-        uses: actions/setup-node@v2
+       
+      - name: Checkout develop
+        uses: actions/checkout@v2
         with:
-          node-version: '16.x'
+          fetch-depth: 0
+
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
-        
-      - name: "Install Dependencies"
-        run: npm install
+        with:
+          main-branch-name: 'main'
 
-      - name: Run tests
-        run: npm run test -- --coverage
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install node
+        run: npm install --legacy-peer-deps
+
+      - name: Lint test affected
+        if: inputs.type == 'affected'
+        run: npx nx affected:lint --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
       - name: Build test affected
-        if: inputs.testtype == 'build' && inputs.test == 'affected'
-        run: npm nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        if: inputs.type == 'affected'
+        run: npx nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
       - name: Unit test affected
-        if: inputs.testtype == 'unit' && inputs.test == 'affected'
-        run: npm nx affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        if: inputs.type == 'affected'
+        run: npx nx affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
       - name: E2E test affected
-        if: inputs.testtype == 'e2e' && inputs.test == 'affected'
-        run: npm nx affected:e2e --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-        
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        if: inputs.type == 'affected'
+        run: npx nx affected:e2e --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+      - name: Full Lint test
+        if: inputs.test == 'full' || inputs.test == 'lint'
+        run: npx nx run-many --target=lint --all --skip-nx-cache --parallel
+    
+      - name: Full Build test 
+        if: inputs.test == 'full' || inputs.test == 'build' 
+        run: npx nx run-many --target=build --all --skip-nx-cache --parallel
+    
+      - name: Full Unit test 
+        if: inputs.test == 'full' || inputs.test == 'unit'
+        run: npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
+    
+      - name: Full E2E test 
+        if: inputs.test == 'full' || inputs.test == 'e2e'
+        run: npx nx run-many --target=e2e --all --skip-nx-cache --parallel --coverage
+
+      - name: merge coverage reports
+        if: inputs.test == 'full'
+        run: node ./tools/scripts/merge-report.js
+
+      - uses: codecov/codecov-action@v2
+        if: inputs.test == 'full' 
         with:
-          files: ./fresh-produce-inventory-tracker/coverage/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          name: cypress-jest
 
