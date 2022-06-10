@@ -6,6 +6,6 @@ on:
 
 jobs:
   test-all:
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'full'
