@@ -39,7 +39,7 @@ describe('Trend Controller tests', () => {
     //const req = MockRequest.;
     expect(
       await controller.getTasks(1)
-    ).toBe([MockApiImpl]);
+    ).toStrictEqual([MockApiImpl]);
   });
   it('should get task message', async () => {
     jest

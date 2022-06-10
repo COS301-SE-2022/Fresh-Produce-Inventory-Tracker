@@ -1,8 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Module } from '@nestjs/common';
-import { ScaleRepository } from 'libs/api/scale/repository/src/lib/scale.repository';
-import { ScaleService } from 'libs/api/scale/service/src/lib/scale.service';
+import { ScaleRepository } from '../../../repository/src/lib/scale.repository';
+import { ScaleService } from '../../../service/src/lib/scale.service';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
+import {tasksModule} from '../../../../tasks/api/src/lib/tasks.module';
 import { ScaleController } from './scale.contoller';
 import {RequestHandler} from "express";
 
@@ -24,7 +25,8 @@ describe('ScaleController', () => {
     beforeEach(async () => {
       const module: TestingModule = await Test.createTestingModule({
         controllers: [ScaleController],
-        providers:[ScaleController,ScaleRepository,PrismaService],
+        providers:[ScaleService,ScaleRepository,PrismaService],
+        imports:[tasksModule]
       }).compile();
   
       controller = module.get<ScaleController>(ScaleController);
@@ -59,7 +61,7 @@ describe('ScaleController', () => {
     
         expect(
           await controller.setscale(1,'100','10','Apple') //enter values later @Heinrich van Tonder
-        ).toBe(MockApiImpl);
+        ).toBe(null);
       });
 
 ///////////////////////////////////////////////////////////////////
@@ -72,7 +74,7 @@ describe('ScaleController', () => {
     
         expect(
           await controller.deletescale(1,2) 
-        ).toBe(MockApiImpl);
+        ).toBe(null);
       });
 ///////////////////////////////////////////////////////////////////
 it('should edit scale', async () => {
@@ -84,7 +86,7 @@ it('should edit scale', async () => {
 
     expect(
       await controller.editscale(1,2, 40)
-    ).toBe(MockApiImpl);
+    ).toBe(null);
   });
 
 

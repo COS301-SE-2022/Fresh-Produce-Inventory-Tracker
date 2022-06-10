@@ -133,7 +133,7 @@ describe('ImagesController', () => {
 
         expect(
             await repo.updateLastRestock(1, "apple", new Date())
-        ).toBe(MockApiImpl);
+        ).toEqual(MockApiImpl);
 
     });
 
@@ -146,7 +146,7 @@ describe('ImagesController', () => {
 
         expect(
             await repo.deleteTrend(1, "apple", {equals:Weekdays.Friday})
-        ).toBe(MockApiImpl);
+        ).toEqual(MockApiImpl);
 
     });
 
@@ -159,7 +159,7 @@ describe('ImagesController', () => {
 
         expect(
             await repo.getSalesAmount(1, {equals:Weekdays.Friday}, "apple")
-        ).toBe(MockApiImpl);
+        ).toEqual(Mocknumber);
 
     });
 
@@ -185,7 +185,7 @@ describe('ImagesController', () => {
 
         expect(
             await repo.getScaleTrend(1)
-        ).toBe(MockApiImpl);
+        ).toEqual(MockApiImpl);
 
     });
 
@@ -198,7 +198,7 @@ describe('ImagesController', () => {
 
         expect(
             await repo.deleteAllScaleTrendData(1, "apple", new Date(), 1)
-        ).toBe(MockApiImpl);
+        ).toEqual(MockApiImpl);
 
     });
 });
