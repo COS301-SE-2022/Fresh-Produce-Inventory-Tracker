@@ -13,9 +13,21 @@ class trend {
     SaleDate: Date;
     LastRestock: Date;
 }
-
+class payload{
+    count:number;
+}
+class scaleTrend{
+    scale_id:number;
+    weight:number[];
+    date:Date[];
+    id:number; 
+    ProduceType:string;
+}
 //const reqMock = jest.mock('./api');
 const MockApiImpl: jest.Mocked<trend> = new trend() as trend;
+const Mockplayload: jest.Mocked<payload> = new payload() as payload;
+const Mocknumber: jest.Mocked<number> = new Number() as number;
+const MockScaleTrend: jest.Mocked<scaleTrend> = new scaleTrend() as scaleTrend;
 describe('ImagesController', () => {
     let repo: trendRepository;
 
@@ -45,32 +57,31 @@ describe('ImagesController', () => {
             .mockImplementation(
                 (): Promise<trend | null> => Promise.resolve(MockApiImpl)
             );
-
         expect(
-            await repo.getTrendsForDayAndItem(1, "apple", Weekdays.Monday)
+            await repo.getTrendsForDayAndItem(1, "apple",{equals:Weekdays.Friday} )
         ).toBe(MockApiImpl);
     });
     it('should get trends for all days', async () => {
         jest
             .spyOn(repo, 'getTrendsAllTrendsForDay')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve([MockApiImpl])
             );
 
         expect(
-            await repo.getTrendsAllTrendsForDay(1, Weekdays.Monday)
-        ).toBe(MockApiImpl);
+            await repo.getTrendsAllTrendsForDay(1, {equals:Weekdays.Friday})
+        ).toStrictEqual([MockApiImpl]);
     });
     it('should get all trends for person', async () => {
         jest
             .spyOn(repo, 'getAll')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve([MockApiImpl])
             );
 
         expect(
             await repo.getAll(1)
-        ).toBe(MockApiImpl);
+        ).toStrictEqual([MockApiImpl]);
 
     });
 
@@ -82,7 +93,7 @@ describe('ImagesController', () => {
             );
 
         expect(
-            await repo.createTrend(1, "apple", Weekdays.Monday)
+            await repo.createTrend(1, "apple", {equals:Weekdays.Friday})
         ).toBe(MockApiImpl);
 
     });
@@ -91,12 +102,12 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'updateTrendSales')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(Mockplayload)
             );
 
         expect(
-            await repo.updateTrendSales(1, "apple", Weekdays.Monday, 1)
-        ).toBe(MockApiImpl);
+            await repo.updateTrendSales(1, "apple", {equals:Weekdays.Friday}, 1)
+        ).toBe(Mockplayload);
 
     });
 
@@ -104,12 +115,12 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'updateDateofSale')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(Mockplayload)
             );
 
         expect(
-            await repo.updateDateofSale(1, "apple", Weekdays.Monday)
-        ).toBe(MockApiImpl);
+            await repo.updateDateofSale(1, "apple", new Date())
+        ).toBe(Mockplayload);
 
     });
 
@@ -117,11 +128,11 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'updateLastRestock')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(Mockplayload)
             );
 
         expect(
-            await repo.updateLastRestock(1, "apple", Weekdays.Monday)
+            await repo.updateLastRestock(1, "apple", new Date())
         ).toBe(MockApiImpl);
 
     });
@@ -130,11 +141,11 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'deleteTrend')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(Mockplayload)
             );
 
         expect(
-            await repo.deleteTrend(1, "apple", Weekdays.Monday)
+            await repo.deleteTrend(1, "apple", {equals:Weekdays.Friday})
         ).toBe(MockApiImpl);
 
     });
@@ -143,11 +154,11 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'getSalesAmount')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(Mocknumber)
             );
 
         expect(
-            await repo.getSalesAmount(1, Weekdays.Monday, "apple")
+            await repo.getSalesAmount(1, {equals:Weekdays.Friday}, "apple")
         ).toBe(MockApiImpl);
 
     });
@@ -156,12 +167,12 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'updateAmountSales')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(Mockplayload)
             );
 
         expect(
-            await repo.updateAmountSales(1, "apple", Weekdays.Monday, 1)
-        ).toBe(MockApiImpl);
+            await repo.updateAmountSales(1,{equals:Weekdays.Friday},"apple", 1)
+        ).toBe(Mockplayload);
 
     });
 
@@ -169,7 +180,7 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'getScaleTrend')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(MockScaleTrend)
             );
 
         expect(
@@ -182,11 +193,11 @@ describe('ImagesController', () => {
         jest
             .spyOn(repo, 'deleteAllScaleTrendData')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(Mockplayload)
             );
 
         expect(
-            await repo.deleteAllScaleTrendData(1, "apple", Weekdays.Monday, 1)
+            await repo.deleteAllScaleTrendData(1, "apple", new Date(), 1)
         ).toBe(MockApiImpl);
 
     });

@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
-import { TrendRepository } from '../../../repository/src/lib/trend.repository';
+import { trendRepository } from '../../../repository/src/lib/trend.repository';
 import { TrendService } from '../../../service/src/lib/trend.service';
-import { TrendController } from './trend.controller';
+import { Trendcontroller } from './trend.controller';
 import { Request } from 'express';
 import { Prisma, Weekdays } from '@prisma/client';
 
@@ -19,15 +19,15 @@ class trend {
 
 const MockApiImpl: jest.Mocked<trend> = new trend() as trend;
 describe('Trend Controller tests', () => {
-    let controller: TrendController;
+    let controller: Trendcontroller;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            controllers: [TrendController],
-            providers: [TrendRepository, PrismaService, TrendService],
+            controllers: [Trendcontroller],
+            providers: [trendRepository, PrismaService, TrendService],
         }).compile();
 
-        controller = module.get<TrendController>(TrendController);
+        controller = module.get<Trendcontroller>(Trendcontroller);
     });
 
     it('should get trend for an item', async () => {
