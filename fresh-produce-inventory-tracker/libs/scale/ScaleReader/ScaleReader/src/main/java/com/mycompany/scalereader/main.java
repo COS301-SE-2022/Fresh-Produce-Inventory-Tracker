@@ -75,6 +75,18 @@ public class main {
                         }
                     }
                 }
+                catch (SerialPortException ex) {
+                    System.out.println("Error in receiving string from COM-port: " + ex);
+                }
+                catch (InterruptedException | IOException ex)
+                {
+                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            else
+            {
+                
+            }
         }
     }
   
