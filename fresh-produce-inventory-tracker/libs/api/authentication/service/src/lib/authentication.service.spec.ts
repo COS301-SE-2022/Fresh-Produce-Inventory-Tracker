@@ -9,12 +9,16 @@ import { ForbiddenException, NotFoundException } from '@nestjs/common';
 
 
 class user{
-    id: number;
-  email: string;
-  password: string;
-  passwordSalt: string;
-  createdAt: Date;
-  updatedAt: Date;
+  id: number;
+email: string;
+password: string;
+passwordSalt: string;
+createdAt: Date;
+updatedAt: Date;
+Name:string;
+Surname:string; 
+Bio:string;
+Visibility:boolean;
 }
 class access{
   id: number; 

@@ -13,6 +13,10 @@ password: string;
 passwordSalt: string;
 createdAt: Date;
 updatedAt: Date;
+Name:string;
+Surname:string; 
+Bio:string;
+Visibility:boolean;
 }
 class access{
 id: number; 
