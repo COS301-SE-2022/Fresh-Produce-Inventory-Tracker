@@ -53,10 +53,6 @@ jobs:
       - name: E2E test affected
         if: inputs.type == 'affected'
         run: npx nx affected:e2e --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-
-      - name: Full Lint test
-        if: inputs.test == 'full' || inputs.test == 'lint'
-        run: npx nx run-many --target=lint --all --skip-nx-cache --parallel
     
       - name: Full Build test 
         if: inputs.test == 'full' || inputs.test == 'build' 
