@@ -145,3 +145,54 @@ void calibrate() {
   Serial.println("For manual edit of the calibration value, send 'c' from serial monitor.");
   Serial.println("***");
 }
+
+void changeSavedCalFactor() {
+  float oldCalibrationValue = LoadCell.getCalFactor();
+  boolean _resume = false;
+  Serial.println("***");
+  Serial.print("Current value is: ");
+  Serial.println(oldCalibrationValue);
+  Serial.println("Now, send the new value from serial monitor, i.e. 696.0");
+  float newCalibrationValue;
+  while (_resume == false) {
+    if (Serial.available() > 0) {
+      newCalibrationValue = Serial.parseFloat();
+      if (newCalibrationValue != 0) {
+        Serial.print("New calibration value is: ");
+        Serial.println(newCalibrationValue);
+        LoadCell.setCalFactor(newCalibrationValue);
+        _resume = true;
+      }
+    }
+  }
+  _resume = false;
+  Serial.print("Save this value to EEPROM adress ");
+  Serial.print(calVal_eepromAdress);
+  Serial.println("? y/n");
+  while (_resume == false) {
+    if (Serial.available() > 0) {
+      char inByte = Serial.read();
+      if (inByte == 'y') {
+#if defined(ESP8266)|| defined(ESP32)
+        EEPROM.begin(512);
+#endif
+        EEPROM.put(calVal_eepromAdress, newCalibrationValue);
+#if defined(ESP8266)|| defined(ESP32)
+        EEPROM.commit();
+#endif
+        EEPROM.get(calVal_eepromAdress, newCalibrationValue);
+        Serial.print("Value ");
+        Serial.print(newCalibrationValue);
+        Serial.print(" saved to EEPROM address: ");
+        Serial.println(calVal_eepromAdress);
+        _resume = true;
+      }
+      else if (inByte == 'n') {
+        Serial.println("Value not saved to EEPROM");
+        _resume = true;
+      }
+    }
+  }
+  Serial.println("End change calibration value");
+  Serial.println("***");
+}
