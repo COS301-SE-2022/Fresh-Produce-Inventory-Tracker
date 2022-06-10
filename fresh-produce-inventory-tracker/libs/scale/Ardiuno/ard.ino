@@ -209,3 +209,6 @@ void changeSavedCalFactor() {
   Serial.println("End change calibration value");
   Serial.println("***");
 }
+
+//NO OUTPUT WIL BE GIVEN BY THIS PROGRAM IF RUNED VIA NETBEANS 
+//ARD.INO V1.2 
