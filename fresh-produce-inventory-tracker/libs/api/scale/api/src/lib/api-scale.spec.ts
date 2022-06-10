@@ -58,7 +58,7 @@ describe('ScaleController', () => {
           );
     
         expect(
-          await controller.setscale(null,10,1,null) //enter values later @Heinrich van Tonder
+          await controller.setscale(1,'100','10','Apple') //enter values later @Heinrich van Tonder
         ).toBe(MockApiImpl);
       });
 
@@ -83,7 +83,7 @@ it('should edit scale', async () => {
       );
 
     expect(
-      await controller.editscale(1,2, {type:"apples"})
+      await controller.editscale(1,2, 40)
     ).toBe(MockApiImpl);
   });
 

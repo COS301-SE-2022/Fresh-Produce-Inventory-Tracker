@@ -55,18 +55,18 @@ describe('Scalse Service Test', () => {
         jest
             .spyOn(data, 'editScale')
             .mockImplementation(
-                () => Promise.resolve(MockScale)
+                () => Promise.resolve(null)
             );
-        expect(await data.editScale(1, 2, scaleDataObj)).toBe(MockScale);
+        expect(await data.editScale(1, 2, 40)).toBe(null);
     });
 
     it('it should remove scale', async () => {
         jest
             .spyOn(data, 'removeScale')
             .mockImplementation(
-                () => Promise.resolve(MockScale)
+                () => Promise.resolve(null)
             );
-        expect(await data.removeScale(1, 1)).toBe(MockScale);
+        expect(await data.removeScale(1, 1)).toBe(null);
     });
 });
 

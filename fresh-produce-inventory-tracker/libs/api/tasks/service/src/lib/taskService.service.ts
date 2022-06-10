@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { tasksRepository } from '../../../repository/src/lib/api-tasks-repository';
+import { tasksRepository } from '../../../repository/src/lib/api-tasks-repository.repository';
 
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
 

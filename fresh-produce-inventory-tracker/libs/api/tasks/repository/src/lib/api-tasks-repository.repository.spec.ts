@@ -1,16 +1,23 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
-import { tasksRepository } from '../../../repository/src/lib/api-tasks-repository';
+import { tasksRepository } from './api-tasks-repository.repository';
 import { Request } from 'express';
 import { Prisma, Weekdays } from '@prisma/client';
 
-class Notification {
-  id: number;
-  userId: number;
-  Type: string;
-  message: string;
+class Notification{
+  id!: number;
+  userId!:number;
+  Type!:string;
+  message!:string;
+  
 }
-const MockApiImpl: jest.Mocked<Notification> = new Notification() as Notification;
+class batch{
+  count!:number
+  
+}
+
+const MockApiImpl : jest.Mocked<Notification> = new Notification() as Notification;
+const MockCount : jest.Mocked<batch> = new batch() as batch;
 describe('Trend Controller tests', () => {
   let controller: tasksRepository;
 
@@ -27,12 +34,12 @@ describe('Trend Controller tests', () => {
     jest
       .spyOn(controller, 'getTasks')
       .mockImplementation(
-        (): Promise<Notification | null> => Promise.resolve(MockApiImpl)
+        (): Promise<Notification[]> => Promise.resolve([MockApiImpl])
       );
     //const req = MockRequest.;
     expect(
       await controller.getTasks(1)
-    ).toBe(MockApiImpl);
+    ).toBe([MockApiImpl]);
   });
   it('should get task message', async () => {
     jest
@@ -60,12 +67,12 @@ describe('Trend Controller tests', () => {
     jest
       .spyOn(controller, 'deleteTask')
       .mockImplementation(
-        (): Promise<Notification | null> => Promise.resolve(MockApiImpl)
+        () => Promise.resolve(MockCount)
       );
 
     expect(
       await controller.deleteTask(1, "message")
-    ).toBe(MockApiImpl);
+    ).toBe(MockCount);
   });
 });
 

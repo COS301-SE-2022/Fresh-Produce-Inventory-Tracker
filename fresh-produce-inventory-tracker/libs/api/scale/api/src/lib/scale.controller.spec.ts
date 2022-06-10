@@ -36,7 +36,7 @@ describe('ImagesController', () => {
         (): Promise<scale | null> => Promise.resolve(MockApiImpl)
       );
     expect(
-      await controller.setscale({hi:1},'1','2','BREAD')
+      await controller.setscale(1,'1','2','BREAD')
     ).toBe(MockApiImpl);
   });
   

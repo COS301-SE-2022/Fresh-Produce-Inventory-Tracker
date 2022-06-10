@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
-import { TrendRepository } from './trend.repository';
+import { trendRepository } from './trend.repository';
 import { Prisma, Weekdays } from '@prisma/client';
 
 class trend {
@@ -17,15 +17,15 @@ class trend {
 //const reqMock = jest.mock('./api');
 const MockApiImpl: jest.Mocked<trend> = new trend() as trend;
 describe('ImagesController', () => {
-    let repo: TrendRepository;
+    let repo: trendRepository;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [],
-            providers: [TrendRepository, PrismaService],
+            providers: [trendRepository, PrismaService],
         }).compile();
 
-        repo = module.get<TrendRepository>(TrendRepository);
+        repo = module.get<trendRepository>(trendRepository);
     });
 
     it('should get trend for an item', async () => {
