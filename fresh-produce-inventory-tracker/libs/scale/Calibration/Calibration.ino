@@ -139,5 +139,9 @@ void calibrate() {
       }
     }
   }
-  
+    Serial.println("End calibration");
+  Serial.println("***");
+  Serial.println("To re-calibrate, send 'r' from serial monitor.");
+  Serial.println("For manual edit of the calibration value, send 'c' from serial monitor.");
+  Serial.println("***");
 }
