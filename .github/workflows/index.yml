@@ -20,7 +20,7 @@ on:
 jobs:
   test-affected-lint:
     if: ${{ github.event.inputs.testchoice == '' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'lint'
       type: 'affected'
