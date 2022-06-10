@@ -75,3 +75,29 @@ void loop() {
   }
 
 }
+
+
+
+
+void calibrate() {
+  Serial.println("***");
+  Serial.println("Start calibration:");
+  Serial.println("Place the load cell an a level stable surface.");
+  Serial.println("Remove any load applied to the load cell.");
+  Serial.println("Send 't' from serial monitor to set the tare offset.");
+
+  boolean _resume = false;
+  while (_resume == false) {
+    LoadCell.update();
+    if (Serial.available() > 0) {
+      if (Serial.available() > 0) {
+        char inByte = Serial.read();
+        if (inByte == 't') LoadCell.tareNoDelay();
+      }
+    }
+    if (LoadCell.getTareStatus() == true) {
+      Serial.println("Tare complete");
+      _resume = true;
+    }
+  }
+}
