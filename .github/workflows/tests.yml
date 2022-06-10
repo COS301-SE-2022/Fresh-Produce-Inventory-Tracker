@@ -40,6 +40,18 @@ jobs:
       - name: Run tests
         run: npm run test -- --coverage
 
+      - name: Build test affected
+        if: inputs.testtype == 'build' && inputs.test == 'affected'
+        run: npm nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+      - name: Unit test affected
+        if: inputs.testtype == 'unit' && inputs.test == 'affected'
+        run: npm nx affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+      - name: E2E test affected
+        if: inputs.testtype == 'e2e' && inputs.test == 'affected'
+        run: npm nx affected:e2e --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
