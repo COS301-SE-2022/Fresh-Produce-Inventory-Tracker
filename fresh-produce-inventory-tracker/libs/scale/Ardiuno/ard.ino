@@ -68,3 +68,43 @@ void loop() {
   }
 
 }
+void calibrate() {
+  //Serial.println("***");
+  //Serial.println("Start calibration:");
+  //Serial.println("Place the load cell an a level stable surface.");
+  //Serial.println("Remove any load applied to the load cell.");
+  //Serial.println("Send 't' from serial monitor to set the tare offset.");
+
+  boolean _resume = false;
+  while (_resume == false) {
+    LoadCell.update();
+    if (true) {
+      if (true) {
+       // Serial.println("warrafok");
+        //char inByte = 't';
+        //if (inByte == 't') LoadCell.tareNoDelay();
+        _resume = true;
+      }
+    }
+    if (LoadCell.getTareStatus() == true) {
+      Serial.println("Tare complete");
+      _resume = true;
+    }
+  }
+
+ // Serial.println("Now, place your known mass on the loadcell.");
+ // Serial.println("Then send the weight of this mass (i.e. 100.0) from serial monitor.");
+
+  float known_mass = 0;
+  _resume = false;
+  while (_resume == false) {
+    LoadCell.update();
+    
+      known_mass = 6969;
+      if (known_mass != 0) {
+        //Serial.print("Known mass is: ");
+        //Serial.println(known_mass);
+        _resume = true;
+      
+    }
+  }
