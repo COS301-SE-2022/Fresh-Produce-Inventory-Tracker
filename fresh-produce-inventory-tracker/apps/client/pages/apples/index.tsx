@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable-next-line */
 // react plugin used to create charts
-import {Chart} from "./../../src/components/chart/chart"
+import Router from "next/router";
+import {Chart} from "../../src/components/chart/chart"
 const fruitDataMonday = [];
 const fruitDataTuesday = [];
 const fruitDataWednesday = [];
@@ -12,7 +13,7 @@ const fruitDataSunday = [];
 
 const table_api = 'http://localhost:3333/api/trend/getall';
 const options = [
-  "All","Apples","Pears","Grapes","Oranges"
+  "Apples","All","Pears","Grapes","Oranges"
 ];
 
 export interface InventoryProps {
@@ -87,13 +88,17 @@ export async function getServerSideProps() {
   }
 }
 
-export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday},props:InventoryProps) {
+export function Apples({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday},props:InventoryProps) { 
 
   let x = 0;
 
   const filter = async (event) => {
     console.log(event.target.value)
-    if(event.target.value != "All")
+    if(event.target.value == "All")
+    {
+      window.location.replace("./../trends");
+    }
+    else if(event.target.value != "Apples")
     {
       window.location.replace("./../" + event.target.value.toLowerCase());
     }
@@ -103,7 +108,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
       <div>
       <div className="grid m-2 content-center grid-cols-6">
         <div className="col-span-2">
-          <h1>Average Fruit Sales</h1>
+          <h1>Average Apple Sales</h1>
         </div>
         <div className="col-span-5"></div>
         <div>
@@ -114,9 +119,9 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
           </select>
         </div>
       </div>
-      <Chart type="Bar" fruit="Fruit" dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
+      <Chart type="Line" fruit="Apples" dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
     </div>
   );
 }
 
-export default Trends;
+export default Apples;

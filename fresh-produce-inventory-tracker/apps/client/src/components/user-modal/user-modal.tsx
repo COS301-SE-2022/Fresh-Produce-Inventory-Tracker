@@ -43,6 +43,7 @@ export function UserModal(props: UserModalProps) {
       });
 
       if (response.status == 201) {
+        window.location.replace('../user');
         props.closeUserModal();
         return;
       }

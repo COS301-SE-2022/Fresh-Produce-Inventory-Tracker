@@ -41,6 +41,12 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
    <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/wiki/SRS">📄 SRS Document</a><br/>
    <a href = "https://drive.google.com/drive/folders/1PvKoXR9Rqcliww3BFeocqjb0qhR-7TGg?usp=sharing">🎥 DACERS-Demo1</a>
   <h3>Demo 2</h3>
+   <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/wiki/SRS">📄 SRS Document</a><br/>
+   <a href = "https://drive.google.com/file/d/1dP383BuVcXxq3V47ui6l2gkRpX6hM4Ab/view?usp=sharing">🎥 DACERS-Demo2</a><br/>
+   <a href = "https://docs.google.com/document/d/1EBmBy6F0fTUkgoAgAAajTM0W1cKebukpj3TtG0ciVvA/edit?usp=sharing">👨‍💻 Coding Standards v1</a><br/>
+   <a href = "https://docs.google.com/document/d/1rzqz11Qhgux-oirBmiv6R1bgz_fXcVAy5hShhnljRAw/edit?usp=sharing">📄 User Manual v1</a><br/>
+   <a href = "https://docs.google.com/document/d/1r01Z9c0Lt6zXYXmW0AJLnbtuJ5kNKB5drntgxAzR274/edit?usp=sharing">👷🛠 Architecture Document v1</a><br/>
+  
   <h3>Demo 3</h3>
   <h3>Demo 4</h3>
   
