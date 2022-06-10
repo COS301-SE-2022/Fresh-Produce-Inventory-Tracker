@@ -62,6 +62,16 @@ void loop() {
   }
 
     // receive command from serial terminal
- 
+  if (Serial.available() > 0) {
+    char inByte = Serial.read();
+    if (inByte == 't') LoadCell.tareNoDelay(); //tare
+    else if (inByte == 'r') calibrate(); //calibrate
+    else if (inByte == 'c') changeSavedCalFactor(); //edit calibration value manually
+  }
+
+  // check if last tare operation is complete
+  if (LoadCell.getTareStatus() == true) {
+    Serial.println("Tare complete");
+  }
 
 }
