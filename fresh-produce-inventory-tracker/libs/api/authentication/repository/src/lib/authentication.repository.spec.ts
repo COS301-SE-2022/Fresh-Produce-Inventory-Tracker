@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { User } from '@prisma/client';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 import {AuthenicationRepository} from './authentication.repository';
 
@@ -10,6 +11,10 @@ class user{
   passwordSalt: string;
   createdAt: Date;
   updatedAt: Date;
+  Name:string;
+  Surname:string; 
+  Bio:string;
+  Visibility:boolean;
 }
 const MockApiImpl : jest.Mocked<user> = new user() as user;
 describe('ApiAuthorizationRepositoryTest', () => {
@@ -28,7 +33,7 @@ describe('ApiAuthorizationRepositoryTest', () => {
       jest
         .spyOn(data, 'getUser')
         .mockImplementation(
-          (): Promise<user | null> => Promise.resolve(MockApiImpl)
+          (): Promise<User | null> => Promise.resolve(MockApiImpl)
         );
   
       expect(
