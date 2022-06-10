@@ -27,51 +27,51 @@ jobs:
 
   test-affected-build:
     if: ${{ github.event.inputs.testchoice == '' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'build'
       type: 'affected'
   
   test-affected-unit:
     if: ${{ github.event.inputs.testchoice == '' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'unit'
       type: 'affected'
 
   test-affected-e2e:
     if: ${{ github.event.inputs.testchoice == '' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
      test: 'e2e'
      type: 'affected'
 
   test-lint:
     if: ${{ github.event.inputs.testchoice == 'lint' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'lint'
 
   test-build:
     if: ${{ github.event.inputs.testchoice == 'build' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'build'
   
   test-unit:
     if: ${{ github.event.inputs.testchoice == 'unit' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'unit'
 
   test-e2e:
     if: ${{ github.event.inputs.testchoice == 'e2e' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
      test: 'e2e'
 
   test-all:
     if: ${{ github.event.inputs.testchoice == 'full' }}
-    uses: ./fresh-produce-inventory-tracker/.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       test: 'full'
