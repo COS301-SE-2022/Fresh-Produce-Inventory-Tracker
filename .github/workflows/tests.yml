@@ -38,10 +38,6 @@ jobs:
       - name: Install node
         run: npm install
 
-      - name: Lint test affected
-        if: inputs.type == 'affected'
-        run: npx nx affected:lint --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
-
       - name: Build test affected
         if: inputs.type == 'affected'
         run: npx nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
