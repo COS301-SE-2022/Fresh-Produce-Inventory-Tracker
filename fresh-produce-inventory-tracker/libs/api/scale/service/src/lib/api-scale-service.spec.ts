@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 import { ScaleRepository } from '../../../repository/src/lib/scale.repository';
 import { ScaleService } from './scale.service';
-
+import {tasksModule} from '../../../../tasks/api/src/lib/tasks.module';
 class scale {
     id: number;
     userId: number;
@@ -29,6 +29,7 @@ describe('Scalse Service Test', () => {
         const moduleRef = await Test.createTestingModule({
             controllers: [],
             providers: [ScaleService, ScaleRepository, PrismaService],
+            imports: [tasksModule]
         }).compile();
         data = moduleRef.get<ScaleService>(ScaleService);
     });

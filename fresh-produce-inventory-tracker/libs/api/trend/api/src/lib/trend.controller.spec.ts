@@ -56,35 +56,24 @@ describe('Trend Controller tests', () => {
         jest
             .spyOn(controller, 'getTrendsAllTrendsForDay')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve([MockApiImpl])
             );
 
         expect(
             await controller.getTrendsAllTrendsForDay(1, "Monday")
-        ).toBe(MockApiImpl);
+        ).toStrictEqual([MockApiImpl]);
     });
-    it('should update trend', async () => {
-        jest
-            .spyOn(controller, 'updateTrendSales')
-            .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
-            );
-
-        expect(
-            await controller.updateTrendSales(1, "apple", Weekdays.Monday, 1)
-        ).toBe(MockApiImpl);
-
-    });
+    
     it('should get all trends for person', async () => {
         jest
             .spyOn(controller, 'getAll')
             .mockImplementation(
-                (): Promise<trend | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve([MockApiImpl])
             );
 
         expect(
             await controller.getAll(1)
-        ).toBe(MockApiImpl);
+        ).toStrictEqual([MockApiImpl]);
 
     });
 });
