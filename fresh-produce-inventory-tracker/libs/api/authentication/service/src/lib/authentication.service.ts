@@ -3,7 +3,8 @@ import { authenticationDto } from './authentication.dto';
 import { AuthenicationRepository } from '../../../repository/src/lib/authentication.repository';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-//import {MailService} from '../../../../notifications/service/src/lib/notification.service';
+//import {MailService} from '../../../../notifications/service/src/lib/notification.service
+import bcrypt = require('bcrypt');
 
 @Injectable({})
 export class AuthenticationService {
@@ -11,15 +12,15 @@ export class AuthenticationService {
   constructor(private repo: AuthenicationRepository, private jwt: JwtService, private config: ConfigService) { }
   async signup(email: string, password: string) {
     //encrypt
-    const salt = '22';
-    return await this.repo.createUser(email, password, salt);
+    const salt = '10';
+    const hash = await bcrypt.hash(password,10)
+    return await this.repo.createUser(email, hash, salt);
   }
   async signin(dto: authenticationDto) {
     const user = await this.repo.getUser(dto.email);
     if (!user) throw new UnauthorizedException('Password incorrect');
     const password = user.password;
-    if (dto.password != password)
-      throw new UnauthorizedException('Password incorrect');
+    if ((await bcrypt.compare(dto.password, password))== false) throw new UnauthorizedException('Password incorrect');
     return this.setToken(user.id, user.email);
   }
   async setToken(id: number, email: string) {
