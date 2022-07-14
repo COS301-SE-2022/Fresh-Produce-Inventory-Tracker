@@ -1,11 +1,8 @@
 import { Body, Controller, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { calculatefreshnessService } from '../../../service/src/lib/calculatefreshness.service';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import {Request} from 'express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import fs = require('fs');
-import sharp = require('sharp');
 @Controller('calcfreshness')
 export class calculatefreshnessController {
   constructor(private service: calculatefreshnessService) {}
@@ -21,8 +18,8 @@ export class calculatefreshnessController {
       fileFilter: imageFileFilter,
     }),
   )
-  async predict(@UploadedFile() file) {
-    const predict =  await this.service.predict(1,file);
+  async predict(@Body('id') id :number,@Body('type') type:string,@UploadedFile() file) {
+    const predict =  await this.service.predict(id,type,file);
     console.log(predict);
     return predict;
   }
