@@ -29,8 +29,8 @@ const INVENTORY_TABLE_DATA_MOCK: InventoryItem[] = [
   },
   {
     id: 22,
-    name: 'Rice',
-    description: '50 Kgs of Rice',
+    name: 'Bread',
+    description: '10 loafs of bread',
     importDay: 'Mar 01, 2022 at 09:11',
     condition: 'good',
     expiresIn: 'Mar 10, 2022',
