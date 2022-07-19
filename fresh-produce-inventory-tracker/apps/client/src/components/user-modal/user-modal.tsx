@@ -16,6 +16,8 @@ const upload_Name = 'http://localhost:3333/api/profile/editname';
 const upload_Surname = 'http://localhost:3333/api/profile/editsurname';
 const upload_Email = 'http://localhost:3333/api/profile/editemail';
 const upload_Bio = 'http://localhost:3333/api/profile/editbio';
+const upload_Vis = 'http://localhost:3333/api/profile/editvisibility';
+
 
 
 export function UserModal(props: UserModalProps) {
@@ -27,7 +29,8 @@ export function UserModal(props: UserModalProps) {
       Name: event.target.name.value,
       Surname: event.target.surname.value,
       Email: event.target.email.value,
-      Bio: event.target.bio.value
+      Bio: event.target.bio.value,
+      Visibility: event.target.visibility.value
     }
 
     if(data.Name != "")
@@ -121,6 +124,29 @@ export function UserModal(props: UserModalProps) {
         alert('Error, please make sure you have uploaded valid image format.');
       }
     }
+    if(data.Visibility != "")
+    {
+      const form = new FormData();
+      form.append('id','1');
+      form.append('visibility', data.Visibility);
+
+      const response = await fetch(upload_Vis, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        },
+        body: form,
+      });
+
+      if (response.status == 201) {
+        props.closeUserModal();
+        return;
+      }
+
+      if (response.status == 500) {
+        alert('Error, please make sure you have uploaded valid image format.');
+      }
+    }
     
     alert("Update successfull");
     Router.reload();
@@ -198,6 +224,10 @@ export function UserModal(props: UserModalProps) {
                       <label className='block'>
                         <span>Bio</span>
                         <input id="bio" type='text' className="block w-full h-3/6 text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 "></input>
+                      </label>
+                      <label className='block'>
+                        <span>Visibility</span>
+                        <input id="visibility" type='text' className="block w-full h-3/6 text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100 "></input>
                       </label>
                       <button
                         type="submit"

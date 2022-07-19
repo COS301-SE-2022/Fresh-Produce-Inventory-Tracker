@@ -27,7 +27,7 @@ const items: radioItem[] = [
   },
 ];
 
-const upload_url = 'http://localhost:3333/api/calcfreshness/predict';
+const upload_url = 'http://localhost:3333/api/image/uploadone';
 const freshness_url = 'http://localhost:3333/api/calcfreshness/predict';
 const add_task = 'http://localhost:3333/api/tasks/createtask';
 
@@ -74,25 +74,28 @@ export function Modal(props: ModalProps) {
       body: form,
     });
 
+    const file = await response.json();
+
     if (response.status == 201) {
       alert('Image has been uploaded successfully');
-      checkFreshness();
+      checkFreshness(file);
       props.closeModal();
       return;
-    } else if (response.status == 500) {
-      // checkFreshness();
+    } else if (response.status == 500) 
+    {
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
 
-  const checkFreshness = async () => {
-    const form = new FormData();
-    form.append('id', '1');
-    form.append('image', image);
+  const checkFreshness = async (data) => {
+    const urlencoded = new URLSearchParams();
+    urlencoded.append('id', '1');
+    urlencoded.append('type', 'apple');
+    urlencoded.append('file', data.path);
 
     const response = await fetch(freshness_url, {
       method: 'POST',
-      body: form,
+      body: urlencoded,
     });
 
     let prediction = await response.json();
@@ -280,6 +283,7 @@ export function Modal(props: ModalProps) {
                           onChange={onImageChange}
                           type="file"
                           className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-secondary/20 file:text-secondary hover:file:bg-violet-100 "
+                          capture="environment"
                         />
                       </label>
                       <button

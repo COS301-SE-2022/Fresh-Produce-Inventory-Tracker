@@ -10,9 +10,7 @@ export class calculatefreshnessController {
   
   @Post('predict')
   async predict(@Body('id') id :number,@Body('type') type:string,@Body('file') file:string) {
-    console.log(file);
     const predict =  await this.service.predict(id,type,file);
-    console.log(file);
     return predict;
   }
 }

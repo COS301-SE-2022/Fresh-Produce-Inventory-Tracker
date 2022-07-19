@@ -34,7 +34,7 @@ import {
     )
     async uploadedFile(@Req() req:Request,@UploadedFile() file,) {
       //await this.service.uploadfile(req.user,file);
-      return file.path;
+      return file;
     }
     /*@UseGuards(AuthGuard('jwt'))
     @Post('uploadmultiple')
