@@ -9,18 +9,10 @@ export class calculatefreshnessController {
 
   
   @Post('predict')
-  @UseInterceptors(
-    FileInterceptor('image', {
-      storage: diskStorage({
-        destination: './files',
-        filename: editFileName,
-      }),
-      fileFilter: imageFileFilter,
-    }),
-  )
-  async predict(@Body('id') id :number,@Body('type') type:string,@UploadedFile() file) {
+  async predict(@Body('id') id :number,@Body('type') type:string,@Body('file') file:string) {
+    console.log(file);
     const predict =  await this.service.predict(id,type,file);
-    console.log(predict);
+    console.log(file);
     return predict;
   }
 }

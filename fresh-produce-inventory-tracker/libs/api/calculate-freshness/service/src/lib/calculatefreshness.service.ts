@@ -13,14 +13,14 @@ import mobilenet = require('@tensorflow-models/mobilenet');
 @Injectable({})
 export class calculatefreshnessService {
   constructor(private taskService: taskService) {}
-  async predict(id: number, type: string, file) {
+  async predict(id: number, type: string, file:string) {
     const model1 = await tf.loadLayersModel(
       'file://./libs/api/calculate-freshness/service/src/lib/model/' +
         type +
         '-model/model.json'
     );
     //const model = await mobilenet.load();
-    const imagePath = file.path;
+    const imagePath = file;
     const image = fs.readFileSync(imagePath);
     const imagetensor = tfnode.node.decodeImage(image, 3);
     const im = tf.image.resizeBilinear(imagetensor, [180, 180]) as tf.Tensor3D;
@@ -28,7 +28,6 @@ export class calculatefreshnessService {
     const prediction = model1.predict(
       im.reshape([1, 180, 180, 3])
     ) as tf.Tensor;
-    //console.log(predictions);
     const result = prediction.dataSync();
     let max = 0;
     for (let i = 0; i < result.length; i++) {
