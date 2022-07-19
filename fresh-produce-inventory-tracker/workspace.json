@@ -30,6 +30,9 @@
     "api-trend-api": "libs/api/trend/api",
     "api-trend-repository": "libs/api/trend/repository",
     "api-trend-service": "libs/api/trend/service",
+    "api-trendforyear-api": "libs/api/trendforyear/api",
+    "api-trendforyear-repository": "libs/api/trendforyear/repository",
+    "api-trendforyear-service": "libs/api/trendforyear/service",
     "backend": "apps/backend",
     "client": "apps/client",
     "client-e2e": "apps/client-e2e"

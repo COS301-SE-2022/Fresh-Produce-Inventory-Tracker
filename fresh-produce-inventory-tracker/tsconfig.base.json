@@ -101,6 +101,15 @@
       ],
       "@fresh-produce-inventory-tracker/api/trend/service": [
         "libs/api/trend/service/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/trendforyear/api": [
+        "libs/api/trendforyear/api/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/trendforyear/repository": [
+        "libs/api/trendforyear/repository/src/index.ts"
+      ],
+      "@fresh-produce-inventory-tracker/api/trendforyear/service": [
+        "libs/api/trendforyear/service/src/index.ts"
       ]
     }
   },

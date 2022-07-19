@@ -1,1 +1,1 @@
-export * from './lib/api-tasks-repository';
+export * from './lib/api-tasks-repository.repository';

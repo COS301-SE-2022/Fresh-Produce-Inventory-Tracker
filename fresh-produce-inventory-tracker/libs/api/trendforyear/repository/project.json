@@ -1,0 +1,22 @@
+{
+  "sourceRoot": "libs/api/trendforyear/repository/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/trendforyear/repository/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/trendforyear/repository"],
+      "options": {
+        "jestConfig": "libs/api/trendforyear/repository/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
