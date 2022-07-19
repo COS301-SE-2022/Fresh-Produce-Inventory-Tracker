@@ -6,7 +6,7 @@ export class ImagesRepository {
     constructor(private prisma:PrismaService){}
     async createImage(id:number,imageUrl:string)
     {
-        return await this.prisma.image.create({data:{userId:id,imageUrl:imageUrl}});
+        return await this.prisma.image.create({data:{userId:+id,imageUrl:imageUrl}});
     }
 
 }
