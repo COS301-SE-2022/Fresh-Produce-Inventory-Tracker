@@ -28,6 +28,7 @@ model User {
   Feedback_Data   Feedback_Data[]
   Notification    Notification[]
   Trend           Trend[]
+  TrendForYear    TrendForYear[]
 }
 
 model Produce {
@@ -93,6 +94,19 @@ model Trend {
   user                User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([id, userId,ProduceType])
   @@map("trend")
+}
+
+model TrendForYear {
+  id                         Int         @default(autoincrement())
+  userId                     Int         @map("user_id")
+  ProduceType                String      @map("produce_type")
+  AverageSalesAmountForYear  Float[]     @map("average_sales_amount_for_year")
+  AmountSalesForYear         Int[]       @map("amount_sales_for_year")
+  SaleDate                   DateTime?
+  LastRestock                DateTime?
+  user                       User        @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  @@id([id, userId,ProduceType])
+  @@map("trendforYear")
 }
 
 model Feedback_Data {
