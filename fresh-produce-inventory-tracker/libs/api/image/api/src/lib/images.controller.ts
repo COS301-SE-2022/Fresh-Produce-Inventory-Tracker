@@ -21,7 +21,7 @@ import {
   @Controller('image')
   export class ImagesController {
     constructor(private service:ImagesService){}
-   @UseGuards(AuthGuard('jwt'))
+   //@UseGuards(AuthGuard('jwt'))
     @Post('uploadone')
     @UseInterceptors(
       FileInterceptor('image', {
