@@ -65,6 +65,14 @@ export class ScaleRepository {
     await this.prisma.trend.create({
       data: { userId: userId, ProduceType: producetype, Day: Weekdays.Sunday },
     });
+    await this.prisma.trendForYear.create({
+      data: {
+        userId: userId,
+        ProduceType: producetype,
+        AverageSalesAmountForYear: Array.from({length: 366}, x => 0),
+        AmountSalesForYear: Array.from({length: 366}, x => 0),
+      },
+    });
     return scale;
   }
   async editScale(id: number, userid: number, data: any) {
@@ -95,8 +103,9 @@ export class ScaleRepository {
           ProduceType: scale.ProduceType,
       },
       data: {
-        weight: { set: [...old.weight, Weighttotal] },
         date: { set: [ ...old.date, day] },
+        weight: { set: [...old.weight, Weighttotal] },
+        
         
         
       },

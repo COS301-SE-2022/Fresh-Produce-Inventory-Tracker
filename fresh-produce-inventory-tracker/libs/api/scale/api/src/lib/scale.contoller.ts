@@ -11,7 +11,7 @@ import {Request} from 'express';
 @Controller('scale')
 export class ScaleController {
   constructor(private ScaleService: ScaleService) { }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('getscale')
   async getscale(//id: number,userid: number
     @Body('id') id: number,
