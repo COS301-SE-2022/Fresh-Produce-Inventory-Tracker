@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {Loading} from "../../src/components/loading/loading"
+import { useRouter } from 'next/router'
 
 /* eslint-disable-next-line */
 export interface MobileProps {
@@ -11,6 +12,16 @@ const freshness_url = 'http://192.168.1.4:3333/api/calcfreshness/predict';
 const add_task = 'http://192.168.1.4:3333/api/tasks/createtask';
 
 export function Mobile(props: MobileProps) {
+
+  const router = useRouter();
+  let type = "";
+  
+  console.log(typeof(router.query.type));
+  if(typeof(router.query.type) == "string")
+  {
+    type = router.query.type;
+  }
+
   const [image, setImage] = useState(null);
   const [showLoading, setShowLoading] = useState(false);
 
@@ -50,7 +61,7 @@ export function Mobile(props: MobileProps) {
   const checkFreshness = async (data) => {
     const urlencoded = new URLSearchParams();
     urlencoded.append('id', '1');
-    urlencoded.append('type', 'apple');
+    urlencoded.append('type', type);
     urlencoded.append('file', data.path);
 
     const myHeaders = new Headers();
