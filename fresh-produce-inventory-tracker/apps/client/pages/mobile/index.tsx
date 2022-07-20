@@ -14,7 +14,7 @@ const add_task = 'http://192.168.1.4:3333/api/tasks/createtask';
 export function Mobile(props: MobileProps) {
 
   const router = useRouter();
-  let type = "";
+  let type = "apple";
   
   console.log(typeof(router.query.type));
   if(typeof(router.query.type) == "string")
