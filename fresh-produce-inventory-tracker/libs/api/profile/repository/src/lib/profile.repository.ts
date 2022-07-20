@@ -24,9 +24,14 @@ export class profileRepository {
       where: { id: +id },data:{Bio: bio}
     });
   }
-  async editVisibility(id: number, visibility: boolean) {
+  async editVisibility(id: number, visibility: string) {
+    let check = false;
+    if(visibility == "true")
+    {
+      check = true;
+    }
     return await this.prisma.user.update({
-      where: { id: +id },data:{Visibility: visibility}
+      where: { id: +id },data:{Visibility: check}
     });
   }
   

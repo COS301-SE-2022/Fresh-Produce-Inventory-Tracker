@@ -33,6 +33,8 @@ export function UserModal(props: UserModalProps) {
       Visibility: event.target.visibility.value
     }
 
+    console.log(data);
+
     if(data.Name != "")
     {
       const form = "id=1&name=" + data.Name;
@@ -46,8 +48,8 @@ export function UserModal(props: UserModalProps) {
       });
 
       if (response.status == 201) {
-        window.location.replace('../user');
         props.closeUserModal();
+        Router.reload();
         return;
       }
 
@@ -55,11 +57,11 @@ export function UserModal(props: UserModalProps) {
         alert('Error, please make sure you have uploaded valid image format.');
       }
     }
+
     if(data.Surname != "")
     {
-      const form = new FormData();
-      form.append('id','1');
-      form.append('surname', data.Surname);
+      console.log(data.Surname);
+      const form = "id=1&surname=" + data.Surname;
 
       const response = await fetch(upload_Surname, {
         method: 'POST',
@@ -71,6 +73,7 @@ export function UserModal(props: UserModalProps) {
 
       if (response.status == 201) {
         props.closeUserModal();
+        Router.reload();
         return;
       }
 
@@ -80,9 +83,7 @@ export function UserModal(props: UserModalProps) {
     }
     if(data.Email != "")
     {
-      const form = new FormData();
-      form.append('id','1');
-      form.append('email', data.Email);
+      const form = "id=1&email=" + data.Email;
 
       const response = await fetch(upload_Email, {
         method: 'POST',
@@ -94,6 +95,7 @@ export function UserModal(props: UserModalProps) {
 
       if (response.status == 201) {
         props.closeUserModal();
+        Router.reload();
         return;
       }
 
@@ -103,9 +105,7 @@ export function UserModal(props: UserModalProps) {
     }
     if(data.Bio != "")
     {
-      const form = new FormData();
-      form.append('id','1');
-      form.append('bio', data.Bio);
+      const form = "id=1&bio=" + data.Bio;
 
       const response = await fetch(upload_Bio, {
         method: 'POST',
@@ -117,6 +117,7 @@ export function UserModal(props: UserModalProps) {
 
       if (response.status == 201) {
         props.closeUserModal();
+        Router.reload();
         return;
       }
 
@@ -126,9 +127,12 @@ export function UserModal(props: UserModalProps) {
     }
     if(data.Visibility != "")
     {
-      const form = new FormData();
-      form.append('id','1');
-      form.append('visibility', data.Visibility);
+      let check = false;
+      if(data.Visibility == "true")
+      {
+        check = true;
+      }
+      const form = "id=1&visibility=" + check;
 
       const response = await fetch(upload_Vis, {
         method: 'POST',
@@ -140,6 +144,7 @@ export function UserModal(props: UserModalProps) {
 
       if (response.status == 201) {
         props.closeUserModal();
+        Router.reload();
         return;
       }
 
@@ -147,9 +152,6 @@ export function UserModal(props: UserModalProps) {
         alert('Error, please make sure you have uploaded valid image format.');
       }
     }
-    
-    alert("Update successfull");
-    Router.reload();
   };
 
   return (

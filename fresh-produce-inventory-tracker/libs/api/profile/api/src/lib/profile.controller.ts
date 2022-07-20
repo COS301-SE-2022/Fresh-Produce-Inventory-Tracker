@@ -24,7 +24,7 @@ export class profileController {
     return this.service.editBio(id,bio);
   }
   @Post('editvisibility')
-  editVisibility(@Body('id') id: number, @Body('visibility') visibility: boolean) {
+  editVisibility(@Body('id') id: number, @Body('visibility') visibility: string) {
     return this.service.editVisibility(id,visibility);
   }
   @Post('deletename')

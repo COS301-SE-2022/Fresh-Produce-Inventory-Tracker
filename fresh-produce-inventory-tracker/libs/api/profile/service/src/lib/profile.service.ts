@@ -17,7 +17,7 @@ export class profileService {
   async editBio(id: number, bio: string) {
     return await this.repo.editBio(id,bio);
   }
-  async editVisibility(id: number, visibility: boolean) {
+  async editVisibility(id: number, visibility: string) {
     return await this.repo.editVisibility(id,visibility);
   }
   
