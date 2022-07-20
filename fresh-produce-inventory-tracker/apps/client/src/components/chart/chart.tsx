@@ -40,6 +40,12 @@ export interface ChartProps {
 
 
 export function Chart(props: ChartProps) {
+
+  const hasWindow = typeof window !== 'undefined';
+
+  const width = hasWindow ? window.innerWidth : null;
+
+  console.log(width);
   const Apples = [];
   const Pears = [];
   const Oranges = []
@@ -126,7 +132,7 @@ export function Chart(props: ChartProps) {
               'rgb(255, 0, 0,1)',
               'rgb(255, 0, 0,1)',
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           },{
             label:"Pears",
@@ -144,7 +150,7 @@ export function Chart(props: ChartProps) {
               'rgb(0, 255, 0,1)',
               'rgb(0, 255, 0,1)',
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           },{
             label:"Oranges",
@@ -162,7 +168,7 @@ export function Chart(props: ChartProps) {
               'rgb(255, 137, 0,1)',
               'rgb(255, 137, 0,1)',
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           },{
             label:"Grapes",
@@ -180,7 +186,7 @@ export function Chart(props: ChartProps) {
               'rgb(102, 0, 255,1)',
               'rgb(102, 0, 255,1)'
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           }
         ]
@@ -342,7 +348,7 @@ export function Chart(props: ChartProps) {
               'rgb(255, 0, 0,1)',
               'rgb(255, 0, 0,1)',
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           },{
             label:"Pears",
@@ -360,7 +366,7 @@ export function Chart(props: ChartProps) {
               'rgb(0, 255, 0,1)',
               'rgb(0, 255, 0,1)',
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           },{
             label:"Oranges",
@@ -378,7 +384,7 @@ export function Chart(props: ChartProps) {
               'rgb(255, 137, 0,1)',
               'rgb(255, 137, 0,1)',
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           },{
             label:"Grapes",
@@ -396,7 +402,7 @@ export function Chart(props: ChartProps) {
               'rgb(102, 0, 255,1)',
               'rgb(102, 0, 255,1)'
             ],
-            barThickness:35,
+            barThickness:width/46,
             borderWidth: 1
           }
         ]
