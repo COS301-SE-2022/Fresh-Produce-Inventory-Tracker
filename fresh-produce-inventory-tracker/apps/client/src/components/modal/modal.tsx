@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import CustomRadioButton from '../custom-radio-button/custom-radio-button';
 import { radioItem } from '../../interfaces';
-import {Loader} from '../loader/loader'
+import {Loading} from '../loading/loading'
 /* eslint-disable-next-line */
 export interface ModalProps {
   isOpen?: boolean;
@@ -36,7 +36,7 @@ export function Modal(props: ModalProps) {
   const [image, setImage] = useState(null);
   const [selectedType, setSelectedType] = useState<radioItem>(items[0]);
 
-  const [showLoader, setShowLoader] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
 
   const onImageChange = (e) => setImage(e.target.files[0]);
 
@@ -97,7 +97,7 @@ export function Modal(props: ModalProps) {
   };
 
   const checkFreshness = async (data) => {
-    setShowLoader(true);
+    setShowLoading(true);
     const urlencoded = new URLSearchParams();
     urlencoded.append('id', '1');
     urlencoded.append('type', 'apple');
@@ -115,7 +115,7 @@ export function Modal(props: ModalProps) {
     let prediction = await response.json();
 
     if (response.status == 201) {
-      setShowLoader(false);
+      setShowLoading(false);
       prediction = Object.values(prediction);
       alert(
         'This apple is a "' +
@@ -133,7 +133,7 @@ export function Modal(props: ModalProps) {
     }
 
     if (response.status == 500) {
-      setShowLoader(false);
+      setShowLoading(false);
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
@@ -308,10 +308,10 @@ export function Modal(props: ModalProps) {
                       >
                         Upload Image
                       </button>
-                      <Loader 
-                      isOpen={showLoader}
-                      openLoader={() => setShowLoader(true)}
-                      closeLoader={() => setShowLoader(false)}
+                      <Loading 
+                      isOpen={showLoading}
+                      openLoading={() => setShowLoading(true)}
+                      closeLoading={() => setShowLoading(false)}
                       title="Add New Item"
                       description="Please select and upload an image for analysis."
                       />
