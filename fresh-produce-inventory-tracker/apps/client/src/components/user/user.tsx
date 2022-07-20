@@ -60,10 +60,17 @@ export function UserInfo(props: UserProps) {
                   <label className="mt-4">Name:</label>
                 </div>
                 <div className="flex items-center w-96% col-span-10 bg-blue-200 rounded m-2">
-                  <p className="m-2">{props.data.Name}</p>
+                  <p className="m-2">{props.data.Name} {props.data.Surname}</p>
                 </div>
                 <div className='flex items-center font-bold grid'>
-                <button className='bg-red-200 rounded-lg p-2 hover:bg-red-400'>Edit</button>
+                <button onClick={() => setShowImageUpload(true)} className='bg-red-200 rounded-lg p-2 hover:bg-red-400'>Edit</button>
+                <UserModal
+                  isOpen={showImageUpload}
+                  openUserModal={() => setShowImageUpload(true)}
+                  closeUserModal={() => setShowImageUpload(false)}
+                  title="Edit info"
+                  description="Please input the updated information."
+                />
               </div>
               </div>
               <div className="flex items-center font-bold grid grid-cols-12">
