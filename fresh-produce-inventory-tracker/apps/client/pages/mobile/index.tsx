@@ -103,27 +103,27 @@ export function Mobile(props: MobileProps) {
 
   return (
     <div className="mt-4">
-                    <form
-                      onSubmit={uploadImage}
-                      className="flex flex-col w-full md:items-center md:justify-between gap-y-2 md:flex-row"
-                    >
-                      <label className="block">
-                        <input
-                          required
-                          onChange={onImageChange}
-                          type="file"
-                          className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-secondary/20 file:text-secondary hover:file:bg-violet-100 "
-                          capture="environment">
-                          </input>
-                      </label>
-                      <button
-                        type="submit"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      >
-                        Upload Image
-                      </button>
-                    </form>
-                  </div>
+      <form
+        onSubmit={uploadImage}
+        className="flex flex-col w-full md:items-center md:justify-between gap-y-2 md:flex-row"
+      >
+        <label className="block">
+          <input
+            required
+            onChange={onImageChange}
+            type="file"
+            className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-secondary/20 file:text-secondary hover:file:bg-violet-100 "
+            capture="environment">
+            </input>
+        </label>
+        <button
+          type="submit"
+          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+        >
+          Upload Image
+        </button>
+      </form>
+    </div>
   );
 }
 
