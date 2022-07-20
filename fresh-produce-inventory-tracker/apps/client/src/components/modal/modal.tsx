@@ -65,12 +65,19 @@ export function Modal(props: ModalProps) {
 
   const uploadImage = async (e) => {
     e.preventDefault();
+    
+    const myHeaders = new Headers();
+    myHeaders.append('Access-Control-Allow-Origin', '*');
+
+
     const form = new FormData();
     form.append('id', '1');
     form.append('image', image);
 
+
     const response = await fetch(upload_url, {
       method: 'POST',
+      headers: myHeaders,
       body: form,
     });
 
@@ -93,8 +100,12 @@ export function Modal(props: ModalProps) {
     urlencoded.append('type', 'apple');
     urlencoded.append('file', data.path);
 
+    const myHeaders = new Headers();
+    myHeaders.append('Access-Control-Allow-Origin', '*');
+
     const response = await fetch(freshness_url, {
       method: 'POST',
+      headers: myHeaders,
       body: urlencoded,
     });
 
