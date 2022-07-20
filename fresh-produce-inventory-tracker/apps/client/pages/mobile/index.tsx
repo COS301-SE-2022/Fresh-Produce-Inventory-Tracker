@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {Loader} from "../../src/components/loader/loader"
 
 /* eslint-disable-next-line */
 export interface MobileProps {
@@ -11,10 +12,12 @@ const add_task = 'http://192.168.1.4:3333/api/tasks/createtask';
 
 export function Mobile(props: MobileProps) {
   const [image, setImage] = useState(null);
+  const [showLoader, setShowLoader] = useState(false);
 
   const onImageChange = (e) => setImage(e.target.files[0]);
   const uploadImage = async (e) => {
     e.preventDefault();
+    setShowLoader(true);
     
     const myHeaders = new Headers();
     myHeaders.append('Access-Control-Allow-Origin', '*');
@@ -39,6 +42,7 @@ export function Mobile(props: MobileProps) {
       return;
     } else if (response.status == 500) 
     {
+      setShowLoader(false);
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
@@ -61,6 +65,7 @@ export function Mobile(props: MobileProps) {
     let prediction = await response.json();
 
     if (response.status == 201) {
+      setShowLoader(false);
       prediction = Object.values(prediction);
       alert(
         'This apple is a "' +
@@ -77,6 +82,7 @@ export function Mobile(props: MobileProps) {
     }
 
     if (response.status == 500) {
+      setShowLoader(false);
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
@@ -123,6 +129,13 @@ export function Mobile(props: MobileProps) {
           Upload Image
         </button>
       </form>
+      <Loader 
+      isOpen={showLoader}
+      openLoader={() => setShowLoader(true)}
+      closeLoader={() => setShowLoader(false)}
+      title="Add New Item"
+      description="Please select and upload an image for analysis."
+      />
     </div>
   );
 }

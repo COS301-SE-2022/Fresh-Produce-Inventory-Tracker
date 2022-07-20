@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import CustomRadioButton from '../custom-radio-button/custom-radio-button';
 import { radioItem } from '../../interfaces';
+import {Loader} from '../loader/loader'
 /* eslint-disable-next-line */
 export interface ModalProps {
   isOpen?: boolean;
@@ -33,8 +34,9 @@ const add_task = 'http://localhost:3333/api/tasks/createtask';
 
 export function Modal(props: ModalProps) {
   const [image, setImage] = useState(null);
-
   const [selectedType, setSelectedType] = useState<radioItem>(items[0]);
+
+  const [showLoader, setShowLoader] = useState(false);
 
   const onImageChange = (e) => setImage(e.target.files[0]);
 
@@ -95,6 +97,7 @@ export function Modal(props: ModalProps) {
   };
 
   const checkFreshness = async (data) => {
+    setShowLoader(true);
     const urlencoded = new URLSearchParams();
     urlencoded.append('id', '1');
     urlencoded.append('type', 'apple');
@@ -112,6 +115,7 @@ export function Modal(props: ModalProps) {
     let prediction = await response.json();
 
     if (response.status == 201) {
+      setShowLoader(false);
       prediction = Object.values(prediction);
       alert(
         'This apple is a "' +
@@ -129,6 +133,7 @@ export function Modal(props: ModalProps) {
     }
 
     if (response.status == 500) {
+      setShowLoader(false);
       alert('Error, please make sure you have uploaded valid image format.');
     }
   };
@@ -303,6 +308,13 @@ export function Modal(props: ModalProps) {
                       >
                         Upload Image
                       </button>
+                      <Loader 
+                      isOpen={showLoader}
+                      openLoader={() => setShowLoader(true)}
+                      closeLoader={() => setShowLoader(false)}
+                      title="Add New Item"
+                      description="Please select and upload an image for analysis."
+                      />
                     </form>
                   </div>
                 </Dialog.Panel>
