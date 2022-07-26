@@ -42,6 +42,11 @@ export class ScaleController {
       id,
     );
   }
+  /*
+    INPUT:
+    OUTPUT:
+    DISCRIPTION:
+  */
   //@UseGuards(AuthGuard('jwt'))
   @Post('editscale')//id: number, userid:number, data:any
   async editscale(@Body('id') id: number, @Body('userid') userid: number, @Body('weight') weight:number) {
