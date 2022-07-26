@@ -30,8 +30,9 @@ export class TrendForYearService {
     for(let k = total; k < (total+months[i]);k++)
     {
       amountSales.push(trendForItem.AmountSalesForYear[k])
-      average.push(trendForItem.AverageSalesAmountForYear[k]);
+      average.push(trendForItem.AverageSalesAmountForYear[k]); 
     }
+    console.log(average);
     return {
       id : trendForItem.id,
       produceType : trendForItem.ProduceType,
@@ -54,13 +55,15 @@ export class TrendForYearService {
     {
       let calculateForMonthAmount = 0;
       let calculateForMonthAverage = 0;
-      monthyValues = this.getTrendsForItemAndMonth(id,item,i+1);
+      monthyValues = await this.getTrendsForItemAndMonth(id,item,i);
       if(monthyValues == null) throw new NotFoundException();
       for(let k = 0; k < months[i];k++)
       {
         calculateForMonthAmount = calculateForMonthAmount + monthyValues.amountSalesForMonth[k];
+        //console.log(calculateForMonthAmount);
         calculateForMonthAverage = calculateForMonthAverage + monthyValues.averageSalesForMonth[k];
       }
+
       amount.push(calculateForMonthAmount);
       average.push(calculateForMonthAverage);
 
