@@ -151,7 +151,7 @@ void changeSavedCalFactor() {
   boolean _resume = false;
   Serial.println("***");
   Serial.print("Current value is: ");
-  //Get old value 
+  //Get old value   
   Serial.println(oldCalibrationValue);
   Serial.println("Now, send the new value from serial monitor, i.e. 696.0");
   float newCalibrationValue;
