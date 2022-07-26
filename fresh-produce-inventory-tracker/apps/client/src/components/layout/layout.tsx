@@ -7,6 +7,7 @@ import {
   MdOutlineTrendingDown,
   MdOutlineSettingsApplications,
   MdInventory2,
+  MdInfo
 } from 'react-icons/md';
 import Logo from '../logo/logo';
 import Navigation from '../navigation';
@@ -45,7 +46,7 @@ const Links = [
     name: 'About',
     link: '/about',
     icon: (
-      <MdOutlineSettingsApplications className="text-black/60 group-active:text-white" />
+      <MdInfo className="text-black/60 group-active:text-white" />
     ),
   },
 ];
