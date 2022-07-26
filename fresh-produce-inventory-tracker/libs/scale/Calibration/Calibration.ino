@@ -23,6 +23,9 @@ const int calVal_eepromAdress = 0;
 unsigned long t = 0;
 
 void setup() {
+  /*
+  Delay to ensure weight is stable
+  */
   Serial.begin(57600); delay(10);
   Serial.println();
   Serial.println("Starting...");
