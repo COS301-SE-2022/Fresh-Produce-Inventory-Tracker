@@ -50,7 +50,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -74,7 +73,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -96,7 +94,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -118,7 +115,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -145,7 +141,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
