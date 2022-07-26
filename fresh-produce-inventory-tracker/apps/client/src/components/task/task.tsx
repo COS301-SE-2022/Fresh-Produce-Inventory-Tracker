@@ -26,7 +26,7 @@ export function Task(props: TaskProps) {
             <div className="ml-2 col-span-10 flex items-center">
               <h2>{d.message}</h2>
             </div>
-            <button className=" bg-red-400 hover:bg-blue-400 rounded-lg p-2" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
+            <button className=" bg-gray-600 text-white hover:bg-blue-800 rounded-lg p-2" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
           </div>
         );
        })}
