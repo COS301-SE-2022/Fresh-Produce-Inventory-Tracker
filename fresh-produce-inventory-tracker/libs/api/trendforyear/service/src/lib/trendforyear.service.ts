@@ -32,7 +32,7 @@ export class TrendForYearService {
       amountSales.push(trendForItem.AmountSalesForYear[k])
       average.push(trendForItem.AverageSalesAmountForYear[k]); 
     }
-    console.log(average);
+    //console.log(average);
     return {
       id : trendForItem.id,
       produceType : trendForItem.ProduceType,
