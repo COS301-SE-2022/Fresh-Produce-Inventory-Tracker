@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { trendForYearRepository } from '../../../repository/src/lib/trendforyear.repository';
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
@@ -12,6 +12,10 @@ export class TrendForYearService {
   async getTrendsForItemAndMonth(id: number, producetype:string, month:number)
   {
     const trendForItem = await this.repo.getTrendsForItem(id,producetype);
+    if(trendForItem == null)
+    {
+      return null;
+    }
     const months = [31,29,31,30,31,30,31,31,30,31,30,31];
     //console.log(trendForItem);
     let total = 0;
@@ -39,12 +43,47 @@ export class TrendForYearService {
     
 
   }
+
+  async getMonthAverages(id: number, item:string)
+  {
+    let monthyValues;
+    const amount = [];
+    const average = [];
+    const months = [31,29,31,30,31,30,31,31,30,31,30,31];
+    for(let i = 0; i < 12;i++)
+    {
+      let calculateForMonthAmount = 0;
+      let calculateForMonthAverage = 0;
+      monthyValues = this.getTrendsForItemAndMonth(id,item,i+1);
+      if(monthyValues == null) throw new NotFoundException();
+      for(let k = 0; k < months[i];k++)
+      {
+        calculateForMonthAmount = calculateForMonthAmount + monthyValues.amountSalesForMonth[k];
+        calculateForMonthAverage = calculateForMonthAverage + monthyValues.averageSalesForMonth[k];
+      }
+      amount.push(calculateForMonthAmount);
+      average.push(calculateForMonthAverage);
+
+      
+    }
+    
+    return {
+      id : id,
+      produceType : item,
+      averagesForMonths : average,
+      amountsforMonths :amount,
+    }
+    
+
+  }
+
   async getAll(userid: number) {
     return await this.repo.getAll(userid);
   }
   async updateYearTrend(user: number, scale: number) {
     //variables
     const Scale = await this.repo.getScaleTrend(scale);
+    if(scale == null) throw new NotFoundException("Scale not found");
     const weekdays = Scale.date;
     const weights = Scale.weight;
     let currentday = this.ChangetoNumber(weekdays[0]);
@@ -99,6 +138,7 @@ export class TrendForYearService {
           user,
           Scale.ProduceType
         );
+        if(trendsForDayAnditem == null) throw new NotFoundException("Trend not found");
         let trending =
           trendsForDayAnditem.AverageSalesAmountForYear[this.ChangetoNumber(weekdays[i])] *
           trendsForDayAnditem.AmountSalesForYear[this.ChangetoNumber(weekdays[i])];
@@ -142,6 +182,7 @@ export class TrendForYearService {
             user,
             Scale.ProduceType
           );
+          if(trendsForDayAnditem == null) throw new NotFoundException("Trend not found");
           let trending =
             trendsForDayAnditem.AverageSalesAmountForYear[this.ChangetoNumber(weekdays[i])] *
             trendsForDayAnditem.AmountSalesForYear[this.ChangetoNumber(weekdays[i])];
@@ -173,6 +214,7 @@ export class TrendForYearService {
         user,
         Scale.ProduceType
       );
+      if(trendsForDayAnditem == null) throw new NotFoundException("Trend not found");
       const dateOfsale = trendsForDayAnditem.SaleDate;
       const restocking = trendsForDayAnditem.LastRestock;
       if (!dateOfsale || !restocking) {
