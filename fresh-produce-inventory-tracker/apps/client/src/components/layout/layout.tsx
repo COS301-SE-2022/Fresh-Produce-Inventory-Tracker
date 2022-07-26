@@ -41,6 +41,13 @@ const Links = [
       <MdOutlineSettingsApplications className="text-black/60 group-active:text-white" />
     ),
   },
+  {
+    name: 'About',
+    link: '/about',
+    icon: (
+      <MdOutlineSettingsApplications className="text-black/60 group-active:text-white" />
+    ),
+  },
 ];
 
 export function Layout(props: LayoutProps) {
