@@ -21,5 +21,9 @@ export class TrendForYearcontroller {
     async getAll(@Body('userid') userid: number ) {
         return await this.service.getAll(userid);
     }
+    @Post('getmonthaverages')
+    async getMonthAverages(@Body('userid') userid: number, @Body('producetype') producetype: string) {
+        return await this.service.getMonthAverages(userid,producetype);
+    }
     
 }
