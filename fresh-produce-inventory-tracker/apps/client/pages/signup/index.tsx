@@ -22,7 +22,7 @@ export function Signup(props: SignupProps) {
 
   const handleSignup = async (data: Signup) => {
     const form = new FormData();
-    form.append('name',data.firstName);
+    form.append('name', data.firstName);
     form.append('email', data.email);
     form.append('password', data.password);
     const Form = 'email=' + data.email + '&password=' + data.password;
@@ -68,7 +68,7 @@ export function Signup(props: SignupProps) {
 
         <div className="flex flex-col mt-6 gap-y-4">
           <div className="flex flex-col">
-            <label htmlFor="name" className="text-xs font-light opacity-80 ">
+            <label htmlFor="name" className="text-xs">
               Name
             </label>
             <input
@@ -89,7 +89,7 @@ export function Signup(props: SignupProps) {
             </div>
           </div>
           <div className="flex flex-col">
-            <label htmlFor="surname" className="text-xs font-light opacity-80 ">
+            <label htmlFor="surname" className="text-xs ">
               Surname
             </label>
             <input
@@ -110,7 +110,7 @@ export function Signup(props: SignupProps) {
             </div>
           </div>
           <div className="flex flex-col ">
-            <label htmlFor="email" className="text-xs font-light opacity-80">
+            <label htmlFor="email" className="text-xs">
               Email
             </label>
             <input
@@ -139,7 +139,7 @@ export function Signup(props: SignupProps) {
           <div className="flex flex-col">
             <label
               htmlFor="password"
-              className="text-xs font-light opacity-80 "
+              className="text-xs "
             >
               Password
             </label>
@@ -163,7 +163,7 @@ export function Signup(props: SignupProps) {
           <div className="flex flex-col">
             <label
               htmlFor="password"
-              className="text-xs font-light opacity-80 "
+              className="text-xs "
             >
               Confirm Password
             </label>
