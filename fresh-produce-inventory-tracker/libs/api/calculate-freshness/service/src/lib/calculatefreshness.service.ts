@@ -13,6 +13,10 @@ import mobilenet = require('@tensorflow-models/mobilenet');
 @Injectable({})
 export class calculatefreshnessService {
   constructor(private taskService: taskService) {}
+  async getAllModels()
+  {
+    return ['apple','brocolli','grape','strawberry','peach','avacado','mango','banana','lemon'];
+  }
   async predict(id: number, type: string, file:string) {
     const model1 = await tf.loadLayersModel(
       'file://./libs/api/calculate-freshness/service/src/lib/model/' +
