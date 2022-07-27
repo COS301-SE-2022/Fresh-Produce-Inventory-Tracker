@@ -19,8 +19,10 @@ const int HX711_sck = 5; //mcu > HX711 sck pin -
 //HX711 constructor:
 HX711_ADC LoadCell(HX711_dout, HX711_sck);
 
+
 const int calVal_eepromAdress = 0;
 unsigned long t = 0;
+unsigned long u= 0 //demo3
 
 void setup() {
   /*
@@ -35,6 +37,11 @@ void setup() {
   unsigned long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
   boolean _tare = true; //set this to false if you don't want tare to be performed in the next step
   LoadCell.start(stabilizingtime, _tare);
+  if (u ==1)
+  {
+    /* code */
+  }
+  
   if (LoadCell.getTareTimeoutFlag() || LoadCell.getSignalTimeoutFlag()) {
     Serial.println("Timeout, check MCU>HX711 wiring and pin designations");
     while (1);
