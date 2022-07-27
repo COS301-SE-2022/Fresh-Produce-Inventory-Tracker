@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {Loading} from "../../src/components/loading/loading"
 import { useRouter } from 'next/router'
+import Item from "./../../src/components/item/item"
 
 /* eslint-disable-next-line */
 export interface MobileProps {
@@ -147,6 +148,7 @@ export function Mobile(props: MobileProps) {
       title="Add New Item"
       description="Please select and upload an image for analysis."
       />
+      <Item type="Fresh Produce"></Item>
     </div>
   );
 }
