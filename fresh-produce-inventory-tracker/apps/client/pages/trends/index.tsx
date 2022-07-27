@@ -51,7 +51,10 @@ export async function getServerSideProps() {
 
   if(responses.status == 201)
   {
-    FreshProduce.push(Object.values(trendDatas)[2]);
+    for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
+    {
+      FreshProduce.push(Object.values(trendDatas)[2][x]);
+    }
   }
 
   Form = "userid=1&producetype=Poultry/Meat"
@@ -68,7 +71,10 @@ export async function getServerSideProps() {
 
   if(responses.status == 201)
   {
-    PoultryMeat.push(Object.values(trendDatas)[2]);
+    for(let x = 0;x < (Object.values(trendDatas)[2]).length;x++)
+    {
+      PoultryMeat.push(Object.values(trendDatas)[2][x]);
+    }
   }
 
   Form = "userid=1&producetype=Pastries"
@@ -85,7 +91,10 @@ export async function getServerSideProps() {
 
   if(responses.status == 201)
   {
-    Pastries.push(Object.values(trendDatas)[2]);
+    for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
+    {
+     Pastries.push(Object.values(trendDatas)[2][x]);
+    }
   }
 
   if (response.status == 201 && trendData != undefined) {
@@ -146,7 +155,6 @@ export async function getServerSideProps() {
 export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries},props:InventoryProps) {
 
   let x = 0;
-  console.log(FreshProduce,PoultryMeat,Pastries);
   const filter = async (event) => {
     if(event.target.value != "All")
     {
@@ -169,7 +177,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
           </select>
         </div>
       </div>
-      <Chart type="Bar" fruit="Fruit" dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
+      <Chart type="Bar" fruit="Fruit" data={[FreshProduce,PoultryMeat,Pastries]} dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
     </div>
   );
 }
