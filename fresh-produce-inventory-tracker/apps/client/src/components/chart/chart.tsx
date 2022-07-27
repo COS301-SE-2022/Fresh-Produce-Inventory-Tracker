@@ -173,7 +173,7 @@ export function Chart(props: ChartProps) {
           ],
           datasets:[
             {
-              label: "Average",
+              label: props.fruit,
               data: [Meat[0],Meat[1],Meat[2],Meat[3],Meat[4],Meat[5],Meat[6],Meat[7],Meat[8],Meat[9],Meat[10],Meat[11]],
               borderColor: "rgba(87, 130, 0,1)"
             }
@@ -199,7 +199,7 @@ export function Chart(props: ChartProps) {
           ],
           datasets:[
             {
-              label: "Average",
+              label: props.fruit,
               data: [Pastries[0],Pastries[1],Pastries[2],Pastries[3],Pastries[4],Pastries[5],Pastries[6],Pastries[7],Pastries[8],Pastries[9],Pastries[10],Pastries[11]],
               borderColor: "rgba(255, 112, 3,1)"
             }
