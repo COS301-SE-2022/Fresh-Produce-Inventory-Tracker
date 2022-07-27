@@ -56,7 +56,13 @@ export class ScaleController {
       +userid,
       +weight
     );
+    
   }
+  @Post('getallproduce')
+    async getAllProduce(@Body('id') id: number)
+    {
+      return await this.ScaleService.getAllProduce(+id);
+    }
 }
 
 
