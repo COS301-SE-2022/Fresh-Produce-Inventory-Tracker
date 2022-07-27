@@ -13,11 +13,24 @@ import mobilenet = require('@tensorflow-models/mobilenet');
 @Injectable({})
 export class calculatefreshnessService {
   constructor(private taskService: taskService) {}
-  async getAllModels()
-  {
-    return ['apple','brocolli','grape','strawberry','peach','avacado','mango','banana','lemon'];
+  async getAllModels() {
+    return [
+      'apple',
+      'brocolli',
+      'grape',
+      'strawberry',
+      'peach',
+      'avacado',
+      'mango',
+      'banana',
+      'lemon',
+      'orange',
+      'pawpaw',
+      'watermelon',
+      'pepper',
+    ];
   }
-  async predict(id: number, type: string, file:string) {
+  async predict(id: number, type: string, file: string) {
     const model1 = await tf.loadLayersModel(
       'file://./libs/api/calculate-freshness/service/src/lib/model/' +
         type +
@@ -65,7 +78,7 @@ export class calculatefreshnessService {
     }
     const total = Math.abs(arr[num]) + Math.abs(arr[other]);
     const convidence = (arr[num] / total) * 100;
-    const result = this.getType(num);
+    const result = this.getType(num, classname);
     if (Math.abs(arr[num] - arr[other]) < 1) {
       return {
         prediction: result + ' ' + classname,
@@ -80,12 +93,16 @@ export class calculatefreshnessService {
       };
     }
   }
-  getType(num: number) {
-    switch (num) {
-      case 0:
-        return 'rotten';
-      case 1:
-        return 'fresh';
+  getType(num: number, type: string) {
+    switch (type) {
+      case 'apple': {
+        if (num == 0) return 'rotten';
+        else return 'fresh';
+      }
+      default: {
+        if (num == 1) return 'rotten';
+        else return 'fresh';
+      }
     }
   }
 }
