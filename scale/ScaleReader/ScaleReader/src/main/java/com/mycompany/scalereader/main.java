@@ -13,6 +13,13 @@ import java.util.HashMap;
 import java.util.stream.Collectors;
 
 public class main {
+    /*
+     * Serial ports will be different for each indevidual system & scale 
+     * So Generate code to test in which port scale is 
+     */
+    static SerialPort serialPort1 = new SerialPort("COM2");
+    static SerialPort serialPort2 = new SerialPort("COM4");
+    static SerialPort serialPort3 = new SerialPort("COM6");
       static SerialPort serialPort = new SerialPort("COM8");
     static int weight = 10;
     
