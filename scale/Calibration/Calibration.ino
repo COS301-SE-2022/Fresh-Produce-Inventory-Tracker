@@ -178,10 +178,14 @@ void changeSavedCalFactor() {
       }
     }
   }
+  /*
+  Remove code that requies input/output 
+  but note that each scale needs to be calabrated
+  */
   _resume = false;
-  Serial.print("Save this value to EEPROM adress ");
+  Serial.print("Save this value to EEPROM adress without showing this msg");
   Serial.print(calVal_eepromAdress);
-  Serial.println("? y/n");
+  Serial.println("?This will not print anymore y/n");
   while (_resume == false) {
     if (Serial.available() > 0) {
       char inByte = Serial.read();
