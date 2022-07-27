@@ -70,7 +70,7 @@ export function Layout(props: LayoutProps) {
           <div className="drawer-side">
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-            <ul className="px-4 overflow-y-auto bg-white border-2 border-solid w-80 menu text-base-content">
+            <ul className="w-48 px-4 overflow-y-auto bg-white border-2 border-solid xl:w-80 menu text-base-content">
               <Link href="/" passHref>
                 <div className="flex flex-col items-center mb-5 h-fit">
                   <Logo />
