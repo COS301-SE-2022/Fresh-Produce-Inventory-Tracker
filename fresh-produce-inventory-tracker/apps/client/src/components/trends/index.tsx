@@ -35,16 +35,17 @@ import { MdOutlineDangerous, MdChevronRight } from 'react-icons/md';
 export interface TrendsProps {}
 
 const TrendItem = ({ icon, number, type }) => (
-  <div className="flex items-center gap-2 w-fit">
+  <div className="flex items-center gap-2 p-4 rounded-md shadow-xl h-28 md:w-48 bg-primary/10">
     {icon}
     <div>
       <p className="flex flex-col">
-        <span className="text-xl font-bold">{number}</span>
+        <span className="text-3xl">{number}</span>
         <span className="text-sm">{type}</span>
       </p>
     </div>
   </div>
 );
+
 
 export function Trends(props: TrendsProps) {
   return (
@@ -56,30 +57,30 @@ export function Trends(props: TrendsProps) {
             <p className="text-xs text-black/50">last updated 05 June 2022</p>
           </div>
           <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
-            <TrendItem
+          <TrendItem
               icon={
-                <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info bg-info/20" />
+                <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info ring-1 ring-info" />
               }
               number={92}
               type="Total items"
             />
             <TrendItem
               icon={
-                <IoWarningOutline className="w-10 h-10 p-2 rounded-full text-warning bg-warning/20" />
+                <IoWarningOutline className="w-10 h-10 p-2 rounded-full text-warning ring-1 ring-warning" />
               }
               number={23}
               type="About to expire"
             />
             <TrendItem
               icon={
-                <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error bg-error/20" />
+                <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error ring-1 ring-error" />
               }
               number={10}
               type="Expired"
             />
             <TrendItem
               icon={
-                <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-success bg-success/20" />
+                <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-success ring-1 ring-success" />
               }
               number={25}
               type="New items"
