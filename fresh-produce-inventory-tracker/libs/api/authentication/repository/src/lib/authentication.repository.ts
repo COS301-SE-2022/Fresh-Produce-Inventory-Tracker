@@ -5,7 +5,7 @@ import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.s
 export class AuthenicationRepository {
   constructor(private prisma: PrismaService) { }
   async getUser(@Param('id') email: string) {
-    return await this.prisma.user.findUnique({ where: { email: email } });
+    return this.prisma.user.findUnique({ where: { email: email } });
   }
   async createUser(email: string, password: string, salt: string, name: string, surname: string) {
     return this.prisma.user.create({
