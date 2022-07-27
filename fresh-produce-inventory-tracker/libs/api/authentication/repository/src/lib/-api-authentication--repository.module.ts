@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { PrismaService } from 'libs/api/prisma/shared/src/lib/prismaService.service';
 
 @Module({
-  imports:[PrismaService]
+  imports: [PrismaService],
   controllers: [],
   providers: [],
   exports: [],
 })
-export class ApiAuthenticationRepositoryModule {}
+export class ApiAuthenticationRepositoryModule { }
