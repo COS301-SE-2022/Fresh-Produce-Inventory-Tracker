@@ -198,7 +198,7 @@ void changeSavedCalFactor() {
         EEPROM.commit();
 #endif
         EEPROM.get(calVal_eepromAdress, newCalibrationValue);
-        Serial.print("Value ");
+        Serial.print("Value wont be displayed");
         Serial.print(newCalibrationValue);
         Serial.print(" saved to EEPROM address: ");
         Serial.println(calVal_eepromAdress);
