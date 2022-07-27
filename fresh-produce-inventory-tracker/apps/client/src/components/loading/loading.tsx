@@ -46,11 +46,6 @@ export function Loading(props: LoadingProps) {
                   </Dialog.Title>
 
                   <Circles
-                    height="100"
-                    width="100"
-                    color='blue'
-                  />
-                  <Circles
                   height="100"
                   width="100"
                   color='red'
