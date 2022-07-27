@@ -39,13 +39,12 @@ const TrendItem = ({ icon, number, type }) => (
     {icon}
     <div>
       <p className="flex flex-col">
-        <span className="text-3xl">{number}</span>
-        <span className="text-sm">{type}</span>
+        <span className="block text-xl truncate md:text-3xl">{number}</span>
+        <span className="text-xs md:text-base">{type}</span>
       </p>
     </div>
   </div>
 );
-
 
 export function Trends(props: TrendsProps) {
   return (
@@ -57,7 +56,7 @@ export function Trends(props: TrendsProps) {
             <p className="text-xs text-black/50">last updated 05 June 2022</p>
           </div>
           <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
-          <TrendItem
+            <TrendItem
               icon={
                 <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info ring-1 ring-info" />
               }
@@ -96,7 +95,7 @@ export function Trends(props: TrendsProps) {
           </div>
         </div>
       </div>
-      <div className="flex mt-10">
+      <div className="flex flex-col mt-10 gap-y-8 md:flex-row">
         <div className="md:w-[25%] w-full h-fit">
           <h3 className="text-md">Some Numbers</h3>
           <Doughnut data={data} />

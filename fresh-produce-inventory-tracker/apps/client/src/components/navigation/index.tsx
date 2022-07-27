@@ -39,13 +39,13 @@ export function Navigation(props: NavigationProps) {
           </label>
 
           <Link href="/notifications" passHref>
-            <span>
+            <span className="hidden md:flex">
               <Check data={[]}></Check>
             </span>
           </Link>
 
           <div className="flex items-center cursor-pointer gap-x-2">
-            <div className="flex flex-col text-right">
+            <div className="flex-col hidden text-right md:flex">
               <label className="text-sm">{session?.user?.name}</label>
               <label className="text-xs text-black">
                 {session?.user?.email}
