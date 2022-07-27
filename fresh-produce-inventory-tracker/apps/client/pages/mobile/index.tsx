@@ -149,6 +149,8 @@ export function Mobile(props: MobileProps) {
       description="Please select and upload an image for analysis."
       />
       <Item type="Fresh Produce"></Item>
+      <Item type="Poultry/Meat"></Item>
+      <Item type="Pastries"></Item>
     </div>
   );
 }
