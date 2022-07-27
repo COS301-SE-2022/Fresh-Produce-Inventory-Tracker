@@ -1,8 +1,10 @@
+import { JwtService } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
 
 @Module({
   controllers: [],
   providers: [],
   exports: [],
+  imports: []
 })
-export class ApiProfileServiceModule {}
+export class ApiProfileServiceModule { }

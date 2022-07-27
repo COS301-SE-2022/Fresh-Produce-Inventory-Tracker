@@ -4,11 +4,12 @@ import { RiUser3Line } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { Check } from './../check/check';
-
+import { useSession } from 'next-auth/react';
 /* eslint-disable-next-line */
 export interface NavigationProps {}
 
 export function Navigation(props: NavigationProps) {
+  const { data: session } = useSession();
   const router = useRouter();
   return (
     <header>
@@ -45,8 +46,10 @@ export function Navigation(props: NavigationProps) {
 
           <div className="flex items-center cursor-pointer gap-x-2">
             <div className="flex flex-col text-right">
-              <label className="text-sm">John Doe</label>
-              <label className="text-xs text-black/40"> JohnDoes@email.com</label>
+              <label className="text-sm">{session?.user?.name}</label>
+              <label className="text-xs text-black">
+                {session?.user?.email}
+              </label>
             </div>
             <Link href="/user" passHref>
               <span>
