@@ -111,6 +111,9 @@ export class ScaleRepository {
       },
     });
   }
+  async getAllProduce(id:number) {
+    return await this.prisma.scale.findMany({where:{userId:id}})
+  }
   async removeScale(id: number, userid: number) {
     const scale = await this.prisma.scale.delete({
       where: { id_userId: { id: id, userId: userid } },
@@ -119,6 +122,9 @@ export class ScaleRepository {
       where: { scale_id: id },
     });
     await this.prisma.trend.deleteMany({
+      where: {userId:userid,ProduceType:scale.ProduceType},
+    });
+    await this.prisma.trendForYear.deleteMany({
       where: {userId:userid,ProduceType:scale.ProduceType},
     });
   }
