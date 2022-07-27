@@ -13,7 +13,7 @@ function CustomApp({
       <Head>
         <title>Welcome to the client!</title>
       </Head>
-      <SessionProvider session={session}>
+      <SessionProvider session={session} refetchInterval={5}>
         <Layout>
           <Component {...pageProps} />
         </Layout>

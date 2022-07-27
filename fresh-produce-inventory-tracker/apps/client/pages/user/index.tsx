@@ -61,17 +61,17 @@ export async function getServerSideProps(context) {
     options
   );
 
-  // if (!session) {
-  //   return {
-  //     redirect: {
-  //       destination: '/login',
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
 
   const params = new url.URLSearchParams({
-    token: session.accessToken.toString(),
+    token: session?.accessToken?.toString(),
   });
 
   const response = await axios.post(profileUrl, params);
@@ -99,20 +99,15 @@ export function User({ data, status }) {
   return (
     <div className="p-4">
       <div className="grid w-full grid-cols-10 mt-4">
-        <div className="xl:col-span-2 md:col-span-10">Peronal Information</div>
-        <div className="col-span-5">
-          <div className="flex items-end w-full mt-4 xl:mt-0 gap-x-4">
+        <div className="col-span-10 xl:col-span-2">Peronal Information</div>
+        <div className="col-span-full md:col-span-5 xl:col-span-4">
+          <div className="flex items-end justify-between w-full mt-4 md:justify-start xl:mt-0 gap-x-4">
             <BiUser className="w-24 h-24 p-2 rounded bg-slate-300" />
-            <div>
-              <div className="relative">
-                <input type="file" name="" id="" className="opacity-0 " />
-                <button className="absolute left-0 z-10 h-full px-4 text-xs font-bold underline rounded cursor-pointer pointer-events-none w-fit bg-primary/10 text-primary">
-                  Upload Image
-                </button>
-              </div>
-            </div>
+            <button className="underline decoration-secondary text-secondary">
+              Change
+            </button>
           </div>
-          <div className="flex justify-between gap-4 mt-6">
+          <div className="flex flex-col justify-between gap-4 mt-6 md:flex-row">
             <div className="flex flex-col gap-2">
               <label htmlFor="first-names" className="font-light">
                 First Name(s)
@@ -120,7 +115,7 @@ export function User({ data, status }) {
               <input
                 defaultValue={data?.Name}
                 type="text"
-                className="p-2 rounded ring-1 ring-black"
+                className="w-full p-2 rounded ring-1 ring-black"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -130,7 +125,7 @@ export function User({ data, status }) {
               <input
                 defaultValue={data?.Surname}
                 type="text"
-                className="p-2 rounded ring-1 ring-black"
+                className="w-full p-2 rounded ring-1 ring-black"
               />
             </div>
           </div>
@@ -151,14 +146,14 @@ export function User({ data, status }) {
         </div>
       </div>
       <div className="grid w-full grid-cols-10 mt-8">
-        <div className="mt-2 xl:col-span-2 md:col-span-10">
+        <div className="col-span-10 mt-2 xl:col-span-2">
           Account Information
         </div>
-        <div className="col-span-5">
-          <p className="px-4 py-2 mt-4 text-xs rounded xl:mt-0 bg-sky-200 text-sky-900">
+        <div className="col-span-full md:col-span-5 xl:col-span-4">
+          <p className="px-4 py-2 mt-4 text-xs font-bold rounded xl:mt-0 bg-sky-100 text-sky-900">
             ! To udpate password, fill in Current password, and New password.
           </p>
-          <div className="flex justify-between gap-4 mt-4">
+          <div className="flex flex-col justify-between gap-4 mt-4 md:flex-col">
             <div className="flex flex-col gap-2">
               <label htmlFor="first-names" className="font-light">
                 Username
@@ -167,7 +162,7 @@ export function User({ data, status }) {
                 disabled
                 defaultValue={data?.email}
                 type="text"
-                className="p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
+                className="w-full p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -178,19 +173,19 @@ export function User({ data, status }) {
                 disabled
                 defaultValue={data?.email}
                 type="text"
-                className="p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
+                className="w-full p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
               />
             </div>
           </div>
-          <div className="flex justify-between gap-4 mt-6">
+          <div className="flex flex-col justify-between gap-4 mt-6 md:flex-row">
             <div className="flex flex-col gap-2">
               <label htmlFor="first-names" className="font-light">
                 Current Password
               </label>
               <input
-                defaultValue={'******'}
+                defaultValue={''}
                 type="password"
-                className="p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
+                className="w-full p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
               />
             </div>
             <div className="flex flex-col gap-2">
@@ -200,7 +195,7 @@ export function User({ data, status }) {
               <input
                 defaultValue={''}
                 type="password"
-                className="p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
+                className="w-full p-2 rounded disabled:opacity-70 disabled:cursor-not-allowed ring-1 ring-black"
               />
             </div>
           </div>
