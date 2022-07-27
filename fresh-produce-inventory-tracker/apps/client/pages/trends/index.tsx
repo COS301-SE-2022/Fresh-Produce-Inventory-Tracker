@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable-next-line */
 // react plugin used to create charts
+import { useState } from "react";
 import {Chart} from "./../../src/components/chart/chart"
 const fruitDataMonday = [];
 const fruitDataTuesday = [];
@@ -12,12 +13,13 @@ const fruitDataSunday = [];
 const FreshProduce = [];
 const PoultryMeat = [];
 const Pastries = [];
+let lineData = [];
 
 const table_api = 'http://localhost:3333/api/trend/getall';
 const tableYear_api = 'http://localhost:3333/api/trendforyear/getmonthaverages';
 
 const options = [
-  "All","Fresh Produce","Poultry/Meat","Pastries"
+  "All","Fruit&Veg","Meat","Pastries"
 ];
 
 export interface InventoryProps {
@@ -148,17 +150,39 @@ export async function getServerSideProps() {
   }
 
   return {
-    props:{fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries}
+    props:{fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries,lineData}
   }
 }
 
-export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries},props:InventoryProps) {
+export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries,lineData},props:InventoryProps) {
 
   let x = 0;
+  const [type, setType] = useState("Bar");
+  const [produce, setProduce] = useState("Fruit");
+
   const filter = async (event) => {
     if(event.target.value != "All")
     {
-      window.location.replace("./../" + event.target.value.toLowerCase());
+      setType("Line");
+      if(event.target.value == "Fruit&Veg")
+      {
+        lineData = FreshProduce;
+        setProduce("Fruit & Veg");
+      }
+      else if(event.target.value == "Meat")
+      {
+        lineData = PoultryMeat;
+        setProduce("Meat");
+      }
+      else
+      {
+        lineData = Pastries;
+        setProduce("Pastries");
+      }
+    }
+    else
+    {
+      setType("Bar");
     }
   }
 
@@ -166,7 +190,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
       <div>
       <div className="grid m-2 content-center grid-cols-6">
         <div className="col-span-2">
-          <h1>Average Fruit Sales</h1>
+          <h1>Average Sales</h1>
         </div>
         <div className="col-span-5"></div>
         <div>
@@ -177,7 +201,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
           </select>
         </div>
       </div>
-      <Chart type="Bar" fruit="Fruit" data={[FreshProduce,PoultryMeat,Pastries]} dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
+      <Chart lineData={lineData} type={type} fruit={produce} data={[FreshProduce,PoultryMeat,Pastries]} dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
     </div>
   );
 }

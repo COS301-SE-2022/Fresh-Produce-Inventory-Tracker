@@ -36,20 +36,23 @@ export interface ChartProps {
   dataFriday: [[],[],[],[]],
   dataSaturday: [[],[],[],[]],
   dataSunday: [[],[],[],[]],
-  data:[[],[],[]]
+  data:[[],[],[]],
+  lineData:any[];
 }
 
 
 export function Chart(props: ChartProps) {
+
+  console.log(props.lineData);
 
   const hasWindow = typeof window !== 'undefined';
 
   const width = hasWindow ? window.innerWidth : null;
 
   console.log(width);
-  const Apples = props.data[0];
-  const Pears = props.data[1];
-  const Oranges = props.data[2];
+  const FruitVeg = props.data[0];
+  const Meat = props.data[1];
+  const Pastries = props.data[2];
   const Grapes = [];
 
     if(props.type == "Bar")
@@ -73,12 +76,9 @@ export function Chart(props: ChartProps) {
           {
             label:"Fruit&Veg",
             borderRadius:5,
-            data:[Apples[0],Apples[1],Apples[2],Apples[3],Apples[4],Apples[5],Apples[6],Apples[7],Apples[8],Apples[9],Apples[10],Apples[11]],
+            data:[FruitVeg[0],FruitVeg[1],FruitVeg[2],FruitVeg[3],FruitVeg[4],FruitVeg[5],FruitVeg[6],FruitVeg[7],FruitVeg[8],FruitVeg[9],FruitVeg[10],FruitVeg[11]],
             backgroundColor: [
-              "rgba(255,50,50,0.5)",
-              "rgba(255,50,50,0.5)",
-              "rgba(255,50,50,0.5)",
-              "rgba(255,50,50,0.5)",
+              "rgba(255,50,50,0.5)"
             ],
             borderColor: [
               'rgb(255, 0, 0,1)',
@@ -91,12 +91,9 @@ export function Chart(props: ChartProps) {
           },{
             label:"Poultry&Meat",
             borderRadius:5,
-            data:[Pears[0],Pears[1],Pears[2],Pears[3],Pears[4],Pears[5],Pears[6],Pears[7],Pears[8],Pears[9],Pears[10],Pears[11]],
+            data:[Meat[0],Meat[1],Meat[2],Meat[3],Meat[4],Meat[5],Meat[6],Meat[7],Meat[8],Meat[9],Meat[10],Meat[11]],
             backgroundColor: [
-              "rgba(50,255,50,0.5)",
-              "rgba(50,255,50,0.5)",
-              "rgba(50,255,50,0.5)",
-              "rgba(50,255,50,0.5)",
+              "rgba(50,255,50,0.5)"
             ],
             borderColor: [
               'rgb(0, 255, 0,1)',
@@ -109,12 +106,9 @@ export function Chart(props: ChartProps) {
           },{
             label:"Pastries",
             borderRadius:5,
-            data:[Oranges[0],Oranges[1],Oranges[2],Oranges[3],Oranges[4],Oranges[5],Oranges[6],Oranges[7],Oranges[8],Oranges[9],Oranges[10],Oranges[11]],
+            data:[Pastries[0],Pastries[1],Pastries[2],Pastries[3],Pastries[4],Pastries[5],Pastries[6],Pastries[7],Pastries[8],Pastries[9],Pastries[10],Pastries[11]],
             backgroundColor: [
-              "rgba(255,156,43,0.5)",
-              "rgba(255,156,43,0.5)",
-              "rgba(255,156,43,0.5)",
-              "rgba(255,156,43,0.5)",
+              "rgba(255,156,43,0.5)"
             ],
             borderColor: [
               'rgb(255, 137, 0,1)',
@@ -138,73 +132,75 @@ export function Chart(props: ChartProps) {
     {
       let data = {
         labels: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday"
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
       ],
       datasets:[
         {
-          label: "Week 1",
-          data: [Grapes[0],Grapes[1],Grapes[2],Grapes[3],Grapes,Grapes[5],Grapes[6]],
+          label: props.fruit,
+          data: [FruitVeg[0],FruitVeg[1],FruitVeg[2],FruitVeg[3],FruitVeg[4],FruitVeg[5],FruitVeg[6],FruitVeg[7],FruitVeg[8],FruitVeg[9],FruitVeg[10],FruitVeg[11]],
           borderColor: "rgba(70, 3, 255,1)"
         }
       ]
       };
 
-      if(props.fruit == "Apples")
+      if(props.fruit == "Meat")
       {
         data = {
           labels: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
           ],
           datasets:[
             {
               label: "Average",
-              data: [Apples[0],Apples[1],Apples[2],Apples[3],Apples,Apples[5],Apples[6]],
-              borderColor: "rgba(255,0,0,1)"
-            }
-          ]
-        }
-      }
-      else if(props.fruit == "Pears")
-      {
-        data = {
-          labels: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          datasets:[
-            {
-              label: "Average",
-              data: [Pears[0],Pears[1],Pears[2],Pears[3],Pears,Pears[5],Pears[6]],
+              data: [Meat[0],Meat[1],Meat[2],Meat[3],Meat[4],Meat[5],Meat[6],Meat[7],Meat[8],Meat[9],Meat[10],Meat[11]],
               borderColor: "rgba(87, 130, 0,1)"
             }
           ]
         }
       } 
-      else if(props.fruit == "Oranges")
+      else if(props.fruit == "Pastries")
       {
         data = {
           labels: [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
           ],
           datasets:[
             {
               label: "Average",
-              data: [Oranges[0],Oranges[1],Oranges[2],Oranges[3],Oranges,Oranges[5],Oranges[6]],
+              data: [Pastries[0],Pastries[1],Pastries[2],Pastries[3],Pastries[4],Pastries[5],Pastries[6],Pastries[7],Pastries[8],Pastries[9],Pastries[10],Pastries[11]],
               borderColor: "rgba(255, 112, 3,1)"
             }
           ]
