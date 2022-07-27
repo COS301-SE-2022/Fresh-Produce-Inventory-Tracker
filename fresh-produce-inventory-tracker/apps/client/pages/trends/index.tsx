@@ -9,10 +9,15 @@ const fruitDataThursday = [];
 const fruitDataFriday = [];
 const fruitDataSaturday = [];
 const fruitDataSunday = [];
+const FreshProduce = [];
+const PoultryMeat = [];
+const Pastries = [];
 
 const table_api = 'http://localhost:3333/api/trend/getall';
+const tableYear_api = 'http://localhost:3333/api/trendforyear/getmonthaverages';
+
 const options = [
-  "All","Apples","Pears","Grapes","Oranges"
+  "All","Fresh Produce","Poultry/Meat","Pastries"
 ];
 
 export interface InventoryProps {
@@ -20,7 +25,7 @@ export interface InventoryProps {
 }
 
 export async function getServerSideProps() {
-  const  Form = "userid=1";
+  let  Form = "userid=1";
 
   const response = await fetch(table_api, {
     method: 'POST',
@@ -31,6 +36,57 @@ export async function getServerSideProps() {
   });
 
   const trendData = await response.json();
+
+  Form = "userid=1&producetype=Fresh Produce"
+
+  let responses = await fetch(tableYear_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
+  let trendDatas = await responses.json();
+
+  if(responses.status == 201)
+  {
+    FreshProduce.push(Object.values(trendDatas)[2]);
+  }
+
+  Form = "userid=1&producetype=Poultry/Meat"
+
+  responses = await fetch(tableYear_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
+  trendDatas = await responses.json();
+
+  if(responses.status == 201)
+  {
+    PoultryMeat.push(Object.values(trendDatas)[2]);
+  }
+
+  Form = "userid=1&producetype=Pastries"
+
+  responses = await fetch(tableYear_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
+  trendDatas = await responses.json();
+
+  if(responses.status == 201)
+  {
+    Pastries.push(Object.values(trendDatas)[2]);
+  }
 
   if (response.status == 201 && trendData != undefined) {
     for(let x = 0;x < trendData.length;x++)
@@ -83,16 +139,15 @@ export async function getServerSideProps() {
   }
 
   return {
-    props:{fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday}
+    props:{fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries}
   }
 }
 
-export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday},props:InventoryProps) {
+export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries},props:InventoryProps) {
 
   let x = 0;
-
+  console.log(FreshProduce,PoultryMeat,Pastries);
   const filter = async (event) => {
-    console.log(event.target.value)
     if(event.target.value != "All")
     {
       window.location.replace("./../" + event.target.value.toLowerCase());
