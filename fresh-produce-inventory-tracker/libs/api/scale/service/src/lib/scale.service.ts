@@ -56,4 +56,13 @@ export class ScaleService {
   async removeScale(id: number, userId: number) {
     return await this.repo.removeScale(id, userId);
   }
+  async getAllProduce(id:number) {
+    const allScales = await this.repo.getAllProduce(id);
+    const produceList =[];
+    for(let i = 0; i < allScales.length; i++)
+    {
+      produceList.push(allScales[i].ProduceType)
+    }
+    return produceList;
+  }
 }
