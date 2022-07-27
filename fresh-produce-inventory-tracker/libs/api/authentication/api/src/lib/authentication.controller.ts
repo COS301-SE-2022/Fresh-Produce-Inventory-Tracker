@@ -8,9 +8,11 @@ export class AuthenticationController {
   async signup(
     @Body('email') email: string,
     @Body('password') password: string,
+    @Body('name') name: string,
+    @Body('surname') surname: string,
   ) {
     console.log(email, password);
-    return await this.AuthenticationService.signup(email, password);
+    return await this.AuthenticationService.signup(email, password, name, surname);
   }
   @Post('signin')
   signin(@Body('email') email: string, @Body('password') password: string) {
