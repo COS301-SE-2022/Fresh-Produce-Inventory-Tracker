@@ -61,6 +61,7 @@ void loop() {
   if (LoadCell.update()) newDataReady = true;
 
   // get smoothed value from the dataset:
+  //If value is valid d3 smoothen 
   if (newDataReady) {
     if (millis() > t + serialPrintInterval) {
       float i = LoadCell.getData();
@@ -68,6 +69,7 @@ void loop() {
       Serial.println(i);
       newDataReady = 0;
       t = millis();
+      u= 0 ;
     }
   }
 
