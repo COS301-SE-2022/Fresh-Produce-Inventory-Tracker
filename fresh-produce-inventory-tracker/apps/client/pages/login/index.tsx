@@ -7,6 +7,7 @@ import { useState, Fragment } from 'react';
 import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 import { CgSpinner } from 'react-icons/cg';
+import { signIn, useSession } from 'next-auth/react';
 /* eslint-disable-next-line */
 export interface LoginProps {}
 interface Login {
@@ -29,35 +30,34 @@ export function Login(props: LoginProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-
+  const { data: session } = useSession();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const handleLogin = (data: Login) => {
+  const handleLogin = async (data: LoginProps) => {
     setLoading(true);
     setMessage('');
     setError('');
-    fetch('http://localhost:3333/api/authentication/signin', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.statusCode >= 500) setError(Errors.serverError);
-        else if (data.statusCode >= 401) setError(Errors.loginError);
-        else setMessage(Success.login);
-      })
-      .catch((error) => {
-        setError(error.serverError);
-      });
+    const { status } = await signIn('credentials', {
+      ...data,
+      callbackUrl: `${window.location.origin}/`,
+      redirect: false,
+    });
     setLoading(false);
+    if (status === 200) {
+      router.push('/');
+      setError('');
+    } else if (status === 401) setError(Errors.loginError);
+    else if (status === 500) setError(Errors.serverError);
   };
+
+  if (session) {
+    router.push('/');
+    return;
+  }
 
   return (
     <div className="grid w-screen h-full min-h-screen p-2 place-content-center bg-base-300/40">
@@ -193,15 +193,18 @@ export function Login(props: LoginProps) {
         )}
 
         <div className="flex flex-col items-center mt-6">
-          <input
+          <button
             disabled={loading}
             type="submit"
             value="Sign in"
-            className="w-full px-1 py-2 font-light text-white rounded-md cursor-pointer disabled:bg-primary/80 bg-primary hover:bg-primary-focus"
-          />
-          {loading && (
-            <CgSpinner className="w-5 h-5 mt-3 text-secondary animate-spin" />
-          )}
+            className="flex items-center justify-center w-full px-1 py-2 font-light text-white rounded-md cursor-pointer disabled:bg-primary/80 bg-primary hover:bg-primary-focus"
+          >
+            {loading ? (
+              <CgSpinner className="w-5 h-5 mt-3 text-white animate-spin top-2" />
+            ) : (
+              'Sign in'
+            )}
+          </button>
           <p className="mt-4 text-sm text-center">
             {"Don't"} have an account yet?
             <Link href="/signup" passHref>
