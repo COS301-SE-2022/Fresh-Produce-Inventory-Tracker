@@ -9,75 +9,67 @@ export class TrendForYearService {
   async getTrendsForItem(userid: number, item: string) {
     return await this.repo.getTrendsForItem(userid, item);
   }
-  async getTrendsForItemAndMonth(id: number, producetype:string, month:number)
-  {
-    const trendForItem = await this.repo.getTrendsForItem(id,producetype);
-    if(trendForItem == null)
-    {
+  async getTrendsForItemAndMonth(
+    id: number,
+    producetype: string,
+    month: number
+  ) {
+    const trendForItem = await this.repo.getTrendsForItem(id, producetype);
+    if (trendForItem == null) {
       return null;
     }
-    const months = [31,29,31,30,31,30,31,31,30,31,30,31];
+    const months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     //console.log(trendForItem);
     let total = 0;
-    let i =0;
-    for(; i <= month-1;i++)
-    {
-      
-        total += months[i];
+    let i = 0;
+    for (; i <= month - 1; i++) {
+      total += months[i];
     }
-    const amountSales= [];
+    const amountSales = [];
     const average = [];
-    for(let k = total; k < (total+months[i]);k++)
-    {
-      amountSales.push(trendForItem.AmountSalesForYear[k])
-      average.push(trendForItem.AverageSalesAmountForYear[k]); 
+    for (let k = total; k < total + months[i]; k++) {
+      amountSales.push(trendForItem.AmountSalesForYear[k]);
+      average.push(trendForItem.AverageSalesAmountForYear[k]);
     }
     //console.log(average);
     return {
-      id : trendForItem.id,
-      produceType : trendForItem.ProduceType,
-      amountSalesForMonth : amountSales,
-      averageSalesForMonth :average,
-      dateOfSale : trendForItem.SaleDate,
-      lastRestock : trendForItem.LastRestock
-    }
-    
-
+      id: trendForItem.id,
+      produceType: trendForItem.ProduceType,
+      amountSalesForMonth: amountSales,
+      averageSalesForMonth: average,
+      dateOfSale: trendForItem.SaleDate,
+      lastRestock: trendForItem.LastRestock,
+    };
   }
 
-  async getMonthAverages(id: number, item:string)
-  {
+  async getMonthAverages(id: number, item: string) {
     let monthyValues;
     const amount = [];
     const average = [];
-    const months = [31,29,31,30,31,30,31,31,30,31,30,31];
-    for(let i = 0; i < 12;i++)
-    {
+    const months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    for (let i = 0; i < 12; i++) {
       let calculateForMonthAmount = 0;
       let calculateForMonthAverage = 0;
-      monthyValues = await this.getTrendsForItemAndMonth(id,item,i);
-      if(monthyValues == null) throw new NotFoundException();
-      for(let k = 0; k < months[i];k++)
-      {
-        calculateForMonthAmount = calculateForMonthAmount + monthyValues.amountSalesForMonth[k];
+      monthyValues = await this.getTrendsForItemAndMonth(id, item, i);
+      if (monthyValues == null) throw new NotFoundException();
+      for (let k = 0; k < months[i]; k++) {
+        calculateForMonthAmount =
+          calculateForMonthAmount + monthyValues.amountSalesForMonth[k];
         //console.log(calculateForMonthAmount);
-        calculateForMonthAverage = calculateForMonthAverage + monthyValues.averageSalesForMonth[k];
+        calculateForMonthAverage =
+          calculateForMonthAverage + monthyValues.averageSalesForMonth[k];
       }
 
       amount.push(calculateForMonthAmount);
       average.push(calculateForMonthAverage);
-
-      
     }
-    
+
     return {
-      id : id,
-      produceType : item,
-      averagesForMonths : average,
-      amountsforMonths :amount,
-    }
-    
-
+      id: id,
+      produceType: item,
+      averagesForMonths: average,
+      amountsforMonths: amount,
+    };
   }
 
   async getAll(userid: number) {
@@ -86,7 +78,7 @@ export class TrendForYearService {
   async updateYearTrend(user: number, scale: number) {
     //variables
     const Scale = await this.repo.getScaleTrend(scale);
-    if(scale == null) throw new NotFoundException("Scale not found");
+    if (scale == null) throw new NotFoundException('Scale not found');
     const weekdays = Scale.date;
     const weights = Scale.weight;
     let currentday = this.ChangetoNumber(weekdays[0]);
@@ -95,8 +87,6 @@ export class TrendForYearService {
     let dateOfRestock = weekdays[0];
     //loop through all weights
     for (let i = 1; i < weekdays.length; i++) {
-
-
       if (currentday == this.ChangetoNumber(weekdays[i])) {
         if (weekdays[i + 1]) {
           if (currentday == this.ChangetoNumber(weekdays[i + 1])) {
@@ -141,30 +131,31 @@ export class TrendForYearService {
           user,
           Scale.ProduceType
         );
-        if(trendsForDayAnditem == null) throw new NotFoundException("Trend not found");
+        if (trendsForDayAnditem == null)
+          throw new NotFoundException('Trend not found');
         let trending =
-          trendsForDayAnditem.AverageSalesAmountForYear[this.ChangetoNumber(weekdays[i])] *
-          trendsForDayAnditem.AmountSalesForYear[this.ChangetoNumber(weekdays[i])];
+          trendsForDayAnditem.AverageSalesAmountForYear[
+            this.ChangetoNumber(weekdays[i])
+          ] *
+          trendsForDayAnditem.AmountSalesForYear[
+            this.ChangetoNumber(weekdays[i])
+          ];
         trending = trending + totalweightForDay;
         if (trending != 0) {
-          const amountofDaysTotal = 1 + trendsForDayAnditem.AmountSalesForYear[this.ChangetoNumber(weekdays[i])];
+          const amountofDaysTotal =
+            1 +
+            trendsForDayAnditem.AmountSalesForYear[
+              this.ChangetoNumber(weekdays[i])
+            ];
           trending = trending / amountofDaysTotal;
           //update amount of days for calculations
           const year = trendsForDayAnditem.AmountSalesForYear;
           year[this.ChangetoNumber(weekdays[i])] = amountofDaysTotal;
-          await this.repo.updateAmountSales(
-            user,
-            Scale.ProduceType,
-            year
-          );
+          await this.repo.updateAmountSales(user, Scale.ProduceType, year);
           //update average produce on scale
           const average = trendsForDayAnditem.AverageSalesAmountForYear;
           average[this.ChangetoNumber(weekdays[i])] = trending;
-          await this.repo.updateTrendSales(
-            user,
-            Scale.ProduceType,
-            average
-          );
+          await this.repo.updateTrendSales(user, Scale.ProduceType, average);
           totalweightForDay = 0;
         }
       }
@@ -182,34 +173,35 @@ export class TrendForYearService {
         }
         //const Day = this.getDayNumber(weekdays[i].getDay());
         const trendsForDayAnditem = await this.repo.getTrendsForItem(
-            user,
-            Scale.ProduceType
-          );
-          if(trendsForDayAnditem == null) throw new NotFoundException("Trend not found");
-          let trending =
-            trendsForDayAnditem.AverageSalesAmountForYear[this.ChangetoNumber(weekdays[i])] *
-            trendsForDayAnditem.AmountSalesForYear[this.ChangetoNumber(weekdays[i])];
-          trending = trending + totalweightForDay;
-          if (trending != 0) {
-            const amountofDaysTotal = 1 + trendsForDayAnditem.AmountSalesForYear[this.ChangetoNumber(weekdays[i])];
-            trending = trending / amountofDaysTotal;
-            //update amount of days for calculations
-            const year = trendsForDayAnditem.AmountSalesForYear;
-            year[this.ChangetoNumber(weekdays[i])] = amountofDaysTotal;
-            await this.repo.updateAmountSales(
-              user,
-              Scale.ProduceType,
-              year
-            );
-            //update average produce on scale
-            const average = trendsForDayAnditem.AverageSalesAmountForYear;
-            average[this.ChangetoNumber(weekdays[i])] = trending;
-            await this.repo.updateTrendSales(
-              user,
-              Scale.ProduceType,
-              average
-            );
-            totalweightForDay = 0;
+          user,
+          Scale.ProduceType
+        );
+        if (trendsForDayAnditem == null)
+          throw new NotFoundException('Trend not found');
+        let trending =
+          trendsForDayAnditem.AverageSalesAmountForYear[
+            this.ChangetoNumber(weekdays[i])
+          ] *
+          trendsForDayAnditem.AmountSalesForYear[
+            this.ChangetoNumber(weekdays[i])
+          ];
+        trending = trending + totalweightForDay;
+        if (trending != 0) {
+          const amountofDaysTotal =
+            1 +
+            trendsForDayAnditem.AmountSalesForYear[
+              this.ChangetoNumber(weekdays[i])
+            ];
+          trending = trending / amountofDaysTotal;
+          //update amount of days for calculations
+          const year = trendsForDayAnditem.AmountSalesForYear;
+          year[this.ChangetoNumber(weekdays[i])] = amountofDaysTotal;
+          await this.repo.updateAmountSales(user, Scale.ProduceType, year);
+          //update average produce on scale
+          const average = trendsForDayAnditem.AverageSalesAmountForYear;
+          average[this.ChangetoNumber(weekdays[i])] = trending;
+          await this.repo.updateTrendSales(user, Scale.ProduceType, average);
+          totalweightForDay = 0;
         }
       }
       //const Day = this.getDayNumber(weekdays[i].getDay());
@@ -217,18 +209,15 @@ export class TrendForYearService {
         user,
         Scale.ProduceType
       );
-      if(trendsForDayAnditem == null) throw new NotFoundException("Trend not found");
+      if (trendsForDayAnditem == null)
+        throw new NotFoundException('Trend not found');
       const dateOfsale = trendsForDayAnditem.SaleDate;
       const restocking = trendsForDayAnditem.LastRestock;
       if (!dateOfsale || !restocking) {
         const timeForSale = new Date(
           dateOfRestock.getTime() + 5 * 24 * 60 * 60 * 1000
         );
-        await this.repo.updateDateofSale(
-          user,
-          Scale.ProduceType,
-          timeForSale
-        );
+        await this.repo.updateDateofSale(user, Scale.ProduceType, timeForSale);
         await this.repo.updateLastRestock(
           user,
           Scale.ProduceType,
@@ -252,11 +241,6 @@ export class TrendForYearService {
       currentday = weekdays[i].getDate();
     }
     //end of loop
-
-
-
-
-
 
     return await this.deleteAllScaleTrendData(
       scale,
@@ -354,18 +338,15 @@ export class TrendForYearService {
     }
     return weekday;
   }
-  ChangetoNumber(date:Date)
-  {
-    const months = [31,29,31,30,31,30,31,31,30,31,30,31];
+  ChangetoNumber(date: Date) {
+    const months = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const month = date.getMonth();
     const day = date.getDate();
     let total = 0;
-    for(let i =0; i <= month;i++)
-    {
-        total += months[i];
+    for (let i = 0; i <= month; i++) {
+      total += months[i];
     }
     total += day;
-    return total-1;
+    return total - 1;
   }
 }
-
