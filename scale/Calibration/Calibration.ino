@@ -39,7 +39,8 @@ void setup() {
   LoadCell.start(stabilizingtime, _tare);
   if (u ==1)
   {
-    /* code */
+     u= 0 ;
+     setup();
   }
   
   if (LoadCell.getTareTimeoutFlag() || LoadCell.getSignalTimeoutFlag()) {
