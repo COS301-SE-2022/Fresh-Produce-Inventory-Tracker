@@ -263,7 +263,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
     setTimeout(function () {
         fetchData();
         stateChange();
-    }, 10000);
+    }, 15000);
   }
 
   stateChange();
