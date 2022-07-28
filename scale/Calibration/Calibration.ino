@@ -41,6 +41,8 @@ void setup() {
   {
      u= 0 ;
      setup();
+     calibrate();
+     
   }
   
   if (LoadCell.getTareTimeoutFlag() || LoadCell.getSignalTimeoutFlag()) {
