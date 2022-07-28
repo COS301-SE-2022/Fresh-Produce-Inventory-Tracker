@@ -19,8 +19,10 @@ const int HX711_sck = 5; //mcu > HX711 sck pin -
 //HX711 constructor:
 HX711_ADC LoadCell(HX711_dout, HX711_sck);
 
+
 const int calVal_eepromAdress = 0;
 unsigned long t = 0;
+unsigned long u= 0 //demo3
 
 void setup() {
   /*
@@ -28,20 +30,26 @@ void setup() {
   */
   Serial.begin(57600); delay(10);
   Serial.println();
-  Serial.println("Starting...");
+  
 
   LoadCell.begin();
-  //LoadCell.setReverseOutput(); //uncomment to turn a negative output value to positive
+  LoadCell.setReverseOutput(); //scale must only return positives
   unsigned long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
   boolean _tare = true; //set this to false if you don't want tare to be performed in the next step
   LoadCell.start(stabilizingtime, _tare);
+  if (u ==1)
+  {
+     u= 0 ;
+     setup();
+  }
+  
   if (LoadCell.getTareTimeoutFlag() || LoadCell.getSignalTimeoutFlag()) {
     Serial.println("Timeout, check MCU>HX711 wiring and pin designations");
     while (1);
   }
   else {
     LoadCell.setCalFactor(1.0); // user set calibration value (float), initial value 1.0 may be used for this sketch
-    Serial.println("Startup is complete");
+    
   }
   while (!LoadCell.update());
   calibrate(); //start calibration procedure
@@ -54,13 +62,15 @@ void loop() {
   if (LoadCell.update()) newDataReady = true;
 
   // get smoothed value from the dataset:
+  //If value is valid d3 smoothen 
   if (newDataReady) {
     if (millis() > t + serialPrintInterval) {
       float i = LoadCell.getData();
-      Serial.print("Load_cell output val: ");
+      
       Serial.println(i);
       newDataReady = 0;
       t = millis();
+      u= 0 ; //
     }
   }
 
@@ -169,10 +179,14 @@ void changeSavedCalFactor() {
       }
     }
   }
+  /*
+  Remove code that requies input/output 
+  but note that each scale needs to be calabrated
+  */
   _resume = false;
-  Serial.print("Save this value to EEPROM adress ");
+  Serial.print("Save this value to EEPROM adress without showing this msg");
   Serial.print(calVal_eepromAdress);
-  Serial.println("? y/n");
+  Serial.println("?This will not print anymore y/n");
   while (_resume == false) {
     if (Serial.available() > 0) {
       char inByte = Serial.read();
@@ -185,18 +199,18 @@ void changeSavedCalFactor() {
         EEPROM.commit();
 #endif
         EEPROM.get(calVal_eepromAdress, newCalibrationValue);
-        Serial.print("Value ");
-        Serial.print(newCalibrationValue);
-        Serial.print(" saved to EEPROM address: ");
+       // Serial.print("Value wont be displayed");
+       // Serial.print(newCalibrationValue);
+       // Serial.print(" saved to EEPROM address: ");
         Serial.println(calVal_eepromAdress);
         _resume = true;
       }
       else if (inByte == 'n') {
-        Serial.println("Value not saved to EEPROM");
+       // Serial.println("Value not saved to EEPROM");
         _resume = true;
       }
     }
   }
-  Serial.println("End change calibration value");
-  Serial.println("***");
+  //Serial.println("End change calibration value");
+  //Serial.println("***");
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import { BiShow, BiHide } from 'react-icons/bi';
 import { MdOutlineDangerous, MdOutlineCheckCircle } from 'react-icons/md';
@@ -81,7 +82,7 @@ export function Login(props: LoginProps) {
 
         <div className="flex flex-col mt-6 gap-y-4">
           <div className="flex flex-col ">
-            <label htmlFor="email" className="text-xs font-light opacity-80">
+            <label htmlFor="email" className="text-xs">
               Email
             </label>
             <input
@@ -110,7 +111,7 @@ export function Login(props: LoginProps) {
           <div className="relative flex flex-col">
             <label
               htmlFor="password"
-              className="text-xs font-light opacity-80 "
+              className="text-xs"
             >
               Password
             </label>
