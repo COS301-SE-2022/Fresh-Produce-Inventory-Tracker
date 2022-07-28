@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "cypress:open": "cypress open"
   },
   "private": true,
   "dependencies": {
@@ -89,12 +90,11 @@
     "eslint": "~8.12.0",
     "eslint-config-next": "12.1.5",
     "eslint-config-prettier": "8.1.0",
-    "eslint-plugin-cypress": "^2.10.3",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-hooks": "4.5.0",
-    "jest": "27.5.1",
+    "jest": "^27.5.1",
     "less-loader": "10.2.0",
     "node-mocks-http": "^1.11.0",
     "nx": "^14.1.4",
