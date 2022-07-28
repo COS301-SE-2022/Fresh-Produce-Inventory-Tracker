@@ -12,6 +12,16 @@ export class profileController {
   ) {
     return this.service.getProfile(token);
   }
+
+  @Post('editprofile')
+  async editProfile(
+    @Body('token') token: string,
+    @Body('data') data: string,
+
+  ) {
+    return this.service.editProfile(token, data);
+  }
+
   @Post('editname')
   editName(@Body('id') id: number, @Body('name') name: string) {
     return this.service.editName(id, name);
