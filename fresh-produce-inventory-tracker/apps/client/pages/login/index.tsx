@@ -1,3 +1,4 @@
+/* eslint-disable react/no-children-prop */
 /* eslint-disable @next/next/no-img-element */
 import { BiShow, BiHide } from 'react-icons/bi';
 import { MdOutlineDangerous, MdOutlineCheckCircle } from 'react-icons/md';
@@ -8,6 +9,7 @@ import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 import { CgSpinner } from 'react-icons/cg';
 import { signIn, useSession } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react"
 /* eslint-disable-next-line */
 export interface LoginProps {}
 interface Login {
@@ -61,6 +63,7 @@ export function Login(props: LoginProps) {
 
   return (
     <div className="grid w-screen h-full min-h-screen p-2 place-content-center bg-base-300/40">
+      <SessionProvider session={session} children={''}></SessionProvider>
       <form
         onSubmit={handleSubmit(handleLogin)}
         className="w-full p-8 transition-all bg-white rounded-md shadow-md md:max-w-sm min-w-fit"
