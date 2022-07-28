@@ -19,14 +19,16 @@ export function Inventory(props: InventoryProps) {
 
   return (
     <div className="rounded-xl flex flex-wrap justify-between lg:max-w-[98%] px-4 py-10 bg-slate-50 mt-4 shadow-md">
-      <div className="flex items-center gap-x-4">
-        <span className="">Show</span>
-        <Select SHOW_ITEMS={SHOW_ITEMS} />
+      <div className="flex flex-col-reverse gap-y-4 md:items-center md:flex-row gap-x-4">
+        <div className="flex items-center gap-x-5">
+          <span className="text-sm md:text-base">Show</span>
+          <Select SHOW_ITEMS={SHOW_ITEMS} />
+        </div>
         <button
           onClick={() => setShowImageUpload(true)}
-          className="flex items-center text-white gap-x-2 btn btn-primary"
+          className="flex items-center justify-center w-full px-2 py-2 text-xs text-white rounded md:py-3 md:text-base gap-x-2 bg-primary"
         >
-          <IoAdd className="hidden w-4 h-4 text-white md:flex" />
+          <IoAdd className="w-4 h-4 text-white md:flex" />
           <span>Add Item</span>
         </button>
         <Modal
@@ -37,8 +39,8 @@ export function Inventory(props: InventoryProps) {
           description="Please select and upload an image for analysis."
         />
       </div>
-      <div className="flex items-center w-fit gap-x-4">
-        <p>Status</p>
+      <div className="flex items-center mt-2 w-fit gap-x-4 md:mt-0">
+        <p className="text-sm md:text-base">Status</p>
         <Select SHOW_ITEMS={['Expired', 'About to expire', 'New/Fresh']} />
       </div>
 
