@@ -9,9 +9,22 @@ import url from 'node:url';
 import { options } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { BiUser } from 'react-icons/bi';
-
+import { useForm } from 'react-hook-form';
+import { useSession } from 'next-auth/react';
+import { useState } from 'react';
+import { CgSpinner } from 'react-icons/cg';
+import Swal from 'sweetalert2';
 const taskUrl = `${process.env.BACKEND_URL}/api/tasks/gettasks`;
 const profileUrl = `${process.env.BACKEND_URL}/api/profile/getprofile`;
+const updateProfileUrl = `${process.env.BACKEND_URL}/api/profile/editProfile`;
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+});
 
 // export async function getStaticProps() {
 //   const Form = 'id=1';
@@ -80,12 +93,53 @@ export async function getServerSideProps(context) {
     props: {
       data: response.data,
       status: response.status,
+      accessToken: session?.accessToken?.toString(),
     },
   };
 }
 
-export function User({ data, status }) {
-  console.log(data);
+interface handleUpdateUserProfileProps {
+  firstName: string;
+  lastName: string;
+  bio: string;
+}
+
+export function User({ data, status, accessToken }) {
+  const [loadingUserProfileUpdate, setLoadingUserProfileUpdate] =
+    useState<boolean>(false);
+  const { data: session } = useSession();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  console.log(accessToken);
+
+  const handleUpdateUserProfile = async (
+    validatedData: handleUpdateUserProfileProps
+  ) => {
+    setLoadingUserProfileUpdate(true);
+    const params = new URLSearchParams();
+    params.append('token', session?.accessToken?.toString());
+    params.append('data', JSON.stringify(validatedData));
+    const { data, status } = await axios.post(
+      'http://localhost:3333/api/profile/editProfile',
+      params
+    );
+    if (status === 201) {
+      Toast.fire({
+        icon: 'success',
+        title: 'User information updated.',
+      });
+    } else if (status >= 500) {
+      Toast.fire({
+        icon: 'error',
+        title: 'Oops an error has occured.',
+      });
+    }
+
+    setLoadingUserProfileUpdate(false);
+  };
 
   if (status >= 500)
     return (
@@ -100,7 +154,10 @@ export function User({ data, status }) {
     <div className="p-4">
       <div className="grid w-full grid-cols-10 mt-4">
         <div className="col-span-10 xl:col-span-2">Peronal Information</div>
-        <div className="col-span-full md:col-span-5 xl:col-span-4">
+        <form
+          onSubmit={handleSubmit(handleUpdateUserProfile)}
+          className="col-span-full md:col-span-5 xl:col-span-4"
+        >
           <div className="flex items-end justify-between w-full mt-4 md:justify-start xl:mt-0 gap-x-4">
             <BiUser className="w-24 h-24 p-2 rounded bg-slate-300" />
             <button className="underline decoration-secondary text-secondary">
@@ -113,20 +170,32 @@ export function User({ data, status }) {
                 First Name(s)
               </label>
               <input
+                {...register('Name', { required: true })}
                 defaultValue={data?.Name}
                 type="text"
                 className="w-full p-2 rounded ring-1 ring-black"
               />
+              {errors['Name'] && (
+                <span className=" text-xs text-red-500">
+                  First Name is required
+                </span>
+              )}
             </div>
             <div className="flex flex-col gap-2">
               <label htmlFor="first-names" className="font-light">
                 Last Name
               </label>
               <input
+                {...register('Surname', { required: true })}
                 defaultValue={data?.Surname}
                 type="text"
                 className="w-full p-2 rounded ring-1 ring-black"
               />
+              {errors['Surname'] && (
+                <span className=" text-xs text-red-500">
+                  Last Name is required
+                </span>
+              )}
             </div>
           </div>
           <div className="flex flex-col w-full gap-2 mt-6">
@@ -134,16 +203,21 @@ export function User({ data, status }) {
               Bio
             </label>
             <textarea
+              {...register('Bio', { required: false })}
               defaultValue={data.Bio}
               className="w-full p-2 rounded ring-1 ring-black"
             />
           </div>
           <div className="mt-8">
             <button className="px-4 py-2 text-sm font-light text-white rounded bg-primary">
-              Save Changes
+              {loadingUserProfileUpdate ? (
+                <CgSpinner className="w-5 h-5 animate-spin" />
+              ) : (
+                'Save Changes'
+              )}
             </button>
           </div>
-        </div>
+        </form>
       </div>
       <div className="grid w-full grid-cols-10 mt-8">
         <div className="col-span-10 mt-2 xl:col-span-2">
@@ -151,7 +225,8 @@ export function User({ data, status }) {
         </div>
         <div className="col-span-full md:col-span-5 xl:col-span-4">
           <p className="px-4 py-2 mt-4 text-xs font-bold rounded xl:mt-0 bg-sky-100 text-sky-900">
-            ! To udpate password, fill in Current password, and New password.
+            ! To udpate password, fill in Current password, New password and
+            then click on Update Passord button.
           </p>
           <div className="flex flex-col justify-between gap-4 mt-4 md:flex-col">
             <div className="flex flex-col gap-2">
