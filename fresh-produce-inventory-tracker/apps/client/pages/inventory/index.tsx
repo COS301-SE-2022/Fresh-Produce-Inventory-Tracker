@@ -26,7 +26,7 @@ export function Inventory(props: InventoryProps) {
         </div>
         <button
           onClick={() => setShowImageUpload(true)}
-          className="flex items-center justify-center w-full px-2 py-2 text-xs text-white rounded md:py-3 md:text-base gap-x-2 bg-primary"
+          className="flex items-center justify-center w-full px-4 py-2 text-xs text-white rounded md:py-3 md:text-base gap-x-2 bg-primary"
         >
           <IoAdd className="w-4 h-4 text-white md:flex" />
           <span>Add Item</span>
