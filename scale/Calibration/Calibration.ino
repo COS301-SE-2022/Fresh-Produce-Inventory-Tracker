@@ -30,7 +30,7 @@ void setup() {
   */
   Serial.begin(57600); delay(10);
   Serial.println();
-  Serial.println("Starting...");
+  
 
   LoadCell.begin();
   LoadCell.setReverseOutput(); //scale must only return positives
@@ -48,7 +48,7 @@ void setup() {
   }
   else {
     LoadCell.setCalFactor(1.0); // user set calibration value (float), initial value 1.0 may be used for this sketch
-    Serial.println("Startup is complete");
+    
   }
   while (!LoadCell.update());
   calibrate(); //start calibration procedure
