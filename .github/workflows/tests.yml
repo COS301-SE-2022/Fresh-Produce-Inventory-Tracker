@@ -42,6 +42,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
              working-directory: fresh-produce-inventory-tracker
+             start: npm start
         
       - name: Full Unit test 
         if: inputs.test == 'full' || inputs.test == 'unit'
