@@ -38,14 +38,15 @@ jobs:
       - name: Install node
         run: npm install
         
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
         
       - name: Full Unit test 
         if: inputs.test == 'full' || inputs.test == 'unit'
         run: npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
         #working-directory: fresh-produce-inventory-tracker
     
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
+      
         #with:
              #working-directory: fresh-produce-inventory-tracker
 
