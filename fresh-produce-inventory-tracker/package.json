@@ -54,6 +54,8 @@
     "regenerator-runtime": "0.13.7",
     "rxjs": "^7.5.5",
     "sharp": "^0.30.6",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.4.24",
     "tslib": "^2.3.0",
     "whatwg-fetch": "^3.6.2"
   },

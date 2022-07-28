@@ -13,6 +13,12 @@ export class profileService {
     return this.repo.getprofile(id);
   }
 
+  async editProfile(token: string, data: string) {
+    const { id } = await this.jwt.verifyAsync(token, { secret: Buffer.from(process.env.JWT_SECRET).toString('base64') });
+    console.log(JSON.parse(data));
+    return this.repo.editProfile(id, JSON.parse(data));
+  }
+
   async editName(id: number, name: string) {
     return await this.repo.editName(id, name);
   }

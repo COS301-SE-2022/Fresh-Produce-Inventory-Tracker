@@ -1,3 +1,4 @@
+// import { data } from './../../../../../../apps/client/src/components/trends/index';
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 
@@ -17,6 +18,27 @@ export class profileRepository {
       }
     });
   }
+
+  async editProfile(id: number, data: {
+    Name: string,
+    Surname: string,
+    Bio: string,
+  }) {
+    return this.prisma.user.update({
+      where: {
+        id: +id,
+      },
+      data,
+      select: {
+        id: true,
+        Name: true,
+        Surname: true,
+        updatedAt: true,
+        Bio: true,
+      }
+    })
+  }
+
   async editName(id: number, name: string) {
     return await this.prisma.user.update({
       where: { id: +id }, data: { Name: name }

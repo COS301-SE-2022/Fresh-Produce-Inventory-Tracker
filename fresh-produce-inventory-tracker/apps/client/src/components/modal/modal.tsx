@@ -3,7 +3,8 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import CustomRadioButton from '../custom-radio-button/custom-radio-button';
 import { radioItem } from '../../interfaces';
-import {Loading} from '../loading/loading'
+import { Loading } from '../loading/loading';
+import Swal from 'sweetalert2';
 /* eslint-disable-next-line */
 export interface ModalProps {
   isOpen?: boolean;
@@ -31,6 +32,18 @@ const items: radioItem[] = [
 const upload_url = 'http://localhost:3333/api/image/uploadone';
 const freshness_url = 'http://localhost:3333/api/calcfreshness/predict';
 const add_task = 'http://localhost:3333/api/tasks/createtask';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  },
+});
 
 export function Modal(props: ModalProps) {
   const [image, setImage] = useState(null);
@@ -60,22 +73,25 @@ export function Modal(props: ModalProps) {
     })
       .then((response) => response.json())
       .then((data) => {
-        alert('Success, item added');
+        Toast.fire({
+          icon: 'success',
+          title: 'Success, item added to scale',
+        });
       })
-      .catch((error) => alert(`Opps, and error has occurred`));
+      .catch((error) =>
+        Toast.fire({ icon: 'error', title: `Opps, and error has occurred` })
+      );
   };
 
   const uploadImage = async (e) => {
     e.preventDefault();
-    
+
     const myHeaders = new Headers();
     myHeaders.append('Access-Control-Allow-Origin', '*');
-
 
     const form = new FormData();
     form.append('id', '1');
     form.append('image', image);
-
 
     const response = await fetch(upload_url, {
       method: 'POST',
@@ -86,13 +102,17 @@ export function Modal(props: ModalProps) {
     const file = await response.json();
 
     if (response.status == 201) {
-      alert('Image has been uploaded successfully');
+      Toast.fire({
+        icon: 'success',
+        title: 'Image was successfully uploaded.',
+      });
       checkFreshness(file);
       props.closeModal();
-      return;
-    } else if (response.status == 500) 
-    {
-      alert('Error, please make sure you have uploaded valid image format.');
+    } else if (response.status == 500) {
+      Toast.fire({
+        icon: 'error',
+        title: 'Error, please make sure you have uploaded valid image format.',
+      });
     }
   };
 
@@ -117,12 +137,10 @@ export function Modal(props: ModalProps) {
     if (response.status == 201) {
       setShowLoading(false);
       prediction = Object.values(prediction);
-      alert(
-        'This apple is a "' +
-          prediction[0] +
-          '" with a prediction accuracy of ' +
-          prediction[2] +
-          '%'
+      Swal.fire(
+        'Image Analysis',
+        `This image is a ${prediction[0]}, with accuracy of ${prediction[2]}%`,
+        'info'
       );
       if (prediction[0] == 'rotten apples') {
         createTask();
@@ -134,7 +152,10 @@ export function Modal(props: ModalProps) {
 
     if (response.status == 500) {
       setShowLoading(false);
-      alert('Error, please make sure you have uploaded valid image format.');
+      Toast.fire({
+        title: 'Error, please make sure you have uploaded valid image format.',
+        icon: 'error',
+      });
     }
   };
 
@@ -154,7 +175,11 @@ export function Modal(props: ModalProps) {
     }
 
     if (response.status == 500) {
-      alert('Error, please make sure you have uploaded valid image format.');
+      Swal.fire(
+        'Error',
+        'Please make sure you have uploaded valid image format.',
+        'error'
+      );
     }
   };
 
@@ -308,12 +333,12 @@ export function Modal(props: ModalProps) {
                       >
                         Upload Image
                       </button>
-                      <Loading 
-                      isOpen={showLoading}
-                      openLoading={() => setShowLoading(true)}
-                      closeLoading={() => setShowLoading(false)}
-                      title="Add New Item"
-                      description="Please select and upload an image for analysis."
+                      <Loading
+                        isOpen={showLoading}
+                        openLoading={() => setShowLoading(true)}
+                        closeLoading={() => setShowLoading(false)}
+                        title="Add New Item"
+                        description="Please select and upload an image for analysis."
                       />
                     </form>
                   </div>
