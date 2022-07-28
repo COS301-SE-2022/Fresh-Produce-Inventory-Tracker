@@ -36,7 +36,7 @@ jobs:
           node-version: '16'
 
       - name: Install node
-        run: npm install
+        run: npm init -y && npm install
         
       - name: Cypress run
         uses: cypress-io/github-action@v2
