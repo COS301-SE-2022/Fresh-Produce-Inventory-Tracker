@@ -170,7 +170,7 @@ export function Modal(props: ModalProps) {
         </button> */}
       </div>
 
-      <Transition appear show={props.isOpen} as={Fragment}>
+      <Transition appear show={props.isOpen?true:false} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={props.closeModal}>
           <Transition.Child
             as={Fragment}
