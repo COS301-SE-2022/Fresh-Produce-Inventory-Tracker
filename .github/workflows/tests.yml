@@ -38,6 +38,12 @@ jobs:
       - name: Install node
         run: npm install
         
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        with:
+          build: npm run build
+          start: npm start
+        
       - name: Full Unit test 
         if: inputs.test == 'full' || inputs.test == 'unit'
         run: npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
