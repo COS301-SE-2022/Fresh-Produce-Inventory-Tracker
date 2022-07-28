@@ -4,7 +4,7 @@ import Chart from './chart';
 
 describe('Chart', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Chart type={''} fruit={''} dataMonday={[[],[],[],[]]} dataTuesday={[[],[],[],[]]} dataWednesday={[[],[],[],[]]} dataThursday={[[],[],[],[]]} dataFriday={[[],[],[],[]]} dataSaturday={[[],[],[],[]]} dataSunday={[[],[],[],[]]} />);
+    const { baseElement } = render(<Chart type={''} fruit={''} dataMonday={[[], [], [], []]} dataTuesday={[[], [], [], []]} dataWednesday={[[], [], [], []]} dataThursday={[[], [], [], []]} dataFriday={[[], [], [], []]} dataSaturday={[[], [], [], []]} dataSunday={[[], [], [], []]} data={[[],[],[]]} lineData={[]} />);
     expect(baseElement).toBeTruthy();
   });
 });

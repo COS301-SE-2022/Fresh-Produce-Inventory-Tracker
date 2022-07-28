@@ -13,7 +13,7 @@ export interface LoadingProps {
 
 export function Loading(props: LoadingProps) {
   return (
-      <Transition appear show={props.isOpen} as={Fragment}>
+      <Transition appear show={props.isOpen ? true : false} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={props.closeLoading}>
           <Transition.Child
             as={Fragment}
