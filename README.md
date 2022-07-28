@@ -49,6 +49,9 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
    <a href  ="https://drive.google.com/file/d/1-Vug4W3nJhhOccLVoA_ljcki7rfBsimw/view?usp=sharing"> Scale demo</a><br/>
    
   <h3>Demo 3</h3>
+  <a href = "https://docs.google.com/document/d/1tho-qFZw2jMubtVi8FJlAP6OmhAaBQ_-/edit?usp=sharing&ouid=116169028314178640004&rtpof=true&sd=true">📄 Deployment Document v1</a><br/>
+  
+  
   <h3>Demo 4</h3>
   
 <h2 align="center">Project Board:</h2>
