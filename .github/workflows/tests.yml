@@ -15,9 +15,9 @@ jobs:
   build:
     name: main-tests
     runs-on: ubuntu-latest
-   # defaults:
-      #run:
-       # working-directory: ./fresh-produce-inventory-tracker
+    defaults:
+      run:
+        working-directory: ./fresh-produce-inventory-tracker
     steps:
        
       - name: Checkout develop
@@ -42,7 +42,7 @@ jobs:
       - name: Full Unit test 
         if: inputs.test == 'full' || inputs.test == 'unit'
         run: npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
-        working-directory: fresh-produce-inventory-tracker
+        #working-directory: fresh-produce-inventory-tracker
     
       - name: Cypress run
         uses: cypress-io/github-action@v2
