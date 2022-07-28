@@ -161,7 +161,7 @@ export function UserModal(props: UserModalProps) {
         </button> */}
       </div>
 
-      <Transition appear show={props.isOpen} as={Fragment}>
+      <Transition appear show={props.isOpen ? true:false} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={props.closeUserModal}>
           <Transition.Child
             as={Fragment}
