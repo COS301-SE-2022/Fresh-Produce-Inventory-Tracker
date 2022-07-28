@@ -36,7 +36,7 @@ jobs:
           node-version: '16'
 
       - name: Install node
-        run: npm init -y && npm install
+        run: npm install
         
         
       - name: Full Unit test 
