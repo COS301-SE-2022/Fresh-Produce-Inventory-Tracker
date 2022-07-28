@@ -159,6 +159,9 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
   let x = 0;
   const [type, setType] = useState("Bar");
   const [produce, setProduce] = useState("Fruit");
+  const [FP, setFP] = useState(FreshProduce);
+  const [M, setM] = useState(PoultryMeat);
+  const [P, setP] = useState(Pastries);
 
   const filter = async (event) => {
     if(event.target.value != "All")
@@ -186,6 +189,85 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
     }
   }
 
+  const [refresh, setR] = useState(false);
+
+  const fetchData = async () => {
+    FreshProduce = [];
+    PoultryMeat = [];
+    Pastries = [];
+    let Form = "userid=1&producetype=Fresh Produce"
+
+    let responses = await fetch(tableYear_api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: Form,
+    });
+
+    let trendDatas = await responses.json();
+
+    if(responses.status == 201)
+    {
+      for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
+      {
+        FreshProduce.push(Object.values(trendDatas)[2][x]);
+      }
+    }
+
+    Form = "userid=1&producetype=Poultry/Meat"
+
+    responses = await fetch(tableYear_api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: Form,
+    });
+
+    trendDatas = await responses.json();
+
+    if(responses.status == 201)
+    {
+      for(let x = 0;x < (Object.values(trendDatas)[2]).length;x++)
+      {
+        PoultryMeat.push(Object.values(trendDatas)[2][x]);
+      }
+    }
+
+    Form = "userid=1&producetype=Pastries"
+
+    responses = await fetch(tableYear_api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: Form,
+    });
+
+    trendDatas = await responses.json();
+
+    if(responses.status == 201)
+    {
+      for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
+      {
+        Pastries.push(Object.values(trendDatas)[2][x]);
+      }
+    }
+    setFP(FreshProduce);
+    setM(PoultryMeat);
+    setP(Pastries);
+  }
+
+  function stateChange() {
+    setTimeout(function () {
+        fetchData();
+        stateChange();
+    }, 10000);
+  }
+
+  stateChange();
+
   return (
       <div>
       <div className="grid m-2 content-center grid-cols-6">
@@ -194,14 +276,14 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
         </div>
         <div className="col-span-5"></div>
         <div>
-        <select onChange={filter} className="relative w-40 py-[.88rem] pl-3 pr-10 text-left bg-white  rounded-lg shadow-md cursor-default ring-black/20 ring-1 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+        <select onChange={filter} className="relative w-40 py-[.88rem] font-bold pl-3 pr-10 text-left bg-white  rounded-lg shadow-md cursor-default ring-black/20 ring-1 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
             {options.map(option => (
-              <option key={x++} value={option} className="absolute min-w-full mt-2 overflow-auto text-base bg-white rounded-lg shadow-lg w-fit max-h-64 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">{option}</option>
+              <option key={x++} value={option} className="absolute font-bold min-w-full mt-2 overflow-auto text-base bg-white rounded-lg shadow-lg w-fit max-h-64 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">{option}</option>
             ))}
           </select>
         </div>
       </div>
-      <Chart lineData={lineData} type={type} fruit={produce} data={[FreshProduce,PoultryMeat,Pastries]} dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
+      <Chart lineData={lineData} type={type} fruit={produce} data={[FP,M,P]} dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
     </div>
   );
 }

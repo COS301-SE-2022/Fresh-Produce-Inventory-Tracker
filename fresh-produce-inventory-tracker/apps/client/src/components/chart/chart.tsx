@@ -43,8 +43,6 @@ export interface ChartProps {
 
 export function Chart(props: ChartProps) {
 
-  console.log(props.lineData);
-
   const hasWindow = typeof window !== 'undefined';
 
   const width = hasWindow ? window.innerWidth : null;
