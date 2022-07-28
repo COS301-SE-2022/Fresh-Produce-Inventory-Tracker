@@ -50,7 +50,6 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
    
   <h3>Demo 3</h3>
   <a href = "https://docs.google.com/document/d/1tho-qFZw2jMubtVi8FJlAP6OmhAaBQ_-/edit?usp=sharing&ouid=116169028314178640004&rtpof=true&sd=true">📄 Deployment Document v1</a><br/>
-  https://docs.google.com/document/d/1tho-qFZw2jMubtVi8FJlAP6OmhAaBQ_-/edit?usp=sharing&ouid=116169028314178640004&rtpof=true&sd=true
   
   
   <h3>Demo 4</h3>
