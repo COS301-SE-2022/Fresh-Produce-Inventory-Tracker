@@ -52,6 +52,7 @@ public class main {
                 try {
                     String receivedData = serialPort.readString(event.getEventValue());
                     System.out.println(receivedData);
+                    //Look at data length to be able to add more to the scale
                     if(!receivedData.contains("-") && receivedData.length() < 3 && Integer.parseInt(receivedData) != weight && receivedData.length() == (weight+"").length())
                     {
                         if(Integer.parseInt(receivedData) == (weight-1) || Integer.parseInt(receivedData) == (weight-2) || Integer.parseInt(receivedData) == (weight+1) || Integer.parseInt(receivedData) == (weight+2))
@@ -83,11 +84,11 @@ public class main {
                     }
                 }
                 catch (SerialPortException ex) {
-                    System.out.println("Error in receiving string from COM-port: " + ex);
+                    System.out.println("Error in receiving string from COM-port: " + ex);//err
                 }
                 catch (InterruptedException | IOException ex)
                 {
-                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);//err
                 }
             }
             else
