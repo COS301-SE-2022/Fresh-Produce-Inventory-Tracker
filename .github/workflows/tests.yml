@@ -38,19 +38,16 @@ jobs:
       - name: Install node
         run: npm init -y && npm install
         
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        #with:
-             #working-directory: fresh-produce-inventory-tracker
         
       - name: Full Unit test 
         if: inputs.test == 'full' || inputs.test == 'unit'
         run: npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
         working-directory: fresh-produce-inventory-tracker
     
-      - name: Full E2E test 
-        if: inputs.test == 'full' || inputs.test == 'e2e'
-        run: npx nx run-many --target=e2e --all --skip-nx-cache --parallel --coverage
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        #with:
+             #working-directory: fresh-produce-inventory-tracker
 
       - name: merge coverage reports
         if: inputs.test == 'full'
