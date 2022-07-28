@@ -48,10 +48,24 @@ export function Chart(props: ChartProps) {
   const width = hasWindow ? window.innerWidth : null;
 
   console.log(width);
-  const FruitVeg = props.data[0];
-  const Meat = props.data[1];
-  const Pastries = props.data[2];
-  const Grapes = [];
+  let FruitVeg = [0,0,0,0,0,0,0,0,0,0,0,0];
+  let Meat = [0,0,0,0,0,0,0,0,0,0,0,0];
+  let Pastries = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+  if(props.data[0] != undefined)
+  {
+    FruitVeg = props.data[0];
+  }
+
+  if(props.data[1] != undefined)
+  {
+    Meat = props.data[1];
+  }
+
+  if(props.data[2] != undefined)
+  {
+    Pastries = props.data[2];
+  }
 
     if(props.type == "Bar")
     {
