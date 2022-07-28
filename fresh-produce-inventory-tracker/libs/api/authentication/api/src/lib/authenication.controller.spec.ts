@@ -19,8 +19,8 @@ Bio:string;
 Visibility:boolean;
 }
 class access{
-id: number; 
-Access:string;
+
+token:string;
 }
 const mockAccess : jest.Mocked<access> = new access() as access;
 //const errorPassmock : jest.Mocked<passincorrect> = new passincorrect() as passincorrect;
@@ -51,12 +51,12 @@ describe('AuthenticationController', () => {
     jest
       .spyOn(controller, 'signup')
       .mockImplementation(
-        () => Promise.resolve(MockApiImpl)
+        () => Promise.resolve(mockAccess)
       );
 
     expect(
-      await controller.signup('qwerty@gmail.com','12345')
-    ).toBe(MockApiImpl);
+      await controller.signup('qwerty@gmail.com','12345','','')
+    ).toBe(mockAccess);
   });
   it('should signin', async () => {
     jest
