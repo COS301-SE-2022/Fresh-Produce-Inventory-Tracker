@@ -103,13 +103,6 @@ void calibrate() {
   LoadCell.refreshDataSet(); //refresh the dataset to be sure that the known mass is measured correct
   float newCalibrationValue = LoadCell.getNewCalibration(known_mass); //get the new calibration value
 
-  Serial.print("New calibration value has been set to: ");
-  Serial.print(newCalibrationValue);
-  Serial.println(", use this as calibration value (calFactor) in your project sketch.");
-  Serial.print("Save this value to EEPROM adress ");
-  Serial.print(calVal_eepromAdress);
-  Serial.println("? y/n");
-
   _resume = false;
   while (_resume == false) {
     if (Serial.available() > 0) {
