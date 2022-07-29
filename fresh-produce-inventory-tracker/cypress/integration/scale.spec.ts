@@ -3,4 +3,9 @@ const scaledata = {
     userid : 1
   }
 
- 
+  describe('Notofication tests', () => {
+    it('get Notification ',()=>{
+        cy.request('POST','http://localhost:3333/api/scale/getscale',scaledata).as('getScale');
+        
+    });
+})
