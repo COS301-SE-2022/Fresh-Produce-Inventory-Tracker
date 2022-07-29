@@ -5,9 +5,9 @@ import {
   MdDashboard,
   MdOutlineInventory,
   MdOutlineTrendingDown,
-  MdOutlineSettingsApplications,
-  MdInventory2,
   MdInfo,
+  MdTask,
+  MdTaskAlt,
 } from 'react-icons/md';
 import Logo from '../logo/logo';
 import Navigation from '../navigation';
@@ -36,11 +36,9 @@ const Links = [
     ),
   },
   {
-    name: 'Settings',
-    link: '/settings',
-    icon: (
-      <MdOutlineSettingsApplications className="text-black/60 group-active:text-white" />
-    ),
+    name: 'Tasks',
+    link: '/task',
+    icon: <MdTaskAlt className="text-black/60 group-active:text-white" />,
   },
   {
     name: 'About',
