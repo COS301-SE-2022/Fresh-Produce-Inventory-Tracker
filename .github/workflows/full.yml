@@ -5,7 +5,11 @@ on:
     branches: [ main, develop, release/** ]
 
 jobs:
-  test-all:
+  unit-tests:
     uses: ./.github/workflows/tests.yml
+    with:
+      test: 'full'
+  integration-tests:
+    uses: ./.github/workflows/main.yml
     with:
       test: 'full'
