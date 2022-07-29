@@ -112,7 +112,7 @@ export function Task({
                     {loading ? (
                       <CgSpinner className="w-5 h-5 animate-spin" />
                     ) : (
-                      'Delete'
+                      'Complete Task'
                     )}
                   </button>
                 </div>
