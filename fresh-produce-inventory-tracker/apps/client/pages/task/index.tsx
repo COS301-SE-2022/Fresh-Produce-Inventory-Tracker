@@ -2,7 +2,6 @@ import axios from 'axios';
 import url from 'node:url';
 import { options } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
-import { data } from '@tensorflow/tfjs';
 const tasksUrl = `${process.env.BACKEN_URL}/api/tasks/gettasks`;
 
 export async function getServerSideProps(context) {
