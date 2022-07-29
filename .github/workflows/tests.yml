@@ -1,4 +1,4 @@
-name: main-tests
+name: unit-tests
 
 on:
   workflow_call:
@@ -38,28 +38,8 @@ jobs:
       - name: Install node
         run: npm install
         
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-             working-directory: fresh-produce-inventory-tracker
-             start: npm start
-        
       - name: Full Unit test 
         if: inputs.test == 'full' || inputs.test == 'unit'
         run: npx nx run-many --target=test --all --skip-nx-cache --parallel --coverage
         #working-directory: fresh-produce-inventory-tracker
-    
-      
-        
-
-      - name: merge coverage reports
-        if: inputs.test == 'full'
-        run: node ./tools/scripts/merge-report.js
-
-      - uses: codecov/codecov-action@v2
-        if: inputs.test == 'full' 
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/lcov.info
-          name: cypress-jest
 
