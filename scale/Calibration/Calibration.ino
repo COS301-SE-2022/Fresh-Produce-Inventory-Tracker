@@ -57,6 +57,7 @@ void setup() {
 void loop() {
   static boolean newDataReady = 0;
   const int serialPrintInterval = 0; //increase value to slow down serial print activity
+  static boolean isStable = true ;
 
   // check for new data/start next conversion:
   if (LoadCell.update()) newDataReady = true;
@@ -97,9 +98,6 @@ void calibrate() {
       _resume = true;
     }
   }
-
-
-
   LoadCell.refreshDataSet(); //refresh the dataset to be sure that the known mass is measured correct
   float newCalibrationValue = LoadCell.getNewCalibration(known_mass); //get the new calibration value
 
