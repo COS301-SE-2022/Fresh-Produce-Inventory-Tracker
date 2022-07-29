@@ -30,8 +30,6 @@ void setup() {
   */
   Serial.begin(57600); delay(10);
   Serial.println();
-  
-
   LoadCell.begin();
   LoadCell.setReverseOutput(); //scale must only return positives
   unsigned long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
@@ -68,11 +66,10 @@ void loop() {
   if (newDataReady) {
     if (millis() > t + serialPrintInterval) {
       float i = LoadCell.getData();
-      
       Serial.println(i);
       newDataReady = 0;
       t = millis();
-      u= 0 ; //
+      u= 0 ; 
     }
   }
 
@@ -83,24 +80,9 @@ void loop() {
     else if (inByte == 'r') calibrate(); //calibrate
     else if (inByte == 'c') changeSavedCalFactor(); //edit calibration value manually
   }
-
-  // check if last tare operation is complete
-  if (LoadCell.getTareStatus() == true) {
-    Serial.println("Tare complete");
-  }
-
 }
 
-
-
-
 void calibrate() {
-  Serial.println("***");
-  Serial.println("Start calibration:");
-  Serial.println("Place the load cell an a level stable surface.");
-  Serial.println("Remove any load applied to the load cell.");
-  Serial.println("Send 't' from serial monitor to set the tare offset.");
-
   boolean _resume = false;
   while (_resume == false) {
     LoadCell.update();
@@ -120,13 +102,6 @@ void calibrate() {
 
   LoadCell.refreshDataSet(); //refresh the dataset to be sure that the known mass is measured correct
   float newCalibrationValue = LoadCell.getNewCalibration(known_mass); //get the new calibration value
-
-  Serial.print("New calibration value has been set to: ");
-  Serial.print(newCalibrationValue);
-  Serial.println(", use this as calibration value (calFactor) in your project sketch.");
-  Serial.print("Save this value to EEPROM adress ");
-  Serial.print(calVal_eepromAdress);
-  Serial.println("? y/n");
 
   _resume = false;
   while (_resume == false) {

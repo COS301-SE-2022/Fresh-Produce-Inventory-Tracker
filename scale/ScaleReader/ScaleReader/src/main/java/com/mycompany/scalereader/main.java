@@ -91,7 +91,6 @@ public class main {
                     Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);//err
                 }
             }
-           
         }
     }
   
