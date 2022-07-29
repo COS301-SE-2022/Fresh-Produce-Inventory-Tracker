@@ -29,5 +29,9 @@ export class AuthenticationController {
   async editpassword(@Body('email') email: string, @Body('password') password: string) {
     return await this.AuthenticationService.editPassword(email, password);
   }
+  @Post('deleteuser')
+  async deleteuser(@Body('email') email: string) {
+    return await this.AuthenticationService.deleteUser(email);
+  }
 
 }

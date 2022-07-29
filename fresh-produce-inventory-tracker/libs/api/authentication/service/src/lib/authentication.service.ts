@@ -51,6 +51,14 @@ export class AuthenticationService {
     delete user.passwordSalt;
     return user;
   }
+  async deleteUser(email: string) {
+    const user = await this.repo.delete(email);
+    if (!user) throw new ForbiddenException('Email not found!');
+    delete user.password;
+    delete user.passwordSalt;
+    return user;
+  }
+  
   
   async editPassword(email: string, password: string) {
     const user = await this.repo.getUser(email);

@@ -5,14 +5,17 @@ import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.s
 export class AuthenicationRepository {
   constructor(private prisma: PrismaService) { }
   async getUser(@Param('id') email: string) {
-    return this.prisma.user.findUnique({ where: { email: email } });
+    return await this.prisma.user.findUnique({ where: { email: email } });
   }
   async createUser(email: string, password: string, salt: string, name: string, surname: string) {
-    return this.prisma.user.create({
+    return await this.prisma.user.create({
       data: { email: email, password: password, passwordSalt: salt, Name: name, Surname: surname }
     });
   }
   async editUser(id: number, data) {
-    return this.prisma.user.update({ where: { id: id }, data: data });
+    return await this.prisma.user.update({ where: { id: id }, data: data });
+  }
+  async delete(email:string) {
+    return await this.prisma.user.delete({ where: { email:email} });
   }
 }
