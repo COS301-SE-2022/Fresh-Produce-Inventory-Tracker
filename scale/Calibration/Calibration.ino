@@ -30,8 +30,6 @@ void setup() {
   */
   Serial.begin(57600); delay(10);
   Serial.println();
-  
-
   LoadCell.begin();
   LoadCell.setReverseOutput(); //scale must only return positives
   unsigned long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
@@ -68,11 +66,10 @@ void loop() {
   if (newDataReady) {
     if (millis() > t + serialPrintInterval) {
       float i = LoadCell.getData();
-      
       Serial.println(i);
       newDataReady = 0;
       t = millis();
-      u= 0 ; //
+      u= 0 ; 
     }
   }
 
@@ -86,7 +83,7 @@ void loop() {
 
   // check if last tare operation is complete
   if (LoadCell.getTareStatus() == true) {
-    Serial.println("Tare complete");
+    
   }
 
 }
