@@ -23,7 +23,7 @@ const profiledataname = {
     id :1,
     visibility:'true'
   }
-describe('Backend tests', () => {
+describe('profile tests', () => {
     it('get user profile ',()=>{
         cy.request('POST','http://localhost:3333/api/profile/getprofile',profiledata).as('getprofile');
         cy.get('@getprofile').then(data=>{
