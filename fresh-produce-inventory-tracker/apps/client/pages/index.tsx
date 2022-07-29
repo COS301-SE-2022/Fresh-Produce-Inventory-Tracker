@@ -27,7 +27,7 @@ export async function getServerSideProps(context) {
 
 export function Index() {
   return (
-    <div>
+    <div className="px-4">
       <Trends></Trends>
     </div>
   );
