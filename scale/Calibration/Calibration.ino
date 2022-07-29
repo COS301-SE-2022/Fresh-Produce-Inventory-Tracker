@@ -80,24 +80,9 @@ void loop() {
     else if (inByte == 'r') calibrate(); //calibrate
     else if (inByte == 'c') changeSavedCalFactor(); //edit calibration value manually
   }
-
-  // check if last tare operation is complete
-  if (LoadCell.getTareStatus() == true) {
-    
-  }
-
 }
 
-
-
-
 void calibrate() {
-  Serial.println("***");
-  Serial.println("Start calibration:");
-  Serial.println("Place the load cell an a level stable surface.");
-  Serial.println("Remove any load applied to the load cell.");
-  Serial.println("Send 't' from serial monitor to set the tare offset.");
-
   boolean _resume = false;
   while (_resume == false) {
     LoadCell.update();
