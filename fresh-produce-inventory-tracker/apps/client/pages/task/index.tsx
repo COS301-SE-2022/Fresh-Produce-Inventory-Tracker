@@ -87,8 +87,6 @@ export function Task({
     }
     setLoading(false);
   };
-
-  // console.log('tasks', data);
   return (
     <div className="p-4 ">
       <h2 className="text-lg">Tasks({data.length})</h2>
