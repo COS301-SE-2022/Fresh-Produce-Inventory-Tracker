@@ -176,7 +176,7 @@ export function User({ data, status, accessToken }) {
                 className="w-full p-2 rounded ring-1 ring-black"
               />
               {errors['Name'] && (
-                <span className=" text-xs text-red-500">
+                <span className="text-xs text-red-500 ">
                   First Name is required
                 </span>
               )}
@@ -192,7 +192,7 @@ export function User({ data, status, accessToken }) {
                 className="w-full p-2 rounded ring-1 ring-black"
               />
               {errors['Surname'] && (
-                <span className=" text-xs text-red-500">
+                <span className="text-xs text-red-500 ">
                   Last Name is required
                 </span>
               )}
@@ -209,7 +209,7 @@ export function User({ data, status, accessToken }) {
             />
           </div>
           <div className="mt-8">
-            <button className="px-4 py-2 text-sm font-light text-white rounded bg-primary">
+            <button className="px-4 py-2 text-sm font-light text-white btn btn-primary bg-primary">
               {loadingUserProfileUpdate ? (
                 <CgSpinner className="w-5 h-5 animate-spin" />
               ) : (
@@ -224,10 +224,28 @@ export function User({ data, status, accessToken }) {
           Account Information
         </div>
         <div className="col-span-full md:col-span-5 xl:col-span-4">
-          <p className="px-4 py-2 mt-4 text-xs font-bold rounded xl:mt-0 bg-sky-100 text-sky-900">
-            ! To udpate password, fill in Current password, New password and
-            then click on Update Passord button.
-          </p>
+          <p className="px-4 py-2 mt-4 text-xs font-bold rounded xl:mt-0 bg-sky-100 text-sky-900"></p>
+          <div className="shadow-lg alert alert-info">
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="flex-shrink-0 w-6 h-6 stroke-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+              <span className='text-white'>
+                To udpate password, fill in Current password, New password and
+                then click on Update Passord button..
+              </span>
+            </div>
+          </div>
           <div className="flex flex-col justify-between gap-4 mt-4 md:flex-col">
             <div className="flex flex-col gap-2">
               <label htmlFor="first-names" className="font-light">
@@ -275,7 +293,7 @@ export function User({ data, status, accessToken }) {
             </div>
           </div>
           <div className="mt-8">
-            <button className="px-4 py-2 text-sm font-light text-white rounded bg-primary">
+            <button className="px-4 py-2 text-sm font-light text-white btn btn-primary">
               Update Password
             </button>
           </div>

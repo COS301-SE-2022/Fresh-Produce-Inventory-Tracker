@@ -53,41 +53,53 @@ export function Trends(props: TrendsProps) {
         <div className="w-full">
           <div className="flex justify-between">
             <h2 className="text-lg">Statistics</h2>
-            <p className="text-xs text-black/50">last updated 05 June 2022</p>
+            <p className="text-xs">last updated 05 June 2022</p>
           </div>
-          <div className="grid grid-cols-2 mt-8 md:place-items-center md:grid-cols-4 gap-x-4 gap-y-8">
-            <TrendItem
-              icon={
+
+          <div className="w-full bg-neutral text-white shadow stats [-ms-overflow-style:none] mt-4 [scrollbar-width:none] [-webkit-scrollbar]:hidden">
+            <div className="stat">
+              <div className="stat-figure text-info">
                 <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info ring-1 ring-info" />
-              }
-              number={92}
-              type="Total items"
-            />
-            <TrendItem
-              icon={
+              </div>
+              <div className="stat-title">Total Items</div>
+              <div className="stat-value text-info">92</div>
+              <div className="stat-desc">21% more than last month</div>
+            </div>
+
+            <div className="stat">
+              <div className="stat-figure text-secondary">
                 <IoWarningOutline className="w-10 h-10 p-2 rounded-full text-warning ring-1 ring-warning" />
-              }
-              number={23}
-              type="About to expire"
-            />
-            <TrendItem
-              icon={
+              </div>
+              <div className="stat-title">About To Expire</div>
+              <div className="stat-value text-warning">24</div>
+              <div className="stat-desc">21% more than last month</div>
+            </div>
+
+            <div className="stat">
+              <div className="stat-figure text-secondary">
                 <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error ring-1 ring-error" />
-              }
-              number={10}
-              type="Expired"
-            />
-            <TrendItem
-              icon={
-                <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-success ring-1 ring-success" />
-              }
-              number={25}
-              type="New items"
-            />
+              </div>
+              <div className="stat-title">Expired</div>
+              <div className="stat-value text-secondary">2.6M</div>
+              <div className="stat-desc">21% more than last month</div>
+            </div>
+
+            <div className="stat">
+              <div className="stat-figure text-secondary">
+                <div className="avatar online">
+                  <div className="w-16 rounded-full">
+                    <img src="https://placeimg.com/128/128/people" />
+                  </div>
+                </div>
+              </div>
+              <div className="stat-value">86%</div>
+              <div className="stat-title">Tasks complete</div>
+              <div className="stat-desc text-secondary">3 tasks remaining</div>
+            </div>
           </div>
           <div className="mt-8">
             <Link href="/inventory" passHref>
-              <span className="flex items-center px-4 py-2 text-sm transition-all rounded-md cursor-pointer w-fit hover:bg-primary/10 group">
+              <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-neutral/10 hover:bg-neutral/30">
                 View Inventory
                 <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
               </span>

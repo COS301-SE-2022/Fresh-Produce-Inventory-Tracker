@@ -38,11 +38,6 @@ export function Navigation(props: NavigationProps) {
             <GiHamburgerMenu className="w-full h-full cursor-pointer pointer-events-none"></GiHamburgerMenu>
           </label>
 
-          <Link href="/notifications" passHref>
-            <span className="hidden md:flex">
-              <Check data={[]}></Check>
-            </span>
-          </Link>
 
           <div className="flex items-center cursor-pointer gap-x-2">
             <div className="flex-col hidden text-right md:flex">
@@ -51,11 +46,26 @@ export function Navigation(props: NavigationProps) {
                 {session?.user?.email}
               </label>
             </div>
-            <Link href="/user" passHref>
-              <span>
+
+            <div className="dropdown dropdown-end">
+              <button tabIndex={0}>
                 <RiUser3Line className="w-10 h-10 p-2 bg-blue-200 rounded-full cursor-pointer" />
-              </span>
-            </Link>
+              </button>
+              <ul
+                tabIndex={0}
+                className="p-4 space-y-4 text-white shadow dropdown-content menu bg-neutral rounded-box w-52"
+              >
+                <Link href="/user" passHref>
+                  Profile
+                </Link>
+                <Link href="/notifications" passHref>
+                  Notifications
+                </Link>
+                <Link href="/logout" passHref>
+                  Logout
+                </Link>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
