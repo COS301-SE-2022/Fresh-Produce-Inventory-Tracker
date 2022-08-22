@@ -1,10 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
+import { Fragment, useState } from 'react';
+import { Transition } from '@headlessui/react';
+import { MdOutlineDangerous } from 'react-icons/md';
+import { CgSpinner } from 'react-icons/cg';
 /* eslint-disable-next-line */
 export interface SignupProps {}
 interface Signup {
-  firstName: string;
+  name: string;
   surname: string;
   email: string;
   password: string;
@@ -14,6 +18,8 @@ interface Signup {
 const api_url = 'http://localhost:3333/api/authentication/signup';
 
 export function Signup(props: SignupProps) {
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -21,13 +27,14 @@ export function Signup(props: SignupProps) {
   } = useForm();
 
   const handleSignup = async (data: Signup) => {
-    const form = new FormData();
-    form.append('name', data.firstName);
-    form.append('email', data.email);
-    form.append('password', data.password);
-    const Form = 'email=' + data.email + '&password=' + data.password;
-    console.log(Form);
+    setError('');
+    if (data.password !== data['confirm-password']) {
+      setError("Passwords don't match");
+      return;
+    }
+    const Form = `email=${data.email}&password=${data.password}&name=${data.name}&surname=${data.surname}`;
 
+    setLoading(true);
     const response = await fetch(api_url, {
       method: 'POST',
       headers: {
@@ -35,14 +42,19 @@ export function Signup(props: SignupProps) {
       },
       body: Form,
     });
-
+    setLoading(false);
     if (response.status == 201) {
       window.location.replace('../login');
       return;
     }
 
+    if (response.status == 409) {
+      setError('Email already exists');
+      return;
+    }
+
     if (response.status == 500) {
-      alert('User is already in the system, please try again!');
+      setError('Internal server error, please try again later');
     }
   };
 
@@ -137,10 +149,7 @@ export function Signup(props: SignupProps) {
             </div>
           </div>
           <div className="flex flex-col">
-            <label
-              htmlFor="password"
-              className="text-xs "
-            >
+            <label htmlFor="password" className="text-xs ">
               Password
             </label>
             <input
@@ -161,10 +170,7 @@ export function Signup(props: SignupProps) {
             </div>
           </div>
           <div className="flex flex-col">
-            <label
-              htmlFor="password"
-              className="text-xs "
-            >
+            <label htmlFor="password" className="text-xs ">
               Confirm Password
             </label>
             <input
@@ -186,12 +192,45 @@ export function Signup(props: SignupProps) {
           </div>
         </div>
 
+        {error.length > 0 && (
+          <Transition
+            as={Fragment}
+            appear={true}
+            show={true}
+            enter="transform transition duration-[200ms]"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="transform duration-200 transition ease-in-out"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95 "
+          >
+            <div
+              tabIndex={0}
+              className="mt-4 text-sm rounded-md shadow-lg alert bg-error/20"
+            >
+              <div>
+                <MdOutlineDangerous className="w-5 h-5 text-rose-700" />
+                <span role="error-alert" className="font-medium text-rose-700">
+                  {error}
+                </span>
+              </div>
+            </div>
+          </Transition>
+        )}
+
         <div className="mt-6">
-          <input
+          <button
+            disabled={loading}
             type="submit"
             value="Signup"
-            className="w-full px-1 py-2 font-light text-white rounded-md cursor-pointer bg-primary hover:bg-primary-focus"
-          />
+            className="flex items-center justify-center w-full px-1 py-2 font-light text-white rounded-md cursor-pointer disabled:bg-primary/80 bg-primary hover:bg-primary-focus"
+          >
+            {loading ? (
+              <CgSpinner className="w-5 h-5 mt-3 text-white animate-spin top-2" />
+            ) : (
+              'Sign in'
+            )}
+          </button>
           <p className="mt-4 text-sm text-center">
             Already have an account with us?
             <Link href="/login" passHref>
