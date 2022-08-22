@@ -11,8 +11,7 @@ export class AuthenticationController {
     @Body('name') name: string,
     @Body('surname') surname: string,
   ) {
-    console.log(email, password);
-    return await this.AuthenticationService.signup(email, password, name, surname);
+    return this.AuthenticationService.signup(email, password, name, surname);
   }
   @Post('signin')
   signin(@Body('email') email: string, @Body('password') password: string) {
@@ -23,15 +22,15 @@ export class AuthenticationController {
   }
   @Post('resetpassword')
   async resetPassword(@Body('email') email: string) {
-    return await this.AuthenticationService.getUser(email);
+    return this.AuthenticationService.getUser(email);
   }
   @Post('editpassword')
   async editpassword(@Body('email') email: string, @Body('password') password: string) {
-    return await this.AuthenticationService.editPassword(email, password);
+    return this.AuthenticationService.editPassword(email, password);
   }
   @Post('deleteuser')
   async deleteuser(@Body('email') email: string) {
-    return await this.AuthenticationService.deleteUser(email);
+    return this.AuthenticationService.deleteUser(email);
   }
 
 }
