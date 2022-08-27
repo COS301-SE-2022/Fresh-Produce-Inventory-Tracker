@@ -4,7 +4,7 @@ import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Login from './index';
+import { Login } from './index';
 import 'whatwg-fetch';
 
 describe('Login page test', () => {
