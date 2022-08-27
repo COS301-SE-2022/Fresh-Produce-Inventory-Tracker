@@ -5,10 +5,9 @@ import InventoryTable from '../inventory-table/inventory-table';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const data = {
-  labels: [],
+  labels: ["Total Items", "About to expire", "Expired"],
   datasets: [
     {
-      label: '# of Votes',
       data: [12, 19, 3, 5],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',

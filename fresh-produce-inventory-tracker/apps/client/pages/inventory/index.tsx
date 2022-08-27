@@ -1,10 +1,9 @@
-import Select from '../../src/components/select';
 import { IoAdd } from 'react-icons/io5';
 import InventoryTable from '../../src/components/inventory-table/inventory-table';
 import Modal from '../../src/components/modal/modal';
 import { useState } from 'react';
-/* eslint-disable-next-line */
-export interface InventoryProps {}
+import { unstable_getServerSession } from 'next-auth/next';
+import { options } from '../api/auth/[...nextauth]';
 
 enum SHOW_ITEMS {
   '10 Items' = '10 Items',
@@ -18,7 +17,31 @@ enum SELECT_STATUS {
   'New/Fresh' = 'New/Fresh',
 }
 
-export function Inventory(props: InventoryProps) {
+
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    options
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      session,
+    },
+  };
+}
+
+export function Inventory() {
   const [showImageUpload, setShowImageUpload] = useState(false);
 
   return (
