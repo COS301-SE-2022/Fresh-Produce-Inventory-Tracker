@@ -63,4 +63,9 @@ import {
     seeUploadedFile(@Param('imgpath') image, @Res() res) {
       return res.sendFile(image, { root: './files' });
     }
+    @Post('delete')
+    async deletePicture(@Param('path') path: string) {
+     await this.service.deletePicture(path);
+    }
   }
+ 
