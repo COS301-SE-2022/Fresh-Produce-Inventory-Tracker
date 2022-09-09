@@ -53,4 +53,30 @@ describe('ImagesController', () => {
             await repo.getTrendsForItem(1, "apple")
         ).toBe(MockApiImpl);
     });
+
+    it('should get all trends for person', async () => {
+        jest
+            .spyOn(repo, 'getAll')
+            .mockImplementation(
+                () => Promise.resolve([MockApiImpl])
+            );
+
+        expect(
+            await repo.getAll(1)
+        ).toStrictEqual([MockApiImpl]);
+
+    });
+
+    it('should create trend', async () => {
+        jest
+            .spyOn(repo, 'createTrend')
+            .mockImplementation(
+                (): Promise<trendForYear | null> => Promise.resolve(MockApiImpl)
+            );
+
+        expect(
+            await repo.createTrend(1, "apple")
+        ).toBe(MockApiImpl);
+
+    });
 });
