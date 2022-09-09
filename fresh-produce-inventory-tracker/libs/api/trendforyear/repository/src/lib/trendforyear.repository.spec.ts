@@ -157,4 +157,30 @@ describe('ImagesController', () => {
         ).toBe(Mockplayload);
 
     });
+
+    it('should get scale trend', async () => {
+        jest
+            .spyOn(repo, 'getScaleTrend')
+            .mockImplementation(
+                () => Promise.resolve(MockScaleTrend)
+            );
+
+        expect(
+            await repo.getScaleTrend(1)
+        ).toEqual(MockApiImpl);
+
+    });
+
+    it('should delete all scale trend data', async () => {
+        jest
+            .spyOn(repo, 'deleteAllScaleTrendData')
+            .mockImplementation(
+                () => Promise.resolve(Mockplayload)
+            );
+
+        expect(
+            await repo.deleteAllScaleTrendData(1, "apple", new Date(), 1)
+        ).toEqual(MockApiImpl);
+
+    });
 });
