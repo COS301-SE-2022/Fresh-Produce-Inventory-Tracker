@@ -72,4 +72,12 @@ describe('Trend Controller tests', () => {
 
     expect(await controller.updateTrend(1, 2)).toStrictEqual(null);
   });
+
+  it('should delete all scale trend data', async () => {
+    jest
+      .spyOn(controller, 'deleteAllScaleTrendData')
+      .mockImplementation(() => Promise.resolve(null));
+
+    expect(await controller.deleteAllScaleTrendData(1, "apple", new Date(), 1)).toBe(null);
+  });
 });
