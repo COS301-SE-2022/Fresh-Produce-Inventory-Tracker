@@ -55,4 +55,23 @@ describe('Trend Controller tests', () => {
 
         expect(await controller.getAll(1)).toStrictEqual([MockApiImpl]);
     });
+
+
+    it('should update year trends for person', async () => {
+        jest
+            .spyOn(controller, 'updateYearTrend')
+            .mockImplementation(() => Promise.resolve(null));
+
+        expect(
+            await controller.updateYearTrend(1, 2)
+        ).toStrictEqual(null);
+    });
+
+    it('should delete all scale trend data', async () => {
+        jest
+            .spyOn(controller, 'deleteAllScaleTrendData')
+            .mockImplementation(() => Promise.resolve(null));
+
+        expect(await controller.deleteAllScaleTrendData(1, "apple", new Date(), 1)).toBe(null);
+    });
 });
