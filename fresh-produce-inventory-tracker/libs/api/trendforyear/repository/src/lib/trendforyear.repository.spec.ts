@@ -105,4 +105,30 @@ describe('ImagesController', () => {
         ).toBe(Mockplayload);
 
     });
+
+    it('should update last restock', async () => {
+        jest
+            .spyOn(repo, 'updateLastRestock')
+            .mockImplementation(
+                () => Promise.resolve(Mockplayload)
+            );
+
+        expect(
+            await repo.updateLastRestock(1, "apple", new Date())
+        ).toEqual(MockApiImpl);
+
+    });
+
+    it('should delete trend', async () => {
+        jest
+            .spyOn(repo, 'deleteTrend')
+            .mockImplementation(
+                () => Promise.resolve(Mockplayload)
+            );
+
+        expect(
+            await repo.deleteTrend(1, "apple")
+        ).toEqual(MockApiImpl);
+
+    });
 });
