@@ -131,4 +131,30 @@ describe('ImagesController', () => {
         ).toEqual(MockApiImpl);
 
     });
+
+    it('should get sales amount', async () => {
+        jest
+            .spyOn(repo, 'getSalesAmount')
+            .mockImplementation(
+                () => Promise.resolve(Mocknumber)
+            );
+
+        expect(
+            await repo.getSalesAmount(1, "apple")
+        ).toEqual(Mocknumber);
+
+    });
+
+    it('should update amount sales', async () => {
+        jest
+            .spyOn(repo, 'updateAmountSales')
+            .mockImplementation(
+                () => Promise.resolve(Mockplayload)
+            );
+
+        expect(
+            await repo.updateAmountSales(1, "apple", [10, 5, 5])
+        ).toBe(Mockplayload);
+
+    });
 });
