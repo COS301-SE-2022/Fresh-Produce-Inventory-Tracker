@@ -79,4 +79,30 @@ describe('ImagesController', () => {
         ).toBe(MockApiImpl);
 
     });
+
+    it('should update trend', async () => {
+        jest
+            .spyOn(repo, 'updateTrendSales')
+            .mockImplementation(
+                () => Promise.resolve(Mockplayload)
+            );
+
+        expect(
+            await repo.updateTrendSales(1, "apple", [15, 10, 25])
+        ).toBe(Mockplayload);
+
+    });
+
+    it('should update date of sale', async () => {
+        jest
+            .spyOn(repo, 'updateDateofSale')
+            .mockImplementation(
+                () => Promise.resolve(Mockplayload)
+            );
+
+        expect(
+            await repo.updateDateofSale(1, "apple", new Date())
+        ).toBe(Mockplayload);
+
+    });
 });
