@@ -36,4 +36,23 @@ describe('Trend Controller tests', () => {
         expect(await controller.getTrendsForItemAndMonth(1, 'apple', 1)).toBe(MockApiImpl);
     });
 
+    it('should get month averages', async () => {
+        jest
+            .spyOn(controller, 'getMonthAverages')
+            .mockImplementation(
+                (): Promise<trendForYear | null> => Promise.resolve(MockApiImpl)
+            );
+
+        expect(await controller.getMonthAverages(1, 'apple')).toBe(
+            MockApiImpl
+        );
+    });
+
+    it('should get all trends for person', async () => {
+        jest
+            .spyOn(controller, 'getAll')
+            .mockImplementation(() => Promise.resolve([MockApiImpl]));
+
+        expect(await controller.getAll(1)).toStrictEqual([MockApiImpl]);
+    });
 });
