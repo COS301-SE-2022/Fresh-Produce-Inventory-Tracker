@@ -183,173 +183,232 @@ export function Modal(props: ModalProps) {
     }
   };
 
-  return (
-    <>
-      <div className="flex items-center justify-center ">
-        {/* <button
-          type="button"
-          onClick={props.openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button> */}
-      </div>
-
-      <Transition appear show={props.isOpen?true:false} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={props.closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
+    
+  if(props.title == "Check Freshness")
+  {
+    return (
+      <>
+        <div className="flex items-center justify-center ">
+          {/* <button
+            type="button"
+            onClick={props.openModal}
+            className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
+            Open dialog
+          </button> */}
+        </div>
 
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex items-center justify-center min-h-full p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    {props.title}
-                  </Dialog.Title>
+        <Transition appear show={props.isOpen?true:false} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={props.closeModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
 
-                  <form onSubmit={addScaleItem}>
-                    <div className="mt-4 space-y-4">
-                      <div className="flex flex-col">
-                        <label htmlFor="name" className="text-sm opacity-70">
-                          Name
-                        </label>
-                        <input
-                          id="name"
-                          name="name"
-                          className="p-2 mt-1 rounded ring-1 ring-black/50"
-                          type="text"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label
-                          htmlFor="description"
-                          className="text-sm opacity-70"
-                        >
-                          Description
-                        </label>
-                        <input
-                          id="description"
-                          name="description"
-                          className="p-2 mt-1 rounded ring-1 ring-black/50"
-                          type="text"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <label className="mb-1 text-sm opacity-70">
-                          Produce Type
-                        </label>
-                        <CustomRadioButton
-                          setSelected={setSelectedType}
-                          selected={selectedType}
-                          items={items}
-                        />
-                      </div>
-                      <div className="flex flex-col justify-between gap-y-4 md:flex-row">
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="item_weight"
-                            className="text-sm opacity-70"
-                          >
-                            Item Weight
-                          </label>
-                          <input
-                            id="item_weight"
-                            name="item_weight"
-                            className="p-2 mt-1 rounded ring-1 ring-black/50"
-                            type="text"
-                          />
-                        </div>
-                        <div className="flex flex-col">
-                          <label
-                            htmlFor="total_weight"
-                            className="text-sm opacity-70"
-                          >
-                            Total Weight
-                          </label>
-                          <input
-                            id="total_weight"
-                            name="total_weight"
-                            className="p-2 mt-1 rounded ring-1 ring-black/50"
-                            type="text"
-                          />
-                        </div>
-                      </div>
-                      <div className="flex flex-col justify-between md:items-center md:flex-row">
-                        <p className="text-sm text-gray-500">
-                          Please click the submit add item to scale
-                        </p>
-                        <input
-                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md cursor-pointer hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                          type="submit"
-                          value="Add Scale"
-                        />
-                      </div>
-                    </div>
-                  </form>
-
-                  <div className="mt-6">
-                    <p className="text-sm text-gray-500">{props.description}</p>
-                  </div>
-
-                  <div className="mt-4">
-                    <form
-                      onSubmit={uploadImage}
-                      className="flex flex-col w-full md:items-center md:justify-between gap-y-2 md:flex-row"
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex items-center justify-center min-h-full p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900"
                     >
-                      <label className="block">
-                        <span className="sr-only">Choose profile photo</span>
-                        <input
-                          required
-                          onChange={onImageChange}
-                          type="file"
-                          className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-secondary/20 file:text-secondary hover:file:bg-violet-100 "
-                          capture="environment"
-                        />
-                      </label>
-                      <button
-                        type="submit"
-                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      {props.title}
+                    </Dialog.Title>
+
+                    <div className="mt-6">
+                      <p className="text-sm text-gray-500">{props.description}</p>
+                    </div>
+
+                    <div className="mt-4">
+                      <form
+                        onSubmit={uploadImage}
+                        className="flex flex-col w-full md:items-center md:justify-between gap-y-2 md:flex-row"
                       >
-                        Upload Image
-                      </button>
-                      <Loading
-                        isOpen={showLoading}
-                        openLoading={() => setShowLoading(true)}
-                        closeLoading={() => setShowLoading(false)}
-                        title="Add New Item"
-                        description="Please select and upload an image for analysis."
-                      />
-                    </form>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
+                        <label className="block">
+                          <span className="sr-only">Choose profile photo</span>
+                          <input
+                            required
+                            onChange={onImageChange}
+                            type="file"
+                            className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-secondary/20 file:text-secondary hover:file:bg-violet-100 "
+                            capture="environment"
+                          />
+                        </label>
+                        <button
+                          type="submit"
+                          className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        >
+                          Upload Image
+                        </button>
+                        <Loading
+                          isOpen={showLoading}
+                          openLoading={() => setShowLoading(true)}
+                          closeLoading={() => setShowLoading(false)}
+                          title="Add New Item"
+                          description="Please select and upload an image for analysis."
+                        />
+                      </form>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
             </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
-  );
+          </Dialog>
+        </Transition>
+      </>
+    );
+  }
+  else
+  {
+    return (
+      <>
+        <div className="flex items-center justify-center ">
+          {/* <button
+            type="button"
+            onClick={props.openModal}
+            className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          >
+            Open dialog
+          </button> */}
+        </div>
+
+        <Transition appear show={props.isOpen?true:false} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={props.closeModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex items-center justify-center min-h-full p-4 text-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full max-w-lg p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                      {props.title}
+                    </Dialog.Title>
+
+                    <form onSubmit={addScaleItem}>
+                      <div className="mt-4 space-y-4">
+                        <div className="flex flex-col">
+                          <label htmlFor="name" className="text-sm opacity-70">
+                            Name
+                          </label>
+                          <input
+                            id="name"
+                            name="name"
+                            className="p-2 mt-1 rounded ring-1 ring-black/50"
+                            type="text"
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <label
+                            htmlFor="description"
+                            className="text-sm opacity-70"
+                          >
+                            Description
+                          </label>
+                          <input
+                            id="description"
+                            name="description"
+                            className="p-2 mt-1 rounded ring-1 ring-black/50"
+                            type="text"
+                          />
+                        </div>
+                        <div className="flex flex-col">
+                          <label className="mb-1 text-sm opacity-70">
+                            Produce Type
+                          </label>
+                          <CustomRadioButton
+                            setSelected={setSelectedType}
+                            selected={selectedType}
+                            items={items}
+                          />
+                        </div>
+                        <div className="flex flex-col justify-between gap-y-4 md:flex-row">
+                          <div className="flex flex-col">
+                            <label
+                              htmlFor="item_weight"
+                              className="text-sm opacity-70"
+                            >
+                              Item Weight
+                            </label>
+                            <input
+                              id="item_weight"
+                              name="item_weight"
+                              className="p-2 mt-1 rounded ring-1 ring-black/50"
+                              type="text"
+                            />
+                          </div>
+                          <div className="flex flex-col">
+                            <label
+                              htmlFor="total_weight"
+                              className="text-sm opacity-70"
+                            >
+                              Total Weight
+                            </label>
+                            <input
+                              id="total_weight"
+                              name="total_weight"
+                              className="p-2 mt-1 rounded ring-1 ring-black/50"
+                              type="text"
+                            />
+                          </div>
+                        </div>
+                        <div className="flex flex-col justify-between md:items-center md:flex-row">
+                          <p className="text-sm text-gray-500">
+                            Please click the submit add item to scale
+                          </p>
+                          <input
+                            className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-200 border border-transparent rounded-md cursor-pointer hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                            type="submit"
+                            value="Add Scale"
+                          />
+                        </div>
+                      </div>
+                    </form>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
+      </>
+    );
+  }
 }
 
 export default Modal;
