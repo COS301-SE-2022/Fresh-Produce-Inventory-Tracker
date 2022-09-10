@@ -13,7 +13,7 @@ const fruitDataSunday = [];
 const FreshProduce = [];
 const PoultryMeat = [];
 const Pastries = [];
-let lineData = [];
+const lineData = [];
 
 const table_api = 'http://localhost:3333/api/trend/getall';
 const tableYear_api = 'http://localhost:3333/api/trendforyear/getmonthaverages';
@@ -21,6 +21,12 @@ const tableYear_api = 'http://localhost:3333/api/trendforyear/getmonthaverages';
 const options = [
   "All","Fruit&Veg","Meat","Pastries"
 ];
+
+enum SHOW_ITEMS {
+  '10 Items' = '10 Items',
+  '15 Items' = '15 Items',
+  '20 Items' = '20 Items',
+}
 
 export interface InventoryProps {
   type:string
@@ -276,9 +282,9 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
         </div>
         <div className="col-span-5"></div>
         <div>
-        <select onChange={filter} className="relative w-40 py-[.88rem] font-bold pl-3 pr-10 text-left bg-white  rounded-lg shadow-md cursor-default ring-black/20 ring-1 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+        <select onChange={filter} className="m-1 text-white btn btn-primary">
             {options.map(option => (
-              <option key={x++} value={option} className="absolute font-bold min-w-full mt-2 overflow-auto text-base bg-white rounded-lg shadow-lg w-fit max-h-64 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">{option}</option>
+              <option key={x++} value={option} className="p-4 space-y-4 text-white shadow dropdown-content bg-neutral menu rounded-box w-52">{option}</option>
             ))}
           </select>
         </div>
