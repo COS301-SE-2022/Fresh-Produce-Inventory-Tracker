@@ -77,7 +77,7 @@ export function Layout(props: LayoutProps) {
                 <li key={name}>
                   <Link href={link} passHref>
                     <div
-                      className={`flex transition-all border-opacity-0 bg-blue-100/50 mb-2 hover:bg-red-100 rounded-md  border-primary group`}
+                      className={`flex transition-all border-opacity-0 bg-blue-100 mb-2 hover:bg-blue-200 rounded-md  border-primary group`}
                     >
                       {icon}
                       <span className="text text-primary group-hover:text-primary group-active:text-black">
