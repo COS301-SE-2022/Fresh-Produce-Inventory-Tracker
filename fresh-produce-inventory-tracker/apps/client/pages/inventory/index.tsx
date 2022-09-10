@@ -1,4 +1,4 @@
-import { IoAdd } from 'react-icons/io5';
+import { IoAdd, IoSearch } from 'react-icons/io5';
 import InventoryTable from '../../src/components/inventory-table/inventory-table';
 import Modal from '../../src/components/modal/modal';
 import { useState } from 'react';
@@ -41,8 +41,16 @@ export async function getServerSideProps(context) {
   };
 }
 
+
 export function Inventory() {
   const [showImageUpload, setShowImageUpload] = useState(false);
+  const [Title, setTitle] = useState("Add scale");
+
+  function change(data)
+  {
+    setShowImageUpload(true);
+    setTitle(data);
+  }
 
   return (
     <div className="rounded-xl flex flex-wrap justify-between lg:max-w-[98%] px-4 py-10 bg-slate-50 mt-4 shadow-md">
@@ -63,17 +71,25 @@ export function Inventory() {
           </div>
         </div>
         <button
-          onClick={() => setShowImageUpload(true)}
-          className="flex items-center justify-center w-full px-4 py-2 text-xs text-white btn btn-primary md:py-3 md:text-base gap-x-2 bg-primary"
+          onClick={() => change("Add Scale")}
+          className="flex items-center justify-center w-50% px-4 py-2 text-xs text-white btn btn-primary md:py-3 md:text-base gap-x-2 bg-primary"
         >
           <IoAdd className="w-4 h-4 text-white md:flex" />
-          <span>Add Item</span>
+          <span>Add Scale</span>
+        </button>
+
+        <button
+          onClick={() => change("Check Freshness")}
+          className="flex items-center justify-center w-50% px-4 py-2 text-xs text-white btn btn-primary md:py-3 md:text-base gap-x-2 bg-primary"
+        >
+          <IoSearch className="w-4 h-4 text-white md:flex" />
+          <span>Check Freshness</span>
         </button>
         <Modal
           isOpen={showImageUpload}
           openModal={() => setShowImageUpload(true)}
           closeModal={() => setShowImageUpload(false)}
-          title="Add New Item"
+          title={Title}
           description="Please select and upload an image for analysis."
         />
       </div>
