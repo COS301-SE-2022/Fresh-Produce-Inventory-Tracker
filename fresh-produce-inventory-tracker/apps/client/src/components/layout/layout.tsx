@@ -69,8 +69,7 @@ export function Layout(props: LayoutProps) {
             <ul className="w-48 px-4 overflow-y-auto bg-white border-2 border-solid xl:w-80 menu text-base-content">
               <Link href="/" passHref>
                 <div className="flex items-center gap-2 mt-4 mb-5 h-fit">
-                  <Logo />
-                  <h1 className="font-bold text-center">FPIT</h1>
+                  <h1 className="font-bold text-center">Fresh Produce Inventory Tracker</h1>
                 </div>
               </Link>
 
@@ -89,6 +88,10 @@ export function Layout(props: LayoutProps) {
                   </Link>
                 </li>
               ))}
+              <div className='flex items-center gap-2 mb-0 mt-auto'>
+                <label>In collaboration with:</label>
+                <Logo />
+              </div>
             </ul>
           </div>
         </div>
