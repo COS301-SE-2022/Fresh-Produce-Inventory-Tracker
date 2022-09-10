@@ -8,9 +8,9 @@ export interface MobileProps {
   type:string
 }
 
-const upload_url = 'http://192.168.1.4:3333/api/image/uploadone';
-const freshness_url = 'http://192.168.1.4:3333/api/calcfreshness/predict';
-const add_task = 'http://192.168.1.4:3333/api/tasks/createtask';
+const upload_url = 'http://192.168.1.7:3333/api/image/uploadone';
+const freshness_url = 'http://192.168.1.7:3333/api/calcfreshness/predict';
+const add_task = 'http://192.168.1.7:3333/api/tasks/createtask';
 
 export function Mobile(props: MobileProps) {
 
