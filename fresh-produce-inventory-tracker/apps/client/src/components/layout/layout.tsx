@@ -1,12 +1,11 @@
 /* eslint-disable-next-line */
 import Link from 'next/link';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import {
   MdDashboard,
   MdOutlineInventory,
   MdOutlineTrendingDown,
   MdInfo,
-  MdTask,
   MdTaskAlt,
 } from 'react-icons/md';
 import Logo from '../logo/logo';
