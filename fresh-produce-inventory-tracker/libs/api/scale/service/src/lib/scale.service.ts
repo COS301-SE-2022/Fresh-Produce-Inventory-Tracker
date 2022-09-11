@@ -71,11 +71,9 @@ export class ScaleService {
     for(let i = 0; i < allScales.length; i++)
     {
       let ProduceStatus = 'good';
-      let counter =0;
-      while(allScales[i].id != trenddata[counter].id)
-      {
-        counter++;
-      }
+      let counter =i;
+      //console.log("here");
+      
       ProduceStatus = await this.checkFreshness(id,trenddata[counter])
       const retVal = {
         id:allScales[i].id,
@@ -88,24 +86,29 @@ export class ScaleService {
       }
       produceList.push(retVal)
     }
+    return produceList;
   }
   async checkFreshness(id:number,trenddata)
   {
     let ProduceStatus = 'good';
     const today =new Date();
-      if(today.getDate() > trenddata.LastRestock.getDate())
+    if(trenddata.LastRestock== null)
+    {
+      return 'good'
+    }
+      if(today.getDate() < trenddata.SaleDate.getDate())
       {
         ProduceStatus = 'good';
       }
       else
       {
-        if(today.getDate() == trenddata.LastRestock.getDate())
+        if(today.getDate() == trenddata.SaleDate.getDate())
         {
           ProduceStatus = 'about to expire';
         }
         else
         {
-          if(today.getDate() < trenddata.LastRestock.getDate())
+          if(today.getDate() > trenddata.SaleDate.getDate())
         {
           
           ProduceStatus = 'expired';
