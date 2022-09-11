@@ -67,10 +67,11 @@ export class ScaleRepository {
     });
     await this.prisma.trendForYear.create({
       data: {
+        id: scale.id,
         userId: userId,
         ProduceType: producetype,
-        AverageSalesAmountForYear: Array.from({length: 366}, x => 0),
-        AmountSalesForYear: Array.from({length: 366}, x => 0),
+        AverageSalesAmountForYear: Array.from({ length: 366 }, (x) => 0),
+        AmountSalesForYear: Array.from({ length: 366 }, (x) => 0),
       },
     });
     return scale;
@@ -89,30 +90,31 @@ export class ScaleRepository {
     const scale = await this.prisma.scale.findFirst({
       where: { id: id, userId: userid },
     });
-    console.log(scale);
+    //console.log(scale);
     const old = await this.prisma.scale_Trend.findFirst({
       where: {
-          scale_id: scale.id,
-          ProduceType: scale.ProduceType,
-        }});
-        console.log(old);
-    const day = new Date()
+        scale_id: scale.id,
+        ProduceType: scale.ProduceType,
+      },
+    });
+    //console.log(old);
+    const day = new Date();
     await this.prisma.scale_Trend.updateMany({
       where: {
-          scale_id: scale.id,
-          ProduceType: scale.ProduceType,
+        scale_id: scale.id,
+        ProduceType: scale.ProduceType,
       },
       data: {
-        date: { set: [ ...old.date, day] },
+        date: { set: [...old.date, day] },
         weight: { set: [...old.weight, Weighttotal] },
-        
-        
-        
       },
     });
   }
-  async getAllProduce(id:number) {
-    return await this.prisma.scale.findMany({where:{userId:id}})
+  async trenddata(id: number) {
+    return await this.prisma.trendForYear.findMany({ where: { userId: id } });
+  }
+  async getAllProduce(id: number) {
+    return await this.prisma.scale.findMany({ where: { userId: id } });
   }
   async removeScale(id: number, userid: number) {
     const scale = await this.prisma.scale.delete({
@@ -122,10 +124,10 @@ export class ScaleRepository {
       where: { scale_id: id },
     });
     await this.prisma.trend.deleteMany({
-      where: {userId:userid,ProduceType:scale.ProduceType},
+      where: { userId: userid, ProduceType: scale.ProduceType },
     });
     await this.prisma.trendForYear.deleteMany({
-      where: {userId:userid,ProduceType:scale.ProduceType},
+      where: { id:id,userId: userid, ProduceType: scale.ProduceType },
     });
   }
 }
