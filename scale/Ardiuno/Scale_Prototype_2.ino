@@ -47,3 +47,29 @@ void setup() {
     //Serial.println("Startup is complete");
   }
 }
+
+void loop() {
+  static boolean newDataReady = 0;
+  const int serialPrintInterval = 250; //increase value to slow down serial print activity
+
+  // check for new data/start next conversion:
+  if (LoadCell.update()) newDataReady = true;
+
+  // get smoothed value from the dataset:
+  if (newDataReady) {
+    if (millis() > t + serialPrintInterval) {
+      float i = LoadCell.getData();
+      //Serial.print("Load_cell output val: ");
+      int k = i ;
+      Serial.print(k); //gives output
+      newDataReady = 0;
+      t = millis();
+    }
+  }
+
+  // receive command from serial terminal, send 't' to initiate tare operation:
+  if (Serial.available() > 0) {
+    char inByte = Serial.read();
+    if (inByte == 't') refreshOffsetValueAndSaveToEEprom();
+  }
+}
