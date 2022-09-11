@@ -64,7 +64,7 @@ export class calculatefreshnessService {
           (await this.taskService.getTasksMessage(id, message)).message !=
             message)
       ) {
-        await this.taskService.createTask(id, message);
+        await this.taskService.createTask(id, message,'expire',type);
       }
     }
     return answer;

@@ -14,14 +14,14 @@ export class tasksRepository {
       where: { userId: +id, Type: 'Task', message: message },
     });
   }
-  async createTask(id: number, message: string) {
+  async createTask(id: number, message: string,tasktype:string,produceType:string) {
     if (
       !(await this.prisma.notification.findFirst({
         where: { userId: +id, message: message },
       }))
     ) {
       return await this.prisma.notification.create({
-        data: { userId: +id, Type: 'Task', message: message },
+        data: { userId: +id, Type: 'Task', message: message,taskType: tasktype,produceType:produceType },
       });
     } else return null;
   }

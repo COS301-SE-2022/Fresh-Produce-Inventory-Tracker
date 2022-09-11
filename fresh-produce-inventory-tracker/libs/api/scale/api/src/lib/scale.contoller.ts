@@ -25,7 +25,7 @@ export class ScaleController {
   async setscale(@Body('userId') id:number, @Body('weightfull') weightfull: string, @Body('weightone') weightone: string, @Body('producetype') producetype: string) {
     //@Req() req:Request
     //const userId = req.user;
-    //console.log(userId);
+    console.log(id);
     return this.ScaleService.createScale({
       userId: +id,
       weightfull: +weightfull,
@@ -62,6 +62,11 @@ export class ScaleController {
     async getAllProduce(@Body('id') id: number)
     {
       return await this.ScaleService.getAllProduce(+id);
+    }
+    @Post('producelist')
+    async produceList(@Body('id') id: number)
+    {
+      return await this.ScaleService.produceList(+id);
     }
 }
 

@@ -34,6 +34,7 @@ export class AuthenticationService {
     const password = user.password;
     if ((await bcrypt.compare(dto.password, password)) == false) throw new UnauthorizedException('Email/Password incorrect.');
     return {
+      id: user.id,
       token: await this.setToken(user.id, user.email, user.Name, user.Surname)
     };
   }
@@ -41,7 +42,7 @@ export class AuthenticationService {
   async setToken(id: number, email: string, name: string, surname: string) {
     const data = { id: id, email, name: name, surname: surname };
     const secret = await this.config.get('JWT_SECRET');
-    return this.jwt.signAsync(data, { expiresIn: '15m', secret: Buffer.from(secret).toString("base64") });
+    return this.jwt.signAsync(data, { expiresIn: '30m', secret: Buffer.from(secret).toString("base64") });
   }
 
   async getUser(email: string) {

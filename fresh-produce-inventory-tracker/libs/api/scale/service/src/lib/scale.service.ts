@@ -43,10 +43,8 @@ export class ScaleService {
         if ((await this.taskService.getTasksMessage(userid, message)).message !=
           message
         ) {
-          await this.taskService.createTask(userid, message);
+          await this.taskService.createTask(userid, message,'low',get.ProduceType);
         }
-      } else {
-        await this.taskService.createTask(userid, message);
       }
 
 
@@ -64,5 +62,74 @@ export class ScaleService {
       produceList.push(allScales[i].ProduceType)
     }
     return produceList;
+  }
+  async produceList(id:number)
+  {
+    const allScales = await this.repo.getAllProduce(id);
+    const trenddata = await this.repo.trenddata(id);
+    const produceList =[];
+    for(let i = 0; i < allScales.length; i++)
+    {
+      let ProduceStatus = 'good';
+      let counter =0;
+      while(allScales[i].id != trenddata[counter].id)
+      {
+        counter++;
+      }
+      ProduceStatus = await this.checkFreshness(id,trenddata[counter])
+      const retVal = {
+        id:allScales[i].id,
+        name: allScales[i].ProduceType,
+        individualWeight: allScales[i].WeightIndividual,
+        fullWeight: allScales[i].WeightTotal,
+        expireDate: trenddata[counter].SaleDate,
+        lastRestock:trenddata[counter].LastRestock,
+        produceStatus: ProduceStatus
+      }
+      produceList.push(retVal)
+    }
+  }
+  async checkFreshness(id:number,trenddata)
+  {
+    let ProduceStatus = 'good';
+    const today =new Date();
+      if(today.getDate() > trenddata.LastRestock.getDate())
+      {
+        ProduceStatus = 'good';
+      }
+      else
+      {
+        if(today.getDate() == trenddata.LastRestock.getDate())
+        {
+          ProduceStatus = 'about to expire';
+        }
+        else
+        {
+          if(today.getDate() < trenddata.LastRestock.getDate())
+        {
+          
+          ProduceStatus = 'expired';
+        }
+        }
+        
+      }
+      const taskExpired = await this.taskService.getTasks(id);
+      let expiretask = false;
+      for(let i = 0; i<taskExpired.length;i++)
+      {
+          if(taskExpired[i].produceType == trenddata.ProduceType )
+          {
+            if(taskExpired[i].taskType == 'expire')
+            {
+              expiretask = true;
+            }
+          }
+      }
+      if(expiretask == true)
+      {
+        ProduceStatus = 'expired';
+      }
+      
+      return ProduceStatus;
   }
 }
