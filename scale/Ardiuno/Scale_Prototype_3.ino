@@ -70,3 +70,14 @@ void loop() {
   }
 }
 
+// zero offset value (tare), calculate and save to EEprom:
+void refreshOffsetValueAndSaveToEEprom() {
+  long _offset = 0;
+  LoadCell.tare(); // calculate the new tare / zero offset value (blocking)
+  _offset = LoadCell.getTareOffset(); // get the new tare / zero offset value
+  EEPROM.put(tareOffsetVal_eepromAdress, _offset); // save the new tare / zero offset value to EEprom
+#if defined(ESP8266) || defined(ESP32)
+  EEPROM.commit();
+#endif
+  LoadCell.setTareOffset(_offset); // set value as library parameter (next restart it will be read from EEprom)
+}
