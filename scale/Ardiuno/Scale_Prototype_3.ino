@@ -43,3 +43,26 @@ void setup() {
     LoadCell.setCalFactor(calibrationValue); // set calibration value (float)
   }
 }
+
+void loop() {
+  static boolean newDataReady = 0;
+  const int serialPrintInterval = 250; //increase value to slow down serial print activity
+
+  // check for new data/start next conversion:
+  if (LoadCell.update()) newDataReady = true;
+
+  // get smoothed value from the dataset:
+  if (newDataReady) {
+    if (millis() > t + serialPrintInterval) {
+      float i = LoadCell.getData();
+      //Serial.print("Load_cell output val: ");
+      int k = i ;
+      Serial.print(k); //gives output
+      newDataReady = 0;
+      t = millis();
+    }
+  }
+
+ 
+}
+
