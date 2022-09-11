@@ -63,6 +63,10 @@ void loop() {
     }
   }
 
- 
+  // receive command from serial terminal, send 't' to initiate tare operation:
+  if (Serial.available() > 0) {
+    char inByte = Serial.read();
+    if (inByte == 't') refreshOffsetValueAndSaveToEEprom();
+  }
 }
 
