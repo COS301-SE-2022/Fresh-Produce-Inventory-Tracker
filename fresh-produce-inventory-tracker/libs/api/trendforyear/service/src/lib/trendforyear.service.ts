@@ -78,7 +78,7 @@ export class TrendForYearService {
   async updateYearTrend(user: number, scale: number) {
     //variables
     const Scale = await this.repo.getScaleTrend(scale);
-    if (scale == null) throw new NotFoundException('Scale not found');
+    if (Scale == null) throw new NotFoundException('Scale not found');
     const weekdays = Scale.date;
     const weights = Scale.weight;
     let currentday = this.ChangetoNumber(weekdays[0]);
