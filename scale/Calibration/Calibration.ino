@@ -1,12 +1,4 @@
-//Calabration
-/*
-   To implement calibration in your project sketch the simplified procedure is as follow:
-       LoadCell.tare();
-       //place known mass
-       LoadCell.refreshDataSet();
-       float newCalibrationValue = LoadCell.getNewCalibration(known_mass);
-*/
-
+//Calabration finder 
 #include <HX711_ADC.h>
 #if defined(ESP8266)|| defined(ESP32) || defined(AVR)
 #include <EEPROM.h>
@@ -23,6 +15,8 @@ HX711_ADC LoadCell(HX711_dout, HX711_sck);
 const int calVal_eepromAdress = 0;
 unsigned long t = 0;
 unsigned long u= 0 //demo3
+
+
 
 void setup() {
   /*
@@ -85,6 +79,7 @@ void loop() {
 Serial.println("This script is used to find the individual calabrations of each scale ");
 Serial.println("Remember the calibrations for each scale to set the up correctley");
 Serial.println("Calibrations wil vary between 18.00 - 28.00 ");
+
 void calibrate() {
   boolean _resume = false;
   while (_resume == false) {
@@ -134,6 +129,16 @@ void calibrate() {
   Serial.println("To re-calibrate, send 'r' from serial monitor.");
   Serial.println("For manual edit of the calibration value, send 'c' from serial monitor.");
   Serial.println("***");
+}
+
+void accurateCalFactor(){
+for(int i- 0 ; i < 100 ; i++){
+  changeSavedCalFactor();
+  int ans += calibrate();
+
+}
+changeSavedCalFactor(ans/100) ;
+
 }
 
 void changeSavedCalFactor() {
