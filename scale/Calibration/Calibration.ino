@@ -82,7 +82,9 @@ void loop() {
     else if (inByte == 'c') changeSavedCalFactor(); //edit calibration value manually
   }
 }
-
+Serial.println("This script is used to find the individual calabrations of each scale ");
+Serial.println("Remember the calibrations for each scale to set the up correctley");
+Serial.println("Calibrations wil vary between 18.00 - 28.00 ");
 void calibrate() {
   boolean _resume = false;
   while (_resume == false) {
