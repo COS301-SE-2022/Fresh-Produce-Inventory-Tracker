@@ -28,9 +28,6 @@ void setup() {
   EEPROM.begin(512);
 #endif
 
-  //EEPROM.get(calVal_eepromAdress, calibrationValue); // uncomment this if you want to fetch the calibration value from eeprom
-
-  //restore the zero offset value from eeprom:
   long tare_offset = 0;
   EEPROM.get(tareOffsetVal_eepromAdress, tare_offset);
   LoadCell.setTareOffset(tare_offset);
@@ -44,7 +41,6 @@ void setup() {
   }
   else {
     LoadCell.setCalFactor(calibrationValue); // set calibration value (float)
-    //Serial.println("Startup is complete");
   }
 }
 
