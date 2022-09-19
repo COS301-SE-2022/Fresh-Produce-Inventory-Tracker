@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck 
+
 import axios from 'axios';
 import url from 'node:url';
 import { options } from '../api/auth/[...nextauth]';

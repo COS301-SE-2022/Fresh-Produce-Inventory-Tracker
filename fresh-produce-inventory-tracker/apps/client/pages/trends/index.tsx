@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable-next-line */
 // react plugin used to create charts
@@ -276,7 +278,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
 
   return (
       <div>
-      <div className="grid m-2 content-center grid-cols-6">
+      <div className="grid content-center grid-cols-6 m-2">
         <div className="col-span-2">
           <h1>Average Sales</h1>
         </div>

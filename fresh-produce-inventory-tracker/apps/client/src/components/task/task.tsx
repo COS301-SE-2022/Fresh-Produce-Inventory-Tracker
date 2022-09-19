@@ -1,4 +1,7 @@
 /* eslint-disable-next-line */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import Router from "next/router";
 import Link from 'next/link';
 
@@ -23,10 +26,10 @@ export function Task(props: TaskProps) {
             <h1 className="text-xl font-black">
               #{d.id}
             </h1>
-            <div className="ml-2 col-span-10 flex items-center">
+            <div className="flex items-center col-span-10 ml-2">
               <h2>{d.message}</h2>
             </div>
-            <button className=" bg-gray-600 text-white hover:bg-blue-800 rounded-lg p-2" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
+            <button className="p-2 text-white bg-gray-600 rounded-lg  hover:bg-blue-800" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
           </div>
         );
        })}
