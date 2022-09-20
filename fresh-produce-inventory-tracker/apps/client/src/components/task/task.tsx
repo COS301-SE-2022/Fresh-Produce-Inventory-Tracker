@@ -29,7 +29,7 @@ export function Task(props: TaskProps) {
             <div className="flex items-center col-span-10 ml-2">
               <h2>{d.message}</h2>
             </div>
-            <button className="p-2 text-white bg-gray-600 rounded-lg  hover:bg-blue-800" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
+            <button className="p-2 text-white bg-gray-600 rounded-lg hover:bg-blue-800" name={d.message} id={d.id} onClick={buttonHandler}>Complete</button>
           </div>
         );
        })}
