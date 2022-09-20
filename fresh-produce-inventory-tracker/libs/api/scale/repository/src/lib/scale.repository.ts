@@ -65,6 +65,9 @@ export class ScaleRepository {
     await this.prisma.trend.create({
       data: { userId: userId, ProduceType: producetype, Day: Weekdays.Sunday },
     });
+    const today = new Date();
+    const expire = new Date();
+    expire.setDate(expire.getDate() + 6);
     await this.prisma.trendForYear.create({
       data: {
         id: scale.id,
@@ -72,6 +75,8 @@ export class ScaleRepository {
         ProduceType: producetype,
         AverageSalesAmountForYear: Array.from({ length: 366 }, (x) => 0),
         AmountSalesForYear: Array.from({ length: 366 }, (x) => 0),
+        LastRestock: today,
+        SaleDate: expire,
       },
     });
     return scale;
