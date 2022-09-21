@@ -59,8 +59,8 @@ model Image {
 model Scale {
   id                  Int      @default(autoincrement()) @unique
   userId              Int      @map("user_id")
-  WeightIndividual    Float      @map("weight_Individual")
-  WeightTotal         Float      @map("weight_total")
+  WeightIndividual    Int      @map("weight_Individual")
+  WeightTotal         Int      @map("weight_total")
   ProduceType         String?   @map("produce_type")
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
