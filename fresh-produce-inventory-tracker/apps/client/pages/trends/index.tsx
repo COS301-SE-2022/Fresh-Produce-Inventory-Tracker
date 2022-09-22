@@ -5,6 +5,8 @@
 // react plugin used to create charts
 import { useState } from "react";
 import {Chart} from "./../../src/components/chart/chart"
+import { options } from '../api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 const fruitDataMonday = [];
 const fruitDataTuesday = [];
 const fruitDataWednesday = [];
@@ -20,22 +22,31 @@ const lineData = [];
 const table_api = 'http://13.246.23.178:3333/api/trend/getall';
 const tableYear_api = 'http://13.246.23.178:3333/api/trendforyear/getmonthaverages';
 
-const options = [
+const option = [
   "All","Fruit&Veg","Meat","Pastries"
 ];
-
-enum SHOW_ITEMS {
-  '10 Items' = '10 Items',
-  '15 Items' = '15 Items',
-  '20 Items' = '20 Items',
-}
 
 export interface InventoryProps {
   type:string
 }
 
-export async function getServerSideProps() {
-  let  Form = "userid=1";
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    options
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  let  Form = "userid=" + session.user?.id?.toString();
 
   const response = await fetch(table_api, {
     method: 'POST',
@@ -47,7 +58,7 @@ export async function getServerSideProps() {
 
   const trendData = await response.json();
 
-  Form = "userid=1&producetype=Fresh Produce"
+  Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce"
 
   let responses = await fetch(tableYear_api, {
     method: 'POST',
@@ -68,7 +79,7 @@ export async function getServerSideProps() {
     }
   }
 
-  Form = "userid=1&producetype=Poultry/Meat"
+  Form = "userid=" + session.user?.id?.toString() + "&producetype=Poultry/Meat"
 
   responses = await fetch(tableYear_api, {
     method: 'POST',
@@ -88,7 +99,7 @@ export async function getServerSideProps() {
     }
   }
 
-  Form = "userid=1&producetype=Pastries"
+  Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries"
 
   responses = await fetch(tableYear_api, {
     method: 'POST',
@@ -286,7 +297,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
         <div className="col-span-5"></div>
         <div>
         <select onChange={filter} className="m-1 text-white btn btn-primary">
-            {options.map(option => (
+            {option.map(option => (
               <option key={x++} value={option} className="p-4 space-y-4 text-white shadow dropdown-content bg-neutral menu rounded-box w-52">{option}</option>
             ))}
           </select>
