@@ -42,7 +42,7 @@ function deleteTask(message,id)
 {
   async function del(message,id)
   {
-    const deleteTask = 'http://localhost:3333/api/tasks/deletetask';
+    const deleteTask = 'http://13.246.23.178:3333/api/tasks/deletetask';
 
     const  Form = "id=1&message=" + message;
 
