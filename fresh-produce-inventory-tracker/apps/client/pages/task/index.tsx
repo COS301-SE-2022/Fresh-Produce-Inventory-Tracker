@@ -9,8 +9,6 @@ import { useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
 import Swal from 'sweetalert2';
 
-const tasksUrl = `${process.env.BACKEN_URL}/api/tasks/gettasks`;
-
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
