@@ -72,7 +72,6 @@ export async function getServerSideProps(context) {
 
   if(responses.status == 201)
   {
-    console.log(trendDatas);
     for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
     {
       FreshProduce.push(Object.values(trendDatas)[2][x]);
@@ -283,7 +282,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
     setTimeout(function () {
         fetchData();
         stateChange();
-    }, 15000);
+    }, 5000);
   }
 
   stateChange();

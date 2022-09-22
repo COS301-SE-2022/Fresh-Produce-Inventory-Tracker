@@ -47,7 +47,6 @@ export function Chart(props: ChartProps) {
 
   const width = hasWindow ? window.innerWidth : null;
 
-  console.log(width);
   let FruitVeg = [0,0,0,0,0,0,0,0,0,0,0,0];
   let Meat = [0,0,0,0,0,0,0,0,0,0,0,0];
   let Pastries = [0,0,0,0,0,0,0,0,0,0,0,0];
