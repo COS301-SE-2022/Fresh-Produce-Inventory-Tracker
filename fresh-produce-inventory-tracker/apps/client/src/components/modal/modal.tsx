@@ -29,9 +29,9 @@ const items: radioItem[] = [
   },
 ];
 
-const upload_url = 'http://localhost:3333/api/image/uploadone';
-const freshness_url = 'http://localhost:3333/api/calcfreshness/predict';
-const add_task = 'http://localhost:3333/api/tasks/createtask';
+const upload_url = 'http://13.246.23.178:3333/api/image/uploadone';
+const freshness_url = 'http://13.246.23.178:3333/api/calcfreshness/predict';
+const add_task = 'http://13.246.23.178:3333/api/tasks/createtask';
 
 const Toast = Swal.mixin({
   toast: true,
