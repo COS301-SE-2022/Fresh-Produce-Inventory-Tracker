@@ -1,9 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable-next-line */
 export interface UserProps {}
-import Image from './../../src/components/image/image';
-import { UserInfo } from './../../src/components/user/user';
-import { Task } from './../../src/components/task/task';
 import axios from 'axios';
 import url from 'node:url';
 import { options } from '../api/auth/[...nextauth]';
@@ -14,9 +11,7 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
 import Swal from 'sweetalert2';
-const taskUrl = `${process.env.BACKEND_URL}/api/tasks/gettasks`;
 const profileUrl = `${process.env.BACKEND_URL}/api/profile/getprofile`;
-const updateProfileUrl = `${process.env.BACKEND_URL}/api/profile/editProfile`;
 
 const Toast = Swal.mixin({
   toast: true,
