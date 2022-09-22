@@ -15,7 +15,7 @@ interface Signup {
   'confirm-password': string;
 }
 
-const api_url = 'http://localhost:3333/api/authentication/signup';
+const api_url = 'http://13.246.23.178:3333/api/authentication/signup';
 
 export function Signup(props: SignupProps) {
   const [error, setError] = useState<string>('');
