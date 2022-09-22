@@ -123,7 +123,7 @@ export function User({ data, status, accessToken }) {
     params.append('token', session?.accessToken?.toString());
     params.append('data', JSON.stringify(validatedData));
     const { data, status } = await axios.post(
-      'http://localhost:3333/api/profile/editProfile',
+      'http://13.246.23.178:3333/api/profile/editProfile',
       params
     );
     if (status === 201) {
