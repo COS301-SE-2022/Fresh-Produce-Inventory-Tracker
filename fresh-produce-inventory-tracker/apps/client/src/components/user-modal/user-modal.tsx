@@ -12,11 +12,11 @@ export interface UserModalProps {
   description?: string;
 }
 
-const upload_Name = 'http://localhost:3333/api/profile/editname';
-const upload_Surname = 'http://localhost:3333/api/profile/editsurname';
-const upload_Email = 'http://localhost:3333/api/profile/editemail';
-const upload_Bio = 'http://localhost:3333/api/profile/editbio';
-const upload_Vis = 'http://localhost:3333/api/profile/editvisibility';
+const upload_Name = 'http://13.246.23.178:3333/api/profile/editname';
+const upload_Surname = 'http://13.246.23.178:3333/api/profile/editsurname';
+const upload_Email = 'http://13.246.23.178:3333/api/profile/editemail';
+const upload_Bio = 'http://13.246.23.178:3333/api/profile/editbio';
+const upload_Vis = 'http://13.246.23.178:3333/api/profile/editvisibility';
 
 
 
