@@ -214,7 +214,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
     FreshProduce = [];
     PoultryMeat = [];
     Pastries = [];
-    let Form = "userid=1&producetype=Fresh Produce"
+    let Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce"
 
     let responses = await fetch(tableYear_api, {
       method: 'POST',
@@ -234,7 +234,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
       }
     }
 
-    Form = "userid=1&producetype=Poultry/Meat"
+    Form = "userid=" +  session.user?.id?.toString() + "&producetype=Poultry/Meat"
 
     responses = await fetch(tableYear_api, {
       method: 'POST',
@@ -254,7 +254,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
       }
     }
 
-    Form = "userid=1&producetype=Pastries"
+    Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries"
 
     responses = await fetch(tableYear_api, {
       method: 'POST',
