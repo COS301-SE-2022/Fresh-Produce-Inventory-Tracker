@@ -66,15 +66,14 @@ export function Task({
   status: number;
   userId: string;
   }) {
-  console.log(userId)
   const [loading, setLoading] = useState<boolean>(false);
   const handleDeleteTask = async (message: string) => {
     setLoading(true);
     const params = new URLSearchParams();
     params.append('id', userId);
     params.append('message', message.toString());
-    const { data, status } = await axios.post(
-      'http://localhost:3333/api/tasks/deletetask',
+    const { status } = await axios.post(
+      'http://13.246.23.178:3333/api/tasks/deletetask',
       params
     );
     if (status === 201) {
