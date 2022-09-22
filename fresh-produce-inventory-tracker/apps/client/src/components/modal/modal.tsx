@@ -65,7 +65,7 @@ export function Modal(props: ModalProps) {
     urlencoded.append('weightone', '10');
     urlencoded.append('producetype', selectedType.name);
 
-    fetch('http://localhost:3333/api/scale/setscale', {
+    fetch('http://13.246.23.178:3333/api/scale/setscale', {
       method: 'POST',
       headers: myHeaders,
       body: urlencoded,
