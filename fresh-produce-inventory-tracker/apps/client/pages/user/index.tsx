@@ -122,7 +122,7 @@ export function User({ data, status, accessToken }) {
     const params = new URLSearchParams();
     params.append('token', session?.accessToken?.toString());
     params.append('data', JSON.stringify(validatedData));
-    const { data, status } = await axios.post(
+    const {status } = await axios.post(
       'http://13.246.23.178:3333/api/profile/editProfile',
       params
     );

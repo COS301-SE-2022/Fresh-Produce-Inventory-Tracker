@@ -61,6 +61,7 @@ export async function getServerSideProps() {
 
   if(responses.status == 201)
   {
+    console.log(trendDatas);
     for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
     {
       FreshProduce.push(Object.values(trendDatas)[2][x]);
