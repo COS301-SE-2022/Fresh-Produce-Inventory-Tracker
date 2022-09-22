@@ -44,7 +44,7 @@ export async function getServerSideProps(context) {
   });
 
   const response = await axios.post(
-    'http://localhost:3333/api/tasks/gettasks',
+    'http://13.246.23.178:3333/api/tasks/gettasks',
     params
   );
 
