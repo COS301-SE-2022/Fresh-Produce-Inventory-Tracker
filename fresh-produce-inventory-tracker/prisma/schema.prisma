@@ -61,6 +61,8 @@ model Scale {
   userId              Int      @map("user_id")
   WeightIndividual    Int      @map("weight_Individual")
   WeightTotal         Int      @map("weight_total")
+  Name                String?  @map("name")
+  Description         String?  @map("description")
   ProduceType         String?   @map("produce_type")
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
