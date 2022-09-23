@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable-next-line */
+// react plugin used to create charts
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
 import CustomRadioButton from '../custom-radio-button/custom-radio-button';
 import { radioItem } from '../../interfaces';
 import { Loading } from '../loading/loading';
 import Swal from 'sweetalert2';
-import { useSession } from 'next-auth/react';
 import { options } from '../../../pages/api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
+import { session } from 'passport';
 /* eslint-disable-next-line */
 export interface ModalProps {
   isOpen?: boolean;
@@ -15,6 +20,7 @@ export interface ModalProps {
   openModal?: any;
   title?: string;
   description?: string;
+  id?: string;
 }
 
 const items: radioItem[] = [
@@ -66,7 +72,6 @@ export async function getServerSideProps(context) {
 }
 
 export function Modal(props: ModalProps) {
-  const { data: session } = useSession();
   const [image, setImage] = useState(null);
   const [selectedType, setSelectedType] = useState<radioItem>(items[0]);
 
@@ -81,7 +86,7 @@ export function Modal(props: ModalProps) {
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const urlencoded = new URLSearchParams();
-    urlencoded.append('userId', '1');
+    urlencoded.append('userId', props.id);
     urlencoded.append('weightfull', '100');
     urlencoded.append('weightone', '10');
     urlencoded.append('producetype', selectedType.name);
@@ -113,7 +118,7 @@ export function Modal(props: ModalProps) {
     myHeaders.append('Access-Control-Allow-Origin', '*');
 
     const form = new FormData();
-    form.append('id', '1');
+    form.append('id', props.id);
     form.append('image', image);
 
     const response = await fetch(upload_url, {
@@ -142,7 +147,7 @@ export function Modal(props: ModalProps) {
   const checkFreshness = async (data) => {
     setShowLoading(true);
     const urlencoded = new URLSearchParams();
-    urlencoded.append('id', '1');
+    urlencoded.append('id', session.user?.id?.toString());
     urlencoded.append('type', 'apple');
     urlencoded.append('file', data.path);
 
@@ -184,7 +189,7 @@ export function Modal(props: ModalProps) {
 
   const createTask = async () => {
     const form = new FormData();
-    form.append('id', '1');
+    form.append('id', session.user?.id?.toString());
     form.append('message', 'A rotten apple has been found, resolve asap!');
 
     const response = await fetch(add_task, {
