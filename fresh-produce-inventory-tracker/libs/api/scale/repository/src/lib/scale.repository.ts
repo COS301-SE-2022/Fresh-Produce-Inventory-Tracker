@@ -14,14 +14,22 @@ export class ScaleRepository {
     userId: number,
     weightfull: number,
     weightone: number,
-    producetype: string
+    producetype: string,
+    name:string,
+    description:string
   ) {
+    if((await this.prisma.user.findUnique({where:{id:userId}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     const scale = await this.prisma.scale.create({
       data: {
         userId: userId,
         WeightTotal: weightfull,
         WeightIndividual: weightone,
         ProduceType: producetype,
+        Name:name,
+        Description:description
       },
     });
     await this.prisma.scale_Trend.create({
@@ -82,12 +90,24 @@ export class ScaleRepository {
     return scale;
   }
   async editScale(id: number, userid: number, data: any) {
+    if((await this.prisma.user.findUnique({where:{id:userid}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.scale.update({
       where: { id_userId: { id: id, userId: userid } },
       data: data,
     });
   }
   async updateScale(id: number, userid: number, Weighttotal: number) {
+    if((await this.prisma.user.findUnique({where:{id:userid}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
+    if((await this.prisma.scale.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists too');
+    }
     await this.prisma.scale.updateMany({
       where: { id: id, userId: userid },
       data: { WeightTotal: Weighttotal },
@@ -122,6 +142,14 @@ export class ScaleRepository {
     return await this.prisma.scale.findMany({ where: { userId: id } });
   }
   async removeScale(id: number, userid: number) {
+    if((await this.prisma.user.findUnique({where:{id:userid}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
+    if((await this.prisma.scale.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     const scale = await this.prisma.scale.delete({
       where: { id_userId: { id: id, userId: userid } },
     });
