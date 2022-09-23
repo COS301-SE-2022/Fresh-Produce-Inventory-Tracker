@@ -5,6 +5,7 @@ export interface LogoutProps {}
 import { signOut } from "next-auth/react"
 import { unstable_getServerSession } from 'next-auth/next';
 import { options } from '../api/auth/[...nextauth]';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
@@ -30,7 +31,11 @@ export async function getServerSideProps(context) {
 }
 
 export function Logout(props: LogoutProps) {
-  signOut({redirect: false, callbackUrl: "/"});
+  signOut({redirect:false});
+  const router = useRouter();
+  setTimeout(function () {
+    router.push('/login');
+  }, 100);
 }
 
 export default Logout;
