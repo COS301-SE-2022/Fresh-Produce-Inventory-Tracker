@@ -7,6 +7,7 @@ import { useState } from "react";
 import {Chart} from "./../../src/components/chart/chart"
 import { options } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
+import { useSession } from 'next-auth/react';
 const fruitDataMonday = [];
 const fruitDataTuesday = [];
 const fruitDataWednesday = [];
@@ -174,7 +175,7 @@ export async function getServerSideProps(context) {
 }
 
 export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries,lineData},props:InventoryProps) {
-
+  const { data: session } = useSession();
   let x = 0;
   const [type, setType] = useState("Bar");
   const [produce, setProduce] = useState("Fruit");
