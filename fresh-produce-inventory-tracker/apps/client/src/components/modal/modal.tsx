@@ -6,6 +6,8 @@ import { radioItem } from '../../interfaces';
 import { Loading } from '../loading/loading';
 import Swal from 'sweetalert2';
 import { useSession } from 'next-auth/react';
+import { options } from '../../../pages/api/auth/[...nextauth]';
+import { unstable_getServerSession } from 'next-auth/next';
 /* eslint-disable-next-line */
 export interface ModalProps {
   isOpen?: boolean;
@@ -46,6 +48,23 @@ const Toast = Swal.mixin({
   },
 });
 
+export async function getServerSideProps(context) {
+  const session = await unstable_getServerSession(
+    context.req,
+    context.res,
+    options
+  );
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+}
+
 export function Modal(props: ModalProps) {
   const { data: session } = useSession();
   const [image, setImage] = useState(null);
@@ -62,10 +81,12 @@ export function Modal(props: ModalProps) {
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const urlencoded = new URLSearchParams();
-    urlencoded.append('userId', session.user?.id?.toString());
+    urlencoded.append('userId', '1');
     urlencoded.append('weightfull', '100');
     urlencoded.append('weightone', '10');
     urlencoded.append('producetype', selectedType.name);
+    urlencoded.append('name', "Apples");
+    urlencoded.append('description', "red apples");
 
     fetch('http://13.246.23.178:3333/api/scale/setscale', {
       method: 'POST',
@@ -92,7 +113,7 @@ export function Modal(props: ModalProps) {
     myHeaders.append('Access-Control-Allow-Origin', '*');
 
     const form = new FormData();
-    form.append('id', session.user?.id?.toString());
+    form.append('id', '1');
     form.append('image', image);
 
     const response = await fetch(upload_url, {
