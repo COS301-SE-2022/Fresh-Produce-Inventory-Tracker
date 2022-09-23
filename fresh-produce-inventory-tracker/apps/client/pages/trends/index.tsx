@@ -209,8 +209,6 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
     }
   }
 
-  const [refresh, setR] = useState(false);
-
   const fetchData = async () => {
     FreshProduce = [];
     PoultryMeat = [];
