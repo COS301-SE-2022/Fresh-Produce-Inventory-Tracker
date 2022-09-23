@@ -5,6 +5,7 @@ import CustomRadioButton from '../custom-radio-button/custom-radio-button';
 import { radioItem } from '../../interfaces';
 import { Loading } from '../loading/loading';
 import Swal from 'sweetalert2';
+import { useSession } from 'next-auth/react';
 /* eslint-disable-next-line */
 export interface ModalProps {
   isOpen?: boolean;
@@ -46,6 +47,7 @@ const Toast = Swal.mixin({
 });
 
 export function Modal(props: ModalProps) {
+  const { data: session } = useSession();
   const [image, setImage] = useState(null);
   const [selectedType, setSelectedType] = useState<radioItem>(items[0]);
 
@@ -60,7 +62,7 @@ export function Modal(props: ModalProps) {
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
     const urlencoded = new URLSearchParams();
-    urlencoded.append('userId', '1');
+    urlencoded.append('userId', session.user?.id?.toString());
     urlencoded.append('weightfull', '100');
     urlencoded.append('weightone', '10');
     urlencoded.append('producetype', selectedType.name);
@@ -79,7 +81,7 @@ export function Modal(props: ModalProps) {
         });
       })
       .catch((error) =>
-        Toast.fire({ icon: 'error', title: `Opps, and error has occurred` })
+        Toast.fire({ icon: 'error', title: `Oops, and error has occurred` })
       );
   };
 
@@ -90,7 +92,7 @@ export function Modal(props: ModalProps) {
     myHeaders.append('Access-Control-Allow-Origin', '*');
 
     const form = new FormData();
-    form.append('id', '1');
+    form.append('id', session.user?.id?.toString());
     form.append('image', image);
 
     const response = await fetch(upload_url, {
