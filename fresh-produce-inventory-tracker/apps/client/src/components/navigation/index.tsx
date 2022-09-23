@@ -1,9 +1,7 @@
-import { MdOutlineNotifications } from 'react-icons/md';
 import Link from 'next/link';
 import { RiUser3Line } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Check } from './../check/check';
 import { useSession } from 'next-auth/react';
 /* eslint-disable-next-line */
 export interface NavigationProps {}
