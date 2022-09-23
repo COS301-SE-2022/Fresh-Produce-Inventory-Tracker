@@ -21,13 +21,17 @@ export class ScaleService {
     weightfull: number;
     weightone: number;
     producetype: string;
+    description:string;
+    name:string;
   }) {
     console.log(data);
     const scale = await this.repo.createScale(
       Math.trunc(data.userId),
       Math.trunc(data.weightfull),
       Math.trunc(data.weightone),
-      data.producetype
+      data.producetype,
+      data.name,
+      data.description
     );
     return scale;
   }
