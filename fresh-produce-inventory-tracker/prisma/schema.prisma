@@ -61,6 +61,8 @@ model Scale {
   userId              Int      @map("user_id")
   WeightIndividual    Int      @map("weight_Individual")
   WeightTotal         Int      @map("weight_total")
+  Name                String?  @map("name")
+  Description         String?  @map("description")
   ProduceType         String?   @map("produce_type")
   createdAt           DateTime @default(now())
   updatedAt           DateTime @updatedAt
@@ -126,6 +128,8 @@ model Notification {
   id        Int      @default(autoincrement())
   userId    Int      @map("user_id")
   Type      String?    @map("type")
+  taskType  String?    @map("task_type")
+  produceType String?  @map("produce_type")
   message   String?
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 

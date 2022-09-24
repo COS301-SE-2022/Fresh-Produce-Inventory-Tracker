@@ -12,11 +12,11 @@ export interface UserModalProps {
   description?: string;
 }
 
-const upload_Name = 'http://localhost:3333/api/profile/editname';
-const upload_Surname = 'http://localhost:3333/api/profile/editsurname';
-const upload_Email = 'http://localhost:3333/api/profile/editemail';
-const upload_Bio = 'http://localhost:3333/api/profile/editbio';
-const upload_Vis = 'http://localhost:3333/api/profile/editvisibility';
+const upload_Name = 'http://13.246.23.178:3333/api/profile/editname';
+const upload_Surname = 'http://13.246.23.178:3333/api/profile/editsurname';
+const upload_Email = 'http://13.246.23.178:3333/api/profile/editemail';
+const upload_Bio = 'http://13.246.23.178:3333/api/profile/editbio';
+const upload_Vis = 'http://13.246.23.178:3333/api/profile/editvisibility';
 
 
 
@@ -50,7 +50,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -74,7 +73,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -96,7 +94,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -118,7 +115,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -145,7 +141,6 @@ export function UserModal(props: UserModalProps) {
       if (response.status == 201) {
         props.closeUserModal();
         Router.reload();
-        return;
       }
 
       if (response.status == 500) {
@@ -166,7 +161,7 @@ export function UserModal(props: UserModalProps) {
         </button> */}
       </div>
 
-      <Transition appear show={props.isOpen} as={Fragment}>
+      <Transition appear show={props.isOpen ? true:false} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={props.closeUserModal}>
           <Transition.Child
             as={Fragment}

@@ -1,15 +1,16 @@
 import { useState } from "react";
 import {Loading} from "../../src/components/loading/loading"
 import { useRouter } from 'next/router'
+import Item from "./../../src/components/item/item"
 
 /* eslint-disable-next-line */
 export interface MobileProps {
   type:string
 }
 
-const upload_url = 'http://192.168.1.4:3333/api/image/uploadone';
-const freshness_url = 'http://192.168.1.4:3333/api/calcfreshness/predict';
-const add_task = 'http://192.168.1.4:3333/api/tasks/createtask';
+const upload_url = 'http://13.246.23.178:3333/api/image/uploadone';
+const freshness_url = 'http://13.246.23.178:3333/api/calcfreshness/predict';
+const add_task = 'http://13.246.23.178:3333/api/tasks/createtask';
 
 export function Mobile(props: MobileProps) {
 
@@ -147,6 +148,9 @@ export function Mobile(props: MobileProps) {
       title="Add New Item"
       description="Please select and upload an image for analysis."
       />
+      <Item type="Fresh Produce"></Item>
+      <Item type="Poultry/Meat"></Item>
+      <Item type="Pastries"></Item>
     </div>
   );
 }

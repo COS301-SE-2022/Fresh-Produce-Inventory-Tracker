@@ -12,9 +12,9 @@ export class taskService {
 
     return await this.repo.getTasks(id);
   }
-  async createTask(id:number,message:string) {
+  async createTask(id:number,message:string,taskType:string,produceType:string) {
 
-    return await this.repo.createTask(id,message);
+    return await this.repo.createTask(id,message,taskType,produceType);
   }
   async deleteTasks(id:number,message:string) {
 

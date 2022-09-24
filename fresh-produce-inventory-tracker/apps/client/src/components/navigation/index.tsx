@@ -1,14 +1,13 @@
-import { MdOutlineNotifications } from 'react-icons/md';
 import Link from 'next/link';
 import { RiUser3Line } from 'react-icons/ri';
 import { useRouter } from 'next/router';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Check } from './../check/check';
-
+import { useSession } from 'next-auth/react';
 /* eslint-disable-next-line */
 export interface NavigationProps {}
 
 export function Navigation(props: NavigationProps) {
+  const { data: session } = useSession();
   const router = useRouter();
   return (
     <header>
@@ -37,22 +36,34 @@ export function Navigation(props: NavigationProps) {
             <GiHamburgerMenu className="w-full h-full cursor-pointer pointer-events-none"></GiHamburgerMenu>
           </label>
 
-          <Link href="/notifications" passHref>
-            <span>
-              <Check data={[]}></Check>
-            </span>
-          </Link>
 
           <div className="flex items-center cursor-pointer gap-x-2">
-            <div className="flex flex-col text-right">
-              <label className="text-sm">John Doe</label>
-              <label className="text-xs text-black/40"> JohnDoes@email.com</label>
+            <div className="flex-col hidden text-right md:flex">
+              <label className="text-sm">{session?.user?.name}</label>
+              <label className="text-xs text-black">
+                {session?.user?.email}
+              </label>
             </div>
-            <Link href="/user" passHref>
-              <span>
+
+            <div className="dropdown dropdown-end">
+              <button tabIndex={0}>
                 <RiUser3Line className="w-10 h-10 p-2 bg-blue-200 rounded-full cursor-pointer" />
-              </span>
-            </Link>
+              </button>
+              <ul
+                tabIndex={0}
+                className="p-4 space-y-4 text-white shadow dropdown-content menu bg-neutral rounded-box w-52"
+              >
+                <Link href="/user" passHref>
+                  Profile
+                </Link>
+                <Link href="/notifications" passHref>
+                  Notifications
+                </Link>
+                <Link href="/logout" passHref>
+                  Logout
+                </Link>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

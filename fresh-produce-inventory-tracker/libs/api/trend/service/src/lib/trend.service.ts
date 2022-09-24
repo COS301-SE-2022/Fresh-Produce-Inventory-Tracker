@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { trendRepository } from '../../../repository/src/lib/trend.repository';
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
@@ -27,6 +27,10 @@ export class TrendService {
   async updateTrend(user: number, scale: number) {
     //variables
     const Scale = await this.repo.getScaleTrend(scale);
+    if(Scale== null)
+    {
+      throw new NotFoundException();
+    }
     const weekdays = Scale.date;
     const weights = Scale.weight;
     let currentday = weekdays[0].getDate();

@@ -5,7 +5,7 @@ import {AuthenicationRepository} from './authentication.repository';
 
 
 class user{
-    id: number;
+  id: number;
   email: string;
   password: string;
   passwordSalt: string;
@@ -59,7 +59,7 @@ describe('ApiAuthorizationRepositoryTest', () => {
           );
     
         expect(
-          await data.createUser('qwert@gmail.com','bla,bla,bla','22')
+          await data.createUser('qwert@gmail.com','bla','bla','bla','22')
         ).toBe(MockApiImpl);
       });
       it('should edit user', async () => {

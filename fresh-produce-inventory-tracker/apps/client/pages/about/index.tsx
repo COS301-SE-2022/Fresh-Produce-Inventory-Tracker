@@ -1,10 +1,12 @@
+import styles from './index.module.css';
+
 /* eslint-disable-next-line */
 export interface AboutProps {}
 
 export function About(props: AboutProps) {
   return (
-    <div className="grid h-full place-content-center">
-      <h1>Welcome to Settings!</h1>
+    <div className={styles['container']}>
+      <h1>Welcome to About!</h1>
     </div>
   );
 }

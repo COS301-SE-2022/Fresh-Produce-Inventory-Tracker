@@ -4,7 +4,7 @@ export interface NotificationsProps {}
 
 import Notification  from "../../src/components/notification"; 
 
-const table_api = 'http://localhost:3333/api/notification/getnotifications';
+const table_api = 'http://13.246.23.178:3333/api/notification/getnotifications';
 
 const notifications =  [];
 
@@ -64,7 +64,7 @@ export function Notifications({notifications}) {
 
 function deleteAll()
 {
-  const table_api = 'http://localhost:3333/api/notification/deletenotification';
+  const table_api = 'http://13.246.23.178:3333/api/notification/deletenotification';
 
   async function del()
   {

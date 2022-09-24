@@ -11,7 +11,7 @@ export class TrendForYearcontroller {
 
     @Post('gettrendsforitem')
     async getTrendsForItem(@Body('id') id: number,@Body('producetype') producetype:string) {
-        return await this.service.getTrendsForItem(id,producetype);
+        return await this.service.getTrendsForItem(+id,producetype);
     }
     @Post('updateyeartrend')
     async updateyeartrend(@Body('userid') userid: number,@Body('scaleid') scaleid:number) {
@@ -19,7 +19,11 @@ export class TrendForYearcontroller {
     }
     @Post('getall')
     async getAll(@Body('userid') userid: number ) {
-        return await this.service.getAll(userid);
+        return await this.service.getAll(+userid);
+    }
+    @Post('getmonthaverages')
+    async getMonthAverages(@Body('userid') userid: number, @Body('producetype') producetype: string) {
+        return await this.service.getMonthAverages(+userid,producetype);
     }
     
 }

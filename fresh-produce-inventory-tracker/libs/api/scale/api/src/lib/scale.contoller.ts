@@ -22,15 +22,18 @@ export class ScaleController {
   }
   //@UseGuards(AuthGuard('jwt'))
   @Post('setscale')//userId:number,weightfull:number,weightone:number,producetype:Prisma.EnumProduceTypeFilter
-  async setscale(@Body('userId') id:number, @Body('weightfull') weightfull: string, @Body('weightone') weightone: string, @Body('producetype') producetype: string) {
+  async setscale(@Body('userId') id:number, @Body('weightfull') weightfull: string, @Body('weightone') weightone: string, @Body('producetype') producetype: string,@Body('description') desc:string,@Body('name') name:string) {
     //@Req() req:Request
     //const userId = req.user;
-    //console.log(userId);
+    //console.log(id);
     return this.ScaleService.createScale({
       userId: +id,
       weightfull: +weightfull,
       producetype: producetype,
-      weightone: +weightone
+      weightone: +weightone,
+      name: name,
+      description:desc
+
 
     });
   }
@@ -42,6 +45,11 @@ export class ScaleController {
       id,
     );
   }
+  /*
+    INPUT:
+    OUTPUT:
+    DISCRIPTION:
+  */
   //@UseGuards(AuthGuard('jwt'))
   @Post('editscale')//id: number, userid:number, data:any
   async editscale(@Body('id') id: number, @Body('userid') userid: number, @Body('weight') weight:number) {
@@ -51,7 +59,18 @@ export class ScaleController {
       +userid,
       +weight
     );
+    
   }
+  @Post('getallproduce')
+    async getAllProduce(@Body('id') id: number)
+    {
+      return await this.ScaleService.getAllProduce(+id);
+    }
+    @Post('producelist')
+    async produceList(@Body('id') id: number)
+    {
+      return await this.ScaleService.produceList(+id);
+    }
 }
 
 

@@ -9,7 +9,8 @@ describe('User', () => {
       Visibility: 'true',
       Name: 'Durandt',
       email: 'durandtu@gmail.com',
-      Bio: "University Student"
+      Bio: "University Student",
+      Surname: "Uys"
     }} />);
     expect(baseElement).toBeTruthy();
   });
