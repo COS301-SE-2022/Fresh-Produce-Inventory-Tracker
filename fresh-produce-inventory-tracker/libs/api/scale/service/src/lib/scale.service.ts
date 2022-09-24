@@ -41,13 +41,13 @@ export class ScaleService {
     if (weight < get.WeightIndividual * 5) {
       const message =
         'The supply of ' +
-        get.ProduceType +
+        get.Name +
         ' produce is getting low. Please restock.';
       if ((await this.taskService.getTasksMessage(userid, message))) {
         if ((await this.taskService.getTasksMessage(userid, message)).message !=
           message
         ) {
-          await this.taskService.createTask(userid, message,'low',get.ProduceType);
+          await this.taskService.createTask(userid, message,'low',get.Name);
         }
       }
 
@@ -81,7 +81,8 @@ export class ScaleService {
       ProduceStatus = await this.checkFreshness(id,trenddata[counter])
       const retVal = {
         id:allScales[i].id,
-        name: allScales[i].ProduceType,
+        name: allScales[i].Name,
+        ProduceType:allScales[i].ProduceType,
         individualWeight: allScales[i].WeightIndividual,
         fullWeight: allScales[i].WeightTotal,
         expireDate: trenddata[counter].SaleDate,
