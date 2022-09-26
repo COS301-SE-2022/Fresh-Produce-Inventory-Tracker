@@ -9,6 +9,9 @@ export class NotificationRepository {
       where: { userId: +id,Type:{contains:"Notification"}},
     });
   }
+  async getEmail(id:number){
+    return (await this.prisma.user.findFirst({where:{id:id}})).email;
+  }
   async getNotificationMessage(id: number, message: string) {
     return await this.prisma.notification.findFirst({
       where: { userId: +id,  message: message },
