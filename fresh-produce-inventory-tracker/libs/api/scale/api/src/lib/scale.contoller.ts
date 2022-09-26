@@ -54,7 +54,7 @@ export class ScaleController {
   @Post('editscale')//id: number, userid:number, data:any
   async editscale(@Body('id') id: number, @Body('userid') userid: number, @Body('weight') weight:number) {
     console.log(weight)
-    return this.ScaleService.editScale(
+    return await this.ScaleService.editScale(
       +id,
       +userid,
       +weight

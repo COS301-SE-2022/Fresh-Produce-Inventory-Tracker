@@ -108,6 +108,7 @@ export class ScaleRepository {
     {
       throw new NotFoundException('No such id exists too');
     }
+    console.log('here');
     await this.prisma.scale.updateMany({
       where: { id: id, userId: userid },
       data: { WeightTotal: Weighttotal },
