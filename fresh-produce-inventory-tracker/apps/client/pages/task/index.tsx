@@ -42,7 +42,7 @@ export async function getServerSideProps(context) {
   });
 
   const response = await axios.post(
-    'http://13.246.23.178:3333/api/tasks/gettasks',
+    `${process.env.BACKEND_URL}/api/tasks/gettasks`,
     params
   );
 
@@ -71,7 +71,7 @@ export function Task({
     params.append('id', userId);
     params.append('message', message.toString());
     const { status } = await axios.post(
-      'http://13.246.23.178:3333/api/tasks/deletetask',
+      `${process.env.BACKEND_URL}/api/tasks/deletetask`,
       params
     );
     if (status === 201) {
