@@ -6,13 +6,31 @@ import {NotificationRepository} from '../../../repository/src/lib/notifcation.re
 export class NotificationService {
   
   constructor(private mail:MailerService, private repo:NotificationRepository) {}
+  async sendEmail(id:number,subject:string,message:string)
+  {
+    const useremail = await this.repo.getEmail(id);
+    if(useremail == null || useremail == '')
+    {
+      return null; // have to change to exception
+    }
+    await this.mail.sendMail({
+      to: useremail,
+      from: 'freshproduceemail@gmail.com',
+      subject: subject,
+      text: message
+  })
+  if(this.getNotificationMessage(id,message) == null )
+  {
+    this.createNotification(id,message);
+  }
+  }
   async sendOTP(receiver) {
     const num = Math.floor(Math.random()*90000) + 10000;
     const numstr = num.toString();
     const message = 'This is your password reset OTP: '+numstr; 
     await this.mail.sendMail({
         to: receiver,
-        from: 'dacers467@gmail.com',
+        from: 'freshproduceemail@gmail.com',
         subject: 'Reset password',
         text: message
     })

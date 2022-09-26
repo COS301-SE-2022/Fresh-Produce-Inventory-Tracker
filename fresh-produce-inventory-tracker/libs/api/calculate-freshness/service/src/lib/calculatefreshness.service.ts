@@ -6,13 +6,14 @@ import * as path from 'path';
 import tfnode = require('@tensorflow/tfjs-node');
 // import { min } from 'rxjs';
 import { taskService } from '../../../../tasks/service/src/lib/taskService.service';
+import { NotificationService } from '../../../../notifications/service/src/lib/notification.service';
 import mobilenet = require('@tensorflow-models/mobilenet');
 
 //import {MailService} from '../../../../notifications/service/src/lib/notification.service';
 
 @Injectable({})
 export class calculatefreshnessService {
-  constructor(private taskService: taskService) {}
+  constructor(private taskService: taskService,private NotificationService:NotificationService) {}
   async getAllModels() {
     return [
       'apple',
@@ -64,7 +65,8 @@ export class calculatefreshnessService {
           (await this.taskService.getTasksMessage(id, message)).message !=
             message)
       ) {
-        await this.taskService.createTask(id, message,'expire',type);
+              await this.NotificationService.sendEmail(id,'Rotten Produce',message);
+              await this.taskService.createTask(id, message,'expire',type);
       }
     }
     return answer;
