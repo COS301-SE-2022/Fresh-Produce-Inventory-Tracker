@@ -11,13 +11,84 @@ export interface MobileProps {
 const upload_url = `${process.env.BACKEND_URL}/api/image/uploadone`;
 const freshness_url = `${process.env.BACKEND_URL}/api/calcfreshness/predict`;
 const add_task = `${process.env.BACKEND_URL}/api/tasks/createtask`;
+const tableYear_api = `http://13.245.224.174:3333/api/trendforyear/getmonthaverages`;
 
-export function Mobile(props: MobileProps) {
+let FreshProduce = 0;
+let PoultryMeat = 0;
+let Pastries = 0;
+
+export async function getServerSideProps() {
+
+  let Form = "userid=1&producetype=Fresh Produce";
+
+  let response = await fetch(tableYear_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
+  let trendDatas: number = await response.json();
+
+  if(response.status == 201)
+  {
+    for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
+    {
+      FreshProduce+=(Object.values(trendDatas)[2][x]);
+    }
+  }
+
+  Form = "userid=1&producetype=Poultry/Meat";
+
+  response = await fetch(tableYear_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
+  trendDatas = await response.json();
+
+  if(response.status == 201)
+  {
+    for(let x = 0;x < (Object.values(trendDatas)[2]).length;x++)
+    {
+      PoultryMeat+=(Object.values(trendDatas)[2][x]);
+    }
+  }
+
+  Form = "userid=1&producetype=Pastries";
+
+  response = await fetch(tableYear_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
+  trendDatas = await response.json();
+
+  if(response.status == 201)
+  {
+    for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
+    {
+     Pastries+=(Object.values(trendDatas)[2][x]);
+    }
+  }
+
+  return {
+    props:{FreshProduce,PoultryMeat,Pastries}
+  }
+}
+
+export function Mobile({FreshProduce,PoultryMeat,Pastries},props: MobileProps) {
 
   const router = useRouter();
   let type = "apple";
   
-  console.log(typeof(router.query.type));
   if(typeof(router.query.type) == "string")
   {
     type = router.query.type;
@@ -148,9 +219,9 @@ export function Mobile(props: MobileProps) {
       title="Add New Item"
       description="Please select and upload an image for analysis."
       />
-      <Item type="Fresh Produce"></Item>
-      <Item type="Poultry/Meat"></Item>
-      <Item type="Pastries"></Item>
+      <Item type="Fresh Produce" count={FreshProduce}></Item>
+      <Item type="Poultry/Meat" count={PoultryMeat}></Item>
+      <Item type="Pastries" count={Pastries}></Item>
     </div>
   );
 }
