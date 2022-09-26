@@ -100,7 +100,7 @@ export class ScaleRepository {
     });
   }
   async updateScale(id: number, userid: number, Weighttotal: number) {
-    console.log('here');
+    
     if((await this.prisma.user.findUnique({where:{id:userid}})== null))
     {
       throw new NotFoundException('No such id exists');
@@ -117,7 +117,7 @@ export class ScaleRepository {
     const scale = await this.prisma.scale.findFirst({
       where: { id: id, userId: userid },
     });
-    //console.log(scale);
+    console.log(scale);
     const old = await this.prisma.scale_Trend.findFirst({
       where: {
         scale_id: scale.id,
