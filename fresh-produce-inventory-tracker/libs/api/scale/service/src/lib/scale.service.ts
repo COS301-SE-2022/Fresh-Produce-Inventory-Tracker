@@ -48,13 +48,17 @@ export class ScaleService {
         'The supply of ' +
         get.Name +
         ' produce is getting low. Please restock.';
-      if (!(await this.taskService.getTasksMessage(userid, message))) {
+      if ((await this.taskService.getTasksMessage(userid, message))) {
         if ((await this.taskService.getTasksMessage(userid, message)).message !=
           message
         ) {
           await this.NotificationService.sendEmail(userid,'Low Stock',message);
           await this.taskService.createTask(userid, message,'low',get.Name);
         }
+      }
+      else{
+        await this.NotificationService.sendEmail(userid,'Low Stock',message);
+        await this.taskService.createTask(userid, message,'low',get.Name);
       }
 
 
