@@ -8,6 +8,7 @@ import {Chart} from "./../../src/components/chart/chart"
 import { options } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useSession } from 'next-auth/react';
+
 const fruitDataMonday = [];
 const fruitDataTuesday = [];
 const fruitDataWednesday = [];
@@ -20,8 +21,8 @@ const PoultryMeat = [];
 const Pastries = [];
 const lineData = [];
 
-const table_api = 'http://13.246.23.178:3333/api/trend/getall';
-const tableYear_api = 'http://13.246.23.178:3333/api/trendforyear/getmonthaverages';
+const table_api = `${process.env.BACKEND_URL}/api/trend/getall`;
+const tableYear_api = `${process.env.BACKEND_URL}/api/trendforyear/getmonthaverages`;
 
 const option = [
   "All","Fruit&Veg","Meat","Pastries"
