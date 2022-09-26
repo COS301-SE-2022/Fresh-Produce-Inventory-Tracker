@@ -5,13 +5,15 @@ import { ScaleRepository } from '../../../repository/src/lib/scale.repository';
 
 import { Prisma } from '@prisma/client';
 import { taskService } from '../../../../tasks/service/src/lib/taskService.service';
+import { NotificationService } from '../../../../notifications/service/src/lib/notification.service';
 
 @Injectable({})
 export class ScaleService {
   //id: number, userid: number
   constructor(
     private repo: ScaleRepository,
-    private taskService: taskService
+    private taskService: taskService,
+    private NotificationService:NotificationService
   ) { }
   async getScale(id: number, userid: number) {
     return await this.repo.getScale(id, userid);
@@ -43,10 +45,11 @@ export class ScaleService {
         'The supply of ' +
         get.Name +
         ' produce is getting low. Please restock.';
-      if ((await this.taskService.getTasksMessage(userid, message))) {
+      if (!(await this.taskService.getTasksMessage(userid, message))) {
         if ((await this.taskService.getTasksMessage(userid, message)).message !=
           message
         ) {
+          await this.NotificationService.sendEmail(userid,'Low Stock',message);
           await this.taskService.createTask(userid, message,'low',get.Name);
         }
       }
