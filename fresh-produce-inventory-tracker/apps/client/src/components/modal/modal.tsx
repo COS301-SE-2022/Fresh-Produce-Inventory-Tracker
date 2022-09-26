@@ -10,8 +10,6 @@ import CustomRadioButton from '../custom-radio-button/custom-radio-button';
 import { radioItem } from '../../interfaces';
 import { Loading } from '../loading/loading';
 import Swal from 'sweetalert2';
-import { options } from '../../../pages/api/auth/[...nextauth]';
-import { unstable_getServerSession } from 'next-auth/next';
 import { session } from 'passport';
 /* eslint-disable-next-line */
 export interface ModalProps {
