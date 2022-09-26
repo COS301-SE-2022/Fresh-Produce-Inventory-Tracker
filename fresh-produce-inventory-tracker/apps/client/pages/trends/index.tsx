@@ -9,19 +9,11 @@ import { options } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useSession } from 'next-auth/react';
 
-const fruitDataMonday = [];
-const fruitDataTuesday = [];
-const fruitDataWednesday = [];
-const fruitDataThursday = [];
-const fruitDataFriday = [];
-const fruitDataSaturday = [];
-const fruitDataSunday = [];
 const FreshProduce = [];
 const PoultryMeat = [];
 const Pastries = [];
 const lineData = [];
 
-const table_api = `http://13.246.26.157:3333/api/trend/getall`;
 const tableYear_api = `http://13.246.26.157:3333/api/trendforyear/getmonthaverages`;
 
 const option = [
@@ -48,19 +40,7 @@ export async function getServerSideProps(context) {
     };
   }
 
-  let  Form = "userid=" + session.user?.id?.toString();
-
-  const response = await fetch(table_api, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    },
-    body: Form,
-  });
-
-  const trendData = await response.json();
-
-  Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce";
+  let Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce";
 
   let responses = await fetch(tableYear_api, {
     method: 'POST',
@@ -120,62 +100,12 @@ export async function getServerSideProps(context) {
     }
   }
 
-  if (response.status == 201 && trendData != undefined) {
-    for(let x = 0;x < trendData.length;x++)
-    {
-      const data = Object.values(trendData[x])[3];
-
-      switch(data)
-      {
-        case "Monday":
-          {
-            fruitDataMonday.push(trendData[x]);
-            break;
-          }
-        case "Tuesday":
-          {
-            fruitDataTuesday.push(trendData[x])
-            break;
-          }
-        case "Wednesday":
-          {
-            fruitDataWednesday.push(trendData[x])
-            break;
-          }
-        case "Thursday":
-          {
-            fruitDataThursday.push(trendData[x])
-            break;
-          }
-        case "Friday":
-          {
-            fruitDataFriday.push(trendData[x])
-            break;
-          }
-        case "Saterday":
-          {
-            fruitDataSaturday.push(trendData[x])
-            break;
-          }
-        case "Sunday":
-          {
-            fruitDataSunday.push(trendData[x])
-            break;
-          }
-      }
-    }
-  }
-
-  if (response.status == 500) {
-    alert('Incorrect id');
-  }
-
   return {
-    props:{fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries,lineData}
+    props:{FreshProduce,PoultryMeat,Pastries,lineData}
   }
 }
 
-export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,fruitDataThursday,fruitDataFriday,fruitDataSaturday,fruitDataSunday,FreshProduce,PoultryMeat,Pastries,lineData},props:InventoryProps) {
+export function Trends({FreshProduce,PoultryMeat,Pastries,lineData},props:InventoryProps) {
   const { data: session } = useSession();
   let x = 0;
   const [type, setType] = useState("Bar");
@@ -303,7 +233,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
           </select>
         </div>
       </div>
-      <Chart lineData={lineData} type={type} fruit={produce} data={[FP,M,P]} dataMonday={fruitDataMonday} dataTuesday={fruitDataTuesday} dataWednesday={fruitDataWednesday} dataThursday={fruitDataThursday} dataFriday={fruitDataFriday} dataSaturday={fruitDataSaturday} dataSunday={fruitDataSunday}></Chart>
+      <Chart lineData={lineData} type={type} fruit={produce} data={[FP,M,P]}></Chart>
     </div>
   );
 }

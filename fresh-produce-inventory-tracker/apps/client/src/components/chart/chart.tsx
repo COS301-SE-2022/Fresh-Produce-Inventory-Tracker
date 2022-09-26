@@ -29,13 +29,6 @@ ChartJS.register(
 export interface ChartProps {
   type:string,
   fruit:string,
-  dataMonday: [[],[],[],[]],
-  dataTuesday: [[],[],[],[]],
-  dataWednesday: [[],[],[],[]],
-  dataThursday: [[],[],[],[]],
-  dataFriday: [[],[],[],[]],
-  dataSaturday: [[],[],[],[]],
-  dataSunday: [[],[],[],[]],
   data:[[],[],[]],
   lineData:any[];
 }
