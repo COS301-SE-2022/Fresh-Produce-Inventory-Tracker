@@ -21,8 +21,8 @@ const PoultryMeat = [];
 const Pastries = [];
 const lineData = [];
 
-const table_api = `${process.env.BACKEND_URL}/api/trend/getall`;
-const tableYear_api = `${process.env.BACKEND_URL}/api/trendforyear/getmonthaverages`;
+const table_api = `http://13.245.224.174:3333/api/trend/getall`;
+const tableYear_api = `http://13.245.224.174:3333/api/trendforyear/getmonthaverages`;
 
 const option = [
   "All","Fruit&Veg","Meat","Pastries"
@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
 
   const trendData = await response.json();
 
-  Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce"
+  Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce";
 
   let responses = await fetch(tableYear_api, {
     method: 'POST',
@@ -80,7 +80,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  Form = "userid=" + session.user?.id?.toString() + "&producetype=Poultry/Meat"
+  Form = "userid=" + session.user?.id?.toString() + "&producetype=Poultry/Meat";
 
   responses = await fetch(tableYear_api, {
     method: 'POST',
@@ -100,7 +100,7 @@ export async function getServerSideProps(context) {
     }
   }
 
-  Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries"
+  Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries";
 
   responses = await fetch(tableYear_api, {
     method: 'POST',
@@ -214,7 +214,8 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
     FreshProduce = [];
     PoultryMeat = [];
     Pastries = [];
-    let Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce"
+
+    let Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce";
 
     let responses = await fetch(tableYear_api, {
       method: 'POST',
@@ -234,7 +235,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
       }
     }
 
-    Form = "userid=" +  session.user?.id?.toString() + "&producetype=Poultry/Meat"
+    Form = "userid=" +  session.user?.id?.toString() + "&producetype=Poultry/Meat";
 
     responses = await fetch(tableYear_api, {
       method: 'POST',
@@ -254,7 +255,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
       }
     }
 
-    Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries"
+    Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries";
 
     responses = await fetch(tableYear_api, {
       method: 'POST',
@@ -282,7 +283,7 @@ export function Trends({fruitDataMonday,fruitDataTuesday,fruitDataWednesday,frui
     setTimeout(function () {
         fetchData();
         stateChange();
-    }, 5000);
+    }, 15000);
   }
 
   stateChange();
