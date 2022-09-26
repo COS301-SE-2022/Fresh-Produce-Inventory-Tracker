@@ -10,7 +10,6 @@ import CustomRadioButton from '../custom-radio-button/custom-radio-button';
 import { radioItem } from '../../interfaces';
 import { Loading } from '../loading/loading';
 import Swal from 'sweetalert2';
-import { session } from 'passport';
 /* eslint-disable-next-line */
 export interface ModalProps {
   isOpen?: boolean;
@@ -36,9 +35,9 @@ const items: radioItem[] = [
   },
 ];
 
-const upload_url = `${process.env.BACKEND_URL}/api/image/uploadone`;
-const freshness_url = `${process.env.BACKEND_URL}/api/calcfreshness/predict`;
-const add_task = `${process.env.BACKEND_URL}/api/tasks/createtask`;
+const upload_url = `http://13.245.224.174:3333/api/image/uploadone`;
+const freshness_url = `http://13.245.224.174:3333/api/calcfreshness/predict`;
+const add_task = `http://13.245.224.174:3333/api/tasks/createtask`;
 
 const Toast = Swal.mixin({
   toast: true,
@@ -66,15 +65,17 @@ export function Modal(props: ModalProps) {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
+    console.log(e.target[0].value,e.target[3].value,e.target[2].value,e.target[1].value);
+
     const urlencoded = new URLSearchParams();
     urlencoded.append('userId', props.id);
-    urlencoded.append('weightfull', '100');
-    urlencoded.append('weightone', '10');
+    urlencoded.append('weightfull', e.target[3].value+"");
+    urlencoded.append('weightone', e.target[2].value+"");
     urlencoded.append('producetype', selectedType.name);
-    urlencoded.append('name', "Apples");
-    urlencoded.append('description', "red apples");
+    urlencoded.append('name', e.target[0].value+"");
+    urlencoded.append('description', e.target[1].value+"");
 
-    fetch(`${process.env.BACKEND_URL}/api/scale/setscale`, {
+    fetch(`http://13.245.224.174:3333/api/scale/setscale`, {
       method: 'POST',
       headers: myHeaders,
       body: urlencoded,
@@ -128,7 +129,7 @@ export function Modal(props: ModalProps) {
   const checkFreshness = async (data) => {
     setShowLoading(true);
     const urlencoded = new URLSearchParams();
-    urlencoded.append('id', session.user?.id?.toString());
+    urlencoded.append('id', props.id);
     urlencoded.append('type', 'apple');
     urlencoded.append('file', data.path);
 
@@ -170,7 +171,7 @@ export function Modal(props: ModalProps) {
 
   const createTask = async () => {
     const form = new FormData();
-    form.append('id', session.user?.id?.toString());
+    form.append('id', props.id);
     form.append('message', 'A rotten apple has been found, resolve asap!');
 
     const response = await fetch(add_task, {

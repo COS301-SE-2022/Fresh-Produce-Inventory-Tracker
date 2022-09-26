@@ -3,7 +3,8 @@ import { AiOutlineNumber, AiOutlineDollar} from 'react-icons/ai';
 import { MdOutlineDangerous, MdChevronRight } from 'react-icons/md';
 /* eslint-disable-next-line */
 export interface ItemProps {
-  type:string
+  type:string,
+  count:number
 }
 
 const TrendItem = ({ icon, number, type }) => (
@@ -32,7 +33,7 @@ export function Item(props: ItemProps) {
               icon={
                 <AiOutlineDollar className="w-10 h-10 p-2 rounded-full text-success bg-success/20" />
               }
-              number={1500}
+              number={props.count}
               type="Total items sold"
             />
             <TrendItem
@@ -41,13 +42,6 @@ export function Item(props: ItemProps) {
               }
               number={4}
               type="# of items"
-            />
-            <TrendItem
-              icon={
-                <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error bg-error/20" />
-              }
-              number={3}
-              type="Expired"
             />
           </div>
           <div className="mt-8">
