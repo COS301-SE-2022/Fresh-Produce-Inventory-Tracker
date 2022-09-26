@@ -40,7 +40,8 @@ export class ScaleService {
   async editScale(id: number, userid: number, weight: number) {
     
     const answer = await this.repo.updateScale(id, userid, weight);
-    console.log(answer)
+    console.log(answer);
+    console.log('-----------------');
     const get = await this.repo.getScale(id, userid);
     if (weight < get.WeightIndividual * 5) {
       const message =

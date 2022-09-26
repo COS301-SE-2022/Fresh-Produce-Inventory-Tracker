@@ -100,6 +100,7 @@ export class ScaleRepository {
     });
   }
   async updateScale(id: number, userid: number, Weighttotal: number) {
+    console.log('here');
     if((await this.prisma.user.findUnique({where:{id:userid}})== null))
     {
       throw new NotFoundException('No such id exists');
@@ -108,7 +109,7 @@ export class ScaleRepository {
     {
       throw new NotFoundException('No such id exists too');
     }
-    console.log('here');
+    
     await this.prisma.scale.updateMany({
       where: { id: id, userId: userid },
       data: { WeightTotal: Weighttotal },
