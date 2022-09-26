@@ -4,7 +4,8 @@ import { MdOutlineDangerous, MdChevronRight } from 'react-icons/md';
 /* eslint-disable-next-line */
 export interface ItemProps {
   type:string,
-  count:number
+  count:number,
+  items:number
 }
 
 const TrendItem = ({ icon, number, type }) => (
@@ -40,7 +41,7 @@ export function Item(props: ItemProps) {
               icon={
                 <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-warning bg-warning/20" />
               }
-              number={4}
+              number={props.items}
               type="# of items"
             />
           </div>

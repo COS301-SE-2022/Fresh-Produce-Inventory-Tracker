@@ -12,10 +12,14 @@ const upload_url = `${process.env.BACKEND_URL}/api/image/uploadone`;
 const freshness_url = `${process.env.BACKEND_URL}/api/calcfreshness/predict`;
 const add_task = `${process.env.BACKEND_URL}/api/tasks/createtask`;
 const tableYear_api = `http://13.246.26.157:3333/api/trendforyear/getmonthaverages`;
+const produce_api = `http://13.246.26.157:3333/api/scale/producelist`;
 
 let FreshProduce = 0;
 let PoultryMeat = 0;
 let Pastries = 0;
+let fn = 0;
+let pmn = 0
+let pn = 0;
 
 export async function getServerSideProps() {
 
@@ -79,12 +83,43 @@ export async function getServerSideProps() {
     }
   }
 
+  Form = "id=1";
+
+  response = await fetch(produce_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: Form,
+  });
+
+  const trendData = await response.json();
+
+  if(response.status == 201)
+  {
+    for(let x = 0;x < trendData.length;x++)
+    {
+      if(trendData[x].ProduceType == "Fresh Produce")
+      {
+        fn++;
+      }
+      else if(trendData[x].ProduceType == "Poultry/Meat")
+      {
+        pmn++;
+      }
+      else
+      {
+        pn++;
+      }
+    }
+  }
+
   return {
-    props:{FreshProduce,PoultryMeat,Pastries}
+    props:{FreshProduce,PoultryMeat,Pastries,fn,pmn,pn}
   }
 }
 
-export function Mobile({FreshProduce,PoultryMeat,Pastries},props: MobileProps) {
+export function Mobile({FreshProduce,PoultryMeat,Pastries,fn,pmn,pn},props: MobileProps) {
 
   const router = useRouter();
   let type = "apple";
@@ -219,9 +254,9 @@ export function Mobile({FreshProduce,PoultryMeat,Pastries},props: MobileProps) {
       title="Add New Item"
       description="Please select and upload an image for analysis."
       />
-      <Item type="Fresh Produce" count={FreshProduce}></Item>
-      <Item type="Poultry/Meat" count={PoultryMeat}></Item>
-      <Item type="Pastries" count={Pastries}></Item>
+      <Item type="Fresh Produce" count={FreshProduce} items={fn}></Item>
+      <Item type="Poultry/Meat" count={PoultryMeat} items={pmn}></Item>
+      <Item type="Pastries" count={Pastries} items={pn}></Item>
     </div>
   );
 }
