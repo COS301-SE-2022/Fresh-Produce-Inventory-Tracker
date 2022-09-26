@@ -38,9 +38,9 @@ const items: radioItem[] = [
   },
 ];
 
-const upload_url = 'http://13.246.23.178:3333/api/image/uploadone';
-const freshness_url = 'http://13.246.23.178:3333/api/calcfreshness/predict';
-const add_task = 'http://13.246.23.178:3333/api/tasks/createtask';
+const upload_url = `${process.env.BACKEND_URL}/api/image/uploadone`;
+const freshness_url = `${process.env.BACKEND_URL}/api/calcfreshness/predict`;
+const add_task = `${process.env.BACKEND_URL}/api/tasks/createtask`;
 
 const Toast = Swal.mixin({
   toast: true,
@@ -53,23 +53,6 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer);
   },
 });
-
-export async function getServerSideProps(context) {
-  const session = await unstable_getServerSession(
-    context.req,
-    context.res,
-    options
-  );
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false,
-      },
-    };
-  }
-}
 
 export function Modal(props: ModalProps) {
   const [image, setImage] = useState(null);
@@ -93,7 +76,7 @@ export function Modal(props: ModalProps) {
     urlencoded.append('name', "Apples");
     urlencoded.append('description', "red apples");
 
-    fetch('http://13.246.23.178:3333/api/scale/setscale', {
+    fetch(`${process.env.BACKEND_URL}/api/scale/setscale`, {
       method: 'POST',
       headers: myHeaders,
       body: urlencoded,
