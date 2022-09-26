@@ -215,7 +215,7 @@ export class TrendForYearService {
       const restocking = trendsForDayAnditem.LastRestock;
       if (!dateOfsale || !restocking) {
         const timeForSale = new Date(
-          dateOfRestock.getTime() + 5 * 24 * 60 * 60 * 1000
+          dateOfRestock.getTime() + 6 * 24 * 60 * 60 * 1000
         );
         await this.repo.updateDateofSale(user, Scale.ProduceType, timeForSale);
         await this.repo.updateLastRestock(
@@ -226,7 +226,7 @@ export class TrendForYearService {
       } else {
         if (restocking.getDate() != dateOfRestock.getDate()) {
           const total = weights[i];
-          const addDays = (numRestock / total) * 5;
+          const addDays = (numRestock / total) * 6;
           const timeForSale = new Date(
             dateOfsale.getTime() + addDays * 24 * 60 * 60 * 1000
           );

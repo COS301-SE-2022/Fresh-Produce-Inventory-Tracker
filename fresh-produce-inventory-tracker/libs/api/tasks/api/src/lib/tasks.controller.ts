@@ -15,7 +15,7 @@ export class tasksController {
   @Post('createtask')
   createTasks(@Body('id') id: number, @Body('message') message: string,@Body('taskType') taskType:string,@Body('produceType') produceType:string) {
     try {
-      return this.taskService.createTask(id, message,taskType,produceType);
+      return this.taskService.createTask(+id, message,taskType,produceType);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -23,7 +23,7 @@ export class tasksController {
   @Post('deletetask')
   deleteTasks(@Body('id') id: number, @Body('message') message: string) {
     try {
-      return this.taskService.deleteTasks(id, message);
+      return this.taskService.deleteTasks(+id, message);
     } catch (err) {
       throw new NotFoundException();
     }

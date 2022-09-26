@@ -1,5 +1,5 @@
 // import { data } from './../../../../../../apps/client/src/components/trends/index';
-import { Injectable, Param } from '@nestjs/common';
+import { Injectable, NotFoundException, Param } from '@nestjs/common';
 import { PrismaService } from '../../../../prisma/shared/src/lib/prismaService.service';
 
 @Injectable()
@@ -24,6 +24,10 @@ export class profileRepository {
     Surname: string,
     Bio: string,
   }) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return this.prisma.user.update({
       where: {
         id: +id,
@@ -40,21 +44,37 @@ export class profileRepository {
   }
 
   async editName(id: number, name: string) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.user.update({
       where: { id: +id }, data: { Name: name }
     });
   }
   async editSurname(id: number, surname: string) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.user.update({
       where: { id: +id }, data: { Surname: surname }
     });
   }
   async editBio(id: number, bio: string) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.user.update({
       where: { id: +id }, data: { Bio: bio }
     });
   }
   async editVisibility(id: number, visibility: string) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     let check = false;
     if (visibility == "true") {
       check = true;
@@ -65,22 +85,38 @@ export class profileRepository {
   }
 
   async deleteName(id: number) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.user.update({
       where: { id: +id }, data: { Name: '' }
     });
 
   }
   async deleteSurname(id: number) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.user.update({
       where: { id: +id }, data: { Surname: '' }
     });
   }
   async deleteBio(id: number) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.user.update({
       where: { id: +id }, data: { Bio: '' }
     });
   }
   async deleteVisibility(id: number) {
+    if((await this.prisma.user.findUnique({where:{id:id}})== null))
+    {
+      throw new NotFoundException('No such id exists');
+    }
     return await this.prisma.user.update({
       where: { id: +id }, data: { Visibility: false }
     });
