@@ -19,8 +19,10 @@ export class NotificationService {
       subject: subject,
       text: message
   })
-  if(this.getNotificationMessage(id,message) == null )
+  
+  if((await this.getNotificationMessage(id,message)) == null )
   {
+    console.log(useremail);
     this.createNotification(id,message);
   }
   }
@@ -42,7 +44,7 @@ export class NotificationService {
   async sendNotification(receiver,Subject:string,message:string) {
     await this.mail.sendMail({
         to: receiver,
-        from: 'dacers467@gmail.com',
+        from: 'freshproduceemail@gmail.com',
         subject: Subject,
         text: message
     })
