@@ -11,7 +11,7 @@ export interface MobileProps {
 const upload_url = `${process.env.BACKEND_URL}/api/image/uploadone`;
 const freshness_url = `${process.env.BACKEND_URL}/api/calcfreshness/predict`;
 const add_task = `${process.env.BACKEND_URL}/api/tasks/createtask`;
-const tableYear_api = `http://13.245.224.174:3333/api/trendforyear/getmonthaverages`;
+const tableYear_api = `http://13.246.26.157:3333/api/trendforyear/getmonthaverages`;
 
 let FreshProduce = 0;
 let PoultryMeat = 0;

@@ -21,8 +21,8 @@ const PoultryMeat = [];
 const Pastries = [];
 const lineData = [];
 
-const table_api = `http://13.245.224.174:3333/api/trend/getall`;
-const tableYear_api = `http://13.245.224.174:3333/api/trendforyear/getmonthaverages`;
+const table_api = `http://13.246.26.157:3333/api/trend/getall`;
+const tableYear_api = `http://13.246.26.157:3333/api/trendforyear/getmonthaverages`;
 
 const option = [
   "All","Fruit&Veg","Meat","Pastries"

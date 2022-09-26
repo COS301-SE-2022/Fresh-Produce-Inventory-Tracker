@@ -35,9 +35,9 @@ const items: radioItem[] = [
   },
 ];
 
-const upload_url = `http://13.245.224.174:3333/api/image/uploadone`;
-const freshness_url = `http://13.245.224.174:3333/api/calcfreshness/predict`;
-const add_task = `http://13.245.224.174:3333/api/tasks/createtask`;
+const upload_url = `http://13.246.26.157:3333/api/image/uploadone`;
+const freshness_url = `http://13.246.26.157:3333/api/calcfreshness/predict`;
+const add_task = `http://13.246.26.157:3333/api/tasks/createtask`;
 
 const Toast = Swal.mixin({
   toast: true,
@@ -75,7 +75,7 @@ export function Modal(props: ModalProps) {
     urlencoded.append('name', e.target[0].value+"");
     urlencoded.append('description', e.target[1].value+"");
 
-    fetch(`http://13.245.224.174:3333/api/scale/setscale`, {
+    fetch(`http://13.246.26.157:3333/api/scale/setscale`, {
       method: 'POST',
       headers: myHeaders,
       body: urlencoded,
