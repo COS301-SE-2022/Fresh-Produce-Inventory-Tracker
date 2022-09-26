@@ -1,6 +1,6 @@
 //get & post requests
 
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, ConsoleLogger, Controller, Post, Req, UseGuards } from '@nestjs/common';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ScaleService } from '../../../service/src/lib/scale.service';
 import { Prisma } from '@prisma/client';
@@ -53,7 +53,9 @@ export class ScaleController {
   //@UseGuards(AuthGuard('jwt'))
   @Post('editscale')//id: number, userid:number, data:any
   async editscale(@Body('id') id: number, @Body('userid') userid: number, @Body('weight') weight:number) {
-    console.log(weight)
+    console.log('///////////////////////');
+    console.log(id);
+    console.log('///////////////////////')
     return await this.ScaleService.editScale(
       +id,
       +userid,
