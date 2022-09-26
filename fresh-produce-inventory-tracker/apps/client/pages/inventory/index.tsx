@@ -1,9 +1,15 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable-next-line */
+// react plugin used to create charts
 import { IoAdd, IoSearch } from 'react-icons/io5';
 import InventoryTable from '../../src/components/inventory-table/inventory-table';
 import Modal from '../../src/components/modal/modal';
 import { useState } from 'react';
 import { unstable_getServerSession } from 'next-auth/next';
 import { options } from '../api/auth/[...nextauth]';
+import { useSession } from 'next-auth/react';
 
 enum SHOW_ITEMS {
   '10 Items' = '10 Items',
@@ -43,6 +49,7 @@ export async function getServerSideProps(context) {
 
 
 export function Inventory() {
+  const { data: session } = useSession();
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [Title, setTitle] = useState("Add scale");
 
@@ -91,6 +98,7 @@ export function Inventory() {
           closeModal={() => setShowImageUpload(false)}
           title={Title}
           description="Please select and upload an image for analysis."
+          id={session.user?.id?.toString()}
         />
       </div>
       <div className="flex items-center mt-2 w-fit gap-x-4 md:mt-0">
