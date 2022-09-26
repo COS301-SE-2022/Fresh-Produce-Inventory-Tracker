@@ -12,11 +12,11 @@ export class NotificationController {
   ) {
     return await this.service.sendOTP(receiver);
   }  
-  @Post('send')
+  @Post('sendemail')
   async sendEmail(
-    @Body('id') id:Number,@Body('subject') subject:string,@Body('message') message:string
+    @Body('id') id:number,@Body('subject') subject:string,@Body('message') message:string
   ) {
-    return await this.service.sendEmail(id,subject,message);
+    return await this.service.sendEmail(+id,subject,message);
   }
   @Post('getnotifications')
   async getNotifications(

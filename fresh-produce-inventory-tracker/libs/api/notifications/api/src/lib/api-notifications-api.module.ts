@@ -20,7 +20,7 @@ const config = new ConfigService({});
 ],
   controllers: [NotificationController], 
   providers: [NotificationService,NotificationRepository,PrismaService],
-  exports: [],
+  exports: [NotificationService],
 })
 export class ApiNotificationsApiModule {}
 

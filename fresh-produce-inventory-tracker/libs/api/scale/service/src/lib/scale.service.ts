@@ -78,7 +78,7 @@ export class ScaleService {
     for(let i = 0; i < allScales.length; i++)
     {
       let ProduceStatus = 'good';
-      let counter =i;
+      const counter =i;
       //console.log("here");
       
       ProduceStatus = await this.checkFreshness(id,trenddata[counter])
