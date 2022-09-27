@@ -37,29 +37,12 @@ export interface TrendsProps {
   dataTrends?:any,
   expired:number,
   sales:number,
-  saleData:any
+  FruitVegCount:number,
+  PoultryMeatCount:number,
+  PastriesCount:number
 }
 
 export function Trends(props: TrendsProps) {
-  let FruitVegCount = 0;
-  let PoultryMeatCount = 0;
-  let PastriesCount = 0;
-  for(let x = 0;x < props.saleData.length;x++)
-  {
-    if(props.saleData[x].ProduceType == "Fresh Produce")
-    {
-      FruitVegCount++;
-    }
-    else if(props.saleData[x].ProduceType == "Poultry/Meat")
-    {
-      PoultryMeatCount++
-    }
-    else
-    {
-      PastriesCount++;
-    }
-  }
-
   return (
     <div className="lg:max-w-[98%]">
       <div className="flex justify-between px-2 py-10 mt-4 shadow-md rounded-xl h-fit bg-slate-50">
@@ -121,7 +104,7 @@ export function Trends(props: TrendsProps) {
         </div>
         <div>
           <h3 className="mb-4 mt-4">Sales Per Category</h3>
-          <Doughnut data={{labels:["Fruit&Veg","Poultry/Meat","Pastries"],datasets:[{label:"# of Items",data:[FruitVegCount,PoultryMeatCount,PastriesCount],backgroundColor:["rgba(0,255,0,0.5)","rgba(255,0,0,0.5)","rgba(0,0,255,0.5)"]}]}}></Doughnut>
+          <Doughnut data={{labels:["Fruit&Veg","Poultry/Meat","Pastries"],datasets:[{label:"# of Items",data:[props.FruitVegCount,props.PoultryMeatCount,props.PastriesCount],backgroundColor:["rgba(0,255,0,0.5)","rgba(255,0,0,0.5)","rgba(0,0,255,0.5)"]}]}}></Doughnut>
           <Link href="/trends" passHref>
             <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-primary text-white hover:bg-neutral/30">
               View Trends
