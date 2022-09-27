@@ -100,7 +100,7 @@ export async function getServerSideProps(context) {
 export function Index({trendData,taskData,count,saleData,sales}) {
   return (
     <div className="px-4">
-      <Trends dataInventory={trendData} dataTasks={taskData} expired={count} sales={sales}></Trends>
+      <Trends dataInventory={trendData} dataTasks={taskData} expired={count} sales={sales} saleData={saleData}></Trends>
     </div>
   );
 }
