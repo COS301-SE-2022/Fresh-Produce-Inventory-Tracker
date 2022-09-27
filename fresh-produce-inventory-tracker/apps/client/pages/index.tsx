@@ -18,14 +18,14 @@ export async function getServerSideProps(context) {
     options
   );
 
-  if (!session) {
+  /*if (!session) {
     return {
       redirect: {
         destination: '/login',
         permanent: false,
       },
     };
-  }
+  }*/
 
   let form = 'id=' + session.user?.id?.toString();
 
