@@ -43,5 +43,12 @@ export class NotificationRepository {
     return await this.prisma.notification.deleteMany({
       where: {Type:{contains:"Notification"}, userId: +userId },
     });
+  
+  }
+  async deleteNotificationMessage(id:Number, message:string)
+  {
+    return await this.prisma.notification.deleteMany({
+      where: {Type:{contains:"Notification"}, userId: +id,message:message },
+    });
   }
 }
