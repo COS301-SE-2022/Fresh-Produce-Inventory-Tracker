@@ -70,12 +70,12 @@ export function InventoryTable(props: InventoryTableProps) {
     return (
       <div className="w-full">
         <div className="overflow-x-auto">
-          <table className="table w-half">
+          <table className="table w-full">
             <thead>
-              <tr className="text-center text-primary/50">
-                <th>#ID</th>
-                <th>Name</th>
-                <th>State</th>
+              <tr className="text-center text-white ">
+                <th className="bg-primary/90">#ID</th>
+                <th className="bg-primary/90">Name</th>
+                <th className="bg-primary/90">State</th>
               </tr>
             </thead>
             <tbody>
