@@ -6,6 +6,6 @@ import 'whatwg-fetch';
 
 describe('Inventory', () => {
   it('should work', async () => {
-      render(<Inventory/>);
+      render(<Inventory trendData={undefined} />);
   })
 })
