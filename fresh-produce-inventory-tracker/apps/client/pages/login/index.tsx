@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import { Transition } from '@headlessui/react';
 import { CgSpinner } from 'react-icons/cg';
 import { signIn, useSession } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react"
 /* eslint-disable-next-line */
 export interface LoginProps {}
 interface Login {

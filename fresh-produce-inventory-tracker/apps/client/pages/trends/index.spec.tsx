@@ -6,6 +6,6 @@ import 'whatwg-fetch';
 
 describe('Trends', () => {
   it('should work', async () => {
-      render(<Trends fruitDataMonday={[]} fruitDataTuesday={[]} fruitDataWednesday={[]} fruitDataThursday={[]} fruitDataFriday={[]} fruitDataSaturday={[]} fruitDataSunday={[]} FreshProduce={undefined} PoultryMeat={undefined} Pastries={undefined} lineData={undefined}/>);
+      render(<Trends FreshProduce={undefined} PoultryMeat={undefined} Pastries={undefined} FreshProduceLine={undefined} PoultryMeatLine={undefined} PastriesLine={undefined}/>);
   })
 })
