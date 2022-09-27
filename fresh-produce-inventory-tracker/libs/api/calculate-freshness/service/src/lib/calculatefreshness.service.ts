@@ -1,4 +1,4 @@
-import { Injectable, UploadedFile } from '@nestjs/common';
+import { Injectable, NotFoundException, UploadedFile } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import * as tf from '@tensorflow/tfjs';
 import * as fs from 'fs';
@@ -32,11 +32,16 @@ export class calculatefreshnessService {
     ];
   }
   async predict(id: number, type: string, file: string) {
-    const model1 = await tf.loadLayersModel(
+    let model1;
+    try{
+    model1 = await tf.loadLayersModel(
       'file://./libs/api/calculate-freshness/service/src/lib/model/' +
         type +
         '-model/model.json'
     );
+    } catch(error){
+      throw new NotFoundException('Model not found');
+    }
     //const model = await mobilenet.load();
     const imagePath = file;
     const image = fs.readFileSync(imagePath);
