@@ -1,4 +1,4 @@
-
+/* eslint-disable import/no-anonymous-default-export */
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import axios from 'axios';
