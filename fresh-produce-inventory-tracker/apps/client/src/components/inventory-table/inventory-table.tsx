@@ -4,15 +4,6 @@ export interface InventoryTableProps {
   page:string
 }
 
-interface InventoryItem {
-  id: number;
-  ProduceType:string;
-  name: string;
-  lastRestock: string;
-  produceStatus: string;
-  expireDate: string;
-}
-
 export function InventoryTable(props: InventoryTableProps) {
   if(props.page != "home")
   {

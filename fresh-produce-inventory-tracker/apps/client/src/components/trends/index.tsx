@@ -1,6 +1,7 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import InventoryTable from '../inventory-table/inventory-table';
+import TaskTable from '../task-table/task-table';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -114,8 +115,8 @@ export function Trends(props: TrendsProps) {
         </div>
         <div>
           <h3 className="mb-4 mt-4">Oustanding Tasks</h3>
-          <InventoryTable data={props.dataInventory} page='home'/>
-          <Link href="/tasks" passHref>
+          <TaskTable data={props.dataTasks}/>
+          <Link href="/task" passHref>
             <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-primary text-white hover:bg-neutral/30">
               View Tasks
               <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
