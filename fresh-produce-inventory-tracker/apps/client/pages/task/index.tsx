@@ -8,6 +8,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 import { useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
 import Swal from 'sweetalert2';
+import { useSession } from 'next-auth/react';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -51,6 +52,7 @@ export async function getServerSideProps(context) {
       data: response.data,
       status: response.status,
       userId: session?.user?.id.toString(),
+      session
     },
   };
 }
@@ -58,12 +60,14 @@ export async function getServerSideProps(context) {
 export function Task({
   data,
   status,
-  userId,
+  userId
 }: {
   data: any;
   status: number;
   userId: string;
   }) {
+  const { data: session } = useSession();
+  const [tasks,setTask] = useState(data);
   const [loading, setLoading] = useState<boolean>(false);
   const handleDeleteTask = async (message: string) => {
     setLoading(true);
@@ -71,7 +75,7 @@ export function Task({
     params.append('id', userId);
     params.append('message', message.toString());
     const { status } = await axios.post(
-      `${process.env.BACKEND_URL}/api/tasks/deletetask`,
+      `http://13.246.26.157:3333/api/tasks/deletetask`,
       params
     );
     if (status === 201) {
@@ -86,14 +90,28 @@ export function Task({
       });
     }
     setLoading(false);
+  
+    const form = 'id=' + session.user?.id?.toString();
+
+    const response = await fetch("http://13.246.26.157:3333/api/tasks/gettasks", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+      },
+      body: form,
+    });
+  
+    const taskData = await response.json();
+
+    setTask(taskData);
   };
   return (
     <div className="p-4 ">
       <h2 className="text-lg">Tasks({data.length})</h2>
       <h3 className="mt-2">All the generated tasks will apear here.</h3>
       <ul className="flex flex-col mt-4 gap-y-2">
-        {data.length > 0 ? (
-          data.map((task, idx) => {
+        {tasks.length > 0 ? (
+          tasks.map((task, idx) => {
             return (
               <li
                 onClick={() => handleDeleteTask(task.message)}
