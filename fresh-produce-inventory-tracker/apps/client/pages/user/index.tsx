@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
 import Swal from 'sweetalert2';
-const profileUrl = `${process.env.BACKEND_URL}/api/profile/getprofile`;
+const profileUrl = `http://13.246.26.157:3333/api/profile/getprofile`;
 
 const Toast = Swal.mixin({
   toast: true,
@@ -108,7 +108,6 @@ export function User({ data, status, accessToken }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  console.log(accessToken);
 
   const handleUpdateUserProfile = async (
     validatedData: handleUpdateUserProfileProps
@@ -117,10 +116,11 @@ export function User({ data, status, accessToken }) {
     const params = new URLSearchParams();
     params.append('token', session?.accessToken?.toString());
     params.append('data', JSON.stringify(validatedData));
-    const {status } = await axios.post(
-      `${process.env.BACKEND_URL}/api/profile/editProfile`,
+    const {status} = await axios.post(
+      `http://13.246.26.157:3333/api/profile/editProfile`,
       params
     );
+    
     if (status === 201) {
       Toast.fire({
         icon: 'success',
