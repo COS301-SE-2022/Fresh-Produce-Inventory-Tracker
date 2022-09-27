@@ -8,6 +8,10 @@ import { options } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 
 const scale_api = `http://13.246.26.157:3333/api/scale/producelist`;
+const task_api = `http://13.246.26.157:3333/api/tasks/gettasks`;
+const sales_api = `http://13.246.26.157:3333/api/trendforyear/getall`;
+
+let count = 0;
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
@@ -25,9 +29,9 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const form = 'id=' + session.user?.id?.toString();
+  let form = 'id=' + session.user?.id?.toString();
 
-  const response = await fetch(scale_api, {
+  let response = await fetch(scale_api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -46,6 +50,7 @@ export async function getServerSideProps(context) {
       if(expireDate < new Date())
       {
         trendData[x].produceStatus = "expired";
+        count++;
       }
       else
       {
@@ -54,17 +59,48 @@ export async function getServerSideProps(context) {
     }
   }
 
+  response = await fetch(task_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: form,
+  });
+
+  const taskData = await response.json();
+
+  form = "userid=" + session.user?.id?.toString();
+
+  response = await fetch(sales_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: form,
+  });
+
+  const saleData = await response.json();
+  let sales = 0;
+
+  for(let x = 0;x < saleData.length;x++)
+  {
+    for(let y = 0;y < saleData[x].AverageSalesAmountForYear.length;y++)
+    {
+      sales += saleData[x].AverageSalesAmountForYear[y];
+    }
+  }
+
   return {
     props: {
-      session,trendData
+      session,trendData,taskData,count,saleData,sales
     },
   };
 }
 
-export function Index({trendData}) {
+export function Index({trendData,taskData,count,saleData,sales}) {
   return (
     <div className="px-4">
-      <Trends data={trendData}></Trends>
+      <Trends dataInventory={trendData} dataTasks={taskData} expired={count} sales={sales}></Trends>
     </div>
   );
 }
