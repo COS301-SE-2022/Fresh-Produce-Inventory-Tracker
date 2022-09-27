@@ -31,19 +31,9 @@ import { AiOutlineNumber } from 'react-icons/ai';
 import { IoWarningOutline } from 'react-icons/io5';
 import { MdOutlineDangerous, MdChevronRight } from 'react-icons/md';
 /* eslint-disable-next-line */
-export interface TrendsProps {}
-
-const TrendItem = ({ icon, number, type }) => (
-  <div className="flex items-center gap-2 p-4 rounded-md shadow-xl h-28 md:w-48 bg-primary/10">
-    {icon}
-    <div>
-      <p className="flex flex-col">
-        <span className="block text-xl truncate md:text-3xl">{number}</span>
-        <span className="text-xs md:text-base">{type}</span>
-      </p>
-    </div>
-  </div>
-);
+export interface TrendsProps {
+  data:any
+}
 
 export function Trends(props: TrendsProps) {
   return (
@@ -96,24 +86,28 @@ export function Trends(props: TrendsProps) {
               <div className="stat-desc text-secondary">3 tasks remaining</div>
             </div>
           </div>
-          <div className="mt-8">
-            <Link href="/inventory" passHref>
-              <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-neutral/10 hover:bg-neutral/30">
-                View Inventory
-                <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
-              </span>
-            </Link>
-          </div>
         </div>
       </div>
-      <div className="flex flex-col mt-10 gap-y-8 md:flex-row">
-        <div className="md:w-[25%] w-full h-fit">
-          <h3 className="text-md">Some Numbers</h3>
-          <Doughnut data={data} />
-        </div>
-        <div className="md:w-[75%]">
+      <div className="grid grid-cols-3 shadow-md rounded-xl p-2">
+        <div>
           <h3 className="mb-4 ">Recently Added</h3>
-          <InventoryTable />
+          <InventoryTable data={props.data} page='home'/>
+          <Link href="/inventory" passHref>
+            <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-neutral/10 hover:bg-neutral/30">
+              View Inventory
+              <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
+            </span>
+          </Link>
+        </div>
+        <div>
+          <h3 className="mb-4 ">Oustanding Tasks</h3>
+          <InventoryTable data={props.data} page='home'/>
+          <Link href="/tasks" passHref>
+            <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-neutral/10 hover:bg-neutral/30">
+              View Tasks
+              <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
+            </span>
+          </Link>
         </div>
       </div>
     </div>

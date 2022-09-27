@@ -11,6 +11,8 @@ import { unstable_getServerSession } from 'next-auth/next';
 import { options } from '../api/auth/[...nextauth]';
 import { useSession } from 'next-auth/react';
 
+const scale_api = `http://13.246.26.157:3333/api/scale/producelist`;
+
 enum SHOW_ITEMS {
   '10 Items' = '10 Items',
   '15 Items' = '15 Items',
@@ -40,15 +42,45 @@ export async function getServerSideProps(context) {
     };
   }
 
+  const form = 'id=' + session.user?.id?.toString();
+
+  const response = await fetch(scale_api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    },
+    body: form,
+  });
+
+  const trendData = await response.json();
+
+  if(response.status == 201)
+  {
+    console.log(trendData);
+    for(let x = 0;x < trendData.length;x++)
+    {
+      const expireDate = new Date(trendData[x].expireDate);
+      if(expireDate < new Date())
+      {
+        trendData[x].produceStatus = "expired";
+      }
+      else
+      {
+        trendData[x].produceStatus = "good";
+      } 
+    }
+  }
+
   return {
     props: {
-      session,
+      session,trendData
     },
   };
 }
 
 
-export function Inventory() {
+export function Inventory({trendData}) {
+  console.log(trendData);
   const { data: session } = useSession();
   const [showImageUpload, setShowImageUpload] = useState(false);
   const [Title, setTitle] = useState("Add scale");
@@ -118,7 +150,7 @@ export function Inventory() {
       </div>
 
       <div className="w-full mt-10">
-        <InventoryTable />
+        <InventoryTable data={trendData} page="Inventory"/>
       </div>
     </div>
   );
