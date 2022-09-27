@@ -1,13 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable-next-line */
-// react plugin used to create charts
 import { useState } from "react";
 import {Chart} from "./../../src/components/chart/chart"
 import { options } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
-import { useSession } from 'next-auth/react';
 
 const FreshProduce = [0,0,0,0,0,0,0,0,0,0,0,0];
 const PoultryMeat = [0,0,0,0,0,0,0,0,0,0,0,0];
@@ -211,7 +207,6 @@ export async function getServerSideProps(context) {
 }
 
 export function Trends({FreshProduce,PoultryMeat,Pastries,FreshProduceLine,PoultryMeatLine,PastriesLine},props:InventoryProps) {
-  const { data: session } = useSession();
   let x = 0;
   const [type, setType] = useState("Bar");
   const [produce, setProduce] = useState("Fruit");
