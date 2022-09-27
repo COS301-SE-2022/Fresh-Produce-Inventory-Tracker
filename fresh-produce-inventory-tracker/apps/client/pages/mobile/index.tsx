@@ -8,9 +8,9 @@ export interface MobileProps {
   type:string
 }
 
-const upload_url = `${process.env.BACKEND_URL}/api/image/uploadone`;
-const freshness_url = `${process.env.BACKEND_URL}/api/calcfreshness/predict`;
-const add_task = `${process.env.BACKEND_URL}/api/tasks/createtask`;
+const upload_url = `http://13.246.26.157:3333/api/image/uploadone`;
+const freshness_url = `http://13.246.26.157:3333/api/calcfreshness/predict`;
+const add_task = `http://13.246.26.157:3333/api/tasks/createtask`;
 const tableYear_api = `http://13.246.26.157:3333/api/trendforyear/getmonthaverages`;
 const produce_api = `http://13.246.26.157:3333/api/scale/producelist`;
 

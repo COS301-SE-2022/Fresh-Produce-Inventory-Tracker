@@ -15,7 +15,7 @@ interface Signup {
   'confirm-password': string;
 }
 
-const api_url = `${process.env.BACKEND_URL}/api/authentication/signup`;
+const api_url = `http://13.246.26.157:3333/api/authentication/signup`;
 
 export function Signup(props: SignupProps) {
   const [error, setError] = useState<string>('');
