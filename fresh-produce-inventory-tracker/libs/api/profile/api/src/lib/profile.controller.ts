@@ -13,7 +13,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('editprofile')
   async editProfile(@Body('token') token: string, @Body('data') data: string) {
     try {
@@ -22,7 +22,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('editname')
   editName(@Body('id') id: number, @Body('name') name: string) {
     try {
@@ -31,7 +31,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('editsurname')
   editSurname(@Body('id') id: number, @Body('surname') surname: string) {
     try {
@@ -40,7 +40,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('editbio')
   editBio(@Body('id') id: number, @Body('bio') bio: string) {
     try {
@@ -49,7 +49,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('editvisibility')
   editVisibility(
     @Body('id') id: number,
@@ -61,7 +61,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('deletename')
   deleteName(@Body('id') id: number) {
     try {
@@ -70,7 +70,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  /*@UseGuards(AuthGuard('jwt'))*/
   @Post('deletesurname')
   deleteSurname(@Body('id') id: number) {
     try {
@@ -79,7 +79,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('deletebio')
   deleteBio(@Body('id') id: number) {
     try {
@@ -88,7 +88,7 @@ export class profileController {
       throw new NotFoundException();
     }
   }
-  @UseGuards(AuthGuard('jwt'))
+  //@UseGuards(AuthGuard('jwt'))
   @Post('deletevisibility')
   deleteVisibility(@Body('id') id: number) {
     try {
