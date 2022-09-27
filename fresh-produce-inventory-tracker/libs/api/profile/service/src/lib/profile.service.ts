@@ -1,5 +1,6 @@
-import { Injectable, NotFoundException, Param } from '@nestjs/common';
+import { Delete, Injectable, NotFoundException, Param } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { editFileName } from 'libs/api/calculate-freshness/api/src/lib/calculatefreshness.controller';
 import { profileRepository } from '../../../repository/src/lib/profile.repository';
 
 @Injectable()
@@ -29,6 +30,8 @@ export class profileService {
     {
       throw new NotFoundException('Id not found');
     }
+    delete edit.password;
+   delete edit.passwordSalt;
     return edit;//await this.repo.editName(id, name);
   }
   async editSurname(id: number, surname: string) {
@@ -37,26 +40,71 @@ export class profileService {
    {
     return new NotFoundException('Id not found');
    }
+   delete edit.password;
+   delete edit.passwordSalt;
+
     return edit;
   }
   async editBio(id: number, bio: string) {
-    return await this.repo.editBio(id, bio);
+    const edit = await this.repo.editBio(id, bio);
+    if(edit == null)
+   {
+    return new NotFoundException('Id not found');
+   }
+    delete edit.password;
+   delete edit.passwordSalt;
+   return edit;
   }
   async editVisibility(id: number, visibility: string) {
-    return await this.repo.editVisibility(id, visibility);
+    const edit = await this.repo.editVisibility(id, visibility);
+    if(edit == null)
+   {
+    return new NotFoundException('Id not found');
+   }
+    delete edit.password;
+   delete edit.passwordSalt;
+   return edit;
   }
 
   async deleteName(id: number) {
-    return await this.repo.deleteName(id);
-
+    const edit = await this.repo.deleteName(id);
+    if(edit == null)
+   {
+    return new NotFoundException('Id not found');
+   }
+    delete edit.password;
+    delete edit.passwordSalt;
+   return edit;
   }
   async deleteSurname(id: number) {
-    return await this.repo.deleteSurname(id);
+    const edit = await this.repo.deleteSurname(id);
+    if(edit == null)
+   {
+    return new NotFoundException('Id not found');
+   }
+    delete edit.password;
+   delete edit.passwordSalt;
+   return edit;
   }
   async deleteBio(id: number) {
-    return await this.repo.deleteBio(id);
+    const edit = await this.repo.deleteBio(id);
+    if(edit == null)
+   {
+    return new NotFoundException('Id not found');
+   }
+    delete edit.password;
+   delete edit.passwordSalt;
+   return edit;
   }
   async deleteVisibility(id: number) {
-    return await this.repo.deleteVisibility(id);
+    const edit = await this.repo.deleteVisibility(id);
+    if(edit == null)
+   {
+    return new NotFoundException('Id not found');
+   }
+    delete edit.password;
+   delete edit.passwordSalt;
+   return edit;
   }
+  
 }

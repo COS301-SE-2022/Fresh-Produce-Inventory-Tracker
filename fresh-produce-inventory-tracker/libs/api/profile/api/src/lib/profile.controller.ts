@@ -26,7 +26,7 @@ export class profileController {
   @Post('editname')
   editName(@Body('id') id: number, @Body('name') name: string) {
     try {
-      return this.service.editName(id, name);
+      return this.service.editName(+id, name);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -35,7 +35,7 @@ export class profileController {
   @Post('editsurname')
   editSurname(@Body('id') id: number, @Body('surname') surname: string) {
     try {
-      return this.service.editSurname(id, surname);
+      return this.service.editSurname(+id, surname);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -44,7 +44,7 @@ export class profileController {
   @Post('editbio')
   editBio(@Body('id') id: number, @Body('bio') bio: string) {
     try {
-      return this.service.editBio(id, bio);
+      return this.service.editBio(+id, bio);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -56,7 +56,7 @@ export class profileController {
     @Body('visibility') visibility: string
   ) {
     try {
-      return this.service.editVisibility(id, visibility);
+      return this.service.editVisibility(+id, visibility);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -65,7 +65,7 @@ export class profileController {
   @Post('deletename')
   deleteName(@Body('id') id: number) {
     try {
-      return this.service.deleteName(id);
+      return this.service.deleteName(+id);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -74,7 +74,7 @@ export class profileController {
   @Post('deletesurname')
   deleteSurname(@Body('id') id: number) {
     try {
-      return this.service.deleteSurname(id);
+      return this.service.deleteSurname(+id);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -83,7 +83,7 @@ export class profileController {
   @Post('deletebio')
   deleteBio(@Body('id') id: number) {
     try {
-      return this.service.deleteBio(id);
+      return this.service.deleteBio(+id);
     } catch (err) {
       throw new NotFoundException();
     }
@@ -92,7 +92,7 @@ export class profileController {
   @Post('deletevisibility')
   deleteVisibility(@Body('id') id: number) {
     try {
-      return this.service.deleteVisibility(id);
+      return this.service.deleteVisibility(+id);
     } catch (err) {
       throw new NotFoundException();
     }
