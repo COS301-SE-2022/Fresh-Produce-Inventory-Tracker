@@ -53,11 +53,6 @@ export class ScaleController {
   //@UseGuards(AuthGuard('jwt'))
   @Post('editscale')//id: number, userid:number, data:any
   async editscale(@Body('id') id: number, @Body('userid') userid: number, @Body('weight') weight:number) {
-    console.log('///////////////////////');
-    console.log(id);
-    console.log(userid);
-    console.log(weight);
-    console.log('///////////////////////')
     return await this.ScaleService.editScale(
       +id,
       +userid,
