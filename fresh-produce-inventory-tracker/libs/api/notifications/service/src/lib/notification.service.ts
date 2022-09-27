@@ -65,5 +65,8 @@ async createNotificationUrgent(userid: number, message: string) {
 async deleteNotification(userId: number) {
   return await this.repo.deleteNotification(userId);
 }
+async deleteNotificationMessage(userId: number,message:string) {
+  return await this.repo.deleteNotificationMessage(userId,message);
+}
 }
 
