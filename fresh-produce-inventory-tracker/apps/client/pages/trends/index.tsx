@@ -9,12 +9,16 @@ import { options } from '../api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 import { useSession } from 'next-auth/react';
 
-const FreshProduce = [];
-const PoultryMeat = [];
-const Pastries = [];
-const lineData = [];
+const FreshProduce = [0,0,0,0,0,0,0,0,0,0,0,0];
+const PoultryMeat = [0,0,0,0,0,0,0,0,0,0,0,0];
+const Pastries = [0,0,0,0,0,0,0,0,0,0,0,0];
+let FreshProduceLine = [];
+let PoultryMeatLine = [];
+let PastriesLine = [];
+const months = [31,28,31,30,31,30,31,31,30,31,30,31]
 
-const tableYear_api = `http://13.246.26.157:3333/api/trendforyear/getmonthaverages`;
+const scale_api = `http://13.246.26.157:3333/api/scale/producelist`;
+const tableYearAll_api = `http://13.246.26.157:3333/api/trendforyear/getall`;
 
 const option = [
   "All","Fruit&Veg","Meat","Pastries"
@@ -40,9 +44,9 @@ export async function getServerSideProps(context) {
     };
   }
 
-  let Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce";
+  const Form = "userid=" + session.user?.id?.toString();
 
-  let responses = await fetch(tableYear_api, {
+  const responses = await fetch(tableYearAll_api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -50,62 +54,163 @@ export async function getServerSideProps(context) {
     body: Form,
   });
 
-  let trendDatas = await responses.json();
+  const form = 'id=' + session.user?.id?.toString();
 
-  if(responses.status == 201)
-  {
-    for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
-    {
-      FreshProduce.push(Object.values(trendDatas)[2][x]);
-    }
-  }
-
-  Form = "userid=" + session.user?.id?.toString() + "&producetype=Poultry/Meat";
-
-  responses = await fetch(tableYear_api, {
+  const response = await fetch(scale_api, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
     },
-    body: Form,
+    body: form,
   });
 
-  trendDatas = await responses.json();
+  const trendDatas = await responses.json();
+  const trendData = await response.json();
 
-  if(responses.status == 201)
+  if(responses.status == 201 && response.status == 201)
   {
-    for(let x = 0;x < (Object.values(trendDatas)[2]).length;x++)
+    PastriesLine = [];
+    FreshProduceLine = [];
+    PoultryMeatLine = [];
+    let count = 0;
+    for(let x = 0;x < trendDatas.length;x++)
     {
-      PoultryMeat.push(Object.values(trendDatas)[2][x]);
-    }
-  }
+      if(trendDatas[x].ProduceType == "Fresh Produce")
+      {
+        count = 0;
+        for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              FreshProduce[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
 
-  Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries";
+          const obj = {label:"",data:[],borderColor:""};
+          let colour = "rgba(";
+          const singleData = [0,0,0,0,0,0,0,0,0,0,0,0];
+          count = 0;
 
-  responses = await fetch(tableYear_api, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    },
-    body: Form,
-  });
+          for(let y = 0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              singleData[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
 
-  trendDatas = await responses.json();
+          for(let y = 0;y < trendData.length;y++)
+          {
+            if(trendData[y].id == trendDatas[x].id)
+            {
+              obj.label = trendData[y].name;
+            }
+          }
 
-  if(responses.status == 201)
-  {
-    for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
-    {
-     Pastries.push(Object.values(trendDatas)[2][x]);
+          for(let y = 0;y < 3;y++)
+          {
+            colour += Math.floor(Math.random() * 256) + ",";
+          }
+
+          colour+="1)";
+          
+          obj.data = singleData;
+          obj.borderColor = colour;
+          FreshProduceLine.push(obj);
+      }
+      else if(trendDatas[x].ProduceType == "Poultry/Meat")
+      {
+        
+        count = 0;
+        for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              PoultryMeat[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          const obj = {label:"",data:[],borderColor:""};
+          let colour = "rgba("
+          const singleData = [0,0,0,0,0,0,0,0,0,0,0,0];
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              singleData[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          for(let y = 0;y < trendData.length;y++)
+          {
+            if(trendData[y].id == trendDatas[x].id)
+            {
+              obj.label = trendData[y].name;
+            }
+          }
+          for(let y = 0;y < 3;y++)
+          {
+            colour += Math.floor(Math.random() * 256) + ",";
+          }
+          colour+="1)";
+          
+          obj.data = singleData;
+          obj.borderColor = colour;
+        PoultryMeatLine.push(obj);
+      }
+      else 
+      {
+        
+        count = 0;
+        for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              Pastries[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          const obj = {label:"",data:[],borderColor:""};
+          let colour = "rgba("
+          const singleData = [0,0,0,0,0,0,0,0,0,0,0,0];
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              singleData[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          for(let y = 0;y < trendData.length;y++)
+          {
+            if(trendData[y].id == trendDatas[x].id)
+            {
+              obj.label = trendData[y].name;
+            }
+          }
+          for(let y = 0;y < 3;y++)
+          {
+            colour += Math.floor(Math.random() * 256) + ",";
+          }
+          colour+="1)";
+          
+          obj.data = singleData;
+          obj.borderColor = colour;
+        PastriesLine.push(obj);
+      }
     }
   }
 
   return {
-    props:{FreshProduce,PoultryMeat,Pastries,lineData}
+    props:{FreshProduce,PoultryMeat,Pastries,FreshProduceLine,PoultryMeatLine,PastriesLine}
   }
 }
 
-export function Trends({FreshProduce,PoultryMeat,Pastries,lineData},props:InventoryProps) {
+export function Trends({FreshProduce,PoultryMeat,Pastries,FreshProduceLine,PoultryMeatLine,PastriesLine},props:InventoryProps) {
   const { data: session } = useSession();
   let x = 0;
   const [type, setType] = useState("Bar");
@@ -113,6 +218,7 @@ export function Trends({FreshProduce,PoultryMeat,Pastries,lineData},props:Invent
   const [FP, setFP] = useState(FreshProduce);
   const [M, setM] = useState(PoultryMeat);
   const [P, setP] = useState(Pastries);
+  const [lineData,setLineData] = useState([]);
 
   const filter = async (event) => {
     if(event.target.value != "All")
@@ -120,17 +226,17 @@ export function Trends({FreshProduce,PoultryMeat,Pastries,lineData},props:Invent
       setType("Line");
       if(event.target.value == "Fruit&Veg")
       {
-        lineData = FreshProduce;
+        setLineData(FreshProduceLine);
         setProduce("Fruit & Veg");
       }
       else if(event.target.value == "Meat")
       {
-        lineData = PoultryMeat;
+        setLineData(PoultryMeatLine);
         setProduce("Meat");
       }
       else
       {
-        lineData = Pastries;
+        setLineData(PastriesLine);
         setProduce("Pastries");
       }
     }
@@ -141,13 +247,14 @@ export function Trends({FreshProduce,PoultryMeat,Pastries,lineData},props:Invent
   }
 
   const fetchData = async () => {
-    FreshProduce = [];
-    PoultryMeat = [];
-    Pastries = [];
+    FreshProduce = [0,0,0,0,0,0,0,0,0,0,0,0];
+    PoultryMeat = [0,0,0,0,0,0,0,0,0,0,0,0];
+    Pastries = [0,0,0,0,0,0,0,0,0,0,0,0];
+    let count = 0;
 
-    let Form = "userid=" + session.user?.id?.toString() + "&producetype=Fresh Produce";
+    const Form = "userid=1";
 
-    let responses = await fetch(tableYear_api, {
+    const responses = await fetch(tableYearAll_api, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -155,53 +262,146 @@ export function Trends({FreshProduce,PoultryMeat,Pastries,lineData},props:Invent
       body: Form,
     });
 
-    let trendDatas = await responses.json();
+    const form = 'id=1';
 
-    if(responses.status == 201)
-    {
-      for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
-      {
-        FreshProduce.push(Object.values(trendDatas)[2][x]);
-      }
-    }
-
-    Form = "userid=" +  session.user?.id?.toString() + "&producetype=Poultry/Meat";
-
-    responses = await fetch(tableYear_api, {
+    const response = await fetch(scale_api, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
       },
-      body: Form,
+      body: form,
     });
 
-    trendDatas = await responses.json();
+    const trendDatas = await responses.json();
+    const trendData = await response.json();
 
     if(responses.status == 201)
     {
-      for(let x = 0;x < (Object.values(trendDatas)[2]).length;x++)
+      PastriesLine = [];
+      FreshProduceLine = [];
+      PoultryMeatLine = [];
+      for(let x = 0;x < trendDatas.length;x++)
       {
-        PoultryMeat.push(Object.values(trendDatas)[2][x]);
-      }
-    }
-
-    Form = "userid=" + session.user?.id?.toString() + "&producetype=Pastries";
-
-    responses = await fetch(tableYear_api, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      body: Form,
-    });
-
-    trendDatas = await responses.json();
-
-    if(responses.status == 201)
-    {
-      for(let x = 0;x < Object.values(trendDatas)[2].length;x++)
-      {
-        Pastries.push(Object.values(trendDatas)[2][x]);
+        if(trendDatas[x].ProduceType == "Fresh Produce")
+        {
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              FreshProduce[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          const obj = {label:"",data:[],borderColor:""};
+          let colour = "rgba("
+          const singleData = [0,0,0,0,0,0,0,0,0,0,0,0];
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              singleData[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          for(let y = 0;y < trendData.length;y++)
+          {
+            if(trendData[y].id == trendDatas[x].id)
+            {
+              obj.label = trendData[y].name;
+            }
+          }
+          for(let y = 0;y < 3;y++)
+          {
+            colour += Math.floor(Math.random() * 256) + ",";
+          }
+          colour+="1)";
+          
+          obj.data = singleData;
+          obj.borderColor = colour;
+          FreshProduceLine.push(obj);
+        }
+        else if(trendDatas[x].ProduceType == "Poultry/Meat")
+        {
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              PoultryMeat[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          const obj = {label:"",data:[],borderColor:""};
+          let colour = "rgba("
+          const singleData = [0,0,0,0,0,0,0,0,0,0,0,0];
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              singleData[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          for(let y = 0;y < trendData.length;y++)
+          {
+            if(trendData[y].id == trendDatas[x].id)
+            {
+              obj.label = trendData[y].name;
+            }
+          }
+          for(let y = 0;y < 3;y++)
+          {
+            colour += Math.floor(Math.random() * 256) + ",";
+          }
+          colour+="1)";
+          
+          obj.data = singleData;
+          obj.borderColor = colour;
+          PoultryMeatLine.push(obj);
+        }
+        else 
+        {
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              Pastries[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          const obj = {label:"",data:[],borderColor:""};
+          let colour = "rgba("
+          const singleData = [0,0,0,0,0,0,0,0,0,0,0,0];
+          count = 0;
+          for(let y=0;y < months.length;y++)
+          {
+            for(let z = 0;z < months[y];z++)
+            {
+              singleData[y] += trendDatas[x].AverageSalesAmountForYear[count];
+              count++;
+            }
+          }
+          for(let y = 0;y < trendData.length;y++)
+          {
+            if(trendData[y].id == trendDatas[x].id)
+            {
+              obj.label = trendData[y].name;
+            }
+          }
+          for(let y = 0;y < 3;y++)
+          {
+            colour += Math.floor(Math.random() * 256) + ",";
+          }
+          colour+="1)";
+          
+          obj.data = singleData;
+          obj.borderColor = colour;
+          PastriesLine.push(obj);
+        }
       }
     }
     setFP(FreshProduce);

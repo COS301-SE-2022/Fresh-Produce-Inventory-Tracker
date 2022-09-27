@@ -149,13 +149,7 @@ export function Chart(props: ChartProps) {
           "November",
           "December"
       ],
-      datasets:[
-        {
-          label: props.fruit,
-          data: [FruitVeg[0],FruitVeg[1],FruitVeg[2],FruitVeg[3],FruitVeg[4],FruitVeg[5],FruitVeg[6],FruitVeg[7],FruitVeg[8],FruitVeg[9],FruitVeg[10],FruitVeg[11]],
-          borderColor: "rgba(70, 3, 255,1)"
-        }
-      ]
+      datasets:props.lineData
       };
 
       if(props.fruit == "Meat")
@@ -175,13 +169,7 @@ export function Chart(props: ChartProps) {
             "November",
             "December"
           ],
-          datasets:[
-            {
-              label: props.fruit,
-              data: [Meat[0],Meat[1],Meat[2],Meat[3],Meat[4],Meat[5],Meat[6],Meat[7],Meat[8],Meat[9],Meat[10],Meat[11]],
-              borderColor: "rgba(87, 130, 0,1)"
-            }
-          ]
+          datasets:props.lineData
         }
       } 
       else if(props.fruit == "Pastries")
@@ -201,13 +189,7 @@ export function Chart(props: ChartProps) {
             "November",
             "December"
           ],
-          datasets:[
-            {
-              label: props.fruit,
-              data: [Pastries[0],Pastries[1],Pastries[2],Pastries[3],Pastries[4],Pastries[5],Pastries[6],Pastries[7],Pastries[8],Pastries[9],Pastries[10],Pastries[11]],
-              borderColor: "rgba(255, 112, 3,1)"
-            }
-          ]
+          datasets:props.lineData
         }
       }
 
