@@ -11,8 +11,6 @@ const scale_api = `http://13.246.26.157:3333/api/scale/producelist`;
 const task_api = `http://13.246.26.157:3333/api/tasks/gettasks`;
 const sales_api = `http://13.246.26.157:3333/api/trendforyear/getall`;
 
-let count = 0;
-
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(
     context.req,
@@ -40,6 +38,8 @@ export async function getServerSideProps(context) {
   });
 
   const trendData = await response.json();
+
+  let count = 0;
 
   if(response.status == 201)
   {
