@@ -32,7 +32,11 @@ import { IoWarningOutline } from 'react-icons/io5';
 import { MdOutlineDangerous, MdChevronRight } from 'react-icons/md';
 /* eslint-disable-next-line */
 export interface TrendsProps {
-  data:any
+  dataInventory?:any,
+  dataTasks?:any,
+  dataTrends?:any,
+  expired:number,
+  sales:number
 }
 
 export function Trends(props: TrendsProps) {
@@ -51,7 +55,7 @@ export function Trends(props: TrendsProps) {
                 <AiOutlineNumber className="w-10 h-10 p-2 rounded-full text-info ring-1 ring-info" />
               </div>
               <div className="stat-title">Total Items</div>
-              <div className="stat-value text-info">92</div>
+              <div className="stat-value text-info">{props.dataInventory.length}</div>
               <div className="stat-desc">21% more than last month</div>
             </div>
 
@@ -59,8 +63,8 @@ export function Trends(props: TrendsProps) {
               <div className="stat-figure text-secondary">
                 <IoWarningOutline className="w-10 h-10 p-2 rounded-full text-warning ring-1 ring-warning" />
               </div>
-              <div className="stat-title">About To Expire</div>
-              <div className="stat-value text-warning">24</div>
+              <div className="stat-title">Number of Sales</div>
+              <div className="stat-value text-warning">{props.sales}</div>
               <div className="stat-desc">21% more than last month</div>
             </div>
 
@@ -69,7 +73,7 @@ export function Trends(props: TrendsProps) {
                 <MdOutlineDangerous className="w-10 h-10 p-2 rounded-full text-error ring-1 ring-error" />
               </div>
               <div className="stat-title">Expired</div>
-              <div className="stat-value text-secondary">2.6M</div>
+              <div className="stat-value text-secondary">{props.expired}</div>
               <div className="stat-desc">21% more than last month</div>
             </div>
 
@@ -81,29 +85,29 @@ export function Trends(props: TrendsProps) {
                   </div>
                 </div>
               </div>
-              <div className="stat-value">86%</div>
-              <div className="stat-title">Tasks complete</div>
-              <div className="stat-desc text-secondary">3 tasks remaining</div>
+              <div className="stat-title">Tasks remaining</div>
+              <div className="stat-value text-secondary">{props.dataTasks.length}</div>
+              <div className="stat-desc">20 tasks complete</div>
             </div>
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 shadow-md rounded-xl p-2">
-        <div>
-          <h3 className="mb-4 ">Recently Added</h3>
-          <InventoryTable data={props.data} page='home'/>
+      <div className="grid grid-cols-3 gap-3 shadow-md rounded-xl p-2">
+        <div className='w-full mt-4'>
+          <h3 className="mb-4 mb-4">Recently Added</h3>
+          <InventoryTable data={props.dataInventory} page='home'/>
           <Link href="/inventory" passHref>
-            <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-neutral/10 hover:bg-neutral/30">
+            <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-primary text-white hover:bg-neutral/30">
               View Inventory
               <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
             </span>
           </Link>
         </div>
         <div>
-          <h3 className="mb-4 ">Oustanding Tasks</h3>
-          <InventoryTable data={props.data} page='home'/>
+          <h3 className="mb-4 mt-4">Oustanding Tasks</h3>
+          <InventoryTable data={props.dataInventory} page='home'/>
           <Link href="/tasks" passHref>
-            <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-neutral/10 hover:bg-neutral/30">
+            <span className="flex items-center px-4 py-2 transition-all rounded-md cursor-pointer w-fit group bg-primary text-white hover:bg-neutral/30">
               View Tasks
               <MdChevronRight className="w-5 h-5 transition-all group-hover:translate-x-2" />
             </span>

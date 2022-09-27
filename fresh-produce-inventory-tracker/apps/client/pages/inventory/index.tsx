@@ -56,7 +56,6 @@ export async function getServerSideProps(context) {
 
   if(response.status == 201)
   {
-    console.log(trendData);
     for(let x = 0;x < trendData.length;x++)
     {
       const expireDate = new Date(trendData[x].expireDate);
