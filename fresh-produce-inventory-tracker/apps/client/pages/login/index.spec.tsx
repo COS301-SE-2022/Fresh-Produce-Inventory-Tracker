@@ -10,7 +10,7 @@ import 'whatwg-fetch';
 describe('Login page test', () => {
   const server = setupServer(
     rest.post(
-      'http://localhost:3333/api/authentication/signin',
+      'http://13.246.26.157:3333/api/authentication/signin',
       (req, res, ctx) => {
         return res(
           ctx.status(500),

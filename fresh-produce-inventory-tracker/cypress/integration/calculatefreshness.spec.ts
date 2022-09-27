@@ -6,7 +6,7 @@ const calculatefreshnessdata = {
 
   describe('Freshness tests', () => {
     it('get freshnes prediction ',()=>{
-        cy.request('POST','http://localhost:3333/api/calcfreshness/predict',calculatefreshnessdata).as('getfresh');
+        cy.request('POST','http://13.246.26.157:3333/api/calcfreshness/predict',calculatefreshnessdata).as('getfresh');
         cy.get('@getfresh').then(data=>{
             expect(data.status).to.equal(201)
         })

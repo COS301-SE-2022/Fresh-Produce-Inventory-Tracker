@@ -22,25 +22,25 @@ const  getmonthaverages = {
 describe('trend tests', () => {
     
     it('get trends for item',()=>{
-        cy.request('POST','http://localhost:3333/api/trendforyear/gettrendsforitem',gettrendsforitemyear).as('signup');
+        cy.request('POST','http://13.246.26.157:3333/api/trendforyear/gettrendsforitem',gettrendsforitemyear).as('signup');
         cy.get('@signup').then(data=>{
             expect(data.status).to.equal(201)
         })
     });
     it('update Trend for year ',()=>{
-        cy.request('POST','http://localhost:3333/api/trendforyear/updateyeartrend',updateyeartrend).as('signup');
+        cy.request('POST','http://13.246.26.157:3333/api/trendforyear/updateyeartrend',updateyeartrend).as('signup');
         cy.get('@signup').then(data=>{
             expect(data.status).to.equal(201)
         })
     });
     it('get all trends for user for year ',()=>{
-        cy.request('POST','http://localhost:3333/api/trendforyear/getall',getallyear).as('signup');
+        cy.request('POST','http://13.246.26.157:3333/api/trendforyear/getall',getallyear).as('signup');
         cy.get('@signup').then(data=>{
             expect(data.status).to.equal(201)
         })
     });
     it('get monthly averages for produce ',()=>{
-        cy.request('POST','http://localhost:3333/api/trendforyear/getmonthaverages',getmonthaverages).as('signup');
+        cy.request('POST','http://13.246.26.157:3333/api/trendforyear/getmonthaverages',getmonthaverages).as('signup');
         cy.get('@signup').then(data=>{
             expect(data.status).to.equal(201)
         })
