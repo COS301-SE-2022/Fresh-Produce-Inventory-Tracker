@@ -219,24 +219,29 @@ export function Trends({FreshProduce,PoultryMeat,Pastries,FreshProduceLine,Poult
   const [M, setM] = useState(PoultryMeat);
   const [P, setP] = useState(Pastries);
   const [lineData,setLineData] = useState([]);
+  const [FreshProduceLines,setFPL] = useState(FreshProduceLine);
+  const [PoultryMeatLines,setPML] = useState(PoultryMeatLine);
+  const [PastriesLines,setPL] = useState(PastriesLine);
 
-  const filter = async (event) => {
+  function filter(event)
+  {
+    fetchData();
     if(event.target.value != "All")
     {
       setType("Line");
       if(event.target.value == "Fruit&Veg")
       {
-        setLineData(FreshProduceLine);
+        setLineData(FreshProduceLines);
         setProduce("Fruit & Veg");
       }
       else if(event.target.value == "Meat")
       {
-        setLineData(PoultryMeatLine);
+        setLineData(PoultryMeatLines);
         setProduce("Meat");
       }
       else
       {
-        setLineData(PastriesLine);
+        setLineData(PastriesLines);
         setProduce("Pastries");
       }
     }
@@ -407,16 +412,10 @@ export function Trends({FreshProduce,PoultryMeat,Pastries,FreshProduceLine,Poult
     setFP(FreshProduce);
     setM(PoultryMeat);
     setP(Pastries);
+    setFPL(FreshProduceLine);
+    setPML(PoultryMeatLine);
+    setPL(PastriesLine);
   }
-
-  function stateChange() {
-    setTimeout(function () {
-        fetchData();
-        stateChange();
-    }, 15000);
-  }
-
-  stateChange();
 
   return (
       <div>
