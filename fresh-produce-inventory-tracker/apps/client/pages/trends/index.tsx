@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
 
 const FreshProduce = [0,0,0,0,0,0,0,0,0,0,0,0];
 const PoultryMeat = [0,0,0,0,0,0,0,0,0,0,0,0];
-const Pastries = [0,0,0,0,0,0,0,0,0,0,0,0];
+const Pastries = [0,0,0,0,0,0,0,0,0,0,0];
 let FreshProduceLine = [];
 let PoultryMeatLine = [];
 let PastriesLine = [];
