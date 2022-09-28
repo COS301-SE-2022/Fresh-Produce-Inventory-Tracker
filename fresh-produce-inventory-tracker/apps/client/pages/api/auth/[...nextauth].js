@@ -28,6 +28,7 @@ const providers = [
       }
     },
     secrete: process.env.NEXTAUTH_URL,
+    secret: process.env.SECRET,
   }),
 ];
 
