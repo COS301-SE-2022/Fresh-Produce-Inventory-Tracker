@@ -17,7 +17,11 @@ unsigned long t = 0;
 
 void setup() {
   //Delay to ensure weight is stable
-  int ScaleOne , ScaleTwo , Scale3
+  int ScaleOne , ScaleTwo , ScaleThree
+
+  ScaleOne = 19200 ;
+  ScaleTwo = 38400 ;
+  ScaleThree = 57600 ;
   for (int i = 0; i < 3; i++)
   {
     
