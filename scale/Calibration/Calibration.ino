@@ -14,28 +14,17 @@ HX711_ADC LoadCell(HX711_dout, HX711_sck);
 
 const int calVal_eepromAdress = 0;
 unsigned long t = 0;
-unsigned long u= 0 //demo3
-
-
 
 void setup() {
-  /*
-  Delay to ensure weight is stable
-  */
+ 
   Serial.begin(57600); delay(10);
   Serial.println();
   LoadCell.begin();
-  LoadCell.setReverseOutput(); //scale must only return positives
-  unsigned long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
+  LoadCell.setReverseOutput(); 
+  unsigned long stabilizingtime = 2000; //stabilizing time
   boolean _tare = true; //set this to false if you don't want tare to be performed in the next step
   LoadCell.start(stabilizingtime, _tare);
-  if (u ==1)
-  {
-     u= 0 ;
-     setup();
-     calibrate();
-     
-  }
+
   
   if (LoadCell.getTareTimeoutFlag() || LoadCell.getSignalTimeoutFlag()) {
     Serial.println("Timeout, check MCU>HX711 wiring and pin designations");
@@ -161,10 +150,7 @@ void changeSavedCalFactor() {
       }
     }
   }
-  /*
-  Remove code that requies input/output 
-  but note that each scale needs to be calabrated
-  */
+  
   _resume = false;
   Serial.print("Save this value to EEPROM adress without showing this msg");
   Serial.print(calVal_eepromAdress);
@@ -181,18 +167,13 @@ void changeSavedCalFactor() {
         EEPROM.commit();
 #endif
         EEPROM.get(calVal_eepromAdress, newCalibrationValue);
-       // Serial.print("Value wont be displayed");
-       // Serial.print(newCalibrationValue);
-       // Serial.print(" saved to EEPROM address: ");
+
         Serial.println(calVal_eepromAdress);
         _resume = true;
       }
       else if (inByte == 'n') {
-       // Serial.println("Value not saved to EEPROM");
         _resume = true;
       }
     }
   }
-  //Serial.println("End change calibration value");
-  //Serial.println("***");
 }
