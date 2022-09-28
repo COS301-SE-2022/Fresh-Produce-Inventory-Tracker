@@ -11,7 +11,7 @@ import { unstable_getServerSession } from 'next-auth/next';
 import { options } from '../api/auth/[...nextauth]';
 import { useSession } from 'next-auth/react';
 
-const scale_api = `http://13.246.32.49:3333/api/scale/producelist`;
+const scale_api = `http://13.244.78.12:3333/api/scale/producelist`;
 
 enum SHOW_ITEMS {
   '10 Items' = '10 Items',

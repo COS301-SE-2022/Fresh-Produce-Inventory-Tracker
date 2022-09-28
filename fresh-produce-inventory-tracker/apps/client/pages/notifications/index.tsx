@@ -4,7 +4,7 @@ export interface NotificationsProps {}
 
 import Notification  from "../../src/components/notification"; 
 
-const table_api = `http://13.246.32.49:3333/api/notification/getnotifications`;
+const table_api = `http://13.244.78.12:3333/api/notification/getnotifications`;
 
 const notifications =  [];
 
