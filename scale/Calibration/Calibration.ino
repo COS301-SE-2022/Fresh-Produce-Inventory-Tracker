@@ -65,8 +65,7 @@ void startCal(int Baud){
     while (1);
   }
   else {
-    LoadCell.setCalFactor(1.0); // user set calibration value (float), initial value 1.0 may be used for this sketch
-    
+    LoadCell.setCalFactor(1.0); 
   }
   while (!LoadCell.update());
   calibrate(); 
@@ -76,14 +75,11 @@ void startCal(int Baud){
 
 void loop() {
   static boolean newDataReady = 0;
-  const int serialPrintInterval = 0; //increase value to slow down serial print activity
+  const int serialPrintInterval = 0; 
   static boolean isStable = true ;
 
-  // check for new data/start next conversion:
   if (LoadCell.update()) newDataReady = true;
 
-  // get smoothed value from the dataset:
-  //If value is valid d3 smoothen 
   if (newDataReady) {
     if (millis() > t + serialPrintInterval) {
       float i = LoadCell.getData();
@@ -94,12 +90,11 @@ void loop() {
     }
   }
 
-    // receive command from serial terminal
   if (Serial.available() > 0) {
     char inByte = Serial.read();
-    if (inByte == 't') LoadCell.tareNoDelay(); //tare
-    else if (inByte == 'r') calibrate(); //calibrate
-    else if (inByte == 'c') changeSavedCalFactor(); //edit calibration value manually
+    if (inByte == 't') LoadCell.tareNoDelay(); 
+    else if (inByte == 'r') calibrate(); 
+    else if (inByte == 'c') changeSavedCalFactor(); 
   }
 }
 Serial.println("This script is used to find the individual calabrations of each scale ");
@@ -121,8 +116,8 @@ void calibrate() {
       _resume = true;
     }
   }
-  LoadCell.refreshDataSet(); //refresh the dataset to be sure that the known mass is measured correct
-  float newCalibrationValue = LoadCell.getNewCalibration(known_mass); //get the new calibration value
+  LoadCell.refreshDataSet(); 
+  float newCalibrationValue = LoadCell.getNewCalibration(known_mass); 
 
   _resume = false;
   while (_resume == false) {
@@ -207,18 +202,13 @@ void changeSavedCalFactor() {
         EEPROM.commit();
 #endif
         EEPROM.get(calVal_eepromAdress, newCalibrationValue);
-       // Serial.print("Value wont be displayed");
-       // Serial.print(newCalibrationValue);
-       // Serial.print(" saved to EEPROM address: ");
+
         Serial.println(calVal_eepromAdress);
         _resume = true;
       }
       else if (inByte == 'n') {
-       // Serial.println("Value not saved to EEPROM");
         _resume = true;
       }
     }
   }
-  //Serial.println("End change calibration value");
-  //Serial.println("***");
 }
