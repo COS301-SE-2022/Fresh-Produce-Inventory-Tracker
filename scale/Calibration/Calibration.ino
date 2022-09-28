@@ -39,7 +39,6 @@ void setup() {
 }
 
 void startCal(){
-  
    Serial.begin(57600); 
   delay(10);
   Serial.println();
