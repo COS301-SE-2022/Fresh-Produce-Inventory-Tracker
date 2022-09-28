@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { CgSpinner } from 'react-icons/cg';
 import Swal from 'sweetalert2';
-const profileUrl = `http://13.246.26.157:3333/api/profile/getprofile`;
+const profileUrl = `http://13.246.32.49:3333/api/profile/getprofile`;
 
 const Toast = Swal.mixin({
   toast: true,
@@ -117,7 +117,7 @@ export function User({ data, status, accessToken }) {
     params.append('token', session?.accessToken?.toString());
     params.append('data', JSON.stringify(validatedData));
     const {status} = await axios.post(
-      `http://13.246.26.157:3333/api/profile/editProfile`,
+      `http://13.246.32.49:3333/api/profile/editProfile`,
       params
     );
     
