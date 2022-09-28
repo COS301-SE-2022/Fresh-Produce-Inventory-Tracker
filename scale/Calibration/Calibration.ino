@@ -1,4 +1,5 @@
-//Calabration finder 
+//Calabration finder - this script will output the calibration (t) value of the scale 
+// to get true zero on a empty scale
 #include <HX711_ADC.h>
 #if defined(ESP8266)|| defined(ESP32) || defined(AVR)
 #include <EEPROM.h>
