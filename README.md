@@ -58,9 +58,15 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
   
   
   <h3>Demo 4</h3>
-  
-<h2 align="center">Project Board:</h2>
-  <h3 align="center">https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects</h3>
+  <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/wiki/SRS">📄 SRS Document v4</a><br/>
+  <a href = "https://docs.google.com/document/d/1tho-qFZw2jMubtVi8FJlAP6OmhAaBQ_-/edit?usp=sharing&ouid=116169028314178640004&rtpof=true&sd=true">📄 Deployment Document v2</a><br/>
+  <a href = "https://docs.google.com/document/d/1EBmBy6F0fTUkgoAgAAajTM0W1cKebukpj3TtG0ciVvA/edit?usp=sharing">👨‍💻 Coding Standards v3</a><br/>
+   <a href = "https://docs.google.com/document/d/1rzqz11Qhgux-oirBmiv6R1bgz_fXcVAy5hShhnljRAw/edit?usp=sharing">📄 User Manual v3</a><br/>
+  <a href = "https://docs.google.com/document/d/1r01Z9c0Lt6zXYXmW0AJLnbtuJ5kNKB5drntgxAzR274/edit?usp=sharing">👷🛠 Architecture Document v3</a><br/>
+  <a href = https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">🚀 Deployment model</a><br/>
+  <a href = https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">🚀 Testing doc</a><br/>
+ <h2 align="center">Project Board:</h2>
+ <h3 align="center">https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects</h3>
   
 <h2 align="center">Team Members</h2>
 
