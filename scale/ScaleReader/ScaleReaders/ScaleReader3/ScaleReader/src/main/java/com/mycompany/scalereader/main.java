@@ -33,21 +33,13 @@ public class main {
             serialPort.setFlowControlMode(SerialPort.FLOWCONTROL_RTSCTS_IN | 
                                           SerialPort.FLOWCONTROL_RTSCTS_OUT);
 
-            serialPort.addEventListener( new PortReader(), SerialPort.MASK_RXCHAR);
-            
-           
-            
-            
+            serialPort.addEventListener( new PortReader(), SerialPort.MASK_RXCHAR);   
             
         }
         catch (SerialPortException ex) {
             System.out.println("There are an error on writing string to port т: " + ex);
         }
     }
-    
-    
-    
-    
     
    private static class PortReader implements SerialPortEventListener {
 
@@ -63,7 +55,7 @@ public class main {
                     
                     if(receivedData.charAt(0) == '(' && receivedData.charAt(receivedData.length()-1) == ')')
                     {
-                        System.out.println("boii");
+                        System.out.println("Updated to db");
                         receivedData = receivedData.substring(1, receivedData.length()-1);
                         //if(Integer.parseInt(receivedData) == (weight-1) || Integer.parseInt(receivedData) == (weight-2) || Integer.parseInt(receivedData) == (weight+1) || Integer.parseInt(receivedData) == (weight+2))
                         if(true)
@@ -105,10 +97,7 @@ public class main {
                     Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            else
-            {
-                
-            }
+
         }
     }
 }
