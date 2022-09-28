@@ -1,4 +1,4 @@
-//Calibration = 22.00 BoardName = ACM1 Scale 1 Baud = 32500
+//Calibration = 22.00 BoardName = ACM1 Scale 1 Baud = 32800
 
 #include <HX711_ADC.h>
 #if defined(ESP8266)|| defined(ESP32) || defined(AVR)
@@ -18,7 +18,7 @@ unsigned long t = 0;
 float oldvalue = 0 ;
 
 void setup() {
-  Serial.begin(19200); delay(10);
+  Serial.begin(32800); delay(10);
 
   LoadCell.begin();
 
