@@ -27,8 +27,8 @@ const providers = [
         throw new Error(errorMessage);
       }
     },
-    secrete: process.env.NEXTAUTH_URL,
-    secret:process.env.NEXT_PUBLIC_SECRET,
+    secret: process.env.NEXTAUTH_URL,
+    NEXTAUTH_SECRET:process.env.NEXT_PUBLIC_SECRET,
   }),
 ];
 
