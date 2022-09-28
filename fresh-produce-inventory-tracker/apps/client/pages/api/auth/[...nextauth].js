@@ -27,7 +27,7 @@ const providers = [
         throw new Error(errorMessage);
       }
     },
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: "755f1bd1cc5cfc20ab0931f9410bb83d",
   }),
 ];
 
