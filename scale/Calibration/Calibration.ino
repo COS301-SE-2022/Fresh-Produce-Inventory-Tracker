@@ -14,20 +14,16 @@ HX711_ADC LoadCell(HX711_dout, HX711_sck);
 
 const int calVal_eepromAdress = 0;
 unsigned long t = 0;
-unsigned long u= 0 //demo3
-
-
 
 void setup() {
-  /*
-  Delay to ensure weight is stable
-  */
+  //Delay to ensure weight is stable
+  
   Serial.begin(57600); delay(10);
   Serial.println();
   LoadCell.begin();
-  LoadCell.setReverseOutput(); //scale must only return positives
-  unsigned long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time
-  boolean _tare = true; //set this to false if you don't want tare to be performed in the next step
+  LoadCell.setReverseOutput(); 
+  unsigned long stabilizingtime = 2000; 
+   boolean _tare = true;
   LoadCell.start(stabilizingtime, _tare);
   if (u ==1)
   {
