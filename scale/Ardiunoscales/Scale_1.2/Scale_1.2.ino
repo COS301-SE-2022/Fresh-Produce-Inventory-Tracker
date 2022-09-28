@@ -18,11 +18,11 @@ unsigned long t = 0;
 float oldvalue = 0 ;
 
 void setup() {
-  Serial.begin(19200); delay(10);
+  Serial.begin(38400); delay(10);
 
   LoadCell.begin();
   float calibrationValue; // calibration value can be tested with "Calibration.ino" file
-  calibrationValue = 22.50; // Tested and pres set for scale 1
+  calibrationValue = 22.00; // Tested and pres set for scale 1
 
 #if defined(ESP8266)|| defined(ESP32)
   EEPROM.begin(512);
