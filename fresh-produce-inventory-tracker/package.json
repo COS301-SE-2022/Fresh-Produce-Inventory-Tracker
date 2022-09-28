@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
-    "build": "nx run client:build:production",
+    "build": "nx build",
     "test": "nx test",
     "cypress:open": "cypress open"
   },
