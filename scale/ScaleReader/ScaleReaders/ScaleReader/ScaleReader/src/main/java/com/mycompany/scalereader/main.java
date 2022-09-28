@@ -34,17 +34,11 @@ public class main {
                                           SerialPort.FLOWCONTROL_RTSCTS_OUT);
 
             serialPort.addEventListener( new PortReader(), SerialPort.MASK_RXCHAR);
-            
-            
-            
-            
         }
         catch (SerialPortException ex) {
             System.out.println("There are an error on writing string to port т: " + ex);
         }
     }
-    
-    
     
     private static class PortReader implements SerialPortEventListener {
 
@@ -82,6 +76,7 @@ public class main {
                             HttpClient client = HttpClient.newHttpClient();
                             HttpRequest request = HttpRequest.newBuilder()
                                     
+                            //update uri - currently for local 
                                     .uri(URI.create("http://13.244.78.12:3333/api/scale/editscale?id=12&userid=1&weight=" + weight))
                                     .header("Content-Type", "application/x-www-form-urlencoded")
                                     .POST(HttpRequest.BodyPublishers.ofString(form))
@@ -102,10 +97,7 @@ public class main {
                     Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            else
-            {
-                
-            }
+         
         }
     }
 }
