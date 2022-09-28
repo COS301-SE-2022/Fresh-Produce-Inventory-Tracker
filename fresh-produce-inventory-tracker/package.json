@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run-many --target=serve --projects=backend,client --parallel=2",
+    "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
     "cypress:open": "cypress open"
