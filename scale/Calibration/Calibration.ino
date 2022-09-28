@@ -24,9 +24,10 @@ void setup() {
   ScaleThree = 57600 ;
   for (int i = 0; i < 3; i++)
   {
+    int b = 0 ;
     try
     {
-      /* code */
+      startCal(b);
     }
     catch(const std::exception& e)
     {
@@ -38,7 +39,7 @@ void setup() {
  
 }
 
-void startCal(){
+void startCal(int Baud){
    Serial.begin(57600); 
   delay(10);
   Serial.println();
