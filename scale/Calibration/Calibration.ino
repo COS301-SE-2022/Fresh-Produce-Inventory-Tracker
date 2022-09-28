@@ -24,10 +24,23 @@ void setup() {
   ScaleThree = 57600 ;
   for (int i = 0; i < 3; i++)
   {
+    try
+    {
+      /* code */
+    }
+    catch(const std::exception& e)
+    {
+      std::cerr << e.what() << '\n';
+    }
     
   }
   
-  Serial.begin(57600); 
+ 
+}
+
+void startCal(){
+  
+   Serial.begin(57600); 
   delay(10);
   Serial.println();
   LoadCell.begin();
@@ -53,7 +66,10 @@ void setup() {
   }
   while (!LoadCell.update());
   calibrate(); //start calibration procedure
+
 }
+
+
 void loop() {
   static boolean newDataReady = 0;
   const int serialPrintInterval = 0; //increase value to slow down serial print activity
