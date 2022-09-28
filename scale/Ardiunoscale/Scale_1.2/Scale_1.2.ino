@@ -1,4 +1,4 @@
-//Calibration = 22.50 BoardName = ACM1 Scale 2 Baud = 19200
+//Calibration = 22.00 BoardName = ACM1 Scale 1 Baud = 32500
 
 #include <HX711_ADC.h>
 #if defined(ESP8266)|| defined(ESP32) || defined(AVR)
@@ -23,7 +23,7 @@ void setup() {
   LoadCell.begin();
 
   float calibrationValue; // calibration value (see example file "Calibration.ino")
-  calibrationValue = 22.50; //predetermined for scale 1
+  calibrationValue = 22.00; //predetermined for scale 2
 
 #if defined(ESP8266)|| defined(ESP32)
   EEPROM.begin(512);
