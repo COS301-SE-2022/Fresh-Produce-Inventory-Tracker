@@ -32,7 +32,6 @@ export function Login(props: LoginProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const { data: session } = useSession();
   const {
     register,
     handleSubmit,
@@ -55,11 +54,6 @@ export function Login(props: LoginProps) {
     } else if (status === 401) setError(Errors.loginError);
     else if (status === 500) setError(Errors.serverError);
   };
-
-  if (session) {
-    router.push('/');
-    return;
-  }
 
   return (
     <div className="grid w-screen h-full min-h-screen p-2 place-content-center bg-base-300/40">
