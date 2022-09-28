@@ -24,7 +24,21 @@ void setup() {
   ScaleThree = 57600 ;
   for (int i = 0; i < 3; i++)
   {
-    int b = 0 ;
+    int b ;
+
+    if (i=0)
+    {
+      b = ScaleOne ;
+    }
+    if (i=1)
+    {
+      b = ScaleTwo ;
+    }
+    if (i=2)
+    {
+      b = ScaleThree ;
+    }
+    
     try
     {
       startCal(b);
