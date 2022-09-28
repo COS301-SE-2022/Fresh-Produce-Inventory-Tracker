@@ -17,8 +17,14 @@ unsigned long t = 0;
 
 void setup() {
   //Delay to ensure weight is stable
+  int ScaleOne , ScaleTwo , Scale3
+  for (int i = 0; i < 3; i++)
+  {
+    
+  }
   
-  Serial.begin(57600); delay(10);
+  Serial.begin(57600); 
+  delay(10);
   Serial.println();
   LoadCell.begin();
   LoadCell.setReverseOutput(); 
