@@ -38,7 +38,6 @@ void setup() {
     {
       b = ScaleThree ;
     }
-    
     try
     {
       startCal(b);
@@ -46,11 +45,8 @@ void setup() {
     catch(const std::exception& e)
     {
       std::cerr << e.what() << '\n';
-    }
-    
+    } 
   }
-  
- 
 }
 
 void startCal(int Baud){
@@ -62,13 +58,7 @@ void startCal(int Baud){
   unsigned long stabilizingtime = 2000; 
    boolean _tare = true;
   LoadCell.start(stabilizingtime, _tare);
-  if (u ==1)
-  {
-     u= 0 ;
-     setup();
-     calibrate();
-     
-  }
+  
   
   if (LoadCell.getTareTimeoutFlag() || LoadCell.getSignalTimeoutFlag()) {
     Serial.println("Timeout, check MCU>HX711 wiring and pin designations");
@@ -79,7 +69,7 @@ void startCal(int Baud){
     
   }
   while (!LoadCell.update());
-  calibrate(); //start calibration procedure
+  calibrate(); 
 
 }
 
