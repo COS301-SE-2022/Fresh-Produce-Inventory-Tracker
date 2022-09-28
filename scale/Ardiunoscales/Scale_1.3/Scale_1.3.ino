@@ -1,5 +1,4 @@
 //Calibration = 23.00 BoardName = ACM1 Scale 0 Baud = 57600
-
 #include <HX711_ADC.h>
 #if defined(ESP8266)|| defined(ESP32) || defined(AVR)
 #include <EEPROM.h>
@@ -18,11 +17,11 @@ unsigned long t = 0;
 float oldvalue = 0 ;
 
 void setup() {
-  Serial.begin(19200); delay(10);
+  Serial.begin(57600); delay(10);
 
   LoadCell.begin();
   float calibrationValue; // calibration value can be tested with "Calibration.ino" file
-  calibrationValue = 22.50; // Tested and pres set for scale 1
+  calibrationValue = 23.00; // Tested and pres set for scale 1
 
 #if defined(ESP8266)|| defined(ESP32)
   EEPROM.begin(512);
