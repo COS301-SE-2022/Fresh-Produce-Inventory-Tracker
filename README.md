@@ -64,7 +64,7 @@ The fresh-produce tracker will be implemented to allow fresh produce-store owner
    <a href = "https://docs.google.com/document/d/1rzqz11Qhgux-oirBmiv6R1bgz_fXcVAy5hShhnljRAw/edit?usp=sharing">📄 User Manual v3</a><br/>
   <a href = "https://docs.google.com/document/d/1r01Z9c0Lt6zXYXmW0AJLnbtuJ5kNKB5drntgxAzR274/edit?usp=sharing">👷🛠 Architecture Document v3</a><br/>
   <a href = https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">🚀 Deployment model</a><br/>
-  <a href = [https://docs.google.com/document/d/1r01Z9c0Lt6zXYXmW0AJLnbtuJ5kNKB5drntgxAzR274/edit#](https://docs.google.com/document/d/1C9WdKVEJ8nsC_k-lBZlDMU1fjx10jQ2ljgMXIzVi2j8/edit#)">🚀 Testing Policy</a><br/>
+  <a href = "https://docs.google.com/document/d/1C9WdKVEJ8nsC_k-lBZlDMU1fjx10jQ2ljgMXIzVi2j8/edit#">🚀 Testing Policy</a><br/>
   <a href = https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">🚀 Testing diagram</a><br/>
  <h2 align="center">Project Board:</h2>
  <h3 align="center">https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects</h3>
