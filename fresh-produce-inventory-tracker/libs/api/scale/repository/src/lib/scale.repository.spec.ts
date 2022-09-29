@@ -9,6 +9,7 @@ class scale{
    WeightTotal: number; 
    WeightIndividual: number;
    ProduceType: string;
+   Name:string; Description:string;
 }
 //const reqMock = jest.mock('./api');
 const MockApiImpl : jest.Mocked<scale> = new scale() as scale;
@@ -42,7 +43,7 @@ describe('ImagesController', () => {
     jest
       .spyOn(repo, 'getScale')
       .mockImplementation(
-        (): Promise<scale | null> => Promise.resolve(MockApiImpl)
+        () => Promise.resolve(MockApiImpl)
       );
 
     expect(
@@ -57,7 +58,7 @@ describe('ImagesController', () => {
       );
 
     expect(
-      await repo.createScale(1,100,10,'BREAD')
+      await repo.createScale(1,100,10,'BREAD','','')
     ).toBe(MockApiImpl);
   });
   it('should create scale', async () => {
@@ -68,7 +69,7 @@ describe('ImagesController', () => {
       );
 
     expect(
-      await repo.createScale(1,100,10,'BREAD')
+      await repo.createScale(1,100,10,'BREAD','','')
     ).toBe(MockApiImpl);
   });
   
