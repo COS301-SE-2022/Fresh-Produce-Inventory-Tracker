@@ -51,7 +51,7 @@ describe('AuthenticationController', () => {
     jest
       .spyOn(controller, 'signup')
       .mockImplementation(
-        () => Promise.resolve(mockAccess)
+        ():Promise<any> => Promise.resolve(mockAccess)
       );
 
     expect(
@@ -62,7 +62,7 @@ describe('AuthenticationController', () => {
     jest
       .spyOn(controller, 'signin')
       .mockImplementation(
-        () => Promise.resolve(mockAccess)
+        ():Promise<any> => Promise.resolve(mockAccess)
       );
 
     expect(
