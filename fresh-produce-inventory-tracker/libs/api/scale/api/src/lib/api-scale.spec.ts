@@ -16,6 +16,7 @@ class scale{
      WeightIndividual: number;
      ProduceType: string;
      Weight:number ;
+     Name:string; Description:string;
   }
   const MockApiImpl : jest.Mocked<scale> = new scale() as scale;
 
@@ -60,7 +61,7 @@ describe('ScaleController', () => {
           );
     
         expect(
-          await controller.setscale(1,'100','10','Apple') //enter values later @Heinrich van Tonder
+          await controller.setscale(1,'100','10','Fruit/Veg','Red Apples','Apple') //enter values later @Heinrich van Tonder
         ).toBe(null);
       });
 
