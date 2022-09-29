@@ -14,4 +14,13 @@ const mockFreshness: jest.Mocked<freshness> = new freshness() as freshness;
 describe('Calculate freshness controller', () => {
     let controller: calculatefreshnessController;
 
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            controllers: [calculatefreshnessController],
+            providers: [
+                PrismaService, calculatefreshnessService],
+        }).compile();
+
+        controller = module.get<calculatefreshnessController>(calculatefreshnessController);
+    });
 });
