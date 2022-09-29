@@ -9,7 +9,7 @@ class Notification{
   userId!:number;
   Type!:string;
   message!:string;
-  
+  taskType!:string; produceType!:string;
 }
 class batch{
   count!:number
@@ -34,7 +34,7 @@ describe('Trend Controller tests', () => {
     jest
       .spyOn(controller, 'getTasks')
       .mockImplementation(
-        (): Promise<Notification[]> => Promise.resolve([MockApiImpl])
+        () => Promise.resolve([MockApiImpl])
       );
     //const req = MockRequest.;
     expect(
@@ -45,7 +45,7 @@ describe('Trend Controller tests', () => {
     jest
       .spyOn(controller, 'getTasksMessage')
       .mockImplementation(
-        (): Promise<Notification | null> => Promise.resolve(MockApiImpl)
+        () => Promise.resolve(MockApiImpl)
       );
 
     expect(
@@ -56,11 +56,11 @@ describe('Trend Controller tests', () => {
     jest
       .spyOn(controller, 'createTask')
       .mockImplementation(
-        (): Promise<Notification | null> => Promise.resolve(MockApiImpl)
+        () => Promise.resolve(MockApiImpl)
       );
 
     expect(
-      await controller.createTask(1, "message")
+      await controller.createTask(1, "message",'','')
     ).toBe(MockApiImpl);
   });
   it('should delete task', async () => {
