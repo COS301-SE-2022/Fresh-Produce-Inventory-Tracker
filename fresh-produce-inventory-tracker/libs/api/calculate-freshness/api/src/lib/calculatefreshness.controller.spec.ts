@@ -23,4 +23,7 @@ describe('Calculate freshness controller', () => {
 
         controller = module.get<calculatefreshnessController>(calculatefreshnessController);
     });
+    it('should be defined', () => {
+        expect(controller).toBeDefined();
+    });
 });
