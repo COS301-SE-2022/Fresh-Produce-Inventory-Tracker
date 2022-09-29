@@ -26,4 +26,14 @@ describe('Calculate freshness controller', () => {
     it('should be defined', () => {
         expect(controller).toBeDefined();
     });
+    it('should get predict', async () => {
+        jest
+            .spyOn(controller, 'predict')
+            .mockImplementation(
+                (): Promise<null> => Promise.resolve(null)
+            );
+        expect(
+            await controller.predict(1, 'fruit', '//files/banana.png')
+        ).toBe(mockFreshness);
+    });
 });
