@@ -35,7 +35,7 @@ describe('Task Service Test', () => {
             );
         //const req = MockRequest.;
         expect(
-            await data.getProfile(1)
+            await data.getProfile('blablaefnweisegfujnwfenw9efnwiiefnsdfnsffsf.sfsfsfsfsfsfsf.sfsf')
         ).toBe(MockProfile);
     });
     it('should edit name', async () => {
@@ -79,7 +79,7 @@ describe('Task Service Test', () => {
             );
         //const req = MockRequest.;
         expect(
-            await data.editVisibility(1, true)
+            await data.editVisibility(1, 'true')
         ).toBe(MockProfile);
     });
 
