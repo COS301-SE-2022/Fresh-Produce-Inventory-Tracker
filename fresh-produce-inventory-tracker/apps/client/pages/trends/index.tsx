@@ -13,8 +13,8 @@ let PoultryMeatLine = [];
 let PastriesLine = [];
 const months = [31,28,31,30,31,30,31,31,30,31,30,31]
 
-const scale_api = `http://13.244.78.12:3333/api/scale/producelist`;
-const tableYearAll_api = `http://13.244.78.12:3333/api/trendforyear/getall`;
+const scale_api = `http://13.246.28.137:3333/api/scale/producelist`;
+const tableYearAll_api = `http://13.246.28.137:3333/api/trendforyear/getall`;
 
 const option = [
   "All","Fruit&Veg","Meat","Pastries"

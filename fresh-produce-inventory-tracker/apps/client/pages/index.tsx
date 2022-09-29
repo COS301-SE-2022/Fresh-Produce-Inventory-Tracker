@@ -7,9 +7,9 @@ import Trends from '../src/components/trends';
 import { options } from './api/auth/[...nextauth]';
 import { unstable_getServerSession } from 'next-auth/next';
 
-const scale_api = `http://13.244.78.12:3333/api/scale/producelist`;
-const task_api = `http://13.244.78.12:3333/api/tasks/gettasks`;
-const sales_api = `http://13.244.78.12:3333/api/trendforyear/getall`;
+const scale_api = `http://13.246.28.137:3333/api/scale/producelist`;
+const task_api = `http://13.246.28.137:3333/api/tasks/gettasks`;
+const sales_api = `http://13.246.28.137:3333/api/trendforyear/getall`;
 
 export async function getServerSideProps(context) {
   const session = await unstable_getServerSession(

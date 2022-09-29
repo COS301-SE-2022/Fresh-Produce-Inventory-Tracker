@@ -8,11 +8,11 @@ export interface MobileProps {
   type:string
 }
 
-const upload_url = `http://13.244.78.12:3333/api/image/uploadone`;
-const freshness_url = `http://13.244.78.12:3333/api/calcfreshness/predict`;
-const add_task = `http://13.244.78.12:3333/api/tasks/createtask`;
-const tableYear_api = `http://13.244.78.12:3333/api/trendforyear/getmonthaverages`;
-const produce_api = `http://13.244.78.12:3333/api/scale/producelist`;
+const upload_url = `http://13.246.28.137:3333/api/image/uploadone`;
+const freshness_url = `http://13.246.28.137:3333/api/calcfreshness/predict`;
+const add_task = `http://13.246.28.137:3333/api/tasks/createtask`;
+const tableYear_api = `http://13.246.28.137:3333/api/trendforyear/getmonthaverages`;
+const produce_api = `http://13.246.28.137:3333/api/scale/producelist`;
 
 let FreshProduce = 0;
 let PoultryMeat = 0;
@@ -127,6 +127,7 @@ export function Mobile({FreshProduce,PoultryMeat,Pastries,fn,pmn,pn},props: Mobi
   if(typeof(router.query.type) == "string")
   {
     type = router.query.type;
+    console.log(type);
   }
 
   const [image, setImage] = useState(null);
@@ -192,7 +193,7 @@ export function Mobile({FreshProduce,PoultryMeat,Pastries,fn,pmn,pn},props: Mobi
           prediction[2] +
           '%'
       );
-      if (prediction[0] == 'rotten apples') {
+      if (prediction[0] == 'rotten '+ type) {
         createTask();
       }
       console.log(prediction);

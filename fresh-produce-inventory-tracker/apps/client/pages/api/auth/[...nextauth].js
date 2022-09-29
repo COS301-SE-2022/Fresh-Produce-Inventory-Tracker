@@ -5,7 +5,7 @@ import axios from 'axios';
 import url from 'node:url';
 import jwt from 'jsonwebtoken';
 
-const loginUrl = `http://13.244.78.12:3333/api/authentication/signin`;
+const loginUrl = `http://13.246.28.137:3333/api/authentication/signin`;
 
 const providers = [
   CredentialsProvider({

@@ -76,7 +76,7 @@ export function Task({
     params.append('id', userId);
     params.append('message', message.toString());
     const { status } = await axios.post(
-      `http://13.244.78.12:3333/api/tasks/deletetask`,
+      `http://13.246.28.137:3333/api/tasks/deletetask`,
       params
     );
     if (status === 201) {
@@ -94,7 +94,7 @@ export function Task({
   
     const form = 'id=' + session.user?.id?.toString();
 
-    const response = await fetch("http://13.244.78.12:3333/api/tasks/gettasks", {
+    const response = await fetch("http://13.246.28.137:3333/api/tasks/gettasks", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
