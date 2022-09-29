@@ -33,7 +33,7 @@ describe('ApiAuthorizationRepositoryTest', () => {
       jest
         .spyOn(data, 'createNotification')
         .mockImplementation(
-          () => Promise.resolve(MockApiImpl)
+          ():Promise<any> => Promise.resolve(MockApiImpl)
         );
   
       expect(
@@ -99,7 +99,7 @@ describe('ApiAuthorizationRepositoryTest', () => {
         jest
           .spyOn(data, 'getNotificationMessage')
           .mockImplementation(
-            () => Promise.resolve(MockApiImpl)
+            ():Promise<any> => Promise.resolve(MockApiImpl)
           );
     
         expect(
@@ -143,7 +143,7 @@ describe('ApiAuthorizationRepositoryTest', () => {
         jest
           .spyOn(data, 'getNotifications')
           .mockImplementation(
-            () => Promise.resolve([MockApiImpl])
+            () :Promise<any> => Promise.resolve([MockApiImpl])
           );
     
         expect(
