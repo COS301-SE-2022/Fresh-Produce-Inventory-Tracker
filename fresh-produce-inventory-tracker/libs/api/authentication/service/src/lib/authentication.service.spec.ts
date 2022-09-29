@@ -22,7 +22,7 @@ Visibility:boolean;
 }
 class access{
   id: number; 
-  Access:string;
+  token:string;
 }
 
 
@@ -98,18 +98,18 @@ describe('Service test', () => {
       jest
         .spyOn(data, 'signup')
         .mockImplementation(
-          () => Promise.resolve(MockApiImpl)
+          () => Promise.resolve(mockAccess)
         );
-          expect(await data.signup('qwert@gmail.com','1234')).toBe(MockApiImpl);
+          expect(await data.signup('qwert@gmail.com','1234','','')).toBe(mockAccess);
     });
     
     it('should create token', async () => {
       jest
         .spyOn(data, 'setToken')
         .mockImplementation(
-          () => Promise.resolve(mockAccess)
+          () => Promise.resolve(MockString)
         );
-          expect(await data.setToken(1,'qwert@gmail.com')).toBe(mockAccess);
+          expect(await data.setToken(1,'qwert@gmail.com','','')).toBe(MockString);
     });
     it('should get user', async () => {
       jest
