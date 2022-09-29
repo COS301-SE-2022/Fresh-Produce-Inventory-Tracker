@@ -11,13 +11,16 @@ class scale {
     ProduceType: string;
     createdAt: Date;
     updatedAt: Date;
+    Name:string; Description:string;
 }
 
 var scaleDataObj = {
     userId: 1,
     weightfull: 10,
     weightone: 1,
-    producetype: 'apple'
+    producetype: 'apple',
+    description: '',
+    name: ''
 }
 
 const MockScale: jest.Mocked<scale> = new scale() as scale;
