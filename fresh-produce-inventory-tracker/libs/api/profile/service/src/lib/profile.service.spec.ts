@@ -9,6 +9,7 @@ class User {
     email: string;
     password: string;
     passwordSalt: string;
+    Name:string;Surname:string; Bio:string; Visibility:boolean;
     createdAt: Date;
     updatedAt: Date;
 }
