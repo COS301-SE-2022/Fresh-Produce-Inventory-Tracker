@@ -9,13 +9,27 @@ class trendForYear {
     id: number;
     userId: number;
     ProduceType: string;
-    AverageSalesAmountForYear: number;
-    AmountSalesForYear: number;
+    AverageSalesAmountForYear: number[];
+    AmountSalesForYear: number[];
     SaleDate: Date;
     LastRestock: Date;
+    produceType:string;
+    amountSalesForMonth:any;
+    averageSalesForMonth:any; 
+    dateOfSale:Date;
+    lastRestock:Date;
+}
+class trends {
+    id: number;
+    produceType:string;
+    amountSalesForMonth:number;
+    averageSalesForMonth:number; 
+    averagesForMonths:any[];
+    amountsforMonths:any[];
 }
 
 const MockApiImpl: jest.Mocked<trendForYear> = new trendForYear() as trendForYear;
+const mockendApi: jest.Mocked<trends> = new trends() as trends;
 describe('Trend Controller tests', () => {
     let controller: TrendForYearService;
 
@@ -40,11 +54,11 @@ describe('Trend Controller tests', () => {
         jest
             .spyOn(controller, 'getMonthAverages')
             .mockImplementation(
-                (): Promise<trendForYear | null> => Promise.resolve(MockApiImpl)
+                () => Promise.resolve(mockendApi)
             );
 
         expect(await controller.getMonthAverages(1, 'apple')).toBe(
-            MockApiImpl
+            mockendApi
         );
     });
 
