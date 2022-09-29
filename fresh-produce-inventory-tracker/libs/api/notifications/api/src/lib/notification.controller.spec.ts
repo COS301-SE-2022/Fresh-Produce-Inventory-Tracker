@@ -18,6 +18,8 @@ class Notification{
   userId:number;
   Type:string;
   message:string;
+  taskType:string;
+  produceType:string;
   
 }
 class batch{
