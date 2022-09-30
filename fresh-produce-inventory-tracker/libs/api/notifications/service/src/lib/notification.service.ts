@@ -13,16 +13,16 @@ export class NotificationService {
     {
       return null; // have to change to exception
     }
-    await this.mail.sendMail({
+    /*await this.mail.sendMail({
       to: useremail,
       from: 'freshproduceemail@gmail.com',
       subject: subject,
       text: message
-  })
+  })*/
   
   if((await this.getNotificationMessage(id,message)) == null )
   {
-    console.log(useremail);
+    //console.log(useremail);
     this.createNotification(id,message);
   }
   }
@@ -42,12 +42,12 @@ export class NotificationService {
     return {otp:numstr, expireDate: expireDate};
   }
   async sendNotification(receiver,Subject:string,message:string) {
-    await this.mail.sendMail({
+    /*await this.mail.sendMail({
         to: receiver,
         from: 'freshproduceemail@gmail.com',
         subject: Subject,
         text: message
-    })
+    })*/
     return 'sent';
   }  
   async getNotifications(id: number) {
