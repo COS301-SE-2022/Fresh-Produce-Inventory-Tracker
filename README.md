@@ -18,3 +18,4 @@
  <h2 align="center">Other</h2>
   - <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects">Project Management</a><br/>
   - <a href = "https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">Team Members</a><br/>
+  - <a href = "https://drive.google.com/file/d/1dj5uHlRoUGOBPSLKYvcvMbVlNorV6diR/view?usp=sharing">System Demo</a><br/>
