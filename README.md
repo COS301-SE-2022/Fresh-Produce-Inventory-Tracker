@@ -13,7 +13,7 @@
   - <a href = "https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">Deployment Model</a><br/>
   - <a href = "https://docs.google.com/document/d/1C9WdKVEJ8nsC_k-lBZlDMU1fjx10jQ2ljgMXIzVi2j8/edit#">Testing Policy</a><br/>
   - <a href = "https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">Testing Diagram</a><br/>
-  - <a href = "https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">Technical Installation Manual</a><br/>
+  - <a href = "https://docs.google.com/document/d/1tho-qFZw2jMubtVi8FJlAP6OmhAaBQ/edit?usp=sharing">Technical Installation Manual</a><br/>
   
   
  <h2 align="center">Other</h2>
