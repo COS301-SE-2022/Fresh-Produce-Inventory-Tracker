@@ -14,7 +14,7 @@
   - <a href = "https://docs.google.com/document/d/1C9WdKVEJ8nsC_k-lBZlDMU1fjx10jQ2ljgMXIzVi2j8/edit#">Testing Policy</a><br/>
   - <a href = "https://drive.google.com/file/d/1dbgmFlOzhTvXeBmhkLjITJKaT3kPQR1w/view?usp=sharing">Testing Diagram</a><br/>
   - <a href = "https://docs.google.com/document/d/1tho-qFZw2jMubtVi8FJlAP6OmhAaBQ_-/edit?usp=sharing&ouid=108837558974965925809&rtpof=true&sd=true)">Technical Installation Manual</a><br/>
-  
+  - <a href = "https://docs.google.com/document/d/1ybq_yDrvQobHayrlw5ai7bnunFhm6EyTe75egcyT3_A/edit?usp=sharing">Instructions for further development</a><br/>
   
  <h2 align="center">Other</h2>
   - <a href = "https://github.com/COS301-SE-2022/Fresh-Produce-Inventory-Tracker/projects">Project Management</a><br/>
